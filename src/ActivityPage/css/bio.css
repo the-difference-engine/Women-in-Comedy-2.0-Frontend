@@ -1,0 +1,38 @@
+#activity-bio {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    background-color: #e6e6e6;
+}
+
+
+.activity-bio-content {
+  position: fixed;
+  top: 15%;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 20%;
+}
+
+.bio-desc {
+  width: 100%;
+}
+
+#bio-pic img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.bio-name p {
+  margin-top: 15px;
+  color:  #990000;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.bio-title {
+  color: #990000;
+  font-size: 18px;
+}
