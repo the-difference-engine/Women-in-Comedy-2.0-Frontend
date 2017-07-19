@@ -3,6 +3,8 @@ import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';
 import YourActivity from './ActivityPage';
+import feedSeaech from './ActivityPage';
+
 
 class ActivityPage extends Component {
 	render () {

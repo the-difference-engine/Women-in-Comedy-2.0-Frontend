@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../EventsPage/components/HeaderComponent';
 import Guests from './components/Guests';
-import { RightGraySideBar, left, header } from '../common';
+import { RightGraySideBar, FeedPostBar } from '../common';
 
 
 class EventsFeed extends Component {
@@ -10,6 +10,8 @@ class EventsFeed extends Component {
       <div>
         <Header />
         <RightGraySideBar />
+        <FeedPostBar/>
+
       </div>
     );
   }
