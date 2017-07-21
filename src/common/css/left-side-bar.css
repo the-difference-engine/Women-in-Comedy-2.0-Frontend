@@ -1,6 +1,6 @@
-#right-side-bar {
+#left-side-bar {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   width: 20%;
   height: 100%;
