@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Guests from './components/Guests';
+
 import { RightGraySideBar, LeftGraySideBar, Navbar } from '../common';
+
+import { RightGraySideBar, FeedPostBar } from '../common';
+
 
 
 class EventsFeed extends Component {
@@ -9,7 +13,12 @@ class EventsFeed extends Component {
       <div>
         <Navbar />
         <RightGraySideBar />
+
         <LeftGraySideBar />
+
+        <FeedPostBar/>
+
+
       </div>
     );
   }

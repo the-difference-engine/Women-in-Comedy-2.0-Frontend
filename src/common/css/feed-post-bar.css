@@ -1,0 +1,49 @@
+.search {
+  width: 100%;
+  position: relative;
+   
+
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #D3D3D3;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+
+
+
+.post-button {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.post-button button{
+  background-color: #9b1522;
+  color: white;
+
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.activity-title h3{
+  color: #9b1522;
+
+}
