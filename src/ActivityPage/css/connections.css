@@ -1,0 +1,35 @@
+#activity-users {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background-color: #e6e6e6;
+}
+
+
+/*.activity-users-content {
+  top: 15%;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 20%;
+}
+
+*/
+
+#bio-pic img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+#bio-pic2 {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.users-name p {
+  margin-top: 15px;
+  color:  #990000;
+  font-size: 24px;
+  font-weight: 400;
+}

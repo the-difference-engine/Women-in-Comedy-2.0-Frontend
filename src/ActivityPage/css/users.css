@@ -8,17 +8,6 @@
 }
 
 
-#activity-users {
-    position: absolute;
-    width: 20%;
-    height: 100%;
-    right: 0;
-    top: 0;
-    background-color: #e6e6e6;
-}
-
-
-
 #bio-pic-users img {
   width: 175px;
   border-radius: 50%;
@@ -27,6 +16,3 @@
 .users-name p {
   font-size: 200%;
 }
-
-
-
