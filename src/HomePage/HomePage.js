@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import HeaderComponent from './components/HeaderComponent';
+import FBLogin from '../Facebook/components/FacebookLoginComponent';
+import logo from '../images/women_curl.jpg'
 
-class EventsPage extends Component {
-  constructor(props) {
-		super(props);
-		this.state = {
-      event: [
-        {
-          host_id:1,
-      		title: "A Great Event",
-      		photo:"my pix",
-      		date:"7-16-2016",
-      		ticket_link:"www.google.com",
-      		about: "mine is bigger"
-        }
-      ]
-    };
-	}
+
+
+
+  
+
+
+
+
+
+class HomePage extends Component {
+  
+  
 
 	render () {
 		return (
 			<div id="events-page">
-				< HeaderComponent />
+				<HeaderComponent />
+        <div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
+        
+
+
 			</div>
+
+      
 		);
 	}
 }
 
-export default EventsPage;
+
+
+export default HomePage;
+
