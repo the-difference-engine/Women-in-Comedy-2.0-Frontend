@@ -1,8 +1,9 @@
 #right-side-bar {
   position: fixed;
   right: 0;
-  top: 0;
+  top: 65px;
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
+  z-index: -1;
 }

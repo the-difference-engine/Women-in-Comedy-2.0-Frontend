@@ -1,16 +1,16 @@
 .search {
-  width: 100%;
+  width: 90%;
   position: relative;
-   
+
 
 }
 
 .searchTerm {
   float: left;
   width: 100%;
-  border: 3px solid #D3D3D3;
+  border: 2px solid #D3D3D3;
   padding: 5px;
-  height: 40px;
+  height: 35px;
   border-radius: 5px;
   outline: none;
 }
@@ -18,7 +18,7 @@
 
 
 .post-button {
-  position: absolute;  
+  position: absolute;
   right: -50px;
   width: 40px;
   height: 36px;
@@ -36,14 +36,13 @@
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
-  width: 30%;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
 }
 
 .activity-title h3{
   color: #9b1522;
 
+}
+.feed-post-bar {
+  padding-bottom: 15px;
 }
