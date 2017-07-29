@@ -10,21 +10,19 @@ class ActivityPage extends Component {
 		this.state = {
 	    	events: [
 		        {
-		        	host_id:1,
 		      		name:"Mary Swanson",
 		      		photo:"my pix"
 		        },
 		        {
-		        	host_id:2,
 		        	name:"Jane Simton",
+		        	photo:"pic"
 
 		        },
 		        {
-		        	host_id:3,
 		        	name:"Jack Terrier",
 		        	photo:"mypicture"
-		        }]
-    };
+		        }],
+	    };
 	}
 
 	render () {

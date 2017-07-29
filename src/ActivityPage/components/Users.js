@@ -3,23 +3,35 @@ import '../css/users.css';
 
 const Users = (props) => {
 
-	console.log(props);
+	// console.log(props);
 
-	const userList = props.events.map((user) => {
-		console.log(user);
+	let connections = 0;
+	const userList = props.events.map((user, index) => {
+		connections = connections + index
+		console.log('sazdsafda');
+		console.log('index below');
+		console.log(index);
+		console.log('connections below');
+		console.log(connections);
   		return (
-    		<div id="activity-users">
-
+  			<div class="box">
+	    		<div key={user.id} className="col-xs-offset-1 col-xs-3">
+	 				<div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+	    				<p>{user.name} </p>
+	    			</div>
+    			</div>
     		</div>
   		);
 	})
+	console.log('userList[0] below');
+	console.log(userList[0]);
 
-  return (
-    <div id="activity-users">
-    	<div id="bio-pic-users"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></div>
-    	<div className="users-name"><p> Mary Swanson</p></div>
-    </div>
-  );
+	return (
+	    <div id="activity-users">
+	    	<div className="user"><p>{userList}</p></div>
+	    	<p> Connections({connections}) </p>
+	    </div>
+  	);
 }
 
 export default Users;
