@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/bio.css';
+
+
 const Bio = (props) => {
   return (
     <div id="activity-bio">

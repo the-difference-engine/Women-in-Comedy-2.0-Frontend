@@ -10,7 +10,7 @@ class EventsPage extends Component {
 		this.state = {
       event: [
         {
-          host_id: 1,
+          host_id:1,
       		title: "A Great Event",
       		photo:"my pix",
       		date:"7-16-2016",
