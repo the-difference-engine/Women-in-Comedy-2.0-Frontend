@@ -7,6 +7,7 @@ import logo from '../images/women_curl.jpg'
 
 
 
+
 class HomePage extends Component {
   
   
@@ -20,6 +21,9 @@ class HomePage extends Component {
 
        
 
+				<HeaderComponent />
+        <div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
+        
 
 
 			</div>
