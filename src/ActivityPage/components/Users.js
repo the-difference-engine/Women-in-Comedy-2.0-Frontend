@@ -7,29 +7,26 @@ const Users = (props) => {
 
 	let connections = 0;
 	const userList = props.events.map((user, index) => {
-		connections = connections + index
-		console.log('sazdsafda');
+		connections = index + 1;
 		console.log('index below');
-		console.log(index);
-		console.log('connections below');
-		console.log(connections);
+		console.log(index + 1);
   		return (
-  			<div class="box">
-	    		<div key={user.id} className="col-xs-offset-1 col-xs-3">
-	 				<div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-	    				<p>{user.name} </p>
-	    			</div>
+ 	 			<div className="container">	    		
+	  				<div key={user.id} className="col-xs-offset-1 col-xs-2">
+					 	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />{user.name}</div>
+					 </div>
     			</div>
-    		</div>
   		);
 	})
-	console.log('userList[0] below');
-	console.log(userList[0]);
 
 	return (
 	    <div id="activity-users">
-	    	<div className="user"><p>{userList}</p></div>
-	    	<p> Connections({connections}) </p>
+	    	<div className="container">
+		    	<h4> Connections({connections})</h4>
+		    </div>
+		    <div className="container">
+		    	<p> {userList} </p>
+		    </div>
 	    </div>
   	);
 }
