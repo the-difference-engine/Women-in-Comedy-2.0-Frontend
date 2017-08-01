@@ -1,12 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
 import FacebookLogin from 'react-facebook-login';
 import '../css/header.css';
 import '../css/images.css';
 
 
-
-import '../css/header.css';
 
 export default (props) => {
   return (
@@ -32,27 +29,3 @@ export default (props) => {
 };
 
  
-
-
-
-          <li>
-
-              <form className="navbar-form">
-                <div className="input-group">
-                  <input type="text" className="form-control" placeholder="Search"/>
-                  <i className="glyphicon glyphicon-search"></i>
-                </div>
-              </form>
-
-          </li>
-          <li><a href="#" className="icon"><i className="fa fa-home"><p>HOME</p></i></a></li>
-          <li><a href="#" className="icon"><i className="fa fa-calendar-o"><p>EVENTS</p></i></a></li>
-          <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
-          <li><a><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></a></li>
-        </ul>
-      </div>
-
-
-    </nav>
-  );
-};

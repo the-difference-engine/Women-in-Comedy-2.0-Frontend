@@ -26,6 +26,3 @@ export default class FBLogin extends Component {
     )
   }
 }
-    )
-  }
-}

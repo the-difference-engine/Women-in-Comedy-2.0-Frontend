@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
 import HomePage from './HomePage/HomePage';
-import EventsFeed from './EventsFeed/EventsFeed';
+import EventsFeed from './EventsFeedPage/EventsFeed';
 
 
 
