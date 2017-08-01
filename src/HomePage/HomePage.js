@@ -3,10 +3,6 @@ import HeaderComponent from './components/HeaderComponent';
 import FBLogin from '../Facebook/components/FacebookLoginComponent';
 import logo from '../images/women_curl.jpg'
 
-
-
-
-
 class HomePage extends Component {
   
   
@@ -17,18 +13,10 @@ class HomePage extends Component {
        <FBLogin />
 				<HeaderComponent />
         <img src={logo}className="splash" alt="splash" />
-
-       
-
-
-
 			</div>
-
-      
 		);
 	}
 }
-
 
 
 export default HomePage;

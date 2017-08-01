@@ -11,16 +11,44 @@ class ActivityPage extends Component {
 		this.state = {
 	    	events: [
 		        {
-		      		name:"Mary Swanson",
+		      		name:"Dawn French",
 		      		photo:"my pix"
 		        },
 		        {
-		        	name:"Jane Simton",
+		        	name:"Chelsea Handler",
 		        	photo:"pic"
 
 		        },
 		        {
-		        	name:"Jack Terrier",
+		        	name:"Catharine Tate",
+		        	photo:"mypiccc"
+		        },
+		        {
+		        	name:"Grace Jones",
+		        	photo:"picture"
+		        },
+		       	{
+		        	name:"Brianna Parkes",
+		        	photo:"meepic"
+		        },
+		        {
+		        	name:"Jennifer Saunders",
+		        	photo:"mine"
+		        },
+		        {
+		        	name:"Sarah Silverman",
+		        	photo:"McPic"
+		        },
+		        {
+		       		name:"Vera Smith",
+		        	photo:"mypicturealbum"
+		        },
+		        {
+		        	name:"Maria Totti",
+		        	photo:"mypicturebook"
+		        },
+		        {
+		        	name:"Gretchen Williams",
 		        	photo:"mypicture"
 		        }],
 	    };
