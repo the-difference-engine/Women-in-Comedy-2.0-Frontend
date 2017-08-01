@@ -12,6 +12,7 @@ import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './Login|Signup/Form';
 
+
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
@@ -27,5 +28,8 @@ ReactDOM.render(
       </div>
     </BrowserRouter>
   </Provider>
+
+
+
   , document.getElementById('root'));
 registerServiceWorker();

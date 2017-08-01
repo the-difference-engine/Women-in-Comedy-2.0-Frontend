@@ -13,6 +13,7 @@
     "redux-promise": "^0.5.3"
   },
   "devDependencies": {
+    "eslint-plugin-import": "^2.7.0",
     "react-scripts": "1.0.10"
   },
   "scripts": {
