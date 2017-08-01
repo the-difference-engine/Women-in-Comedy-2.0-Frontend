@@ -1,0 +1,15 @@
+#page-content {
+  width: 61%;
+  position: relative;
+  left: 20%;
+  top: 65px;
+  padding-bottom: 50px;
+}
+
+#page-content-margin {
+  margin-top: 50px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 25px;
+  height: 100%;
+}
