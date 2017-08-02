@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createUser } from '../../actions';
+
 class RegisterForm extends Component {
   renderTitleField(field) {
     const { meta: {touched, error} } = field
@@ -40,7 +43,7 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    this.props.createUser(values);
   }
 
   render() {
@@ -70,11 +73,18 @@ class RegisterForm extends Component {
           />
           <button className="btn btn-success" type="submit">Submit</button>
         </form>
+        {this.props.user.email}
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  console.log('user state', state.user);
+  return {
+    user: state.user
+  };
+}
 function validate(values) {
   const errors = {};
   if (!values.firstName) {
@@ -95,4 +105,6 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'newAccountForm'
-})(RegisterForm);
+})(
+  connect(mapStateToProps, { createUser })(RegisterForm)
+);
