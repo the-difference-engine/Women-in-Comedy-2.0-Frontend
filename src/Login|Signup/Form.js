@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+
+import RegisterForm from './components/RegisterForm';
 
 class Form extends Component {
 
   render() {
     console.log(this.props.test);
     return (
-      <div>
-        {this.props.test.first}
+      <div className="container">
+        <RegisterForm />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    test: state.test
-  };
-}
-export default connect(mapStateToProps)(Form);
+
+export default Form;
