@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
 
+import LoginNavbar from './components/LoginNavbar';
 import RegisterForm from './components/RegisterForm';
-
+import './css/form.css';
 class Form extends Component {
 
   render() {
-    console.log(this.props.test);
     return (
-      <div className="container">
-        <RegisterForm />
+      <div id="form">
+        <LoginNavbar history={this.props.history}/>
+        <RegisterForm history={this.props.history}/>
       </div>
     );
   }

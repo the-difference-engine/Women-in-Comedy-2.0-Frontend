@@ -6,6 +6,7 @@ const rootReducer = combineReducers({
   test: TestReducer,
   form: formReducer,
   user: CreateUserReducer
+
 });
 
 export default rootReducer;

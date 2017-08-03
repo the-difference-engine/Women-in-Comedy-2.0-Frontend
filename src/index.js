@@ -10,8 +10,8 @@ import reducers from './reducers';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
-import Form from './Login|Signup/Form';
-
+import Form from './LoginPage/Form';
+import Feed from './FeedPage/FeedPage';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -24,6 +24,7 @@ ReactDOM.render(
           <Route path='/activities' component={ActivityPage}></Route>
           <Route path='/eventsfeed' component={EventsFeed}></Route>
           <Route path='/form' component={Form}></Route>
+          <Route path='/feed' component={Feed}></Route>
         </Switch>
       </div>
     </BrowserRouter>

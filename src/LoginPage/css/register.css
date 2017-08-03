@@ -1,0 +1,9 @@
+#register {
+  margin-top: 50px;
+  position: relative;
+  left: 60%;
+}
+
+#field-form .form-control {
+  width: 200px;
+}

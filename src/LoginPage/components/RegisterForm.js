@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createUser } from '../../actions';
+import axios from 'axios';
+
+import '../css/register.css'
 
 class RegisterForm extends Component {
   renderTitleField(field) {
@@ -9,7 +11,7 @@ class RegisterForm extends Component {
     const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
 
     return (
-      <div className={className}>
+      <div className={className} id="field-form">
         <input
           className="form-control"
           type="text"
@@ -28,7 +30,7 @@ class RegisterForm extends Component {
     const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
 
     return (
-      <div className={className}>
+      <div className={className} id="field-form">
         <input
           className="form-control"
           type="password"
@@ -43,13 +45,21 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.createUser(values);
+    axios.post('http://localhost:9000/api/v1/users', values)
+      .then(response => {
+        document.cookie = JSON.stringify(response.data);
+        console.log(document.cookie);
+        this.props.history.push('/feed');
+      })
+      .catch(err => {console.log(err)});
   }
-
   render() {
+
+    
     const { handleSubmit } = this.props;
     return (
-      <div>
+      <div id="register">
+        <h1>Create a New Account</h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="First name"
@@ -79,10 +89,9 @@ class RegisterForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log('user state', state.user);
+function mapStateToProps({ user }) {
   return {
-    user: state.user
+    user
   };
 }
 function validate(values) {
@@ -106,5 +115,5 @@ export default reduxForm({
   validate,
   form: 'newAccountForm'
 })(
-  connect(mapStateToProps, { createUser })(RegisterForm)
+  connect(mapStateToProps)(RegisterForm)
 );
