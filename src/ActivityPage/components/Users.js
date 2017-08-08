@@ -12,7 +12,7 @@ const Users = (props) => {
 		console.log(index + 1);
   		return (
  	 			<div className="container">	    		
-	  				<div key={user.id} className="col-xs-offset-1 col-xs-2">
+	  				<div key={user.id}>
 					 	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />{user.name}</div>
 					 </div>
     			</div>
@@ -22,11 +22,13 @@ const Users = (props) => {
 	return (
 	    <div id="activity-users">
 	    	<div className="container">
-		    	<h4> Connections({connections})</h4>
+		    	<h4> <span>Connections({connections})</span></h4>
 		    </div>
-		    <div className="container">
-		    	<p> {userList} </p>
-		    </div>
+		    <div className="user-list">
+			    <div className="container">
+			    	<p> {userList} </p>
+			    </div>
+			</div>
 	    </div>
   	);
 }
