@@ -1,4 +1,7 @@
-
+.book{
+  padding: 7em;
+  left: 72%;
+}
 .navbar-default {
     background-color: #9b1522;
 }
@@ -61,3 +64,5 @@ i.fa {
   z-index: 2;
   cursor: pointer;
 }
+
+
