@@ -1,0 +1,59 @@
+#navbar {
+  height: 82px;
+  background-color: #9b1522;
+}
+
+#login-nav-header {
+  font-family: 'The Girl Next Door', cursive;
+  color: white;
+  padding: 20px 0;
+  display: inline-block;
+  float: left;
+}
+
+#container {
+  height: 100%;
+  margin: 0 10%;
+  vertical-align: middle;
+
+}
+.cred {
+  float: right;
+
+  margin-right: 20px;
+
+
+}
+
+.cred p {
+  margin-bottom: 0;
+  color: white;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.cred input {
+  height: 25px;
+  border-color: #1d2a5b;
+  border-width: 1px;
+}
+
+#navbar button {
+  float: right;
+  margin-top: 32px;
+  background-color: #C82222;
+  height: 25px;
+  border: 1px solid #860A0A;
+  border-radius: 2px;
+}
+
+#navbar button span {
+  color: white;
+  font-size: 12px;
+  display: block;
+}
+
+#navbar button:hover {
+  background-color: #860A0A;
+}

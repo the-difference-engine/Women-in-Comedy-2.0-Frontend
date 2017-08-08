@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../EventsPage/components/HeaderComponent';
-import Bio from '../ActivityPage/components/Bio';
+import Bio from './components/Bio';
 import Users from './components/Users';
 import YourActivity from './ActivityPage';
 import feedSeaech from './ActivityPage';
