@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
+import NewFeeds from './components/NewFeeds';
+import './css/feed-page.css';
 
 class Feed extends Component {
   render() {
     return (
       <div>
-        thank you!
+        <Navbar />
+        <LeftGraySideBar />
+        <RightGraySideBar />
+
+        <PageContent pageTitle="Your Feed">
+          <NewFeeds />
+        </PageContent>
       </div>
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
-export default connect(mapStateToProps)(Feed);
+
+export default Feed;
