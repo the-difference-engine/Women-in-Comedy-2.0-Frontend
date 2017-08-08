@@ -1,0 +1,10 @@
+.splash {
+  padding: 7em;
+    position: absolute;
+   top: 50%;
+   left: 38%;
+   width: 800px;
+   height: auto;
+   margin-top: -250px; /* Half the height */
+   margin-left: -250px; /* Half the width */
+}

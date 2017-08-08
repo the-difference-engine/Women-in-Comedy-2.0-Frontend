@@ -14,6 +14,7 @@ export default class FBLogin extends Component {
 
   render(){
     return (
+      <div className="book" >
       <FacebookLogin
         appId="1088597931155576"
         autoLoad={false}
@@ -21,6 +22,7 @@ export default class FBLogin extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook}
       />
+      </div>
     )
   }
 }
