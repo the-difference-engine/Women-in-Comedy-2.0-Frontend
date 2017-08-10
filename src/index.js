@@ -7,6 +7,7 @@ import promise from 'redux-promise'
 import registerServiceWorker from './registerServiceWorker';
 
 import reducers from './reducers';
+import Home from './Home/Home';
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
@@ -21,12 +22,14 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+
           <Route path='/events' component={EventsPage}></Route>
           <Route path="/home" component={HomePage}></Route>
           <Route path='/activities' component={ActivityPage}></Route>
           <Route path='/eventsfeed' component={EventsFeed}></Route>
           <Route path='/form' component={Form}></Route>
           <Route path='/feed' component={Feed}></Route>
+          <Route path='/' component={Home}></Route>
         </Switch>
       </div>
     </BrowserRouter>

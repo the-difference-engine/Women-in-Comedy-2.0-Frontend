@@ -49,19 +49,19 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/users', values)
+    axios.post('http://localhost:9000/api/v1/users', values)
       .then(payload => {
         console.log(payload);
         this.setState({ userMade: true });
       })
-      .catch(err => {console.log(err)});
+      .catch(err => {alert(err)});
   }
   render() {
     const { handleSubmit } = this.props;
     if (this.state.userMade) {
       return (
         <div>
-          Thank You For Signing Up for Women In Comedy!
+          Thank You For Signing Up for Women In Comedy! A confirmation email has been sent.
         </div>
       )
     } else {

@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/login-navbar.css';
 class LoginNavbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   Login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/sessions', { email, password })
+    axios.post('http://localhost:9000/api/v1/sessions', { email, password })
     .then(response => {
-      document.cookie = JSON.stringify(response.data);
-      console.log(document.cookie);
-      console.log(response);
-      this.props.history.push('/feed');
+      sessionStorage.setItem('confirmed', response.data.confirmed_at);
+      this.props.renderOn();
     })
     .catch(err => {alert(err)});
   }
   render() {
+    console.log('from navlogin', this.props.renderOn);
     return (
       <div id="navbar">
         <div id="container">
