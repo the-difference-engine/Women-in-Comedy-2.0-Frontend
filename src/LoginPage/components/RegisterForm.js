@@ -91,18 +91,13 @@ class RegisterForm extends Component {
             />
             <button className="btn btn-success" type="submit">Submit</button>
           </form>
-          {this.props.user.email}
+
         </div>
       );
     }
   }
 }
 
-function mapStateToProps({ user }) {
-  return {
-    user
-  };
-}
 function validate(values) {
   const errors = {};
   if (!values.firstName) {
@@ -124,5 +119,5 @@ export default reduxForm({
   validate,
   form: 'newAccountForm'
 })(
-  connect(mapStateToProps)(RegisterForm)
+  connect(null)(RegisterForm)
 );

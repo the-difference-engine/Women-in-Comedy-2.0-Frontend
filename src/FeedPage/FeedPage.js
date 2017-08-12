@@ -4,7 +4,16 @@ import NewFeeds from './components/NewFeeds';
 import './css/feed-page.css';
 
 class Feed extends Component {
+  componentWillMount() {
+    const valid = sessionStorage.getItem('confirmed');
+    console.log(valid);
+    console.log(typeof valid);
+    if(valid == 'null' || !valid) {
+      this.props.history.push('/');
+    }
+  }
   render() {
+
     return (
       <div>
         <Navbar />

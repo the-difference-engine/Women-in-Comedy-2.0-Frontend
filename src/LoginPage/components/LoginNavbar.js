@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { createSession } from '../../actions';
+import { Modal } from '../../common';
 import '../css/login-navbar.css';
 class LoginNavbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {notVerified: false};
   }
   Login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-
+    // this.props.createSession(email, password);
     axios.post('http://localhost:9000/api/v1/sessions', { email, password })
     .then(response => {
-      sessionStorage.setItem('confirmed', response.data.confirmed_at);
-      this.props.renderOn();
+      console.log('reponse', response);
+      sessionStorage.setItem('confirmed', response.data.confirmed_at)
+      response.data.confirmed_at ? this.props.history.push('/feed') : this.setState({notVerified: true});
     })
     .catch(err => {alert(err)});
   }
-  render() {
-    console.log('from navlogin', this.props.renderOn);
+  renderLoginNav() {
     return (
       <div id="navbar">
         <div id="container">
@@ -34,12 +37,24 @@ class LoginNavbar extends Component {
           </div>
         </div>
       </div>
+    )
+  }
+
+  render() {
+    if (this.state.notVerified) {
+      return (
+        <div>
+          <Modal />
+          {this.renderLoginNav()}
+        </div>
+      );
+    }
+    return (
+      <div>{this.renderLoginNav()}</div>
     );
   }
 };
 
-const Login = () => {
 
-};
 
-export default LoginNavbar;
+export default connect(null, { createSession })(LoginNavbar);

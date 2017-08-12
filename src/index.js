@@ -14,6 +14,7 @@ import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
+import { Modal } from './common/Modal';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -22,14 +23,13 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-
+          <Route path='/modal' component={Modal}></Route>
+          <Route path='/feed' component={Feed}></Route>
           <Route path='/events' component={EventsPage}></Route>
           <Route path="/home" component={HomePage}></Route>
           <Route path='/activities' component={ActivityPage}></Route>
           <Route path='/eventsfeed' component={EventsFeed}></Route>
-          <Route path='/form' component={Form}></Route>
-          <Route path='/feed' component={Feed}></Route>
-          <Route path='/' component={Home}></Route>
+          <Route path='/' component={Form}></Route>
         </Switch>
       </div>
     </BrowserRouter>

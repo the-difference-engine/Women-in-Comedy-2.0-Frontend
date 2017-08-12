@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import TestReducer from './test_reducer';
-import CreateUserReducer from './create_user_reducer';
+import CreateSessionReducer from './create_session_reducer';
+// import CreateUserReducer from './create_user_reducer';
 const rootReducer = combineReducers({
-  test: TestReducer,
   form: formReducer,
-  user: CreateUserReducer
-
+  session: CreateSessionReducer
 });
 
 export default rootReducer;
