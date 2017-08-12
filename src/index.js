@@ -7,7 +7,6 @@ import promise from 'redux-promise'
 import registerServiceWorker from './registerServiceWorker';
 
 import reducers from './reducers';
-import Home from './Home/Home';
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
