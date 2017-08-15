@@ -57,6 +57,7 @@ class RegisterForm extends Component {
       .catch(err => {alert(err)});
   }
   render() {
+    console.log('register');
     const { handleSubmit } = this.props;
     if (this.state.userMade) {
       return (
