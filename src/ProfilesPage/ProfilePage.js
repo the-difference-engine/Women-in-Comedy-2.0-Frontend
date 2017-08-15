@@ -34,6 +34,17 @@ class ProfilePage extends Component {
 		};
 	}
 
+	render () {
+		return (
+			<div>
+				<Header />
+				<Profile events={this.state.events} />
+
+			</div>
+
+		);
+	}
+
 }
 
 export default ProfilePage;

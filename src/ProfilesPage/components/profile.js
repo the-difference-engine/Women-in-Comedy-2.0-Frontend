@@ -1,24 +1,26 @@
 import React from 'react';
-import '../css/profiles.css';
+import '../css/profile.css';
 
-const Profiles = (props) => {
+const Profile = (props) => {
 	let connections = 0;
-	const currentProfile = props.events.findBy(id: 1) => {
+	const currentProfile = props.events.map((user, index) => {
 		console.log('Working');
-	}
+		console.log(user);
+		console.log(index + 1);
+
 		return(
  	 		<div className="container">
- 	 			<div>
- 	 				{user.name}
- 	 			</div>
- 	 			<div>
- 	 				{user.about}
+ 	 			<div key={user.id}>
+ 	 				<div id="profile_info">
+	 	 				<p>{user.first_name}</p>
+ 		 				<p>{user.about}</p>
+ 		 			</div>
  	 			</div>
  	 		</div>	    		
 
 
-		)
-	)
+		);
+	})
 
 	return(
 		<div className="container">
@@ -28,4 +30,4 @@ const Profiles = (props) => {
 	);
 }
 
-export default Profiles;
+export default Profile;
