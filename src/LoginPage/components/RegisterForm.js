@@ -6,6 +6,10 @@ import axios from 'axios';
 import '../css/register.css'
 
 class RegisterForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { userMade: false }
+  }
   renderTitleField(field) {
     const { meta: {touched, error} } = field
     const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
@@ -46,54 +50,55 @@ class RegisterForm extends Component {
 
   onSubmit(values) {
     axios.post('http://localhost:9000/api/v1/users', values)
-      .then(response => {
-        document.cookie = JSON.stringify(response.data);
-        console.log(document.cookie);
-        this.props.history.push('/feed');
+      .then(payload => {
+        console.log(payload);
+        this.setState({ userMade: true });
       })
-      .catch(err => {console.log(err)});
+      .catch(err => {alert(err)});
   }
   render() {
-
-    
+    console.log('register');
     const { handleSubmit } = this.props;
-    return (
-      <div id="register">
-        <h1>Create a New Account</h1>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="First name"
-            name="firstName"
-            component={this.renderTitleField}
-          />
-          <Field
-            label="Last name"
-            name="lastName"
-            component={this.renderTitleField}
-          />
-          <Field
-            label="Email"
-            name="email"
-            component={this.renderTitleField}
-          />
-          <Field
-            label="Password"
-            name="password"
-            component={this.renderPasswordField}
-          />
-          <button className="btn btn-success" type="submit">Submit</button>
-        </form>
-        {this.props.user.email}
-      </div>
-    );
+    if (this.state.userMade) {
+      return (
+        <div>
+          Thank You For Signing Up for Women In Comedy! A confirmation email has been sent.
+        </div>
+      )
+    } else {
+      return (
+        <div id="register">
+          <h1>Create a New Account</h1>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field
+              label="First name"
+              name="firstName"
+              component={this.renderTitleField}
+            />
+            <Field
+              label="Last name"
+              name="lastName"
+              component={this.renderTitleField}
+            />
+            <Field
+              label="Email"
+              name="email"
+              component={this.renderTitleField}
+            />
+            <Field
+              label="Password"
+              name="password"
+              component={this.renderPasswordField}
+            />
+            <button className="btn btn-success" type="submit">Submit</button>
+          </form>
+
+        </div>
+      );
+    }
   }
 }
 
-function mapStateToProps({ user }) {
-  return {
-    user
-  };
-}
 function validate(values) {
   const errors = {};
   if (!values.firstName) {
@@ -115,5 +120,5 @@ export default reduxForm({
   validate,
   form: 'newAccountForm'
 })(
-  connect(mapStateToProps)(RegisterForm)
+  connect(null)(RegisterForm)
 );
