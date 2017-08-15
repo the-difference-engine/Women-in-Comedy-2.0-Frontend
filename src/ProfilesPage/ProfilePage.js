@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../EventsPage/components/HeaderComponent';
+import Profile from './components/Profile';
 
 class ProfilePage extends Component {
 	constructor(props) {

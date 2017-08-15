@@ -30,6 +30,7 @@ ReactDOM.render(
           <Route path='/activities' component={ActivityPage}></Route>
           <Route path='/eventsfeed' component={EventsFeed}></Route>
           <Route path='/' component={Form}></Route>
+          <Route path='/profile' component={ProfilesPage}></Route>
         </Switch>
       </div>
     </BrowserRouter>
