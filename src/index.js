@@ -14,6 +14,7 @@ import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import { Modal } from './common/Modal';
+import ProfilesPage from './ProfilesPage/ProfilesPage'
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
