@@ -31,6 +31,58 @@ class ProfilePage extends Component {
 					last_name: "Magika",
 					city: "Tokyo"
 				}],
+			events_connections: [
+		        {
+		        	id: 1,
+		      		name:"Dawn French",
+		      		photo:"my pix"
+		        },
+		        {
+		        	id: 2,
+		        	name:"Chelsea Handler",
+		        	photo:"pic"
+
+		        },
+		        {
+		        	id: 3,
+		        	name:"Catharine Tate",
+		        	photo:"mypiccc"
+		        },
+		        {
+		        	id: 4,
+		        	name:"Grace Jones",
+		        	photo:"picture"
+		        },
+		       	{
+		        	id: 5,
+		        	name:"Brianna Parkes",
+		        	photo:"meepic"
+		        },
+		        {
+		        	id: 6,
+		        	name:"Jennifer Saunders",
+		        	photo:"mine"
+		        },
+		        {
+		        	id: 7,
+		        	name:"Sarah Silverman",
+		        	photo:"McPic"
+		        },
+		        {
+		        	id: 8,
+		       		name:"Vera Smith",
+		        	photo:"mypicturealbum"
+		        },
+		        {
+		        	id: 9,
+		        	name:"Maria Totti",
+		        	photo:"mypicturebook"
+		        },
+		        {
+		        	id: 10,
+		        	name:"Gretchen Williams",
+		        	photo:"mypicture"
+		        }],
 		};
 	}
 
@@ -38,7 +90,7 @@ class ProfilePage extends Component {
 		return (
 			<div>
 				<Header />
-				<Profile events={this.state.events} />
+				<Profile events={this.state.events} events_connections={this.state.events_connections}/>
 
 			</div>
 
@@ -46,5 +98,6 @@ class ProfilePage extends Component {
 	}
 
 }
+
 
 export default ProfilePage;
