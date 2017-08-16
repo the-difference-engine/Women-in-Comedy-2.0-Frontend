@@ -1,0 +1,8 @@
+#new-feed-container {
+  position: relative;
+  top: 15px;
+}
+#feed-none {
+  position:absolute;
+  bottom: 0px;
+}

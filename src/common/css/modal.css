@@ -1,0 +1,63 @@
+#modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  padding-top: 100px;
+  overflow: auto;
+  z-index: 1;
+}
+
+#modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  border: 1px solid #888;
+}
+/*background-color: #9b1522;*/
+
+
+#modal-header {
+    padding: 2px 16px;
+    background-color: #9b1522;
+    color: white;
+    height: 70px;
+}
+
+#modal-body {
+  padding: 50px 16px;
+}
+
+#modal-footer {
+    padding: 2px 16px;
+    background-color: #9b1522;
+    color: white;
+    height: 70px;
+}
+
+#resend {
+  background-color: #9b1522;
+  color: white;
+  position: absolute;
+  right: 10px;
+}
+
+#close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    display: block;
+}
+
+#close:hover,
+#close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

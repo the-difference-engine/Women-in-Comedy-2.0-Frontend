@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 
-
 import { RightGraySideBar, LeftGraySideBar, Navbar, PageContent, Feed } from '../common';
 
 class EventsFeed extends Component {
