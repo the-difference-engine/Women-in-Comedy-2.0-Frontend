@@ -3,7 +3,6 @@ import { Feed } from '../../common';
 import '../css/new-feeds.css';
 
 const NewFeeds = (props) => {
-  console.log('new feeds', props.userFeeds);
   const { userFeeds } = props;
   if (userFeeds.length == 0) {
     return (

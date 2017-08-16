@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import promise from 'redux-promise'
+import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 
 import reducers from './reducers';
@@ -13,16 +14,14 @@ import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
-import { Modal } from './common/Modal';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-
+// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = createStore(reducers, {}, applyMiddleware(promise, thunk));
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path='/modal' component={Modal}></Route>
           <Route path='/feed' component={Feed}></Route>
           <Route path='/events' component={EventsPage}></Route>
           <Route path="/home" component={HomePage}></Route>

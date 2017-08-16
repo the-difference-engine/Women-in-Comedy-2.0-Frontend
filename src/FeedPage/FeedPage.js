@@ -12,15 +12,14 @@ class Feed extends Component {
     if(valid == 'null' || !valid) {
       this.props.history.push('/');
     }
-  }
-  componentDidMount() {
-    const userId = sessionStorage.getItem('userId');
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-    fetchUserInfo(userId);
-    fetchUserFeeds(userId);
-    fetchUserConnections(userId);
+    fetchUserInfo(sessionStorage.getItem('userId'));
+    fetchUserFeeds(sessionStorage.getItem('userId'));
+    fetchUserConnections(sessionStorage.getItem('userId'));
   }
+
   render() {
+    console.log('render');
     const { userInfo, userConnections, userFeeds } = this.props;
     return (
       <div>
@@ -37,7 +36,9 @@ class Feed extends Component {
   }
 }
 
-  const mapStateToProps = ({ userInfo, userFeeds, userConnections }) => {
+  const mapStateToProps = (state) => {
+    console.log(state);
+    const { userInfo, userFeeds, userConnections } = state;
     return { userInfo, userFeeds, userConnections };
   }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections })(Feed);

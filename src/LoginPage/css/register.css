@@ -2,8 +2,17 @@
   margin-top: 50px;
   position: relative;
   left: 60%;
+  margin-bottom: 70px;
 }
 
 #field-form .form-control {
   width: 200px;
+}
+
+input[type=checkbox] {
+  margin-left: 5px;
+}
+
+.btn-success {
+  margin-top: 15px;
 }

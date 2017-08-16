@@ -1,16 +1,16 @@
 import React from 'react';
 
 const UserInfo = (props) => {
-  console.log('user info component', props.userInfo);
-  console.log('user connections', props.userConnections);
   const { firstName, lastName, bio } = props.userInfo;
+  const { userConnections } = props;
+  
   return (
     <div>
       <p>{firstName} {lastName}</p>
       <p>bio</p>
       <p>{bio}</p>
-      <p>Connections({props.userConnections.length})</p>
-      {renderConnections(props.userConnections)}
+      <p>Connections({userConnections.length})</p>
+      {renderConnections(userConnections)}
     </div>
   );
 };
