@@ -3,13 +3,13 @@ import React from 'react';
 const UserInfo = (props) => {
   const { firstName, lastName, bio } = props.userInfo;
   const { userConnections } = props;
-  
+
   return (
     <div>
       <p>{firstName} {lastName}</p>
       <p>bio</p>
       <p>{bio}</p>
-      <p>Connections({userConnections.length})</p>
+      <p>Conneions({userConnections.length})</p>
       {renderConnections(userConnections)}
     </div>
   );
