@@ -42,7 +42,7 @@ class ProfilePage extends Component {
 				{
 					id: 5,
 					email: "catharine@email.com",
-					about: "I like magical girls",
+					about: "I like comdey",
 					first_name: "Brianna",
 					last_name: "Parkes",
 					city: "Springfield"
