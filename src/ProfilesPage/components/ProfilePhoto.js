@@ -39,12 +39,10 @@ const ProfilePhoto = (props) => {
 			return(
 	 	 		<div key={user.id}>
 	 	 				<div id="profile_info">
-		 	 				<p>{user.id}</p>
-		 	 				<p>{user.first_name}</p>
-		 	 				<p>{user.last_name}</p>
-		 	 				<p>{user.city}</p>
-		 	 				<p>{user.about}</p>
-		 	 				<a href="mailto:foodbylags@gmail.com" target="_top"><p>{user.email}</p></a>
+		 	 				<p><span>ID:</span> {user.id}</p>
+		 	 				<p><span>Name:</span> {user.first_name} {user.last_name}</p>
+		 	 				<p><span>City:</span> {user.city}</p>
+		 	 				<p><span>About:</span> {user.about}</p>
 	 		 			</div>
 	 	 		</div>	    		
 			);
