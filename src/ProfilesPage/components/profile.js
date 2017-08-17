@@ -7,7 +7,7 @@ const Profile = (props) => {
 	let users = [];
 	let connections = 0;
 	const query = window.location.pathname;
-	const new_query = query.slice(9) 
+	const new_query = query.slice(9)
 	console.log('new query below');
 	console.log(new_query);
 
@@ -27,7 +27,7 @@ const Profile = (props) => {
 	 		 				<p>{user.about}</p>
 	 		 			</div>
 	 	 			</div>
-	 	 		</div>	    		
+	 	 		</div>
 
 
 			);
@@ -56,9 +56,6 @@ const Profile = (props) => {
 		<div className="container">
 			<p> {currentProfile} </p>
 			<p> {randomizer} </p>
-
-
-
 		</div>
 
 	);

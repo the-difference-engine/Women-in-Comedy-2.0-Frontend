@@ -12,7 +12,7 @@ export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
   console.log('fetchUserInfo');
   const request = axios({
     method: 'get',
-    url: 'https://qa-womenincomedy.herokuapp.com/api/v1/users/info',
+    url: 'http://localhost:9000/api/v1/users/info',
     headers: {"id": userId}
   });
   return (dispatch) => {
@@ -26,7 +26,7 @@ export const fetchUserFeeds = (userId) => {
   console.log('fetchUserFeeds');
   const request = axios({
     method: 'get',
-    url: 'https://qa-womenincomedy.herokuapp.com/api/v1/users/feed',
+    url: 'http://localhost:9000/api/v1/users/feed',
     headers: {"id": userId}
   });
   return (dispatch) => {
@@ -40,7 +40,7 @@ export const fetchUserFeeds = (userId) => {
   console.log('fetchUserconnection');
   const request = axios({
     method: 'get',
-    url: 'https://qa-womenincomedy.herokuapp.com/api/v1/users/connections',
+    url: 'http://localhost:9000/api/v1/users/connections',
     headers: {"id": userId}
   });
   return (dispatch) => {
