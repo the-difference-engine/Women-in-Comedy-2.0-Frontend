@@ -17,11 +17,38 @@ const Profile = (props) => {
 
 			return(
 	 	 		<div key={user.id}>
-	 	 			<div className="box">
-	 	 				<div id="personal-feed">
-		 	 				<p>Personal Feed?</p>
-
-	 		 			</div>
+	 	 			<div className="box" id="personal-feed" >
+	 	 				<div>
+	 	 					<p>Upcoming Events</p>
+		 	 				<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+		 		 		</div>
+		 		 		<div>
+		 		 			<p>Past Events</p>
+		 		 			<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+		
+		 		 			<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+	 	 				</div>
 	 	 			</div>
 	 	 		</div>	    		
 			);
