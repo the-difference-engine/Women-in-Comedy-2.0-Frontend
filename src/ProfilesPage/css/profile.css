@@ -1,5 +1,5 @@
 .profile_info_connections {
-	float: right;
+    float: right;
 }
 
 .profile_info  {
@@ -9,7 +9,7 @@
     padding: 10px;
 }
 
-#user-pic {
+#randomizer {
 	text-align: left;
 }
 
@@ -19,6 +19,13 @@
 
 #profile_info p {
     margin: auto;
-    width: 50%;
+    width: 25%;
     padding: 20px;
+}
+.profile_info_connections {
+  	top: 18%;
+  	padding-left: 25px;
+  	width: 20%;
+  	right: 2%;
+  	font-weight: 900;
 }
