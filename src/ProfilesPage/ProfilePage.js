@@ -151,8 +151,8 @@ class ProfilePage extends Component {
 			<div>
 				<Header />
         		<ProfilePhoto events={this.state.events}/>
-				<Profile events={this.state.events} events_connections={this.state.events_connections}/>
-				<ProfileConnections events={this.state.events} events_connections={this.state.events_connections}/>
+				<Profile events={this.state.events}/>
+				<ProfileConnections events_connections={this.state.events_connections}/>
 
 			</div>
 

@@ -22,6 +22,11 @@
     width: 25%;
     padding: 20px;
 }
+
+#personal-feed {
+  margin: 200px;
+}
+
 .profile_info_connections {
   	top: 18%;
   	padding-left: 25px;

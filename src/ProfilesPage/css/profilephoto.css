@@ -5,7 +5,7 @@
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
-  
+  text-align: left;
 }
 
 #left-side-bar-content {
@@ -13,4 +13,5 @@
   margin-left: 25px;
   margin-right: 25px;
   height: 100%;
+  text-align: left;
 }

@@ -12,7 +12,7 @@ const ProfilePhoto = (props) => {
 
 
 
-	const currentProfile = props.events.map((user, index) => {
+	const currentPhoto = props.events.map((user, index) => {
 		if (user.id === parseInt(new_query)) {
 			console.log('Working');
 			console.log('user below');
@@ -29,9 +29,32 @@ const ProfilePhoto = (props) => {
 			);
 		}
 	})
+
+	const currentProfile = props.events.map((user, index) => {
+		if (user.id === parseInt(new_query)) {
+			console.log('Working');
+			console.log('user below');
+			console.log(user);
+
+			return(
+	 	 		<div key={user.id}>
+	 	 				<div id="profile_info">
+		 	 				<p>{user.id}</p>
+		 	 				<p>{user.first_name}</p>
+		 	 				<p>{user.last_name}</p>
+		 	 				<p>{user.city}</p>
+		 	 				<p>{user.about}</p>
+		 	 				<a href="mailto:foodbylags@gmail.com" target="_top"><p>{user.email}</p></a>
+	 		 			</div>
+	 	 		</div>	    		
+			);
+		}
+	})
+
   return (
     <div id="left-side-bar">
       <div id="left-side-bar-content">
+      	{currentPhoto}
         {currentProfile}
       </div>
     </div>

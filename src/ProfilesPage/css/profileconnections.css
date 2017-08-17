@@ -15,3 +15,10 @@
   margin-right: 25px;
   height: 100%;
 }
+
+#profile-connections-pics img {
+  width: 35px;
+  border-radius: 50%;
+  margin: 3px;
+}
+
