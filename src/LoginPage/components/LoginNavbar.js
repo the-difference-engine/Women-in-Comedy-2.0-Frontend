@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { createSession } from '../../actions';
 import { Modal } from '../../common';
 import '../css/login-navbar.css';
 
@@ -15,11 +13,11 @@ class LoginNavbar extends Component {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     // this.props.createSession(email, password);
-    axios.post('http://localhost:9000/api/v1/sessions', { email, password })
+    axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/sessions', { email, password })
     .then(response => {
       console.log('reponse', response);
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
-      
+
       sessionStorage.setItem('userId', response.data.id);
       response.data.confirmed_at ? this.props.history.push('/feed') : this.setState({notVerified: true});
     })
@@ -62,4 +60,4 @@ class LoginNavbar extends Component {
 
 
 
-export default connect(null, { createSession })(LoginNavbar);
+export default (LoginNavbar);
