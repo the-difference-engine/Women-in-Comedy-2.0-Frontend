@@ -10,12 +10,10 @@ const ProfileConnections = (props) => {
 		console.log(user);
 
 		return(
-			<div key={user.id}>
-						<div id="right-side-bar">
-							<div id="right-side-bar-content">
+ 	 			<div className="container">	    		
+	  				<div key={user.id}>
 								<div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.name}</a>
 								</div>
-							</div>
 						</div>
 			</div>
 		);
@@ -25,8 +23,8 @@ const ProfileConnections = (props) => {
 
 
   return (
-		<div className="random">
-				<p> {randomizer} </p>
+		<div id="right-side-bar">
+				<p id="right-side-bar-content"> {randomizer} </p>
 		</div>
   );
 }
