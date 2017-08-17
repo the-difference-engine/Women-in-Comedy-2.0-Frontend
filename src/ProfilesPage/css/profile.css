@@ -13,8 +13,9 @@
 	text-align: left;
 }
 
-#profile-pic {
-	margin-top: 140px; 
+#profile-pic img {
+	margin-top: 100px; 
+  width: 205px;
 }
 
 #profile_info p {
