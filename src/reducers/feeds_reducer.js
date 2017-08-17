@@ -4,7 +4,7 @@ const INITIAL_STATE = [];
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case FETCH_USER_FEEDS:
-      return action.payload.data;
+      return [...INITIAL_STATE, ...action.payload.data];
     default:
       return state;
   }
