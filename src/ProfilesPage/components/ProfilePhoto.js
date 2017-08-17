@@ -3,10 +3,8 @@ import '../css/profilephoto.css';
 
 
 const ProfilePhoto = (props) => {
-	let users = [];
-	let connections = 0;
 	const query = window.location.pathname;
-	const new_query = query.slice(9) 
+	const new_query = query.slice(9);
 	console.log('new query below');
 	console.log(new_query);
 	console.log('props.children below');
@@ -22,7 +20,7 @@ const ProfilePhoto = (props) => {
 
 			return(
 	 	 		<div key={user.id}>
-	 	 			<div class="photo">
+	 	 			<div className="photo">
 						<div id="profile-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" height="220px"/></div>
 					</div>
 	 	 		</div>	    		
@@ -37,7 +35,7 @@ const ProfilePhoto = (props) => {
         {currentProfile}
       </div>
     </div>
-  )
-};
+  	)
+}
 
 export default ProfilePhoto;

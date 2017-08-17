@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../EventsPage/components/HeaderComponent';
 import Profile from './components/profile';
 import ProfilePhoto from './components/ProfilePhoto';
+import ProfileConnections from './components/ProfileConnections';
 
 class ProfilePage extends Component {
 	constructor(props) {
@@ -151,6 +152,7 @@ class ProfilePage extends Component {
 				<Header />
         		<ProfilePhoto events={this.state.events}/>
 				<Profile events={this.state.events} events_connections={this.state.events_connections}/>
+				<ProfileConnections events={this.state.events} events_connections={this.state.events_connections}/>
 
 			</div>
 
