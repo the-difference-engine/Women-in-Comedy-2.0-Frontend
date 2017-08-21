@@ -21,7 +21,7 @@ const ProfilePhoto = (props) => {
 			return(
 	 	 		<div key={user.id}>
 	 	 			<div className="photo">
-						<div id="profile-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" height="220px"/></div>
+						<div id="profile-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
 					</div>
 	 	 		</div>	    		
 

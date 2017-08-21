@@ -16,3 +16,8 @@
   text-align: left;
 }
 
+.profile-photo img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
