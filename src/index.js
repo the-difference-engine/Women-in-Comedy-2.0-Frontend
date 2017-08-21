@@ -15,6 +15,7 @@ import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
+import CreateEvents from './CreateEventsPage/CreateEvents';
 
 const store = createStore(reducers, {}, applyMiddleware(promise, thunk));
 ReactDOM.render(
@@ -23,6 +24,7 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path='/feed' component={Feed}></Route>
+          <Route path='/newevent' component={CreateEvents}></Route>
           <Route path='/events' component={EventsPage}></Route>
           <Route path="/home" component={HomePage}></Route>
           <Route path='/activities' component={ActivityPage}></Route>
