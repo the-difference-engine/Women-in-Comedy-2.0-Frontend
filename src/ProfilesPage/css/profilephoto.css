@@ -20,4 +20,16 @@
   width: 85px;
   height: 85px;
   border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-info h3 {
+  font-size: 12px;
+  color: green;
+  margin: 5px;
+}
+
+.profile-info h4 {
+  font-size: 12px;
+  color: red;
 }

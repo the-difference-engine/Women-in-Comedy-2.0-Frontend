@@ -55,11 +55,17 @@ margin-bottom: 0;
 .event {
 border: 1px solid rgba(211,211,211,0.9);
 border-radius: 3px;
+padding: 5px;
+margin: 10px;
 }
 
 .event-page-content {
 margin-left: 5%;
 margin-right: 5%;
+}
+
+.event-page-content p {
+font-size: 18px;
 }
 
 .events-header {

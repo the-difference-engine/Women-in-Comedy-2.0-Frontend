@@ -37,10 +37,10 @@ const ProfilePhoto = (props) => {
 			return(
 	 	 		<div key={user.id}>
 	 	 				<div id="profile_info">
-		 	 				<p><span>ID:</span> {user.id}</p>
-		 	 				<p><span>Name:</span> {user.first_name} {user.last_name}</p>
-		 	 				<p><span>City:</span> {user.city}</p>
-		 	 				<p><span>About:</span> {user.about}</p>
+		 	 				<h3 className="profile-info">{user.first_name} {user.last_name}</h3>
+		 	 				<h4 className="profile-info">Bio</h4>
+		 	 				<p>{user.about}</p>
+		 	 				<p>ID: {user.id}</p>
 	 		 			</div>
 	 	 		</div>	    		
 			);
