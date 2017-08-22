@@ -1,16 +1,13 @@
 import React from 'react';
 import '../css/profile.css';
 
-const Profile = (props) => {
-	const shuffle = require('shuffle-array');
 
-	let users = [];
-	let connections = 0;
+const Profile = (props) => {
+
 	const query = window.location.pathname;
-	const new_query = query.slice(9)
+	const new_query = query.slice(9);
 	console.log('new query below');
 	console.log(new_query);
-
 
 	const currentProfile = props.events.map((user, index) => {
 		if (user.id === parseInt(new_query)) {
@@ -20,42 +17,49 @@ const Profile = (props) => {
 
 			return(
 	 	 		<div key={user.id}>
-					<div id="profile-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="350px" height="350px"/></div>
-	 	 			<div className="container">
-	 	 				<div id="profile_info">
-		 	 				<p>{user.first_name}</p>
-	 		 				<p>{user.about}</p>
-	 		 			</div>
+	 	 			<div className="box" id="personal-feed" >
+	 	 				<div>
+	 	 					<p>Upcoming Events</p>
+		 	 				<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+		 		 		</div>
+		 		 		<div>
+		 		 			<p>Past Events</p>
+		 		 			<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+		
+		 		 			<div className="event">
+			 	 				<div className="events-header">
+			 	 					<p className="event-title">Event Title</p>
+			 	 				</div>
+			 	 				<div className="event-page-content">
+			 	 					<p>Event description goes here!</p>
+			 	 				</div>
+		 		 			</div>
+	 	 				</div>
 	 	 			</div>
 	 	 		</div>
-
-
 			);
 		}
 	})
-	const randomConnections = props.events_connections.map((user, index) => {
-		users.push(user);
-		console.log('users below');
-		console.log(users);
-
-		return(
-			<div key={user.id}>
-				<div className="container">
-					<div className="profile_info_connections">
-						<div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.name}</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-
-	})
-	const randomizer = shuffle(randomConnections);
 
 	return(
 		<div className="container">
-			<p> {currentProfile} </p>
-			<p> {randomizer} </p>
+			<div className="box_a">
+				<p id="current-profile"> {currentProfile} </p>
+			</div>
 		</div>
 
 	);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../EventsPage/components/HeaderComponent';
 import Profile from './components/profile';
+import ProfilePhoto from './components/ProfilePhoto';
+import ProfileConnections from './components/ProfileConnections';
+
 
 class ProfilePage extends Component {
 	constructor(props) {
@@ -18,7 +21,7 @@ class ProfilePage extends Component {
 				{
 					id: 2,
 					email: "ants@gmail.com",
-					about: "I like ruining picnics",
+					about: "I like picnics",
 					first_name: "Chealsea",
 					last_name: "Handler",
 					city: "Atlantic City"
@@ -42,7 +45,7 @@ class ProfilePage extends Component {
 				{
 					id: 5,
 					email: "catharine@email.com",
-					about: "I like comdey",
+					about: "I like comedy",
 					first_name: "Brianna",
 					last_name: "Parkes",
 					city: "Springfield"
@@ -50,7 +53,7 @@ class ProfilePage extends Component {
 				{
 					id: 6,
 					email: "tokyo@mail.com",
-					about: "Did you get it?",
+					about: "Did you hear about the one about the...",
 					first_name: "Jennifer",
 					last_name: "Saunders",
 					city: "Tokyo"
@@ -58,7 +61,7 @@ class ProfilePage extends Component {
 				{
 					id: 7,
 					email: "theone@google.com",
-					about: "My heart is full of comedy, even tho it looks liek blood",
+					about: "My heart is full of comedy, even tho it looks like blood",
 					first_name: "Sarah",
 					last_name: "Silverman",
 					city: "San Fransisco"
@@ -148,7 +151,9 @@ class ProfilePage extends Component {
 		return (
 			<div>
 				<Header />
-				<Profile events={this.state.events} events_connections={this.state.events_connections}/>
+        		<ProfilePhoto events={this.state.events}/>
+				<Profile events={this.state.events}/>
+				<ProfileConnections events_connections={this.state.events_connections}/>
 
 			</div>
 
