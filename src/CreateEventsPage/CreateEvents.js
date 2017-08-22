@@ -6,19 +6,40 @@ import moment from 'moment';
 import 'react-day-picker/lib/style.css';
 import 'rc-time-picker/assets/index.css';
 import './css/create-event.css'
+const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
+const showSecond = true;
+
 class CreateEvents extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { selectedDay: null };
+  }
+  handleDayClick (day, { selected }) {
+    this.setState({
+      selectedDay: selected ? undefined : day,
+    });
+  };
+
+  onChange(value) {
+    console.log(value && value.format(str));
+  }
+  onClick(event) {
+    
+  }
+
   render() {
+    const { selectedDay } = this.state;
     return(
       <div>
         <Navbar />
         <div id="create-event-wrapper">
           <div className="container">
             <div className="text-center">
-              <form className="form-horizontal">
+              <form className="form-horizontal" onSubmit={this.formPreventDefault}>
                <div className="form-group">
                  <label className="control-label col-sm-3">Event Name </label>
                  <div className="col-sm-6">
-                   <input type="text" className="form-control" placeholder="Enter name of event" name="name" />
+                   <input type="text" id="eventName" className="form-control" placeholder="Enter name of event" name="name" />
                  </div>
                </div>
                <div className="form-group">
@@ -29,11 +50,19 @@ class CreateEvents extends Component {
                </div>
                <div className="form-group">
                  <label className="control-label col-sm-3">Date/Time</label>
-                 <div className="col-sm-1">
-                   <DayPicker onDayClick={day => console.log(day)}/>
+                 <div className="col-sm-3">
+                   <DayPicker
+                     selectedDays={selectedDay}
+                     onDayClick={this.handleDayClick.bind(this)}
+                   />
+                   <p>
+                     {selectedDay
+                       ? selectedDay.toLocaleDateString()
+                       : 'Please select a day 👻'}
+                   </p>
                  </div>
-                 <div className="col-sm-6">
-                   <TimePicker defaultValue={moment()} />
+                 <div className="col-md-3 col-sm-6" >
+                   <TimePicker defaultValue={moment()} onChange={this.onChange.bind(this)} />
                  </div>
                </div>
                <div className="form-group">
@@ -44,7 +73,7 @@ class CreateEvents extends Component {
                </div>
                <div className="form-group">
                  <div className="col-sm-offset-1 col-sm-10">
-                   <button type="submit" className="btn btn-primary">Create</button>
+                   <button type="submit" className="btn btn-primary" onClick={this.onClick.bind(this)}>Create</button>
                  </div>
                </div>
              </form>
@@ -55,5 +84,38 @@ class CreateEvents extends Component {
     );
   }
 }
+
+// import React from 'react';
+// import DayPicker from 'react-day-picker';
+//
+// import 'react-day-picker/lib/style.css';
+//
+//  class CreateEvents extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { selectedDay: null };
+//   }
+//   handleDayClick (day, { selected }) {
+//     this.setState({
+//       selectedDay: selected ? undefined : day,
+//     });
+//   };
+//   render() {
+//     const { selectedDay } = this.state;
+//     return (
+//       <div>
+//         <DayPicker
+//           selectedDays={selectedDay}
+//           onDayClick={this.handleDayClick.bind(this)}
+//         />
+//         <p>
+//           {selectedDay
+//             ? selectedDay.toLocaleDateString()
+//             : 'Please select a day 👻'}
+//         </p>
+//       </div>
+//     );
+//   }
+// }
 
 export default CreateEvents;
