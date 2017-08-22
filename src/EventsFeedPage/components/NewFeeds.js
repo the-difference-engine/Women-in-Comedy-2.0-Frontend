@@ -6,11 +6,7 @@ import '../css/new-feeds.css';
 const NewFeeds = (props) => {
   return (
     <div id="new-feeds-container">
-      <Feed />
-      <Feed />
-      <Feed />
-      <Feed />
-      <Feed />
+    
     </div>
   );
 };
