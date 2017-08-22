@@ -20,8 +20,8 @@ const ProfilePhoto = (props) => {
 
 			return(
 	 	 		<div key={user.id}>
-	 	 			<div className="photo">
-						<div id="profile-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" height="220px"/></div>
+	 	 			<div className="container">
+							<div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" 	height="220px"/></div>
 					</div>
 	 	 		</div>	    		
 
@@ -38,11 +38,13 @@ const ProfilePhoto = (props) => {
 
 			return(
 	 	 		<div key={user.id}>
-	 	 				<div id="profile_info">
-		 	 				<p><span>ID:</span> {user.id}</p>
-		 	 				<p><span>Name:</span> {user.first_name} {user.last_name}</p>
-		 	 				<p><span>City:</span> {user.city}</p>
-		 	 				<p><span>About:</span> {user.about}</p>
+	 	 				<div id="activity-bio">
+		 	 				<div className="activity-bio-content">
+								<div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
+		 	 					<div className="bio-name"><p>{user.first_name} {user.last_name}</p></div>
+		 	 					<div className="bio-title"><p>{user.city}</p></div>
+		 	 					<div className="bio-desc"><p>{user.about}</p></div>
+	 		 				</div>
 	 		 			</div>
 	 	 		</div>	    		
 			);
