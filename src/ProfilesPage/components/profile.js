@@ -50,7 +50,7 @@ const Profile = (props) => {
 		 		 			</div>
 	 	 				</div>
 	 	 			</div>
-	 	 		</div>	    		
+	 	 		</div>
 			);
 		}
 	})

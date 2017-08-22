@@ -4,6 +4,7 @@ import Profile from './components/profile';
 import ProfilePhoto from './components/ProfilePhoto';
 import ProfileConnections from './components/ProfileConnections';
 
+
 class ProfilePage extends Component {
 	constructor(props) {
 		super(props);
