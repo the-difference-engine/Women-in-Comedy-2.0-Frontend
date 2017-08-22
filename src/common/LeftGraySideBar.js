@@ -1,8 +1,8 @@
 import React from 'react';
 import './css/left-side-bar.css';
 
+export const LeftGraySideBar = (props) => {
 
-const LeftGraySideBar = (props) => {
   return (
     <div id="left-side-bar">
       <div id="left-side-bar-content">
@@ -12,4 +12,3 @@ const LeftGraySideBar = (props) => {
   )
 };
 
-export { LeftGraySideBar };
