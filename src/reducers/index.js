@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import TestReducer from './test_reducer';
-import CreateUserReducer from './create_user_reducer';
+import UserInfoReducer from './user_info_reducer';
+import UserFeedReducer from './feeds_reducer';
+import UserConnectionsReducer from './connections_reducer';
+// import CreateUserReducer from './create_user_reducer';
 const rootReducer = combineReducers({
-  test: TestReducer,
   form: formReducer,
-  user: CreateUserReducer
-
+  userInfo: UserInfoReducer,
+  userFeeds: UserFeedReducer,
+  userConnections: UserConnectionsReducer
 });
 
 export default rootReducer;

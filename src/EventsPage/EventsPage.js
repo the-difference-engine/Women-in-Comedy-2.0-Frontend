@@ -8,7 +8,7 @@ class EventsPage extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-      event: [
+      events: [
         {
           host_id:1,
       		title: "A Great Event",
@@ -20,14 +20,13 @@ class EventsPage extends Component {
       ]
     };
 	}
-
 	render () {
 		return (
 			<div id="events-page">
-				< HeaderComponent />
-				< MyUpcomingEvents events={this.state.event}/>
-				< AllUpcomingEvents events={this.state.event}/>
-				< AddEvent />
+				<HeaderComponent />
+				<MyUpcomingEvents events={this.state.events} />
+				<AllUpcomingEvents events={this.state.events} />
+				<AddEvent history={this.props.history}/>
 			</div>
 		);
 	}

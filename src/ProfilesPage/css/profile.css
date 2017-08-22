@@ -1,0 +1,24 @@
+.profile_info_connections {
+	float: right;
+}
+
+.profile_info  {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+#user-pic {
+	text-align: left;
+}
+
+#profile-pic {
+	margin-top: 140px; 
+}
+
+#profile_info p {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+}
