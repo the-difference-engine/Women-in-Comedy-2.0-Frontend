@@ -21,17 +21,17 @@ const ProfileConnections = (props) => {
 	})
 	const randomConnect = shuffle(userList);
 	return (
-	    <div id="activity-users">
-	    	<div className="container" id="right-side-bar-content">
-		    	<h4><span>Connections({connections})</span></h4>
-		    </div>
-		    <div className="user-list">
-			    <div className="container">
-			    	<p> {randomConnect} </p>
-			    </div>
-				</div>
-				<div>
-					<p className="red">See All Connections</p>
+	    <div id="right-side-bar">
+	    		<div id="container">
+	    			<div id="header">
+		    			<h4>Connections({connections})</h4>
+		    		</div>
+		    		<div className="user-list">
+			    		<p> {randomConnect} </p>
+			    	</div>
+					<div>
+						<h4 className="red">See All Connections</h4>
+					</div>
 				</div>
 	    </div>
   	);
