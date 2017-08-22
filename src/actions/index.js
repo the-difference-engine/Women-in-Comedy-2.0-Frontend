@@ -4,6 +4,7 @@ export const CREATE_SESSION = 'create_session';
 export const FETCH_USER_INFO = 'fetch_user_info';
 export const FETCH_USER_FEEDS = 'fetch_user_feeds';
 export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
+export const CREATE_EVENTS = 'create_events';
 
 //https://qa-womenincomedy.herokuapp.com
 
@@ -46,6 +47,20 @@ export const fetchUserFeeds = (userId) => {
   return (dispatch) => {
     request.then((data) => {
       dispatch({ type: FETCH_USER_CONNECTIONS, payload: request })
+    });
+  };
+};
+
+ export const CreateEvents = (userId) => {
+  console.log('Creating Event');
+  const request = axios({
+    method: 'post',
+    url: 'http://localhost:9000/api/v1/events/',
+    headers: {"id": userId}
+  });
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: CREATE_EVENTS, payload: request })
     });
   };
 };

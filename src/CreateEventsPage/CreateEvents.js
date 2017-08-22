@@ -39,15 +39,25 @@ class CreateEvents extends Component {
                <div className="form-group">
                  <label className="control-label col-sm-3">Event Name </label>
                  <div className="col-sm-6">
-                   <input type="text" id="eventName" className="form-control" placeholder="Enter name of event" name="name" />
+                   <input type="text" id="eventName" className="form-control" placeholder="Enter name of event" name="title" />
                  </div>
                </div>
+
                <div className="form-group">
                  <label className="control-label col-sm-3" >Location </label>
                  <div className="col-sm-6">
                    <input type="text" className="form-control" placeholder="Enter location for event" name="location" />
                  </div>
                </div>
+
+               <div className="form-group">
+                 <label className="control-label col-sm-3" >Time </label>
+                 <div className="col-sm-6">
+                   <input type="text" className="form-control" placeholder="Enter time for event" name="Time" />
+                 </div>
+               </div>
+
+
                <div className="form-group">
                  <label className="control-label col-sm-3">Date/Time</label>
                  <div className="col-sm-3">
