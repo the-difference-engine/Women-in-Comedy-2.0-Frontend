@@ -21,9 +21,12 @@ const ProfilePhoto = (props) => {
 			return(
 	 	 		<div key={user.id}>
 	 	 			<div className="container">
-							<div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" 	height="220px"/></div>
-	 	 			<div className="photo" id="left-side-bar-content">
-						<div className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
+							<div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" width="220px" 	height="220px"/>
+							</div>
+	 	 				<div className="photo" id="left-side-bar-content">
+							<div className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+							</div>
+						</div>
 					</div>
 	 	 		</div>	    		
 			);
@@ -45,6 +48,7 @@ const ProfilePhoto = (props) => {
 		 	 					<div className="bio-title"><p>{user.city}</p></div>
 		 	 					<div className="bio-desc"><p>{user.about}</p></div>
 	 		 				</div>
+	 		 			</div>
 	 	 				<div id="profile_info">
 		 	 				<h3 className="profile-info">{user.first_name} {user.last_name}</h3>
 		 	 				<h4 className="profile-info">Bio</h4>
