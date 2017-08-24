@@ -21,6 +21,30 @@ const ProfileConnections = (props) => {
 	})
 	const randomConnect = shuffle(userList);
 
+	function getRandom(arr, n) {
+    	var result = new Array(n),
+    	    len = arr.length,
+        	taken = new Array(len);
+    	if (n > len)
+    	    throw new RangeError("getRandom: more elements taken than available");
+    	while (n--) {
+    	    var x = Math.floor(Math.random() * len);
+    	    result[n] = arr[x in taken ? taken[x] : x];
+    	    taken[x] = --len;
+    	}
+    	return result;
+	}
+
+	const tenRandom = getRandom(randomConnect, 10);
+
+
+	function onClickContacts() {
+		console.log('onClickContacts working');
+		
+	}
+
+
+
 	return (
 	    <div id="boop">
    			<div id="right-side-bar-content">
@@ -31,10 +55,12 @@ const ProfileConnections = (props) => {
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<p> {randomConnect} </p>
+			    		<p> {tenRandom} </p>
 			    	</div>
-					<div>
-						<p className="red">See All Connections</p>
+					<div className="onclick">
+
+						<p className="red"
+						   onClick={onClickContacts}>See All Connections</p>
 					</div>
 				</div>
 

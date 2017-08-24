@@ -143,7 +143,38 @@ class ProfilePage extends Component {
 		        	id: 10,
 		        	name:"Gretchen Williams",
 		        	photo:"mypicture"
-		        }],
+		        },
+				{
+					id: 11,
+					name: "Dana Fitz",
+					photo: "picture"
+				},
+				{
+					id: 12,
+					name: "Charisse Handler",
+					photo: "pic"
+
+				},
+				{
+					id: 13,
+					name: "Cat Tathenson",
+					photo: "photo"
+				},
+				{
+					id: 14,
+					name: "Gen Cho",
+					photo: "Picture of me"
+				},
+				{
+					id: 15,
+					name: "Bri Simposon",
+					photo: "pic"
+				},
+				{
+					id: 16,
+					name: "Jamie Sands",
+					photo: "pic of me"
+				}],
 		};
 	}
 
