@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { LeftGraySideBar, RightGraySideBar, Navbar } from '../common';
+import { createEvent, fetchUserInfo } from '../actions';
+import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
@@ -12,7 +14,10 @@ const showSecond = true;
 class CreateEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedDay: null };
+    this.state = {
+      selectedDay: null,
+      time: moment().format(str)
+    };
   }
   handleDayClick (day, { selected }) {
     this.setState({
@@ -22,9 +27,16 @@ class CreateEvents extends Component {
 
   onChange(value) {
     console.log(value && value.format(str));
+    this.setState({ time: value.format(str) });
   }
+
   onClick(event) {
-    
+    event.preventDefault();
+    const eventName = document.getElementById('eventName').value;
+    const eventLocation = document.getElementById('eventLocation').value;
+    const eventDescription = document.getElementById('eventDescription').value;
+    const data = { eventName, eventLocation, eventDescription, eventDate: this.state.selectedDay, eventTime: this.state.time };
+    this.props.createEvent(data);
   }
 
   render() {
@@ -43,9 +55,9 @@ class CreateEvents extends Component {
                  </div>
                </div>
                <div className="form-group">
-                 <label className="control-label col-sm-3" >Location </label>
+                 <label className="control-label col-sm-3">Location </label>
                  <div className="col-sm-6">
-                   <input type="text" className="form-control" placeholder="Enter location for event" name="location" />
+                   <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
                  </div>
                </div>
                <div className="form-group">
@@ -68,7 +80,7 @@ class CreateEvents extends Component {
                <div className="form-group">
                  <label className="control-label col-sm-3">Description </label>
                  <div className="col-sm-6">
-                   <textarea className="form-control" rows="5" id="comment"></textarea>
+                   <textarea className="form-control" rows="5" id="comment" id="eventDescription"></textarea>
                  </div>
                </div>
                <div className="form-group">
@@ -85,37 +97,5 @@ class CreateEvents extends Component {
   }
 }
 
-// import React from 'react';
-// import DayPicker from 'react-day-picker';
-//
-// import 'react-day-picker/lib/style.css';
-//
-//  class CreateEvents extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { selectedDay: null };
-//   }
-//   handleDayClick (day, { selected }) {
-//     this.setState({
-//       selectedDay: selected ? undefined : day,
-//     });
-//   };
-//   render() {
-//     const { selectedDay } = this.state;
-//     return (
-//       <div>
-//         <DayPicker
-//           selectedDays={selectedDay}
-//           onDayClick={this.handleDayClick.bind(this)}
-//         />
-//         <p>
-//           {selectedDay
-//             ? selectedDay.toLocaleDateString()
-//             : 'Please select a day 👻'}
-//         </p>
-//       </div>
-//     );
-//   }
-// }
 
-export default CreateEvents;
+export default connect(null, { createEvent, fetchUserInfo })(CreateEvents);
