@@ -35,12 +35,12 @@ const ProfileConnections = (props) => {
     	return result;
 	}
 
-	const tenRandom = getRandom(randomConnect, 10);
+	const tenRandom = getRandom(userList, 10);
 
 
 	function onClickContacts() {
 		console.log('onClickContacts working');
-		
+
 	}
 
 
