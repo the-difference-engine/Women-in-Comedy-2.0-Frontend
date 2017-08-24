@@ -1,8 +1,3 @@
-export * from './user_actions';
-export * from './event_actions';
-export * from './feed_actions';
-export * from './connection_actions';
-
 import axios from 'axios';
 // export const CREATE_USER = 'create_user';
 export const CREATE_SESSION = 'create_session';
@@ -69,3 +64,8 @@ export const fetchUserFeeds = (userId) => {
     });
   };
 };
+
+export * from './user_actions';
+export * from './event_actions';
+export * from './feed_actions';
+export * from './connection_actions';
