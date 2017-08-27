@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/profileconnections.css';
 
+
 const ProfileConnections = (props) => {
 	const shuffle = require('shuffle-array');
 	// console.log(props);
