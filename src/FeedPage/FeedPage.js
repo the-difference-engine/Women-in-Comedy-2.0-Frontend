@@ -4,7 +4,8 @@ import { fetchUserInfo, fetchUserFeeds, fetchUserConnections } from '../actions'
 import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
-import './css/feed-page.css';
+import Messages from './components/Messages';
+
 
 class Feed extends Component {
   componentWillMount() {
@@ -27,7 +28,9 @@ class Feed extends Component {
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
-        <RightGraySideBar />
+        <RightGraySideBar>
+          <Messages />
+        </RightGraySideBar>
         <PageContent pageTitle="Your Feed">
           <NewFeeds userFeeds={userFeeds} />
         </PageContent>

@@ -5,10 +5,10 @@
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
-  z-index: -1;
 }
 
 #right-side-bar-content {
+  margin-top: 65px;
   margin-left: 25px;
   margin-right: 25px;
   height: 100%;
