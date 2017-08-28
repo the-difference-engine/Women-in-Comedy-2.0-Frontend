@@ -10,13 +10,17 @@ import ProfileConnections from './components/ProfileConnections';
 class ProfilePage extends Component {
 	componentWillMount() {
     	const valid = sessionStorage.getItem('confirmed');
-    	if(valid == 'null' || !valid) {
-    	  this.props.history.push('/');
-    	}
-    	const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-    	fetchUserInfo(sessionStorage.getItem('userId'));
-    	fetchUserFeeds(sessionStorage.getItem('userId'));
-    	fetchUserConnections(sessionStorage.getItem('userId'));
+
+        if(valid == 'null' || !valid) {
+          this.props.history.push('/');
+        }
+        const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
+        fetchUserInfo(sessionStorage.getItem('userId'));
+        fetchUserFeeds(sessionStorage.getItem('userId'));
+        fetchUserConnections(sessionStorage.getItem('userId'));
+
+
+
     }
 
 	render () {
