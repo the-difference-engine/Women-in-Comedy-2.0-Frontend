@@ -6,37 +6,14 @@ const ProfileConnections = (props) => {
 	const shuffle = require('shuffle-array');
 	// console.log(props);
 
-	let connections = 0;
-	const userList = props.events_connections.map((user, index) => {
-		connections = index + 1;
-		console.log('index below');
-		console.log(index + 1);
-  		return (
- 	 			<div className="container">	    		
-	  			<div key={user.id}>
-					 	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.name}</a>
-					 	</div>
-					</div>
-    		</div>
-  		);
-	})
-	const randomConnect = shuffle(userList);
-
-	function getRandom(arr, n) {
-    	var result = new Array(n),
-    	    len = arr.length,
-        	taken = new Array(len);
-    	if (n > len)
-    	    throw new RangeError("getRandom: more elements taken than available");
-    	while (n--) {
-    	    var x = Math.floor(Math.random() * len);
-    	    result[n] = arr[x in taken ? taken[x] : x];
-    	    taken[x] = --len;
-    	}
-    	return result;
-	}
-
-	const tenRandom = getRandom(userList, 10);
+	let connectionList = [];
+	
+ 
+   	const randomTen = shuffle(connectionList);
+    
+    const { userConnections } = props;
+    console.log('userConnections = props below');
+    console.log({userConnections});
 
 
 	function onClickContacts() {
@@ -50,13 +27,14 @@ const ProfileConnections = (props) => {
 	    <div id="boop">
    			<div id="right-side-bar-content">
 		    	<div className="container">
-			    			<h4><span>Connections({connections})</span></h4>
+     		 		<h4>Connections({userConnections.length})</h4>
+     		 		{renderConnections(userConnections)}
 			    </div>
 
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<p> {tenRandom} </p>
+			    		<p></p>
 			    	</div>
 					<div className="onclick">
 
@@ -69,5 +47,19 @@ const ProfileConnections = (props) => {
 	    </div>
   	);
 }
+
+const renderConnections = (connections) => {
+  return connections.map(connection => {
+  	console.log('renderConnections');
+  	console.log(connection);
+
+    return (
+      <div key={connection.id}>
+        <p>{connection.firstName} {connection.lastName}</p>
+      </div>
+    );
+  });
+}
+
 
 export default ProfileConnections;
