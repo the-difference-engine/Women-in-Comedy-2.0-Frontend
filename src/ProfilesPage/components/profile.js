@@ -12,9 +12,9 @@ const Profile = (props) => {
     )
   }
 
-
 	return(
 		<div className="box" id="personal-feed">
+        <p>STUFF</p>
 				<p>{renderFeeds(props.userFeeds)}</p>
 		</div>
 
