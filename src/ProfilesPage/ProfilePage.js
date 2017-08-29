@@ -14,10 +14,15 @@ class ProfilePage extends Component {
         if(valid == 'null' || !valid) {
           this.props.history.push('/');
         }
+
+        const query = window.location.pathname;
+        const new_query = query.slice(9);
+        console.log('new query below');
+        console.log(new_query);
         const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-        fetchUserInfo(sessionStorage.getItem('userId'));
-        fetchUserFeeds(sessionStorage.getItem('userId'));
-        fetchUserConnections(sessionStorage.getItem('userId'));
+        fetchUserInfo(new_query);
+        fetchUserFeeds(new_query);
+        fetchUserConnections(new_query);
 
 
 
