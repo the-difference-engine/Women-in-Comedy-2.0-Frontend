@@ -1,4 +1,4 @@
-import { FETCH_USER_CONNECTIONS } from '../actions/types';
+import { FETCH_USER_CONNECTIONS, CREATE_CONNECTION_REQUEST } from '../actions/types';
 
 const INITIAL_STATE = [];
 export default (state = INITIAL_STATE, action) => {
