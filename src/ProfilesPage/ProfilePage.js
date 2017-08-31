@@ -9,12 +9,8 @@ import ProfileConnections from './components/ProfileConnections';
 
 class ProfilePage extends Component {
 	componentWillMount() {
-    	const valid = sessionStorage.getItem('confirmed');
 
-        if(valid == 'null' || !valid) {
-          this.props.history.push('/');
-        }
-
+    
         const query = window.location.pathname;
         const new_query = query.slice(9);
         console.log('new query below');
