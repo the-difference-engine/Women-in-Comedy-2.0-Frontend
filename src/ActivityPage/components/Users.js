@@ -14,7 +14,8 @@ const Users = (props) => {
   		return (
  	 			<div className="container">	    		
 	  				<div key={user.id}>
-					 	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.name}</a></div>
+					 	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.name}</a>
+					 	</div>
 					 </div>
     			</div>
   		);
