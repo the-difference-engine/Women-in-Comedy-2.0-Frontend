@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
+import axios from 'axios'
 import 'react-day-picker/lib/style.css';
 import 'rc-time-picker/assets/index.css';
 import './css/create-event.css'
@@ -31,12 +32,31 @@ class CreateEvents extends Component {
   }
 
   onClick(event) {
+    console.log("clicked")
     event.preventDefault();
-    const eventName = document.getElementById('eventName').value;
-    const eventLocation = document.getElementById('eventLocation').value;
-    const eventDescription = document.getElementById('eventDescription').value;
-    const data = { eventName, eventLocation, eventDescription, eventDate: this.state.selectedDay, eventTime: this.state.time };
+    const userId = 1;
+    const title = document.getElementById('title').value;
+    const photo = document.getElementById('photo').value;
+    const about = document.getElementById('about').value;
+    const ticketLink = document.getElementById('ticketLink').value;
+    const location = document.getElementById('location').value;
+    const data = { userId, title, photo, about, ticketLink, date: this.state.selectedDay, time: this.state.time };
     this.props.createEvent(data);
+  }
+
+  onSubmit(data) {
+    console.log("submittedd")
+    // axios.post('https://localhost:9000/api/v1/events', {
+       
+    //   user_id: data.user_id,
+    //   title: data.title,
+    //   photo: data.photo,
+    //   date: data.date,
+    //   time: data.time,
+    //   ticket_link: data.ticket_link,
+    //   location: data.location,
+    //   about: data.about
+    // })
   }
 
   render() {
@@ -47,18 +67,25 @@ class CreateEvents extends Component {
         <div id="create-event-wrapper">
           <div className="container">
             <div className="text-center">
-              <form className="form-horizontal" onSubmit={this.formPreventDefault}>
+              <form className="form-horizontal">
                <div className="form-group">
-                 <label className="control-label col-sm-3">Event Name </label>
+                 <label className="control-label col-sm-3">Event Title</label>
                  <div className="col-sm-6">
-                   <input type="text" id="eventName" className="form-control" placeholder="Enter name of event" name="title" />
+                   <input type="text" id="title" className="form-control" placeholder="Enter name of event" name="title" />
+                 </div>
+               </div>
+
+              <div className="form-group">
+                 <label className="control-label col-sm-3">Photo </label>
+                 <div className="col-sm-6">
+                   <input type="text" id="photo" className="form-control" placeholder="Enter photolink for event" name="photo" />
                  </div>
                </div>
 
                <div className="form-group">
-                 <label className="control-label col-sm-3">Location </label>
+                 <label className="control-label col-sm-3">Location</label>
                  <div className="col-sm-6">
-                   <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
+                   <input type="text" id="location" className="form-control" placeholder="Enter location for event" name="location" />
                  </div>
                </div>
 
@@ -90,9 +117,17 @@ class CreateEvents extends Component {
                <div className="form-group">
                  <label className="control-label col-sm-3">Description </label>
                  <div className="col-sm-6">
-                   <textarea className="form-control" rows="5" id="comment" id="eventDescription"></textarea>
+                   <textarea className="form-control" rows="5" id="comment" id="about"></textarea>
                  </div>
                </div>
+
+               <div className="form-group">
+                 <label className="control-label col-sm-3">Ticket Link </label>
+                 <div className="col-sm-6">
+                   <textarea className="form-control" rows="1" id="comment" id="ticketLink"></textarea>
+                 </div>
+               </div>
+
                <div className="form-group">
                  <div className="col-sm-offset-1 col-sm-10">
                    <button type="submit" className="btn btn-primary" onClick={this.onClick.bind(this)}>Create</button>
@@ -109,3 +144,4 @@ class CreateEvents extends Component {
 
 
 export default connect(null, { createEvent, fetchUserInfo })(CreateEvents);
+
