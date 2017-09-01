@@ -42,6 +42,7 @@ class CreateEvents extends Component {
     const location = document.getElementById('location').value;
     const data = { userId, title, location, photo, about, ticketLink, date: this.state.selectedDay, time: this.state.time };
     this.props.createEvent(data);
+    this.props.history.push('/events'); // Forwards the page after user clicks create
   }
 
   onSubmit(data) {
@@ -130,6 +131,7 @@ class CreateEvents extends Component {
 
                <div className="form-group">
                  <div className="col-sm-offset-1 col-sm-10">
+
                    <button type="submit" className="btn btn-primary" onClick={this.onClick.bind(this)}>Create</button>
                  </div>
                </div>

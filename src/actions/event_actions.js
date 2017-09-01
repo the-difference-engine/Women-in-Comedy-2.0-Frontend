@@ -19,5 +19,6 @@ export function createEvent(data){
     } catch (e) {
         console.log(e)
       }
+    
   }
 };
