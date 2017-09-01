@@ -34,13 +34,13 @@ class CreateEvents extends Component {
   onClick(event) {
     console.log("clicked")
     event.preventDefault();
-    const userId = 1;
+    const userId = sessionStorage.getItem('userId');
     const title = document.getElementById('title').value;
     const photo = document.getElementById('photo').value;
     const about = document.getElementById('about').value;
     const ticketLink = document.getElementById('ticketLink').value;
     const location = document.getElementById('location').value;
-    const data = { userId, title, photo, about, ticketLink, date: this.state.selectedDay, time: this.state.time };
+    const data = { userId, title, location, photo, about, ticketLink, date: this.state.selectedDay, time: this.state.time };
     this.props.createEvent(data);
   }
 

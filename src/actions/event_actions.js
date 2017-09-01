@@ -7,12 +7,12 @@ export function createEvent(data){
   return async (dispatch) => {
     try {
       await axios.post('http://localhost:9000/api/v1/events', { 
-        user_id: 1,
+        user_id: data.userId,
         title: data.title,
         photo: data.photo,
         date: data.date,
         time: data.time,
-        ticket_link: data.ticket_link,
+        ticket_link: data.ticketLink,
         location: data.location,
         about: data.about
       })

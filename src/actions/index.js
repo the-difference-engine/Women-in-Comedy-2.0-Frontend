@@ -69,8 +69,5 @@ export const fetchUserFeeds = (userId) => {
 export * from './user_actions';
 export * from './event_actions';
 export * from './feed_actions';
-<<<<<<< HEAD
 export * from './connection_actions'
-=======
-export * from './connection_actions';
->>>>>>> d561d7f946725150dacd46980abba3e352667e2c
+
