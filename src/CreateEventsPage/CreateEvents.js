@@ -10,7 +10,7 @@ import 'react-day-picker/lib/style.css';
 import 'rc-time-picker/assets/index.css';
 import './css/create-event.css'
 const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
-const showSecond = true;
+const showSecond = false;
 
 class CreateEvents extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class CreateEvents extends Component {
     const about = document.getElementById('about').value;
     const ticketLink = document.getElementById('ticketLink').value;
     const location = document.getElementById('location').value;
-    const data = { userId, title, location, photo, about, ticketLink, date: this.state.selectedDay, time: this.state.time };
+    const data = { userId, title, location, photo, about, ticketLink, date: this.state.selectedDay.toLocaleDateString(), time: this.state.time };
     this.props.createEvent(data);
     this.props.history.push('/events'); // Forwards the page after user clicks create
   }
@@ -91,15 +91,7 @@ class CreateEvents extends Component {
                </div>
 
                <div className="form-group">
-                 <label className="control-label col-sm-3" >Time </label>
-                 <div className="col-sm-6">
-                   <input type="text" className="form-control" placeholder="Enter time for event" name="Time" />
-                 </div>
-               </div>
-
-
-               <div className="form-group">
-                 <label className="control-label col-sm-3">Date/Time</label>
+                 <label className="control-label col-sm-3">Date & Time</label>
                  <div className="col-sm-3">
                    <DayPicker
                      selectedDays={selectedDay}
