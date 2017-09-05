@@ -25,7 +25,7 @@ class ProfilePage extends Component {
     }
 
 	render () {
-	    const { userInfo, userConnections, userFeeds } = this.props;
+    	const { userInfo, userConnections, userFeeds } = this.props;
 		return (
 			<div>
 				<Header />
