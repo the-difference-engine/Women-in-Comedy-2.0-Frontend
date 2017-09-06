@@ -2,7 +2,22 @@ import React from 'react';
 import '../css/profileconnections.css';
 
 
-const ProfileConnections = (props) => {
+ const ProfileConnections = (props) => {
+	// constructor(props) {
+	// 	super(props);
+
+	// 	this.state = { statusHolder: tenRandom }
+
+	// 	this.changeStatus = this.changeStatus.bind(this);
+	// }
+
+	// changeStatus(event) {
+	// 	if(this.state.statusHolder === tenRandom) {
+	// 		this.setState({ statusHolder: userConnections});
+	// 	} else if(this.state.statusHolder === userConnections) {
+	// 		this.setState({ statusHolder: tenRandom });
+	// 	}
+	// }
 
 	const shuffle = require('shuffle-array');
 	// console.log(props);
@@ -31,22 +46,11 @@ const ProfileConnections = (props) => {
 	const tenRandom = getRandom(connectionsList, 10);
 	let statusHolder = tenRandom;
 	let counter = 0
-	function clickChange() {
-		console.log('clickChange');
-		// not effective
-		// if(counter > 0) {
-		// 	statusHolder = tenRandom;
-		// 	--counter;
-		// } else {
-		// 	statusHolder = connectionsList;
-		// 	++counter;
-		// }
 
-
-	}
 
 	function onClickContacts() {
 		console.log('onClickContacts working');
+		// changeStatus();
 	}
 
 
@@ -75,10 +79,7 @@ const ProfileConnections = (props) => {
 	    </div>
   	);
 }
-var myVar = setInterval(myTimer, 2000);
-function myTimer() {
-	console.log('timer activated');
-}
+
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
