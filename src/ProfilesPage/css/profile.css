@@ -10,11 +10,11 @@
 }
 
 #randomizer {
-	text-align: left;
+  text-align: left;
 }
 
 #profile-pic img {
-	margin-top: 10px; 
+  margin-top: 10px; 
   width: 205px;
 }
 
@@ -33,11 +33,11 @@
 }
 
 .profile_info_connections {
-  	top: 18%;
-  	padding-left: 25px;
-  	width: 20%;
-  	right: 2%;
-  	font-weight: 900;
+    top: 18%;
+    padding-left: 25px;
+    width: 20%;
+    right: 2%;
+    font-weight: 900;
 }
 
 /* below is copy+paste from EventsPage/css/events.css couldn't get it to import*/
@@ -93,4 +93,3 @@ font-size: 14px;
 font-weight: 200;
 padding-bottom: 15px;
 }
-

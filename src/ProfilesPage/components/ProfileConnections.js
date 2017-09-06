@@ -3,22 +3,50 @@ import '../css/profileconnections.css';
 
 
 const ProfileConnections = (props) => {
+
 	const shuffle = require('shuffle-array');
 	// console.log(props);
 
-	let connectionList = [];
-	
  
-   	const randomTen = shuffle(connectionList);
-    
+   	// const randomTen = shuffle(connectionList);
     const { userConnections } = props;
     console.log('userConnections = props below');
     console.log({userConnections});
 
 
+
+	function getRandom(arr, n) {
+    	var result = new Array(n),
+    	    len = arr.length,
+        	taken = new Array(len);
+    	while (n--) {
+    	    var x = Math.floor(Math.random() * len);
+    	    result[n] = arr[x in taken ? taken[x] : x];
+    	    taken[x] = --len;
+    	}
+    	return result;
+	}
+    console.log('is this where it works??');
+	const connectionsList = renderConnections(userConnections);
+	const tenRandom = getRandom(connectionsList, 10);
+	let statusHolder = tenRandom;
+	let counter = 0
+	function clickChange() {
+		console.log('clickChange');
+		// not effective
+		// if(counter > 0) {
+		// 	statusHolder = tenRandom;
+		// 	--counter;
+		// } else {
+		// 	statusHolder = connectionsList;
+		// 	++counter;
+		// }
+
+
+	}
+
 	function onClickContacts() {
 		console.log('onClickContacts working');
-
 	}
 
 
@@ -28,13 +56,13 @@ const ProfileConnections = (props) => {
    			<div id="right-side-bar-content">
 		    	<div className="container">
      		 		<h4>Connections({userConnections.length})</h4>
-     		 		{renderConnections(userConnections)}
+     		 		
 			    </div>
 
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<p></p>
+			    		<p>{statusHolder}</p>
 			    	</div>
 					<div className="onclick">
 
@@ -47,15 +75,20 @@ const ProfileConnections = (props) => {
 	    </div>
   	);
 }
+var myVar = setInterval(myTimer, 2000);
+function myTimer() {
+	console.log('timer activated');
+}
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
-  	console.log('renderConnections');
-  	console.log(connection);
+
 
     return (
       <div key={connection.id}>
-        <p>{connection.firstName} {connection.lastName}</p>
+        <div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + connection.id}>{connection.firstName} {connection.lastName}</a>
+		</div>
+
       </div>
     );
   });

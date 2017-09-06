@@ -10,12 +10,12 @@ import ProfileConnections from './components/ProfileConnections';
 class ProfilePage extends Component {
 	componentWillMount() {
 
+        const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props; 
     
         const query = window.location.pathname;
         const new_query = query.slice(9);
         console.log('new query below');
         console.log(new_query);
-        const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
         fetchUserInfo(new_query);
         fetchUserFeeds(new_query);
         fetchUserConnections(new_query);
@@ -26,6 +26,10 @@ class ProfilePage extends Component {
 
 	render () {
     	const { userInfo, userConnections, userFeeds } = this.props;
+        console.log('this.props below YO HOHO');
+        console.log({ userFeeds });
+
+
 		return (
 			<div>
 				<Header />
@@ -36,7 +40,7 @@ class ProfilePage extends Component {
 			</div>
 
 		);
-	}
+	};
 
 }
 
