@@ -24,10 +24,25 @@ import '../css/profileconnections.css';
 
  
    	// const randomTen = shuffle(connectionList);
+	let connectionList = [];
+    
     const { userConnections } = props;
     console.log('userConnections = props below');
     console.log({userConnections});
 
+  function getRandom(arr, n) {
+    var result = new Array(n),
+      len = arr.length,
+      taken = new Array(len);
+    if (n > len)
+      throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+      var x = Math.floor(Math.random() * len);
+      result[n] = arr[x in taken ? taken[x] : x];
+      taken[x] = --len;
+    }
+    return result;
+  }
 
 
 	function getRandom(arr, n) {
@@ -52,7 +67,22 @@ import '../css/profileconnections.css';
 		console.log('onClickContacts working');
 		// changeStatus();
 	}
+  const displayNames = renderConnections(userConnections);
 
+  let displayedConnections = 0
+
+  // if (userConnections.length >= 10) {
+  //   displayedConnections = 10
+  // } else {
+  //   displayedConnections = userConnections.length
+  // };
+
+  const randomTen = getRandom(displayNames, displayedConnections);
+
+
+  function onClickContacts() {
+    console.log('onClickContacts working');
+  }  
 
 
 	return (
@@ -94,6 +124,5 @@ const renderConnections = (connections) => {
     );
   });
 }
-
 
 export default ProfileConnections;

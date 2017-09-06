@@ -44,8 +44,6 @@ class ProfilePage extends Component {
 
 }
 
-
-
   const mapStateToProps = (state) => {
     console.log(state);
     const { userInfo, userFeeds, userConnections } = state;

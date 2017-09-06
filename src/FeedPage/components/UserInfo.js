@@ -9,7 +9,7 @@ const UserInfo = (props) => {
       <p>{firstName} {lastName}</p>
       <p>bio</p>
       <p>{bio}</p>
-      <p>Conneions({userConnections.length})</p>
+      <p>Connections({userConnections.length})</p>
       {renderConnections(userConnections)}
     </div>
   );
