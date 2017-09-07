@@ -17,7 +17,9 @@ class CreateEvents extends Component {
     super(props);
     this.state = {
       selectedDay: null,
-      time: moment().format(str)
+      time: moment().format(str),
+      file: '',
+      imagePreviewUrl: ''
     };
   }
   handleDayClick (day, { selected }) {
@@ -60,8 +62,32 @@ class CreateEvents extends Component {
     // })
   }
 
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
+  }
+
   render() {
     const { selectedDay } = this.state;
+
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    } else {
+      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+    }
+
     return(
       <div>
         <Navbar />
@@ -76,12 +102,20 @@ class CreateEvents extends Component {
                  </div>
                </div>
 
-              <div className="form-group">
-                 <label className="control-label col-sm-3">Photo </label>
-                 <div className="col-sm-6">
-                   <input type="text" id="photo" className="form-control" placeholder="Enter photolink for event" name="photo" />
-                 </div>
-               </div>
+
+      <div className="previewComponent" name="photo" id="photo">
+        <form onSubmit={(e)=>this._handleSubmit(e)}>
+          <input className="fileInput" 
+            type="file" 
+            onChange={(e)=>this._handleImageChange(e)} />
+          <button className="submitButton" 
+            type="submit" 
+            onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+        </form>
+        <div className="imgPreview">
+          {$imagePreview}
+        </div>
+      </div>
 
                <div className="form-group">
                  <label className="control-label col-sm-3">Location</label>
