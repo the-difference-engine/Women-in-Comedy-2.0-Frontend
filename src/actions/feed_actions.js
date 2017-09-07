@@ -2,7 +2,7 @@ import { FETCH_USER_FEEDS } from './types';
 import axios from 'axios';
 
 export const fetchUserFeeds = (userId) => {
- console.log('fetchUserFeeds');
+
  const request = axios({
    method: 'get',
    url: 'http://localhost:9000/api/v1/users/feed',

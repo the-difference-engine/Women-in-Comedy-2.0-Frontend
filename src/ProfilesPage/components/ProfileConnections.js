@@ -7,17 +7,17 @@ const ProfileConnections = (props) => {
 	// console.log(props);
 
 	let connectionList = [];
-	
- 
+
+
    	const randomTen = shuffle(connectionList);
-    
+
     const { userConnections } = props;
-    console.log('userConnections = props below');
-    console.log({userConnections});
+    // console.log('userConnections = props below');
+    // console.log({userConnections});
 
 
 	function onClickContacts() {
-		console.log('onClickContacts working');
+		// console.log('onClickContacts working');
 
 	}
 
@@ -50,8 +50,8 @@ const ProfileConnections = (props) => {
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
-  	console.log('renderConnections');
-  	console.log(connection);
+  	// console.log('renderConnections');
+  	// console.log(connection);
 
     return (
       <div key={connection.id}>

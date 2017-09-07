@@ -1,11 +1,14 @@
-import { CREATE_CONNECTION_REQUEST } from '../actions/types';
-
-export default (state = {}, action) => {
+import { CREATE_CONNECTION_REQUEST, FETCH_CONNECTION_STATUS } from '../actions/types';
+const INITIAL_STATE = {
+}
+export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-
     case CREATE_CONNECTION_REQUEST:
-      console.log('create connection', action.payload.data);
-      return action.payload.data;
+      console.log(action.payload);
+      return { ...state, status: action.payload.data.status};
+    case FETCH_CONNECTION_STATUS:
+      console.log(action.payload.data);
+      return action.payload.data || {};
     default:
       return state;
   }
