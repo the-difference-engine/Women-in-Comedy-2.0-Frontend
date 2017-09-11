@@ -3,24 +3,16 @@ import '../css/profile.css';
 
 
 const Profile = (props) => {
-  const { userFeeds } = props;
-  console.log('usearFeeds Below');
-  console.log({ userFeeds });
+  const { userEvents } = props;
+  console.log('userEvents Below');
+  console.log({ userEvents });
 
-
-  console.log('renderer below');
-  console.log(renderer);
-
-
-
-
-
-  if (userFeeds.length == 0) {
+  if (!userEvents) {
     return (
       <div id="personal-feed">
         <div className="event">
           <div className="event-page-content">
-            <p>No Feeds Avaliable</p>
+            <p>No Events Avaliable</p>
           </div>
         </div>
       </div>
@@ -29,24 +21,26 @@ const Profile = (props) => {
 
 
 
-  const renderFeeds = (feeds) => feeds.map((feed) => 
-    <div key={feed.postId}>
+  const renderEvents = (events) => events.map((event) => 
+    <div key={event.id}>
           <div className="box" id="personal-feed" >
             <div>
               <p>Event</p>
               <div className="event">
                 <div className="events-header">
-                  <p className="event-title"></p>
+                  <p className="event-title">{event.title}
+                    <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" height="200" width="205"/>
+                  </p>
                 </div>
                 <div className="event-page-content">
-                  <p></p>
+                  <p>{event.about}</p>
                 </div>
               </div>
             </div>
           </div>
     </div>
   );
-  const renderer = renderFeeds(props.userFeeds);
+  const renderer = renderEvents(props.userEvents);
 
 
 

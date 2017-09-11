@@ -13,6 +13,13 @@
   text-align: left;
 }
 
+.events-header img {
+  float: right;
+  margin: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 #profile-pic img {
   margin-top: 10px; 
   width: 205px;
@@ -57,6 +64,9 @@ border: 1px solid rgba(211,211,211,0.9);
 border-radius: 3px;
 padding: 5px;
 margin: 10px;
+height: 250px;
+margin: 50px;
+
 }
 
 .event-page-content {
