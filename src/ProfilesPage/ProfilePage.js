@@ -32,11 +32,15 @@ class ProfilePage extends Component {
 
 	renderConnection() {
 		if (this.props.status.status === false) {
-			return <div style={{ position: 'relative', top: '300px', left: '300px'}}> pending</div>
+			return <div style={{ position: 'relative', top: '300px', left: '300px'}}> Request Pending...</div>
 		}
 		if (_.isEmpty(this.props.status.status)) {
 			return <button type="button" style={{ position: 'relative', top: '300px', left: '300px'}} onClick={this.onPress.bind(this)}>Connect</button>
 		}
+
+    if (this.props.status.status === true) {
+      return <div style ={{ position: 'relative', top: '300px', left: '300px'}}> Connected </div>
+    }
 	}
 
 	render () {
