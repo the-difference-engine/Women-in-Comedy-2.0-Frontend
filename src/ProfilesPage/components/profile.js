@@ -28,10 +28,9 @@ const Profile = (props) => {
               <h4>Event</h4>
               <div className="event">
                 <div className="events-header">
-                  <p className="event-title">Author: {feed.authorFirstName}</p>
+                  <p className="event-title">Author: {event.authorFirstName}</p>
                 </div>
                 <div className="event-page-content">
-                  <p>{feed.body}</p>
                   <p className="event-title">{event.title}
                     <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" height="200" width="205"/>
                   </p>
