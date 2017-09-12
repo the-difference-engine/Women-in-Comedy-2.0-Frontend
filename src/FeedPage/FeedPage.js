@@ -8,7 +8,13 @@ import Messages from './components/Messages';
 
 
 class Feed extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = { rerender: false };
+  }
+
+  componentDidMount() {
+    console.log('will mount');
     const valid = sessionStorage.getItem('confirmed');
     if(valid == 'null' || !valid) {
       this.props.history.push('/');
@@ -20,18 +26,21 @@ class Feed extends Component {
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
   }
 
+  rerender() {
+    this.setState({ rerender: !this.state.rerender });
+  }
+
   render() {
-    console.log('render');
-    const { userInfo, userConnections, userFeeds, pendingUserConnections } = this.props;
+    const { userInfo, userConnections, userFeeds, receivedConnectionRequest } = this.props;
     return (
       <div>
         <Navbar />
+        <RightGraySideBar>
+          <Messages connections={receivedConnectionRequest} rerender={this.rerender.bind(this)}/>
+        </RightGraySideBar>
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} userConnections={userConnections}  />
         </LeftGraySideBar>
-        <RightGraySideBar>
-          <Messages pendingUserConnections = {pendingUserConnections} />
-        </RightGraySideBar>
         <PageContent pageTitle="Your Feed">
           <NewFeeds userFeeds={userFeeds} />
         </PageContent>
@@ -41,8 +50,8 @@ class Feed extends Component {
 }
 
   const mapStateToProps = (state) => {
-    console.log(state);
-    const { userInfo, userFeeds, userConnections, pendingUserConnections } = state;
-    return { userInfo, userFeeds, userConnections, pendingUserConnections };
+
+    const { userInfo, userFeeds, userConnections, pendingUserConnections, receivedConnectionRequest  } = state;
+    return { userInfo, userFeeds, userConnections, pendingUserConnections, receivedConnectionRequest  };
   }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections })(Feed);

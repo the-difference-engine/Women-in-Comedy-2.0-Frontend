@@ -13,13 +13,13 @@ class ProfilePage extends Component {
 			const sender_id = sessionStorage.getItem('userId');
 			const receiver_id = this.props.match.params.id;
 
-
+			const userId = sessionStorage.getItem('userId');
       const query = window.location.pathname;
       const new_query = query.slice(9);
       const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-      fetchUserInfo(new_query);
-      fetchUserFeeds(new_query);
-      fetchUserConnections(new_query);
+      this.props.fetchUserInfo(userId);
+      this.props.fetchUserFeeds(userId);
+      this.props.fetchUserConnections(userId);
 			this.props.fetchConnectionStatus({ sender_id, receiver_id });
     }
 
@@ -31,16 +31,17 @@ class ProfilePage extends Component {
 	}
 
 	renderConnection() {
-		if (this.props.status.status === false) {
-			return <div style={{ position: 'relative', top: '300px', left: '300px'}}> Request Pending...</div>
-		}
-		if (_.isEmpty(this.props.status.status)) {
+		console.log(this.props.status.status);
+		if (_.isEmpty(this.props.status)) {
 			return <button type="button" style={{ position: 'relative', top: '300px', left: '300px'}} onClick={this.onPress.bind(this)}>Connect</button>
 		}
-
     if (this.props.status.status === true) {
       return <div style ={{ position: 'relative', top: '300px', left: '300px'}}> Connected </div>
     }
+
+		if (this.props.status.status === false) {
+			return <div style={{ position: 'relative', top: '300px', left: '300px'}}> Request Pending...</div>
+		}
 	}
 
 	render () {
@@ -59,10 +60,7 @@ class ProfilePage extends Component {
 
 }
 
-
-
   const mapStateToProps = (state) => {
-
     const { userInfo, userFeeds, userConnections, status } = state;
 		console.log(status);
 		return { userInfo, userFeeds, userConnections, status };
