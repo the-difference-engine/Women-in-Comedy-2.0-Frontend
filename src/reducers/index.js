@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   userInfo: UserInfoReducer,
   userFeeds: FeedReducer,
   userConnections: ConnectionsReducer,
+  pendingUserConnections: ConnectionStatusReducer,
   events: EventsReducer,
   status: ConnectionStatusReducer
 });

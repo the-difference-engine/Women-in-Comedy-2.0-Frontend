@@ -6,6 +6,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_USER_CONNECTIONS:
       
       return [...state, ...action.payload.data];
+    
     default:
       return state;
   }

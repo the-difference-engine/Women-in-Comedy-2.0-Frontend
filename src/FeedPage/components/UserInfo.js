@@ -33,4 +33,15 @@ const renderConnections = (connections) => {
   });
 };
 
+// const renderPendingConnections = (connections) => {
+//   return connections.map(connection => {
+//     return (
+//       <div key={connection.id}>
+//         <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+//         <p id="connection-name">{connection.firstName} {connection.lastName}</p>
+//       </div>
+//     );
+//   });
+// };
+
 export default UserInfo;
