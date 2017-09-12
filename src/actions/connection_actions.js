@@ -32,7 +32,7 @@ export const fetchConnectionStatus = ({ sender_id, receiver_id }) => async dispa
   console.log('receiver', receiver_id);
   const request = await axios({
     method: 'post',
-    url: 'http://({localhost:9000/api/v1/users/connection/status',
+    url: 'http://localhost:9000/api/v1/users/connection/status',
     data: { sender_id, receiver_id }
   });
   dispatch({ type: FETCH_CONNECTION_STATUS, payload: request });

@@ -9,7 +9,6 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_CONNECTION_STATUS:
       console.log(action.payload.data);
       return action.payload.data || {};
-
     case FETCH_PENDING_USER_CONNECTIONS:
       console.log(action.payload.data)
       return action.payload.data;
