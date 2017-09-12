@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import '../css/profileconnections.css';
 
@@ -20,67 +21,69 @@ import '../css/profileconnections.css';
 	// }
 
 	const shuffle = require('shuffle-array');
-	// console.log(props);
 
-   	// const randomTen = shuffle(connectionList);
 	let connectionList = [];
     
     const { userConnections } = props;
     console.log('userConnections = props below');
     console.log({userConnections});
+    let newArray = [];
 
-  // function getRandom(arr, n) {
-  //   var result = new Array(n),
-  //     len = arr.length,
-  //     taken = new Array(len);
-  //   if (n > len)
-  //     throw new RangeError("getRandom: more elements taken than available");
-  //   while (n--) {
-  //     var x = Math.floor(Math.random() * len);
-  //     result[n] = arr[x in taken ? taken[x] : x];
-  //     taken[x] = --len;
-  //   }
-  //   return result;
-  // }
+//Dont worry about the following function, randomizer
+          	function getRandom(arr, n) {
+              	var result = new Array(n),
+              	    len = arr.length,
+                  	taken = new Array(len);
+              	while (n--) {
+              	    var x = Math.floor(Math.random() * 1);
+              	    result[n] = arr[x in taken ? taken[x] : x];
+              	    taken[x] = --len;
+              	}
+                console.log('newArray below');
+                console.log(newArray);
+              	return newArray.push(result);
 
-	function getRandom(arr, n) {
-    	var result = new Array(n),
-    	    len = arr.length,
-        	taken = new Array(len);
-    	while (n--) {
-    	    var x = Math.floor(Math.random() * len);
-    	    result[n] = arr[x in taken ? taken[x] : x];
-    	    taken[x] = --len;
-    	}
-    	return result;
-	}
-
-    console.log('is this where it works??');
-	const connectionsList = renderConnections(userConnections);
-	const tenRandom = getRandom(connectionsList, 10);
-	let statusHolder = tenRandom;
-	let counter = 0
+          	}
 
 
-	function onClickContacts() {
-		console.log('onClickContacts working');
-		// changeStatus();
-	}
-  const displayNames = renderConnections(userConnections);
+  function getUsers(result, users, count) {
+    if(users.length === 0 || count === 10) {
+      return result;
+    } else {
+      var x = Math.floor(Math.random() * users.length);
+      console.log('x below');
+      console.log(x);
+      result.push(users.splice(x, 1)[0]);
+      console.log('result below');
+      console.log(result);
+      ++count;
+
+
+      getUsers(result, users, count);
+    }
+  }
+
+  const users = userConnections;
+  const whatever = getUsers([], users, 0);
+
+  const renderWhatever = renderConnections(whatever);
+
+
+
+  function onClickContacts() {
+    console.log('onClickContacts working');
+    // changeStatus();
+  }
 
   let displayedConnections = 0
-
+  // const allUsers = renderConnections(userConnections);
+	const tenRandom = getRandom(renderConnections(userConnections), 10);
   // if (userConnections.length >= 10) {
   //   displayedConnections = 10
   // } else {
   //   displayedConnections = userConnections.length
   // };
-
-  const randomTen = getRandom(displayNames, displayedConnections);
-
-  function onClickContacts() {
-    console.log('onClickContacts working');
-  }  
+ 
 
 	return (
 	    <div id="boop">
@@ -92,13 +95,11 @@ import '../css/profileconnections.css';
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<p>{statusHolder}</p>
+			    		<div>{renderWhatever}</div>
 			    	</div>
-					<div className="onclick" onClick={onClickContacts}>
-
-						<p className="red">See All Connections</p>
-					</div>
-				</div>
+				  </div>
+          <div className="onclick" onClick={onClickContacts}><p className="red">See All Connections</p>
+          </div>
 
 		   	</div>
 	    </div>
@@ -106,18 +107,19 @@ import '../css/profileconnections.css';
 }
 
 
+
 const renderConnections = (connections) => {
-  return connections.map(connection => {
+  return _.map(connections, connection => {
 
+      return (
+        <div key={connection.id}>
+          <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + connection.id}>{connection.firstName} {connection.lastName}</a>
+          </div>
 
-    return (
-      <div key={connection.id}>
-        <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + connection.id}>{connection.firstName} {connection.lastName}</a>
-		</div>
-
-      </div>
-    );
+        </div>
+      );
   });
+
 }
 
 export default ProfileConnections;

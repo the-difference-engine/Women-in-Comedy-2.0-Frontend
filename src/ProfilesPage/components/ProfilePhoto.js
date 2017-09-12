@@ -21,10 +21,10 @@ const ProfilePhoto = (props) => {
   return (
     <div id="left-side-bar">
       <div id="left-side-bar-content">
-      <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
-         <p>{firstName} {lastName}</p>
-     	 <p>bio</p>
-     	 <p>{bio}</p>
+        <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
+          <p>{firstName} {lastName}</p>
+     	    <p>bio</p>
+     	    <p>{bio}</p>
 
       </div>
     </div>

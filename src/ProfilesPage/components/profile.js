@@ -33,13 +33,13 @@ const Profile = (props) => {
     <div key={feed.postId}>
           <div className="box" id="personal-feed" >
             <div>
-              <p>Event</p>
+              <h4>Event</h4>
               <div className="event">
                 <div className="events-header">
-                  <p className="event-title"></p>
+                  <p className="event-title">Author: {feed.authorFirstName}</p>
                 </div>
                 <div className="event-page-content">
-                  <p></p>
+                  <p>{feed.body}</p>
                 </div>
               </div>
             </div>
@@ -55,7 +55,7 @@ const Profile = (props) => {
   return(
     <div className="container">
       <div className="box_a">
-        <p id="current-profile"> {renderer} </p>
+        <div id="current-profile"> {renderer} </div>
       </div>
     </div>
 
