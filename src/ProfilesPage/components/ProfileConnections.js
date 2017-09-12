@@ -64,9 +64,6 @@ import '../css/profileconnections.css';
   }
 
   const users = userConnections;
-  const whatever = getUsers([], users, 0);
-
-  const renderWhatever = renderConnections(whatever);
 
 
 
@@ -77,7 +74,6 @@ import '../css/profileconnections.css';
 
   let displayedConnections = 0
   // const allUsers = renderConnections(userConnections);
-	const tenRandom = getRandom(renderConnections(userConnections), 10);
   // if (userConnections.length >= 10) {
   //   displayedConnections = 10
   // } else {
@@ -95,7 +91,7 @@ import '../css/profileconnections.css';
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<div>{renderWhatever}</div>
+			    		<div>{renderConnections(getUsers([], users, 0))}</div>
 			    	</div>
 				  </div>
           <div className="onclick" onClick={onClickContacts}><p className="red">See All Connections</p>
