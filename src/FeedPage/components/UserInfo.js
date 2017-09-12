@@ -14,16 +14,17 @@ const UserInfo = (props) => {
       <p>{bio}</p>
       <p>Connections({userConnections.length})</p>
       {renderConnections(userConnections)}
-    <div id="user-info">
-      <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />
-      <p id="user-name">{firstName} {lastName}</p>
-      <p id="bio">Bio</p>
-      <p id="bio-content">{bio}</p>
-      <Link to={`/profile/${userId}`} id="profile-link">View Profile</Link>
+      <div id="user-info">
+       <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />
+        <p id="user-name">{firstName} {lastName}</p>
+        <p id="bio">Bio</p>
+        <p id="bio-content">{bio}</p>
+        <Link to={`/profile/${userId}`} id="profile-link">View Profile</Link>
 
-      <p id="connection">Connections <span id="connection-count">({userConnections.length})</span></p>
-      <div id="connection-info-wrapper">
-        {renderConnections(userConnections)}
+        <p id="connection">Connections <span id="connection-count">({userConnections.length})</span></p>
+        <div id="connection-info-wrapper">
+          {renderConnections(userConnections)}
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ class CreateEvents extends Component {
 
       time: moment().format(str),
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: '',
 
       time: moment().format(str)
     };
@@ -80,7 +80,7 @@ class CreateEvents extends Component {
     }
     reader.readAsDataURL(file)
 
-    event.preventDefault();
+    // event.preventDefault();
     const eventName = document.getElementById('eventName').value;
     const eventLocation = document.getElementById('eventLocation').value;
     const eventDescription = document.getElementById('eventDescription').value;
@@ -108,37 +108,37 @@ class CreateEvents extends Component {
               <form className="form-horizontal">
                <div className="form-group">
                  <label className="control-label col-sm-3">Event Title</label>
-                 <div className="col-sm-6">
-                   <input type="text" id="title" className="form-control" placeholder="Enter name of event" name="title" />
-                 </div>
+                  <div className="col-sm-6">
+                     <input type="text" id="title" className="form-control" placeholder="Enter name of event" name="title" />
+                  </div>
                </div>
 
 
-      <div className="previewComponent" name="photo" id="photo">
-        <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <input className="fileInput" 
-            type="file" 
-            onChange={(e)=>this._handleImageChange(e)} />
-          <button className="submitButton" 
-            type="submit" 
-            onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
-        </form>
-        <div className="imgPreview">
-          {$imagePreview}
-        </div>
-      </div>
+                <div className="previewComponent" name="photo" id="photo">
+                  <form onSubmit={(e)=>this._handleSubmit(e)}>
+                    <input className="fileInput" 
+                      type="file" 
+                      onChange={(e)=>this._handleImageChange(e)} />
+                    <button className="submitButton" 
+                      type="submit" 
+                      onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+                  </form>
+                  <div className="imgPreview">
+                    {$imagePreview}
+                  </div>
+                </div>
 
-               <div className="form-group">
+                <div className="form-group">
+                   <label className="control-label col-sm-3">Location</label>
+                  <div className="col-sm-6">
+                     <input type="text" id="location" className="form-control" placeholder="Enter location for event" name="location" />
 
-                 <label className="control-label col-sm-3">Location</label>
-                 <div className="col-sm-6">
-                   <input type="text" id="location" className="form-control" placeholder="Enter location for event" name="location" />
-
-                 <label className="control-label col-sm-3">Location </label>
-                 <div className="col-sm-6">
-                   <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
-                 </div>
-               </div>
+                    <label className="control-label col-sm-3">Location </label>
+                    <div className="col-sm-6">
+                      <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
+                    </div>
+                  </div>
+                </div>
 
                <div className="form-group">
                  <label className="control-label col-sm-3">Date & Time</label>
@@ -157,6 +157,9 @@ class CreateEvents extends Component {
                    <TimePicker defaultValue={moment()} onChange={this.onChange.bind(this)} />
                  </div>
                </div>
+
+
+
                <div className="form-group">
                  <label className="control-label col-sm-3">Description </label>
                  <div className="col-sm-6">
@@ -168,15 +171,12 @@ class CreateEvents extends Component {
                  <label className="control-label col-sm-3">Ticket Link </label>
                  <div className="col-sm-6">
                    <textarea className="form-control" rows="1" id="comment" id="ticketLink"></textarea>
-
                    <textarea className="form-control" rows="5" id="comment" id="eventDescription"></textarea>
-
                  </div>
                </div>
 
                <div className="form-group">
                  <div className="col-sm-offset-1 col-sm-10">
-
                    <button type="submit" className="btn btn-primary" onClick={this.onClick.bind(this)}>Create</button>
                  </div>
                </div>

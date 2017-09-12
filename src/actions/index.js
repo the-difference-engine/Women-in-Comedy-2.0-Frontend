@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 // export const CREATE_USER = 'create_user';
 export const CREATE_SESSION = 'create_session';
@@ -84,16 +83,18 @@ export const fetchUsers = () => {
   };
 };
 
+
 export const fetchUserEvents = (userId) => {
   console.log('fetchUserEvents');
   const request = axios({
     method: 'get',
     url: 'http://localhost:9000/api/v1/users/user_events',
-    dispatch({ type: FETCH_USER_EVENTS, payload: request })
+    headers: {"id": userId}
+  });
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: FETCH_USER_EVENTS, payload: request })
     });
   };
 };
-export *  from './user_actions';
-export * from './event_actions';
-export * from './feed_actions';
-export * from './connection_actions';
+

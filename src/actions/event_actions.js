@@ -5,7 +5,7 @@ export function createEvent(data){
   console.log('createEvent', data);
   return async (dispatch) => {
     try {
-      await axios.post('http://localhost:9000/api/v1/events', { 
+      await axios.post('http://localhost:9000/api/v1/users/user_events', { 
         user_id: data.userId,
         title: data.title,
         photo: data.photo,
@@ -20,10 +20,10 @@ export function createEvent(data){
       }
     
   }
-export const createEvent = (data) => {
-  console.log('createEvent', data);
-  return {
-    type: CREATE_EVENT,
-    payload: data
-  };
+// export const createEvent = (data) => {
+//   console.log('createEvent', data);
+//   return {
+//     type: CREATE_EVENT,
+//     payload: data
+//   };
 };

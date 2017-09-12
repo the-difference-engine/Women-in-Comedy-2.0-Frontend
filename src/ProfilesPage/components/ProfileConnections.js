@@ -37,7 +37,7 @@ import '../css/profileconnections.css';
 
 
   
-  var displayAll = renderConnections(users);
+  var displayAll = renderConnections(userConnections);
   console.log("Display all below!")
   console.log(displayAll)
 
@@ -47,7 +47,7 @@ import '../css/profileconnections.css';
 		// changeStatus();
 		// console.log('onClickContacts working');
 	}
-  const displayNames = renderConnections(userConnections);
+  const displayTenNames = getUsers([], displayAll, 0);
 
 
   let displayedConnections = 0
@@ -69,7 +69,7 @@ import '../css/profileconnections.css';
 
 		   		<div className="user-list">
 			    	<div className="container">
-			    		<div>{renderConnections(getUsers([], users, 0))}</div>
+			    		<div>{displayTenNames}</div>
 			    	</div>
 				  </div>
           <div className="onclick" onClick={onClickContacts}><p className="red">See All Connections</p>

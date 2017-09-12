@@ -18,6 +18,7 @@ import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 
 const store = createStore(reducers, {}, applyMiddleware(promise, thunk));
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

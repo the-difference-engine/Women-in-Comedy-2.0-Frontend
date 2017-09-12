@@ -31,8 +31,8 @@ const Bio = (props) => {
       <div className="activity-bio-content">
         <div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></div>
         <div className="bio-name"><p></p></div>
-        <div className="bio-title"><p>{randUser}</p></div>
-        <div className="bio-desc"><p></p></div>
+        <div className="bio-title"><p></p></div>
+        <div className="bio-desc"><p>{randUser}</p></div>
       </div>
     </div>
   );

@@ -43,7 +43,8 @@ const Profile = (props) => {
           </div>
     </div>
   );
-  const renderer = renderEvents(props.userEvents);
+  const renderer = renderEvents(userEvents);
+
 
 
 
