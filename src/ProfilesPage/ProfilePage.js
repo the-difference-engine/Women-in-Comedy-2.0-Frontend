@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Profile from './components/profile';
 import ProfilePhoto from './components/ProfilePhoto';
@@ -6,161 +8,46 @@ import ProfileConnections from './components/ProfileConnections';
 
 
 class ProfilePage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			events: [
-				{
-					id: 1,
-					email: "treesmithson@gmail.com",
-					about: "I like comedy",
-					first_name: "Dawn",
-					last_name: "French",
-					city: "Ent"
-				},
-				{
-					id: 2,
-					email: "ants@gmail.com",
-					about: "I like picnics",
-					first_name: "Chealsea",
-					last_name: "Handler",
-					city: "Atlantic City"
-				},
-				{
-					id: 3,
-					email: "madoka@mahoushojo.com",
-					about: "Im a comedien",
-					first_name: "Catharine",
-					last_name: "Tate",
-					city: "Seatle"
-				},
-				{
-					id: 4,
-					email: "iveneverbeentobosten@boston.com",
-					about: "I live in Boston",
-					first_name: "Grace",
-					last_name: "Jones",
-					city: "Boston"
-				},
-				{
-					id: 5,
-					email: "catharine@email.com",
-					about: "I like comedy",
-					first_name: "Brianna",
-					last_name: "Parkes",
-					city: "Springfield"
-				},
-				{
-					id: 6,
-					email: "tokyo@mail.com",
-					about: "Did you hear about the one about the...",
-					first_name: "Jennifer",
-					last_name: "Saunders",
-					city: "Tokyo"
-				},
-				{
-					id: 7,
-					email: "theone@google.com",
-					about: "My heart is full of comedy, even tho it looks like blood",
-					first_name: "Sarah",
-					last_name: "Silverman",
-					city: "San Fransisco"
-				},
-				{
-					id: 8,
-					email: "vera@lol.com",
-					about: "Comedy makes me laugh",
-					first_name: "Vera",
-					last_name: "Smith",
-					city: "Chicago"
-				},
-				{
-					id: 9,
-					email: "maria@funny.com",
-					about: "Comedy is my thing",
-					first_name: "Maria",
-					last_name: "Totti",
-					city: "Canada"
-				},
-				{
-					id: 10,
-					email: "Williams@mail.com",
-					about: "comedy is the best",
-					first_name: "Gretchen",
-					last_name: "Williams",
-					city: "Sidney"
-				}],
+	componentWillMount() {
+
+        const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents } = this.props; 
+    
+        const query = window.location.pathname;
+        const new_query = query.slice(9);
+        console.log('new query below');
+        console.log(new_query);
+        fetchUserInfo(new_query);
+        fetchUserFeeds(new_query);
+        fetchUserConnections(new_query);
+        fetchUserEvents(new_query);
 
 
-			events_connections: [
-		        {
-		        	id: 1,
-		      		name:"Dawn French",
-		      		photo:"my pix"
-		        },
-		        {
-		        	id: 2,
-		        	name:"Chelsea Handler",
-		        	photo:"pic"
 
-		        },
-		        {
-		        	id: 3,
-		        	name:"Catharine Tate",
-		        	photo:"mypiccc"
-		        },
-		        {
-		        	id: 4,
-		        	name:"Grace Jones",
-		        	photo:"picture"
-		        },
-		       	{
-		        	id: 5,
-		        	name:"Brianna Parkes",
-		        	photo:"meepic"
-		        },
-		        {
-		        	id: 6,
-		        	name:"Jennifer Saunders",
-		        	photo:"mine"
-		        },
-		        {
-		        	id: 7,
-		        	name:"Sarah Silverman",
-		        	photo:"McPic"
-		        },
-		        {
-		        	id: 8,
-		       		name:"Vera Smith",
-		        	photo:"mypicturealbum"
-		        },
-		        {
-		        	id: 9,
-		        	name:"Maria Totti",
-		        	photo:"mypicturebook"
-		        },
-		        {
-		        	id: 10,
-		        	name:"Gretchen Williams",
-		        	photo:"mypicture"
-		        }],
-		};
-	}
+    }
 
 	render () {
+    	const { userInfo, userConnections, userFeeds, userEvents } = this.props;
+        console.log('this.props below YO HOHO');
+        console.log({ userFeeds });
+
+
 		return (
 			<div>
 				<Header />
-        		<ProfilePhoto events={this.state.events}/>
-				<Profile events={this.state.events}/>
-				<ProfileConnections events_connections={this.state.events_connections}/>
+        		<ProfilePhoto userInfo={userInfo} userConnections={userConnections} />
+				<Profile userEvents={userEvents} />
+				<ProfileConnections userConnections={userConnections} />
 
 			</div>
 
 		);
-	}
+	};
 
 }
 
-
-export default ProfilePage;
+  const mapStateToProps = (state) => {
+    console.log(state);
+    const { userInfo, userFeeds, userConnections, userEvents } = state;
+    return { userInfo, userFeeds, userConnections, userEvents };
+  }
+export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents })(ProfilePage);

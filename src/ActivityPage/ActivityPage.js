@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchUsers } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';
@@ -6,74 +8,34 @@ import YourActivity from './ActivityPage';
 import feedSearch from './ActivityPage';
 
 class ActivityPage extends Component {
-  constructor(props) {
-		super(props);
-		this.state = {
-	    	events: [
-		        {
-		        	id:1,
-		      		name:"Dawn French",
-		      		photo:"my pix"
-		        },
-		        {
-		        	id:2,
-		        	name:"Chelsea Handler",
-		        	photo:"pic"
+	componentWillMount() {
+		const { fetchUsers } = this.props;
+		console.log('fetch Users below');
+		fetchUsers();
 
-		        },
-		        {
-		        	id:3,
-		        	name:"Catharine Tate",
-		        	photo:"mypiccc"
-		        },
-		        {
-		        	id:4,
-		        	name:"Grace Jones",
-		        	photo:"picture"
-		        },
-		       	{
-		       		id:5,
-		        	name:"Brianna Parkes",
-		        	photo:"meepic"
-		        },
-		        {
-		        	id:6,
-		        	name:"Jennifer Saunders",
-		        	photo:"mine"
-		        },
-		        {
-		        	id:7,
-		        	name:"Sarah Silverman",
-		        	photo:"McPic"
-		        },
-		        {
-		        	id:8,
-		       		name:"Vera Smith",
-		        	photo:"mypicturealbum"
-		        },
-		        {
-		        	id:9,
-		        	name:"Maria Totti",
-		        	photo:"mypicturebook"
-		        },
-		        {
-		        	id:10,
-		        	name:"Gretchen Williams",
-		        	photo:"mypicture"
-		        }],
-	    };
 	}
 
+
 	render () {
+		const { usersInfo } = this.props;
+		console.log('usersInfo below YO-HO-HO');
+        console.log({ usersInfo });
 		return (
 			<div>
-				< Header />
-				< Bio />
-				< Users events={this.state.events} />
+				<Header />
+				<Bio usersInfo={usersInfo}/>
+				<Users usersInfo={usersInfo} />
 
 			</div>
 		);
-	}
+	};
 }
 
-export default ActivityPage;
+	const mapStateToProps = (state) => {
+		console.log('state below, activitypage.js');
+		console.log(state);
+		const { usersInfo } = state;
+		return { usersInfo };
+	}
+
+export default connect(mapStateToProps, { fetchUsers })(ActivityPage);
