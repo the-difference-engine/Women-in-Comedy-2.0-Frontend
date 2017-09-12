@@ -25,9 +25,12 @@ const Profile = (props) => {
     <div key={event.id}>
           <div className="box" id="personal-feed" >
             <div>
-              <p>Event</p>
+              <h4>Event</h4>
               <div className="event">
                 <div className="events-header">
+                  <p className="event-title">Author: {event.authorFirstName}</p>
+                </div>
+                <div className="event-page-content">
                   <p className="event-title">{event.title}
                     <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" height="200" width="205"/>
                   </p>
@@ -49,7 +52,7 @@ const Profile = (props) => {
   return(
     <div className="container">
       <div className="box_a">
-        <p id="current-profile"> {renderer} </p>
+        <div id="current-profile"> {renderer} </div>
       </div>
     </div>
 

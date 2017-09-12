@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import '../css/users.css';
 
@@ -20,8 +21,26 @@ const Users = (props) => {
     	return result;
 	}
 
-	const newList = getRandom(list, 10);
+  const users = usersInfo;
 
+	function getUsers(result, users, count) {
+	    if(users.length === 0 || count === 10) {
+	      return result;
+	    } else {
+	      var x = Math.floor(Math.random() * users.length);
+	      console.log('x below');
+	      console.log(x);
+	      result.push(users.splice(x, 1)[0]);
+	      console.log('result below');
+	      console.log(result);
+	      ++count;
+
+
+	      getUsers(result, users, count);
+	    }
+	}
+
+	const listMaker = getUsers([], users, 0)
 
 
 
@@ -31,8 +50,8 @@ const Users = (props) => {
 		    	<h4> <span>Connections({connections})</span></h4>
 		    </div>
 		    <div className="user-list">
-			    <div className="container">
-			    	<p> {newList} </p>
+		    	<div id="right-side-bar">
+				    	<p> {listMaker} </p>
 			    </div>
 			</div>
 	    </div>
@@ -51,6 +70,7 @@ const renderUsers = (users) => {
     );
   });
 }
+
 
 
 export default Users;
