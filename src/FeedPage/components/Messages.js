@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/messages.css';
-import { acceptConnections, fetchPendingUserConnections, fetchUserConnections } from '../../actions';
+import { acceptConnection, fetchPendingUserConnections, fetchUserConnections, declineConnection } from '../../actions';
 class Messages extends Component {
 
 
@@ -14,12 +14,12 @@ class Messages extends Component {
     const callback2 = this.props.fetchUserConnections;
     return this.props.connections.map(connection => {
       return (
-        <div key={connection.id}>
+        <div key={connection.requestId}>
           <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
           <p id="connection-name">{connection.firstName} {connection.lastName}</p>
           <br/>
-          <button type="button" onClick={() => this.props.acceptConnections(userId, connection.id, callback, callback2)}>accept</button>
-          <button type="button">decline</button>
+          <button type="button" onClick={() => this.props.acceptConnection(userId, connection.senderId, callback, callback2)}>accept</button>
+          <button type="button" onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
         </div>
       );
     });
@@ -44,4 +44,4 @@ class Messages extends Component {
 
 
 
-export default connect(null, { acceptConnections, fetchPendingUserConnections, fetchUserConnections })(Messages);
+export default connect(null, { acceptConnection, fetchPendingUserConnections, fetchUserConnections, declineConnection })(Messages);

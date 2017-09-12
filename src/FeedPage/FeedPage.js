@@ -14,7 +14,7 @@ class Feed extends Component {
   }
 
   componentDidMount() {
-    console.log('will mount');
+    
     const valid = sessionStorage.getItem('confirmed');
     if(valid == 'null' || !valid) {
       this.props.history.push('/');

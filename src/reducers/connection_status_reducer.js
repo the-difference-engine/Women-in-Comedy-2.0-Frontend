@@ -9,6 +9,9 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_CONNECTION_STATUS:
       console.log(action.payload.data);
       return action.payload.data || {};
+
+
+
     default:
       return state;
   }
