@@ -24,10 +24,11 @@ import '../css/profileconnections.css';
 
    	// const randomTen = shuffle(connectionList);
 	let connectionList = [];
-    
+
+   	const randomTen = shuffle(connectionList);
     const { userConnections } = props;
-    console.log('userConnections = props below');
-    console.log({userConnections});
+    // console.log('userConnections = props below');
+    // console.log({userConnections});
 
   // function getRandom(arr, n) {
   //   var result = new Array(n),
@@ -65,6 +66,7 @@ import '../css/profileconnections.css';
 	function onClickContacts() {
 		console.log('onClickContacts working');
 		// changeStatus();
+		// console.log('onClickContacts working');
 	}
   const displayNames = renderConnections(userConnections);
 
@@ -108,8 +110,8 @@ import '../css/profileconnections.css';
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
-
-
+  	// console.log('renderConnections');
+  	// console.log(connection);
     return (
       <div key={connection.id}>
         <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + connection.id}>{connection.firstName} {connection.lastName}</a>
@@ -119,5 +121,8 @@ const renderConnections = (connections) => {
     );
   });
 }
+
+
+export default ProfileConnections;
 
 export default ProfileConnections;

@@ -17,9 +17,12 @@ class CreateEvents extends Component {
     super(props);
     this.state = {
       selectedDay: null,
+
       time: moment().format(str),
       file: '',
       imagePreviewUrl: ''
+
+      time: moment().format(str)
     };
   }
   handleDayClick (day, { selected }) {
@@ -34,6 +37,7 @@ class CreateEvents extends Component {
   }
 
   onClick(event) {
+
     console.log("clicked")
     event.preventDefault();
     const userId = sessionStorage.getItem('userId');
@@ -75,6 +79,13 @@ class CreateEvents extends Component {
       });
     }
     reader.readAsDataURL(file)
+
+    event.preventDefault();
+    const eventName = document.getElementById('eventName').value;
+    const eventLocation = document.getElementById('eventLocation').value;
+    const eventDescription = document.getElementById('eventDescription').value;
+    const data = { eventName, eventLocation, eventDescription, eventDate: this.state.selectedDay, eventTime: this.state.time };
+    this.props.createEvent(data);
   }
 
   render() {
@@ -118,9 +129,14 @@ class CreateEvents extends Component {
       </div>
 
                <div className="form-group">
+
                  <label className="control-label col-sm-3">Location</label>
                  <div className="col-sm-6">
                    <input type="text" id="location" className="form-control" placeholder="Enter location for event" name="location" />
+
+                 <label className="control-label col-sm-3">Location </label>
+                 <div className="col-sm-6">
+                   <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
                  </div>
                </div>
 
@@ -152,6 +168,9 @@ class CreateEvents extends Component {
                  <label className="control-label col-sm-3">Ticket Link </label>
                  <div className="col-sm-6">
                    <textarea className="form-control" rows="1" id="comment" id="ticketLink"></textarea>
+
+                   <textarea className="form-control" rows="5" id="comment" id="eventDescription"></textarea>
+
                  </div>
                </div>
 
@@ -172,4 +191,3 @@ class CreateEvents extends Component {
 
 
 export default connect(null, { createEvent, fetchUserInfo })(CreateEvents);
-

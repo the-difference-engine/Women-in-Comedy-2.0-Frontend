@@ -1,0 +1,53 @@
+#user-name {
+  font-size: 24px;
+  color: #9b1522;
+}
+#profile-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+#bio {
+  font-size: 22px;
+  color: #9b1522;
+}
+
+#bio-content {
+  height: 150px;
+}
+
+#profile-link {
+  font-size: 18px;
+  color: #9b1522;
+}
+
+#connection {
+  font-size: 20px;
+  color: #9b1522;
+  position: relative;
+  top: 15px;
+}
+
+#connection-count {
+  font-size: 18px;
+}
+
+#connection-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#connection-name {
+  display: inline-block;
+  position: relative;
+  left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#connection-info-wrapper {
+  margin-top: 20px;
+
+}
