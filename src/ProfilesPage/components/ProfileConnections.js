@@ -41,9 +41,14 @@ import '../css/profileconnections.css';
   console.log("Display all below!")
   console.log(displayAll)
 
-  function onClickContacts() {
-    renderConnections(users);
-  }
+   
+	function onClickContacts() {
+		console.log('onClickContacts working');
+		// changeStatus();
+		// console.log('onClickContacts working');
+	}
+  const displayNames = renderConnections(userConnections);
+
 
   let displayedConnections = 0
   // const allUsers = renderConnections(userConnections);
@@ -83,4 +88,5 @@ const renderConnections = (connections) => {
       );
   });
 }
+
 export default ProfileConnections;
