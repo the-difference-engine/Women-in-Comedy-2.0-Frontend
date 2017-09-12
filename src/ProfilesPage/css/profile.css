@@ -10,11 +10,18 @@
 }
 
 #randomizer {
-	text-align: left;
+  text-align: left;
+}
+
+.events-header img {
+  float: right;
+  margin: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 #profile-pic img {
-	margin-top: 10px; 
+  margin-top: 10px; 
   width: 205px;
 }
 
@@ -33,11 +40,11 @@
 }
 
 .profile_info_connections {
-  	top: 18%;
-  	padding-left: 25px;
-  	width: 20%;
-  	right: 2%;
-  	font-weight: 900;
+    top: 18%;
+    padding-left: 25px;
+    width: 20%;
+    right: 2%;
+    font-weight: 900;
 }
 
 /* below is copy+paste from EventsPage/css/events.css couldn't get it to import*/
@@ -57,6 +64,9 @@ border: 1px solid rgba(211,211,211,0.9);
 border-radius: 3px;
 padding: 5px;
 margin: 10px;
+height: 250px;
+margin: 50px;
+
 }
 
 .event-page-content {
@@ -93,4 +103,3 @@ font-size: 14px;
 font-weight: 200;
 padding-bottom: 15px;
 }
-

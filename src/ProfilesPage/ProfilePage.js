@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents } from '../actions';
 import _ from 'lodash';
 import { fetchUserInfo, fetchUserFeeds, fetchUserConnections, createConnectionRequest, fetchConnectionStatus } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
@@ -12,6 +13,17 @@ class ProfilePage extends Component {
 	componentWillMount() {
 			const sender_id = sessionStorage.getItem('userId');
 			const receiver_id = this.props.match.params.id;
+
+        const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents } = this.props; 
+    
+        const query = window.location.pathname;
+        const new_query = query.slice(9);
+        console.log('new query below');
+        console.log(new_query);
+        fetchUserInfo(new_query);
+        fetchUserFeeds(new_query);
+        fetchUserConnections(new_query);
+        fetchUserEvents(new_query);
 
 
       const query = window.location.pathname;
@@ -44,27 +56,44 @@ class ProfilePage extends Component {
 	}
 
 	render () {
-	    const { userInfo, userConnections, userFeeds } = this.props;
+    	const { userInfo, userConnections, userFeeds, userEvents } = this.props;
+        console.log('this.props below YO HOHO');
+        console.log({ userFeeds });
+
+
 		return (
 			<div>
 				<Header />
+
+        		<ProfilePhoto userInfo={userInfo} userConnections={userConnections} />
+				<Profile userEvents={userEvents} />
+				<ProfileConnections userConnections={userConnections} />
+
+
         	<ProfilePhoto userInfo={userInfo} userConnections={userConnections} />
 					<Profile userFeeds={userFeeds} />
 					<ProfileConnections userConnections={userConnections} />
 					{this.renderConnection()}
+
 			</div>
 
 		);
-	}
+	};
 
 }
 
-
-
   const mapStateToProps = (state) => {
+
+    console.log(state);
+    const { userInfo, userFeeds, userConnections, userEvents } = state;
+    return { userInfo, userFeeds, userConnections, userEvents };
+  }
+export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents })(ProfilePage);
+
 
     const { userInfo, userFeeds, userConnections, status } = state;
 		console.log(status);
 		return { userInfo, userFeeds, userConnections, status };
   }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, createConnectionRequest, fetchConnectionStatus })(ProfilePage);
+

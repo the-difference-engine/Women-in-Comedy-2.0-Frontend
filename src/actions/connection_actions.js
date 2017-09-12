@@ -1,4 +1,9 @@
 import axios from 'axios';
+import { FETCH_USER_CONNECTIONS } from './types';
+
+
+export const fetchUserConnections = (userId) => {
+ console.log('fetchUserconnection');
 import { FETCH_USER_CONNECTIONS, CREATE_CONNECTION_REQUEST, FETCH_CONNECTION_STATUS, FETCH_PENDING_USER_CONNECTIONS } from './types';
 
 
