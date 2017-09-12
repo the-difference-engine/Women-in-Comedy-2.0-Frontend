@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "query-string": "^5.0.0",
     "rc-time-picker": "^2.4.1",

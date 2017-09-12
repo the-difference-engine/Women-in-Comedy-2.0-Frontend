@@ -1,5 +1,5 @@
 .profile_info_connections {
-	float: right;
+    float: right;
 }
 
 .profile_info  {
@@ -9,16 +9,97 @@
     padding: 10px;
 }
 
-#user-pic {
-	text-align: left;
+#randomizer {
+  text-align: left;
 }
 
-#profile-pic {
-	margin-top: 140px; 
+.events-header img {
+  float: right;
+  margin: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#profile-pic img {
+  margin-top: 10px; 
+  width: 205px;
 }
 
 #profile_info p {
     margin: auto;
-    width: 50%;
-    padding: 20px;
+    width: 111%;
+    padding: 10px;
+}
+
+#personal-feed {
+  margin: 20px;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 10%;
+  font-size: 200%;
+}
+
+.profile_info_connections {
+    top: 18%;
+    padding-left: 25px;
+    width: 20%;
+    right: 2%;
+    font-weight: 900;
+}
+
+/* below is copy+paste from EventsPage/css/events.css couldn't get it to import*/
+
+.event-title {
+padding: 10px 5px 0px 10px;
+}
+
+.event-title p {
+font-size: 18px;
+font-weight: 400;
+margin-bottom: 0;
+}
+
+.event {
+border: 1px solid rgba(211,211,211,0.9);
+border-radius: 3px;
+padding: 5px;
+margin: 10px;
+height: 250px;
+margin: 50px;
+
+}
+
+.event-page-content {
+margin-left: 5%;
+margin-right: 5%;
+}
+
+.event-page-content p {
+font-size: 18px;
+}
+
+.events-header {
+color: #9b1522;
+font-size: 25px;
+font-weight: 200;
+}
+
+.col-xs-offset-1 {
+margin-left: 3%;
+}
+
+.col-xs-3 {
+width: 25%;
+padding-left: 0;
+padding-right: 0;
+margin-bottom: 35px;
+}
+.event-time {
+padding-left: 10px;
+padding-right: 10px;
+}
+.event-time p{
+font-size: 14px;
+font-weight: 200;
+padding-bottom: 15px;
 }

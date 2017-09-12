@@ -6,9 +6,16 @@ export const FETCH_USER_INFO = 'fetch_user_info';
 export const FETCH_USER_FEEDS = 'fetch_user_feeds';
 export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
 export const CREATE_EVENTS = 'create_events';
+export const FETCH_USERS = 'fetch_users';
+export const FETCH_USER_EVENTS = 'fetch_user_events';
 
 //https://qa-womenincomedy.herokuapp.com
 
+
+export * from './user_actions';
+export * from './event_actions';
+export * from './feed_actions';
+export * from './connection_actions';
 
  export const fetchUserInfo = (userId) => {
   console.log('fetchUserInfo');
@@ -38,7 +45,7 @@ export const fetchUserFeeds = (userId) => {
   };
 };
 
- export const fetchUserConnections = (userId) => {
+export const fetchUserConnections = (userId) => {
   console.log('fetchUserconnection');
   const request = axios({
     method: 'get',
@@ -66,8 +73,23 @@ export const fetchUserFeeds = (userId) => {
   };
 };
 
-export * from './user_actions';
-export * from './event_actions';
-export * from './feed_actions';
-export * from './connection_actions'
+export const fetchUsers = () => {
+  const request = axios({
+    method: 'get',
+    url: 'http://localhost:9000/api/v1/users/all_users'
+  });
+  return {
+    type: FETCH_USERS,
+    payload: request
+  };
+};
 
+export const fetchUserEvents = (userId) => {
+  console.log('fetchUserEvents');
+  const request = axios({
+    method: 'get',
+    url: 'http://localhost:9000/api/v1/users/user_events',
+    dispatch({ type: FETCH_USER_EVENTS, payload: request })
+    });
+  };
+};
