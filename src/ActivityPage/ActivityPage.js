@@ -20,8 +20,11 @@ class ActivityPage extends Component {
 
 		fetchUsers();
 		if(userId === null) {
-			var x = Math.floor(Math.random() * 10);
-			fetchUserInfo(x);
+			var x = Math.floor(Math.random() * 9);
+			console.log('x below');
+			console.log(x);
+
+			fetchUserInfo(x + 1);
 		}
 	}
 
