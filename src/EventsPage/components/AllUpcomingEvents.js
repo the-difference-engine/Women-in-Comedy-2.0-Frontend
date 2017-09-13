@@ -2,7 +2,10 @@ import React from 'react';
 import '../css/events.css';
 
 export default (props) => {
-	console.log(props.events[0]);
+	
+	if (!props.events) {
+		return <div></div>
+	}
 	return (
 		<div className="event-page-content">
 			<div className="container">

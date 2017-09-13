@@ -8,15 +8,16 @@ import FeedReducer from './feeds_reducer';
 import ConnectionsReducer from './connections_reducer';
 import ConnectionStatusReducer from './connection_status_reducer';
 import ReceivedConnectionRequest from './received_connection_requests_reducer';
+import CreateEvent from './create_event_reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
   userInfo: UserInfoReducer,
   userFeeds: UserFeedReducer,
-  userConnections: UserConnectionsReducer,
   userConnections: ConnectionsReducer,
   status: ConnectionStatusReducer,
-  receivedConnectionRequest: ReceivedConnectionRequest
+  receivedConnectionRequest: ReceivedConnectionRequest,
+  createEventForm: CreateEvent
 });
 
 export default rootReducer;

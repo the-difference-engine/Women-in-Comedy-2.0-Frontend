@@ -24,10 +24,11 @@ const UserInfo = (props) => {
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
+    console.log(connection);
     return (
       <div key={connection.id}>
         <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-        <p id="connection-name">{connection.firstName} {connection.lastName}</p>
+        <Link to={`/profile/${connection.id}`}><p id="connection-name">{connection.firstName} {connection.lastName}</p></Link>
       </div>
     );
   });

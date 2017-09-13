@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions';
+// import { fetchUsers } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';
@@ -38,4 +38,4 @@ class ActivityPage extends Component {
 		return { usersInfo };
 	}
 
-export default connect(mapStateToProps, { fetchUsers })(ActivityPage);
+export default connect(mapStateToProps)(ActivityPage);

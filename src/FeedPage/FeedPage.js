@@ -14,7 +14,7 @@ class Feed extends Component {
   }
 
   componentDidMount() {
-    
+
     const valid = sessionStorage.getItem('confirmed');
     if(valid == 'null' || !valid) {
       this.props.history.push('/');
@@ -51,7 +51,7 @@ class Feed extends Component {
 
   const mapStateToProps = (state) => {
 
-    const { userInfo, userFeeds, userConnections, pendingUserConnections, receivedConnectionRequest  } = state;
-    return { userInfo, userFeeds, userConnections, pendingUserConnections, receivedConnectionRequest  };
+    const { userInfo, userFeeds, userConnections,  receivedConnectionRequest  } = state;
+    return { userInfo, userFeeds, userConnections, receivedConnectionRequest  };
   }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections })(Feed);
