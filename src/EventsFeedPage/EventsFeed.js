@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchEventInfo } from '../actions';
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 
@@ -7,9 +9,10 @@ import { RightGraySideBar, LeftGraySideBar, Navbar, PageContent, Feed } from '..
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pageTitle: 'Event Feed'
-    };
+  }
+  componentDidMount() {
+    const eventId = this.props.match.params.id;
+    this.props.fetchEventInfo(eventId);
   }
   render() {
     return (
@@ -20,12 +23,15 @@ class EventsFeed extends Component {
         <LeftGraySideBar>
         </LeftGraySideBar>
 
-        <PageContent pageTitle={this.state.pageTitle}>
+        <PageContent pageTitle={"Event Feed"}>
           <NewFeeds />
         </PageContent>
       </div>
     );
   }
 }
-
-export default EventsFeed;
+function mapStateToProps({ selectedEvent }) {
+  console.log(selectedEvent);
+  return { selectedEvent };
+}
+export default connect(mapStateToProps, { fetchEventInfo })(EventsFeed);

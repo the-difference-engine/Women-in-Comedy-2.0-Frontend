@@ -10,6 +10,9 @@ export const EVENT_INPUT_CHANGE = 'event_input_change';
 export const LOAD = 'load';
 export const CLEAR = 'clear'
 export const CREATE_EVENT_FAIL = 'create_event_fail';
+export const FETCH_UPCOMING_EVENTS = 'fetch_upcoming_events';
+export const FETCH_MY_UPCOMING_EVENTS = 'fetch_my_upcoming_events';
+export const FETCH_EVENT_INFO = 'fetch_event_info';
 
 //Connections
 export const FETCH_PENDING_USER_CONNECTIONS = 'fetch_pending_user_connections';

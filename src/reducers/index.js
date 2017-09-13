@@ -4,11 +4,13 @@ import { reducer as formReducer } from 'redux-form';
 import UserFeedReducer from './feeds_reducer';
 import UserConnectionsReducer from './connections_reducer';
 import UserInfoReducer from './user_reducer';
-import FeedReducer from './feeds_reducer';
 import ConnectionsReducer from './connections_reducer';
 import ConnectionStatusReducer from './connection_status_reducer';
 import ReceivedConnectionRequest from './received_connection_requests_reducer';
-import CreateEvent from './create_event_reducer';
+import CreateEventReducer from './create_event_reducer';
+import myEventsReducer from './my_events_reducer';
+import upcomingEventsReducer from './upcoming_events_reducer';
+import selectedEventReducer from './selected_event_reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -17,7 +19,10 @@ const rootReducer = combineReducers({
   userConnections: ConnectionsReducer,
   status: ConnectionStatusReducer,
   receivedConnectionRequest: ReceivedConnectionRequest,
-  createEventForm: CreateEvent
+  createEventForm: CreateEventReducer,
+  myUpcomingEvents: myEventsReducer,
+  upcomingEvents: upcomingEventsReducer,
+  selectedEvent: selectedEventReducer
 });
 
 export default rootReducer;

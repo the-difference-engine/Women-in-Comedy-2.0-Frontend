@@ -43,13 +43,16 @@ class CreateEvents extends Component {
   }
   onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
-    console.log('oncreateevnet');
+
     this.props.createEvent(
       { address, date, description, img, location, ticketLink, time, title },
-      userId
+      userId,
+      () => this.props.history.push('/feed')
     );
   }
   render() {
+    const { loading } = this.props.createEventForm;
+
     return (
       <div>
         <Navbar />
@@ -59,6 +62,7 @@ class CreateEvents extends Component {
             floatingLabelText="Enter Name Of The Event"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
+            disabled={loading}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
           />
           <TextField
@@ -67,6 +71,7 @@ class CreateEvents extends Component {
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
+            disabled={loading}
           />
           <TextField
             hintText="Address"
@@ -74,13 +79,15 @@ class CreateEvents extends Component {
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
+            disabled={loading}
           />
           <TextField
-            hintText="TicketLink"
-            floatingLabelText="Enter TicketLink"
+            hintText="Ticket Link"
+            floatingLabelText="Enter Ticket Link"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+            disabled={loading}
           />
           <TextField
             hintText="Description"
@@ -90,22 +97,26 @@ class CreateEvents extends Component {
             floatingLabelFocusStyle={{ color: 'red' }}
             underlineFocusStyle={{ display: 'none' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+            disabled={loading}
           />
           <RaisedButton
             secondary
             label="upload image"
             onClick={this.onClick.bind(this)}
+            disabled={loading}
           />
           <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)}/><br />
           {this.renderImg()}
           <DatePicker
             hintText="Date"
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
+            disabled={loading}
           />
           <TimePicker
             hintText="Time"
             autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
+            disabled={loading}
           />
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
@@ -114,6 +125,7 @@ class CreateEvents extends Component {
             label="create event"
             onClick={this.onCreateEvent.bind(this)}
             style={{ marginTop: '15px' }}
+            disabled={loading}
           />
         </div>
       </div>
@@ -122,7 +134,7 @@ class CreateEvents extends Component {
 }
 
 function mapStateToProps({ createEventForm }) {
-  console.log(createEventForm);
+  console.log(createEventForm.loading);
   return { createEventForm };
 }
 export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);

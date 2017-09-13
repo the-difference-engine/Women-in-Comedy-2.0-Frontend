@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/events.css';
 
 export default (props) => {
-	if (!props.events) {
+	if (props.myUpcomingEvents.length === 0) {
 		return <div></div>
 	}
 	return (
@@ -22,7 +22,7 @@ export default (props) => {
 					</div>
 				</div>
 				<div className="row">
-					{renderEventList(props.events)}
+					{renderEventList(props.myUpcomingEvents)}
 				</div>
 			</div>
 		</div>
@@ -31,13 +31,13 @@ export default (props) => {
 
 const renderEventList = (events) => {
 	return events.map(event => {
-
+		console.log(event);
 		return (
-			<div key="k" className="col-xs-offset-1 col-xs-3">
+			<div key={event.id} className="col-xs-offset-1 col-xs-3">
 				<div className="event">
-					<div className="event-pic"> <img className="img-responsive" src="http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx" /></div>
+					<div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
 					<div className="event-title"><p>{event.title}</p></div>
-					<div className="event-time"><p>May 27 <br/> 7:30pm</p></div>
+					<div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
 				</div>
 			</div>
 		);

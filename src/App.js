@@ -36,7 +36,7 @@ class App extends Component {
               <Route path='/events' component={EventsPage}></Route>
               <Route path="/home" component={HomePage}></Route>
               <Route path='/activities' component={ActivityPage}></Route>
-              <Route path='/eventsfeed' component={EventsFeed}></Route>
+              <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
               <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/' component={Form}></Route>
             </Switch>
