@@ -22,9 +22,9 @@ const ProfilePhoto = (props) => {
     <div id="left-side-bar">
       <div id="left-side-bar-content">
         <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
-          <p>{firstName} {lastName}</p>
-     	    <p>bio</p>
-     	    <p>{bio}</p>
+          <p className="bio-name">{firstName} {lastName}</p>
+     	    <p className="bio-title">Bio</p>
+     	    <p className="bio-desc">{bio}</p>
 
       </div>
     </div>

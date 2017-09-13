@@ -21,11 +21,12 @@
 }
 
 #bio-pic img {
-  margin: 25px;
+  margin: -1px;
+  margin-bottom: 14px;
   border-radius: 50%;
 }
 
-.bio-name p {
+.bio-name {
   margin-top: 15px;
   color:  #990000;
   font-size: 24px;

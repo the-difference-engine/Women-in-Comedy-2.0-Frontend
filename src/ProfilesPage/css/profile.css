@@ -13,7 +13,7 @@
   text-align: left;
 }
 
-.events-header img {
+.feeds-header img {
   float: right;
   margin: 18px;
   margin-left: 5%;
@@ -35,7 +35,7 @@
   margin: 20px;
   padding-left: 15%;
   padding-right: 15%;
-  padding-top: 10%;
+  padding-top: 1%;
   font-size: 200%;
 }
 
@@ -49,39 +49,78 @@
 
 /* below is copy+paste from EventsPage/css/events.css couldn't get it to import*/
 
-.event-title {
+.feed-title {
 padding: 10px 5px 0px 10px;
 }
 
-.event-title p {
-font-size: 18px;
+
+.feed-title {
+  color: grey;
+  font-family: sans-serif;
+  font-size: 80%;
+
+}
+.feed-title span {
 font-weight: 400;
+color: #9B1526;
 margin-bottom: 0;
+font-family: sans-serif;
 }
 
-.event {
+#feed-photo-in-corner img {
+  border-radius: 50%;
+  /* position: absolute; */
+  /* z-index: -1; */
+  margin-left: -34px;
+  margin-top: 4px;
+
+}
+
+.no-feed {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(211,211,211,0.9);
+
+}
+
+.feed {
 border: 1px solid rgba(211,211,211,0.9);
 border-radius: 3px;
 padding: 5px;
-margin: 10px;
-height: 250px;
-margin: 50px;
+min-height: 275px;
+margin: -23px;
+width: 781px;
 
 }
 
-.event-page-content {
-margin-left: 5%;
+.feed-page-content {
+margin-left: 1.5%;
+margin-top: -8px;
 margin-right: 5%;
+font-size: 16px;
+font-family: sans-serif;
+color: gray;
+font-weight: 200;
+
 }
 
-.event-page-content p {
-font-size: 18px;
+.your-activity {
+margin: 20px;
+padding-left: 15%;
+padding-right: 15%;
+padding-top: 10%;
+font-size: 140%;
+color: #9B1526;
+
 }
 
-.events-header {
+.feeds-header {
 color: #9b1522;
 font-size: 25px;
 font-weight: 200;
+margin: 8px;
+margin-top: 1px;
 }
 
 .col-xs-offset-1 {

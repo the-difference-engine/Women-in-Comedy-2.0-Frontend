@@ -55,7 +55,7 @@ class ProfilePage extends Component {
         <Header />
 
           <ProfilePhoto userInfo={userInfo} userConnections={userConnections} />
-          <Profile userEvents={userEvents} />
+          <Profile userFeeds={userFeeds} />
           <ProfileConnections userConnections={userConnections} />
           {this.renderConnection()}
 

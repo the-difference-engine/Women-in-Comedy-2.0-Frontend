@@ -3,17 +3,15 @@ import '../css/profile.css';
 
 
 const Profile = (props) => {
-  const { userEvents } = props;
-  console.log('userEvents Below');
-  console.log({ userEvents });
+  const { userFeeds } = props;
+  console.log('userFeeds Below');
+  console.log({ userFeeds });
 
-  if (!userEvents) {
+  if (userFeeds.length === 0) {
     return (
       <div id="personal-feed">
-        <div className="event">
-          <div className="event-page-content">
-            <p>No Events Avaliable</p>
-          </div>
+        <div className="no-feed">
+            <p>No Feeds Avaliable</p>
         </div>
       </div>
     );
@@ -21,24 +19,25 @@ const Profile = (props) => {
 
 
 
-  const renderEvents = (events) => events.map((event) => 
-    <div key={event.id}>
+  const renderFeeds = (feeds) => feeds.map((feed) => 
+    <div key={feed.id}>
+
           <div className="box" id="personal-feed" >
             <div>
-              <h4>Event</h4>
-              <div className="event">
-                <div className="events-header">
-                    <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" height="200" width="205"/>
-                  <p className="event-title">{event.title}</p>
+                <div id="feed-photo-in-corner"><img src="https://u.o0bc.com/avatars/no-user-image.gif" height="35px" width="35px" alt=""/></div>
+              <div className="feed">
+                <div className="feeds-header">
+                  <p className="feed-title"><span>{feed.authorFirstName}</span> commented on your <span>post</span></p>
+                  <p className="feed-page-content">{feed.body}</p>
                 </div>
-                <div className="event-page-content">{event.about}
-                </div>
+
+
+
               </div>
             </div>
           </div>
     </div>
   );
-  const renderer = renderEvents(userEvents);
 
 
 
@@ -46,9 +45,11 @@ const Profile = (props) => {
 
 
   return(
-    <div className="container">
-      <div className="box_a">
-        <div id="current-profile"> {renderer} </div>
+    <div className="box_a">
+      <div className="container">
+        <h2 className="your-activity"> Your Activity </h2>
+
+        <div id="current-profile"> {renderFeeds(userFeeds)} </div>
       </div>
     </div>
 
