@@ -8,7 +8,7 @@ const Bio = (props) => {
   return (
     <div id="activity-bio">
       <div className="activity-bio-content">
-        <div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></div>
+        <div id="bio-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" height="80px" width="80px" alt="" /></div>
         <p className="bio-name">{firstName} {lastName} </p>
         <p className="bio-title">Bio</p>
         <p className="bio-desc">{bio} </p>
