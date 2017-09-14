@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections } from '../actions';
-import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
+import {
+  fetchUserInfo,
+  fetchUserFeeds,
+  fetchUserConnections,
+  fetchPendingUserConnections,
+  createPostOnUserWall,
+  userWallInputChange
+} from '../actions';
+import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar  } from '../common';
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
@@ -14,7 +21,6 @@ class Feed extends Component {
   }
 
   componentDidMount() {
-
     const valid = sessionStorage.getItem('confirmed');
     if(valid == 'null' || !valid) {
       this.props.history.push('/');
@@ -26,8 +32,12 @@ class Feed extends Component {
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
   }
 
-  rerender() {
-    this.setState({ rerender: !this.state.rerender });
+  onPost() {
+    const body = this.props.userWallPost;
+
+    const userId = sessionStorage.getItem('userId');
+    const authorId = this.props.match.params.id || sessionStorage.getItem('userId');
+    this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
   render() {
@@ -35,13 +45,26 @@ class Feed extends Component {
     return (
       <div>
         <Navbar />
+
         <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} rerender={this.rerender.bind(this)}/>
+          <Messages connections={receivedConnectionRequest} />
         </RightGraySideBar>
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} userConnections={userConnections}  />
         </LeftGraySideBar>
-        <PageContent pageTitle="Your Feed">
+        <PageContent>
+          <div className="feed-post-bar">
+            <div className="wrap">
+
+              <div className="search">
+                <input type="text" className="searchTerm" placeholder="What's New?"
+                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                  value={this.props.userWallPost}
+                />
+                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
+              </div>
+            </div>
+          </div>
           <NewFeeds userFeeds={userFeeds} />
         </PageContent>
       </div>
@@ -49,9 +72,18 @@ class Feed extends Component {
   }
 }
 
-  const mapStateToProps = (state) => {
-
-    const { userInfo, userFeeds, userConnections,  receivedConnectionRequest  } = state;
-    return { userInfo, userFeeds, userConnections, receivedConnectionRequest  };
+const mapStateToProps = (state) => {
+  const { userInfo, userFeeds, userConnections,  receivedConnectionRequest, userWallPost } = state;
+  console.log(userWallPost);
+  return { userInfo, userFeeds, userConnections, receivedConnectionRequest, userWallPost };
+}
+export default connect(mapStateToProps,
+  {
+    fetchUserInfo,
+    fetchUserFeeds,
+    fetchUserConnections,
+    fetchPendingUserConnections,
+    createPostOnUserWall,
+    userWallInputChange
   }
-export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections })(Feed);
+)(Feed);

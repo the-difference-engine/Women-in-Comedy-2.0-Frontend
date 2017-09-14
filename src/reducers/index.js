@@ -11,6 +11,7 @@ import CreateEventReducer from './create_event_reducer';
 import myEventsReducer from './my_events_reducer';
 import upcomingEventsReducer from './upcoming_events_reducer';
 import selectedEventReducer from './selected_event_reducer';
+import userWallPostReducer from './user_wall_post_reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   createEventForm: CreateEventReducer,
   myUpcomingEvents: myEventsReducer,
   upcomingEvents: upcomingEventsReducer,
-  selectedEvent: selectedEventReducer
+  selectedEvent: selectedEventReducer,
+  userWallPost: userWallPostReducer
 });
 
 export default rootReducer;

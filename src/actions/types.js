@@ -18,5 +18,9 @@ export const FETCH_EVENT_INFO = 'fetch_event_info';
 export const FETCH_PENDING_USER_CONNECTIONS = 'fetch_pending_user_connections';
 export const CREATE_CONNECTION_REQUEST = 'create_connection_request';
 export const FETCH_CONNECTION_STATUS = 'fetch_connection_status';
-
 export const ACCEPT_CONNECTION = 'accept_connection';
+
+//posts
+export const POST_USER_WALL = 'post_user_wall';
+export const USER_WALL_INPUT_CHANGE = 'user_wall_input_change';
+export const POSTED = 'posted';
