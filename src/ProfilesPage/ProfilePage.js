@@ -15,9 +15,7 @@ class ProfilePage extends Component {
       const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents } = this.props; 
       const query = window.location.pathname;
       const new_query = query.slice(9);
-      console.log('new query below');
-      console.log(new_query);
-      fetchUserInfo(new_query);
+      fetchUserInfo(new_query);        
       fetchUserFeeds(new_query);
       fetchUserConnections(new_query);
       fetchUserEvents(new_query);
@@ -46,8 +44,8 @@ class ProfilePage extends Component {
 
   render () {
       const { userInfo, userConnections, userFeeds, userEvents } = this.props;
-        console.log('this.props below YO HOHO');
-        console.log({ userFeeds });
+        console.log('this.props below right herrr');
+        console.log( userFeeds );
 
 
     return (
@@ -55,7 +53,7 @@ class ProfilePage extends Component {
         <Header />
 
           <ProfilePhoto userInfo={userInfo} userConnections={userConnections} />
-          <Profile userFeeds={userFeeds} />
+          <Profile userInfo={userInfo} userFeeds={userFeeds} />
           <ProfileConnections userConnections={userConnections} />
           {this.renderConnection()}
 

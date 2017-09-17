@@ -8,6 +8,7 @@ export const CREATE_EVENTS = 'create_events';
 export const FETCH_USERS = 'fetch_users';
 export const FETCH_USER_EVENTS = 'fetch_user_events';
 
+
 //https://qa-womenincomedy.herokuapp.com
 
 
@@ -58,6 +59,7 @@ export const fetchUserConnections = (userId) => {
   };
 };
 
+
  export const CreateEvents = (userId) => {
   console.log('Creating Event');
   const request = axios({
@@ -71,6 +73,7 @@ export const fetchUserConnections = (userId) => {
     });
   };
 };
+
 
 export const fetchUsers = () => {
   const request = axios({
@@ -97,4 +100,6 @@ export const fetchUserEvents = (userId) => {
     });
   };
 };
+
+
 

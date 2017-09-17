@@ -9,6 +9,7 @@ import FeedReducer from './feeds_reducer';
 import ConnectionsReducer from './connections_reducer';
 import EventsReducer from './events_reducer';
 import ConnectionStatusReducer from './connection_status_reducer';
+import CreatePostReducer from './create_post_reducer';
 
 // import CreateUserReducer from './create_user_reducer';
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   userConnections: ConnectionsReducer,
   pendingUserConnections: ConnectionStatusReducer,
   events: EventsReducer,
-  status: ConnectionStatusReducer
+  status: ConnectionStatusReducer,
+  createPost: CreatePostReducer
 });
 
 export default rootReducer;

@@ -16,7 +16,7 @@ const ProfilePhoto = (props) => {
     // console.log('userConnections = props below');
     // console.log({userConnections});
 
-// width="180px" height="180px"
+    // width="180px" height="180px"
 
   return (
     <div id="left-side-bar">
