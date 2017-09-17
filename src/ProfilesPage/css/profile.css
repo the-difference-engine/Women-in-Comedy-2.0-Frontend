@@ -29,6 +29,7 @@
   cursor: pointer;
   float:left;
   margin: 5px;
+  margin-left: 15px;
 }
 
 #comment-input input {
