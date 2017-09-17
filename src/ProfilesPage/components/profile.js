@@ -10,17 +10,22 @@ export const { CREATE_POST } = 'create_post';
 
 
 class Profile extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { commentList: false }
+  };
+
   componentWillMount() {
     const { userFeeds } = this.props;
     console.log('userFeeds Below');
     console.log({ userFeeds });
     const count = this.props.length;
-    console.log('count below');
     console.log(count);
     const sender_id = sessionStorage.getItem('userId');
     const query = window.location.pathname;
     const new_query = query.slice(9);
     const placeHolder = "";
+    const commentsTotal = 0;
 
     if (sender_id !== new_query) {
       this.placeHolder = "Activity";
@@ -38,6 +43,10 @@ class Profile extends Component {
       );
     };
 
+  }
+
+  onClickComments() {
+    console.log('onClickComments');
   }
 
 
@@ -89,31 +98,70 @@ class Profile extends Component {
     }
   }
 
+  onSubmitComment(values) {
+    console.log('values below commets');
+    console.log(values);
+    const sender_id = sessionStorage.getItem('userId');
+    const query = window.location.pathname;
+    const new_query = query.slice(9);
+
+    //add axios call for new comment
+    // const request = axios({
+    //     method: "post",
+    //     url: "http://localhost:9000/api/v1/users/create_comment",
+    //     headers: { "id": sender_id },
+    //     body: { "post": values, "postable_id": new_query}
+    // });
+    // return (dispatch) => {
+    //   request.then((data) => {
+    //     dispatch({ type: CREATE_COMMENT, payload: request })
+    //   });
+    // }
+  }
+
   render() {
     const { userFeeds } = this.props;
     console.log('userFeeds below !!! @_@');
-    console.log(this.props);
+    console.log(userFeeds);
+    const commentArray = [];
+    userFeeds.forEach(feed => {
+      feed.postComments.forEach(comment => {
+        commentArray.push(comment);
+        console.log('commentArray below');
+        console.log(commentArray);
+        
+      })
+    })
+    console.log('@_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@');
+    this.commentsTotal = commentArray.length;
+    console.log('this.commentsTotal below');
+    console.log(this.commentsTotal);
+
+
+    const count = this.props.length;
+    console.log('count below @@@_@@@');
+    console.log(count);
 
     const { handleSubmit } = this.props;
 
-      return (
-        <div className="box_a">
-          <div className="container">
-            <h2 className="your-activity"> {this.placeHolder} </h2>
-              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field
-                  name="body"
-                  component={this.renderField}
-                />
-                  <div className="personal-feed-post-button">
-                    <button className="btn btn-default" type="button">POST</button>
-                  </div>
-              </form>
+        return (
+          <div className="box_a">
+            <div className="container">
+              <h2 className="your-activity"> {this.placeHolder} </h2>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                  <Field
+                    name="body"
+                    component={this.renderField}
+                  />
+                    <div className="personal-feed-post-button">
+                      <button className="btn btn-default" type="button">POST</button>
+                    </div>
+                </form>
 
-            <div id="current-profile"> {renderFeeds(userFeeds)} </div>
+              <div id="current-profile"> {renderFeeds(userFeeds)} </div>
+            </div>
           </div>
-        </div>
-      );
+        ); 
   };
 };
 
@@ -121,19 +169,26 @@ class Profile extends Component {
 
         <div key={feed.id}>
               <div id="personal-feed">
-                <div className="box">
+                <div id="comment-content-margin">
                     <div id="feed-photo-in-corner"><img src="https://u.o0bc.com/avatars/no-user-image.gif" height="50px" width="50px" alt=""/></div>
                   <div className="feed">
                     <div className="feeds-header">
                       <p className="feed-title"><span>{feed.authorFirstName}</span> commented on your <span>post</span></p>
                       <p className="feed-page-content">{feed.body}</p>
-                      <p className="feed-page-content">{feed.postComments.body}</p>
-
-                      <div id="feed-icons">
-                        <a href="#">
-                          <span class="glyphicon glyphicon-comment"></span>
-                        </a>
+                      <div className="feed-page-content">
+                        <div id="feed-icons">
+                          <a href="#"><span className="glyphicon glyphicon-comment"></span> <span className="icon-stats">{feed.postComments.length}</span></a>
+                          <a href="#"><i className="fa fa-thumbs-up" aria-hidden="true"></i> <span className="icon-stats">2</span></a>
+                        </div>
                       </div>
+                        <div id="comment-input">
+                          <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+                        </div>
+
+                        <div id="comment-input">
+
+                           <input placeholder="comment" />
+                        </div>
                     </div>
                   </div>
                 </div>
