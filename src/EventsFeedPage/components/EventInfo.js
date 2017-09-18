@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/event-info.css';
 
 const EventInfo = (props) => {
-  console.log(props);
   if(props.event) {
     const { title, date, time, location, about } = props.event.info
     return (

@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/event-guest.css'
 const Guests = (props) => {
-  
+
   if (props.event) {
-    console.log(props);
     return (
       <div>
         <h2 id="guest-title">Guests</h2>

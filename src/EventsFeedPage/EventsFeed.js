@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEventInfo, attendEvent, fetchUserInfo, unattendEvent } from '../actions';
+import {
+  fetchEventInfo,
+  attendEvent,
+  fetchUserInfo,
+  unattendEvent,
+  eventWallInputChange,
+  createPostOnEventWall
+} from '../actions';
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
@@ -15,6 +22,12 @@ class EventsFeed extends Component {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+  }
+  onCreatePost() {
+    const body = this.props.eventWallPost;
+    const eventId = this.props.match.params.id;
+    const authorId = sessionStorage.getItem('userId');
+    this.props.createPostOnEventWall({ body, eventId, authorId}, this.props.fetchEventInfo);
   }
   render() {
     return (
@@ -40,20 +53,34 @@ class EventsFeed extends Component {
           <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
+                <input
+                  type="text"
+                  className="searchTerm"
+                  placeholder="What's New?"
+                  onChange={event => this.props.eventWallInputChange(event.target.value)}
+                  value={this.props.eventWallPost}
                 />
-                <div className="post-button"><button className="btn btn-default">POST</button></div>
+                <div className="post-button"><button className="btn btn-default" onClick={this.onCreatePost.bind(this)}>POST</button></div>
               </div>
             </div>
           </div>
-          <NewFeeds />
+          <NewFeeds event={this.props.selectedEvent}/>
         </PageContent>
       </div>
     );
   }
 }
-function mapStateToProps({ selectedEvent, userInfo }) {
-
-  return { selectedEvent, userInfo };
+function mapStateToProps({ selectedEvent, userInfo, eventWallPost }) {
+  console.log(selectedEvent);
+  return { selectedEvent, userInfo, eventWallPost };
 }
-export default connect(mapStateToProps, { fetchEventInfo, attendEvent, fetchUserInfo, unattendEvent })(EventsFeed);
+export default connect(mapStateToProps,
+  {
+    fetchEventInfo,
+    attendEvent,
+    fetchUserInfo,
+    unattendEvent,
+    eventWallInputChange,
+    createPostOnEventWall
+  }
+)(EventsFeed);

@@ -35,8 +35,8 @@ class Feed extends Component {
   onPost() {
     const body = this.props.userWallPost;
 
-    const userId = sessionStorage.getItem('userId');
-    const authorId = this.props.match.params.id || sessionStorage.getItem('userId');
+    const userId = this.props.match.params.id || sessionStorage.getItem('userId');
+    const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 

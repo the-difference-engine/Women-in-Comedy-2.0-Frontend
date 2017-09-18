@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Feed } from '../../common';
 import '../css/new-feeds.css';
 
 
-const NewFeeds = (props) => {
-  return (
-    <div id="new-feeds-container">
-    
-    </div>
-  );
+class NewFeeds extends Component {
+  renderPosts() {
+    if (this.props.event) {
+      return this.props.event.posts.map(post => <Feed key={post.postId} feed={post} />)
+    }
+    return <div></div>
+  }
+  render() {
+    return (
+      <div id="new-feeds-container">
+        {this.renderPosts()}
+      </div>
+    );
+  }
 };
 
 export default NewFeeds;
