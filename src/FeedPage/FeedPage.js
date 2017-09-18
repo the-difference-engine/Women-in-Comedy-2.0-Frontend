@@ -74,7 +74,6 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => {
   const { userInfo, userFeeds, userConnections,  receivedConnectionRequest, userWallPost } = state;
-  console.log(userWallPost);
   return { userInfo, userFeeds, userConnections, receivedConnectionRequest, userWallPost };
 }
 export default connect(mapStateToProps,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEventInfo } from '../actions';
+import { fetchEventInfo, attendEvent, fetchUserInfo, unattendEvent } from '../actions';
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
@@ -14,17 +14,26 @@ class EventsFeed extends Component {
   componentDidMount() {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
+    this.props.fetchUserInfo(sessionStorage.getItem('userId'));
   }
   render() {
     return (
       <div id="events-feed-container">
         <Navbar />
         <RightGraySideBar>
-          <Guests event={this.props.selectedEvent}/>
+          <Guests
+            event={this.props.selectedEvent}
+          />
         </RightGraySideBar>
-
         <LeftGraySideBar>
-          <EventInfo event={this.props.selectedEvent} />
+          <EventInfo
+            event={this.props.selectedEvent}
+            attendEvent={this.props.attendEvent}
+            userInfo={this.props.userInfo}
+            eventId={this.props.match.params.id}
+            fetchEventInfo={this.props.fetchEventInfo}
+            unattendEvent={this.props.unattendEvent}
+          />
         </LeftGraySideBar>
 
         <PageContent pageTitle={"Event Feed"}>
@@ -43,7 +52,8 @@ class EventsFeed extends Component {
     );
   }
 }
-function mapStateToProps({ selectedEvent }) {
-  return { selectedEvent };
+function mapStateToProps({ selectedEvent, userInfo }) {
+
+  return { selectedEvent, userInfo };
 }
-export default connect(mapStateToProps, { fetchEventInfo })(EventsFeed);
+export default connect(mapStateToProps, { fetchEventInfo, attendEvent, fetchUserInfo, unattendEvent })(EventsFeed);

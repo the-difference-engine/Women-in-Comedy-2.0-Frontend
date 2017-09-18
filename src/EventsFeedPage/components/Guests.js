@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/event-guest.css'
 const Guests = (props) => {
-  console.log(props.event);
+  
   if (props.event) {
-
+    console.log(props);
     return (
       <div>
         <h2 id="guest-title">Guests</h2>
         {renderGuests(props.event.guests)}
+
       </div>
     );
   }
@@ -17,7 +18,6 @@ const Guests = (props) => {
 
 const renderGuests = (guests) => {
   return guests.map(guest => {
-    console.log(guest);
     return (
       <div key={guest.id} id="guest-item">
         <span id="guest-content">
