@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/events.css';
 
 export default (props) => {
@@ -34,11 +35,13 @@ const renderEventList = (events) => {
 		console.log(event);
 		return (
 			<div key={event.id} className="col-xs-offset-1 col-xs-3">
-				<div className="event">
-					<div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
-					<div className="event-title"><p>{event.title}</p></div>
-					<div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
-				</div>
+				<Link to={`/eventsfeed/${event.id}`}>
+					<div className="event">
+						<div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
+						<div className="event-title"><p>{event.title}</p></div>
+						<div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
+					</div>
+				</Link>
 			</div>
 		);
 	});
