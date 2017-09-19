@@ -19,6 +19,8 @@ export const ATTEND_EVENT = 'attend_event';
 export const FETCH_PENDING_USER_CONNECTIONS = 'fetch_pending_user_connections';
 export const CREATE_CONNECTION_REQUEST = 'create_connection_request';
 export const FETCH_CONNECTION_STATUS = 'fetch_connection_status';
+export const FETCH_USERS = 'fetch_user';
+export const CREATE_POST = 'create_post';
 export const ACCEPT_CONNECTION = 'accept_connection';
 
 //posts
