@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserInfo, fetchUsers } from '../actions';
+// import { fetchUsers } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';
@@ -47,3 +48,11 @@ const mapStateToProps = (state) => {
 	return { userInfo, usersInfo };
 }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUsers })(ActivityPage);
+	const mapStateToProps = (state) => {
+		console.log('state below, activitypage.js');
+		console.log(state);
+		const { usersInfo } = state;
+		return { usersInfo };
+	}
+
+export default connect(mapStateToProps)(ActivityPage);

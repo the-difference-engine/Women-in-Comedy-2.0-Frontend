@@ -20,6 +20,12 @@ const UserInfo = (props) => {
         <p id="bio">Bio</p>
         <p id="bio-content">{bio}</p>
         <Link to={`/profile/${userId}`} id="profile-link">View Profile</Link>
+    <div id="user-info">
+      <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />
+      <p id="user-name">{firstName} {lastName}</p>
+      <p id="bio">Bio</p>
+      <p id="bio-content">{bio}</p>
+      <Link to={`/profile/${userId}`} id="profile-link">View Profile</Link>
 
         <p id="connection">Connections <span id="connection-count">({userConnections.length})</span></p>
         <div id="connection-info-wrapper">
@@ -32,24 +38,14 @@ const UserInfo = (props) => {
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
+    console.log(connection);
     return (
       <div key={connection.id}>
         <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-        <p id="connection-name">{connection.firstName} {connection.lastName}</p>
+        <Link to={`/profile/${connection.id}`}><p id="connection-name">{connection.firstName} {connection.lastName}</p></Link>
       </div>
     );
   });
 };
-
-// const renderPendingConnections = (connections) => {
-//   return connections.map(connection => {
-//     return (
-//       <div key={connection.id}>
-//         <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-//         <p id="connection-name">{connection.firstName} {connection.lastName}</p>
-//       </div>
-//     );
-//   });
-// };
 
 export default UserInfo;

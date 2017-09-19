@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { LeftGraySideBar, RightGraySideBar, Navbar } from '../common';
-import { createEvent, fetchUserInfo } from '../actions';
+import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
-import DayPicker from 'react-day-picker';
-import TimePicker from 'rc-time-picker';
-import moment from 'moment';
-import axios from 'axios'
-import 'react-day-picker/lib/style.css';
-import 'rc-time-picker/assets/index.css';
+import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+
 import './css/create-event.css'
-const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
-const showSecond = false;
+const userId = sessionStorage.getItem('userId')
 
 class CreateEvents extends Component {
   constructor(props) {
@@ -24,59 +19,35 @@ class CreateEvents extends Component {
 
       time: moment().format(str)
     };
-  }
-  handleDayClick (day, { selected }) {
-    this.setState({
-      selectedDay: selected ? undefined : day,
-    });
-  };
-
-  onChange(value) {
-    console.log(value && value.format(str));
-    this.setState({ time: value.format(str) });
+    this.state = { imgURL: null };
   }
 
-  onClick(event) {
+  onClick() {
+    const input = document.getElementById('input');
+    input.click();
+  }
+  onUpload(event) {
+    const file = event.target.files;
+    const fileReader = new FileReader();
 
-    console.log("clicked")
-    event.preventDefault();
-    const userId = sessionStorage.getItem('userId');
-    const title = document.getElementById('title').value;
-    const photo = document.getElementById('photo').value;
-    const about = document.getElementById('about').value;
-    const ticketLink = document.getElementById('ticketLink').value;
-    const location = document.getElementById('location').value;
-    const data = { userId, title, location, photo, about, ticketLink, date: this.state.selectedDay.toLocaleDateString(), time: this.state.time };
-    this.props.createEvent(data);
-    this.props.history.push('/events'); // Forwards the page after user clicks create
+    fileReader.readAsDataURL(file[0]);
+    fileReader.onload = () => {
+      this.props.eventInputChange({ prop: 'img', value: file[0] })
+      this.setState({ imgURL: fileReader.result });
+    };
   }
 
-  onSubmit(data) {
-    console.log("submittedd")
-    // axios.post('https://localhost:9000/api/v1/events', {
-       
-    //   user_id: data.user_id,
-    //   title: data.title,
-    //   photo: data.photo,
-    //   date: data.date,
-    //   time: data.time,
-    //   ticket_link: data.ticket_link,
-    //   location: data.location,
-    //   about: data.about
-    // })
+  renderImg() {
+    if (this.state.imgURL) {
+      return <img id="img" src={this.state.imgURL} alt="" width="250" height="250"/>
+    }
   }
-
-  _handleImageChange(e) {
-    e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
+  renderSpinner() {
+    const { loading } = this.props.createEventForm;
+    if (loading) {
+      return(
+        <CircularProgress />
+      );
     }
     reader.readAsDataURL(file)
 
@@ -87,22 +58,23 @@ class CreateEvents extends Component {
     const data = { eventName, eventLocation, eventDescription, eventDate: this.state.selectedDay, eventTime: this.state.time };
     this.props.createEvent(data);
   }
+  onCreateEvent() {
+    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
+    this.props.createEvent(
+      { address, date, description, img, location, ticketLink, time, title },
+      userId,
+      () => this.props.history.push('/feed')
+    );
+  }
   render() {
-    const { selectedDay } = this.state;
+    const { loading } = this.props.createEventForm;
 
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-    }
-
-    return(
+    return (
       <div>
         <Navbar />
         <div id="create-event-wrapper">
+<<<<<<< HEAD
           <div className="container">
             <div className="text-center">
               <form className="form-horizontal">
@@ -183,11 +155,86 @@ class CreateEvents extends Component {
              </form>
             </div>
           </div>
+=======
+          <TextField
+            hintText="Event Title"
+            floatingLabelText="Enter Name Of The Event"
+            underlineFocusStyle={{ display: 'none' }}
+            floatingLabelFocusStyle={{ color: 'red' }}
+            disabled={loading}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
+          />
+          <TextField
+            hintText="Location"
+            floatingLabelText="Enter Location"
+            underlineFocusStyle={{ display: 'none' }}
+            floatingLabelFocusStyle={{ color: 'red' }}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
+            disabled={loading}
+          />
+          <TextField
+            hintText="Address"
+            floatingLabelText="Enter Address"
+            underlineFocusStyle={{ display: 'none' }}
+            floatingLabelFocusStyle={{ color: 'red' }}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
+            disabled={loading}
+          />
+          <TextField
+            hintText="Ticket Link"
+            floatingLabelText="Enter Ticket Link"
+            underlineFocusStyle={{ display: 'none' }}
+            floatingLabelFocusStyle={{ color: 'red' }}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+            disabled={loading}
+          />
+          <TextField
+            hintText="Description"
+            floatingLabelText="Enter Description"
+            multiLine={true}
+            rows={2}
+            floatingLabelFocusStyle={{ color: 'red' }}
+            underlineFocusStyle={{ display: 'none' }}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+            disabled={loading}
+          />
+          <RaisedButton
+            secondary
+            label="upload image"
+            onClick={this.onClick.bind(this)}
+            disabled={loading}
+          />
+          <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)}/><br />
+          {this.renderImg()}
+          <DatePicker
+            hintText="Date"
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
+            disabled={loading}
+          />
+          <TimePicker
+            hintText="Time"
+            autoOk={true}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
+            disabled={loading}
+          />
+           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
+           {this.renderSpinner()}
+          <RaisedButton
+            secondary
+            label="create event"
+            onClick={this.onCreateEvent.bind(this)}
+            style={{ marginTop: '15px' }}
+            disabled={loading}
+          />
+>>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
         </div>
       </div>
-    );
+    )
   }
 }
 
-
-export default connect(null, { createEvent, fetchUserInfo })(CreateEvents);
+function mapStateToProps({ createEventForm }) {
+  console.log(createEventForm.loading);
+  return { createEventForm };
+}
+export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);

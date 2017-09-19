@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Feed } from '../../common';
 import '../css/new-feeds.css';
 
-const NewFeeds = (props) => {
-  const { userFeeds } = props;
-  if (userFeeds.length == 0) {
+class NewFeeds extends Component {
+  renderFeeds() {
+    return this.props.userFeeds.map(feed => <Feed key={feed.postId} feed={feed}/>)
+  }
+  render() {
     return (
-      <div id="feed-none">
-        <p>No Feeds Avaliable</p>
+      <div id="new-feed-container">
+        {this.renderFeeds()}
       </div>
     )
   }
-  return (
-    <div id="new-feed-container">
-      {renderFeeds(props.userFeeds)}
-    </div>
-  );
 };
 
-const renderFeeds = (feeds) => feeds.map((feed) => <Feed key={feed.postId} feed={feed}/>);
 
 export default NewFeeds;

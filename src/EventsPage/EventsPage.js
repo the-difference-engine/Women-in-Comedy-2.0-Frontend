@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchMyUpcomingEvents, fetchUpcomingEvents } from '../actions';
 import AddEvent from './components/AddEvent';
 import AllUpcomingEvents from './components/AllUpcomingEvents';
 import MyUpcomingEvents from './components/MyUpcomingEvents';
 import HeaderComponent from './components/HeaderComponent';
+import { Navbar } from '../common';
 
 class EventsPage extends Component {
   constructor(props) {
 		super(props);
-		this.state = {
-      events: [
-        {
-          host_id:1,
-      		title: "A Great Event",
-      		photo:"my pix",
-      		date:"7-16-2016",
-      		ticket_link:"www.google.com",
-      		about: "mine is bigger"
-        }
-      ]
-    };
+
 	}
+  componentDidMount() {
+    const userId = sessionStorage.getItem('userId');
+    this.props.fetchMyUpcomingEvents(userId);
+    this.props.fetchUpcomingEvents();
+  }
 	render () {
 		return (
 			<div id="events-page">
-				<HeaderComponent />
-				<MyUpcomingEvents events={this.state.events} />
-				<AllUpcomingEvents events={this.state.events} />
+        <Navbar />
+				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
+				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
 				<AddEvent history={this.props.history}/>
 			</div>
 		);
 	}
 }
-
-export default EventsPage;
+function mapStateToProps({ myUpcomingEvents, upcomingEvents }) {
+  console.log(myUpcomingEvents);
+  console.log(upcomingEvents);
+  return { myUpcomingEvents, upcomingEvents };
+}
+export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents })(EventsPage);
