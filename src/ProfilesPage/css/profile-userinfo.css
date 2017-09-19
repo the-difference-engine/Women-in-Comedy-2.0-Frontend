@@ -1,0 +1,23 @@
+#profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+#profile-name {
+  color: #9b1522;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+#profile-bio-title {
+  color: #9b1522;
+
+  font-size: 24px;
+}
+
+#profile-bio-content {
+  font-size: 16px;
+}

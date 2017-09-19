@@ -1,59 +1,16 @@
-#right-side-bar {
-  position: fixed;
-  right: 0;
-  top: 65px;
-  width: 20%;
-  height: 100%;
-  background-color: #e6e6e6;
-  z-index: -1;
-}
-
-#right-side-bar-content {
-  position: fixed;
-  top: 100px;
-  margin-left: 25px;
-  margin-right: 25px;
-  height: 100%;
-}
-
-
-#activity-users .container span {
-  color: #b33d40;
-  font-family: sans-serif;
-  font-size: 19.689px;
-  transform: scaleX(1.0761);
-  left: 890.155px;
-  top: 113.497px;
-
-}
-
-
-#boop .container h4 span {
-  margin-top: 150px;
-  color: #b33d40;
-  font-family: sans-serif;
-  font-size: 19.689px;
-  transform: scaleX(1.0761);
-  left: 890.155px;
-  top: 113.497px;
-
-}
-
-#profile-connections-pics img {
-  width: 35px;
+#connection-img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin: 3px;
+  margin-right: 10px;
 }
 
-.red {
+#connection-item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#connection-title {
   color: #9b1522;
-}
-
-#boop {
-    position: absolute;
-    width: 20%;
-    height: 100%;
-    right: 0;
-    top: 0;
-    background-color: #e6e6e6;
+  font-size: 25px;
 }
