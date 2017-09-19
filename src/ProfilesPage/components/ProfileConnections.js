@@ -12,9 +12,9 @@ class ProfileConnections extends Component {
                    connections_string: 'See All Connections' } 
   };
   componentWillMount() {
-    const { userConnections } = this.props;
-    const users = userConnections;
-    const displayAll = renderConnections(userConnections);
+    const { connections } = this.props;
+    const users = connections;
+    const displayAll = renderConnections(connections);
     const displayTenNames = this.getUsers([], displayAll, 0);
 
   }
@@ -67,8 +67,8 @@ class ProfileConnections extends Component {
   }
 
   render() {
-    const { userConnections } = this.props;
-    const users = userConnections;
+    const { connections } = this.props;
+    const users = connections;
     const displayNames = [];
 
     const displayAll = renderConnections(users);
@@ -93,7 +93,7 @@ class ProfileConnections extends Component {
         <div id="boop">
           <div id="right-side-bar-content">
             <div className="container">
-              <h4>Connections({userConnections.length})</h4>
+              <h4>Connections({connections.length})</h4>
             </div>
 
 

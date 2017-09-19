@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO } from './types';
+import { FETCH_USER_INFO} from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
