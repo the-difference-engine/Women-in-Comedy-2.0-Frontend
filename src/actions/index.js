@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from 'axios';
 // export const CREATE_USER = 'create_user';
 export const CREATE_SESSION = 'create_session';
@@ -13,13 +12,13 @@ export const FETCH_USER_EVENTS = 'fetch_user_events';
 //https://qa-womenincomedy.herokuapp.com
 
 
-=======
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
 export * from './user_actions';
 export * from './event_actions';
 export * from './feed_actions';
 export * from './connection_actions';
-<<<<<<< HEAD
+export * from './fetch_events_action';
+export * from './post_actions';
+
 
  export const fetchUserInfo = (userId) => {
   console.log('fetchUserInfo');
@@ -107,7 +106,5 @@ export const fetchUserEvents = (userId) => {
 
 
 
-=======
-export * from './fetch_events_action';
-export * from './post_actions';
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
+
+

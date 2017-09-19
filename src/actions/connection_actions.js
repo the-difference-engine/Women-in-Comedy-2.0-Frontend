@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
-import { FETCH_USER_CONNECTIONS, CREATE_CONNECTION_REQUEST, FETCH_CONNECTION_STATUS, FETCH_PENDING_USER_CONNECTIONS } from './types';
-=======
 import {
   FETCH_USER_CONNECTIONS,
   CREATE_CONNECTION_REQUEST,
@@ -10,10 +7,6 @@ import {
   FETCH_PENDING_USER_CONNECTIONS,
   ACCEPT_CONNECTION
 } from './types';
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
-
-
-
 
 
 export const fetchUserConnections = (userId) => {

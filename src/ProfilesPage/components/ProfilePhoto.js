@@ -39,5 +39,6 @@ const renderConnections = (connections) => {
       </div>
     );
   });
+	
 }
 export default ProfilePhoto;

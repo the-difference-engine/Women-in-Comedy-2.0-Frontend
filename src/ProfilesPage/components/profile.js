@@ -8,7 +8,6 @@ import axios from 'axios';
 export const { CREATE_POST } = 'create_post'; 
 
 
-
 class Profile extends Component {
   constructor(props) {
     super(props)
@@ -209,3 +208,4 @@ export default reduxForm({
 })(
   connect(null, { CREATE_POST })(Profile)
 );
+

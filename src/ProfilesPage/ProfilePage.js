@@ -71,4 +71,3 @@ class ProfilePage extends Component {
     return { userInfo, userFeeds, userConnections, userEvents, status };
   }
 export default connect(mapStateToProps, { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUserEvents, createConnectionRequest, fetchConnectionStatus })(ProfilePage);
-

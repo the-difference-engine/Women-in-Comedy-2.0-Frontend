@@ -10,15 +10,6 @@ const userId = sessionStorage.getItem('userId')
 class CreateEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedDay: null,
-
-      time: moment().format(str),
-      file: '',
-      imagePreviewUrl: '',
-
-      time: moment().format(str)
-    };
     this.state = { imgURL: null };
   }
 
@@ -49,14 +40,6 @@ class CreateEvents extends Component {
         <CircularProgress />
       );
     }
-    reader.readAsDataURL(file)
-
-    // event.preventDefault();
-    const eventName = document.getElementById('eventName').value;
-    const eventLocation = document.getElementById('eventLocation').value;
-    const eventDescription = document.getElementById('eventDescription').value;
-    const data = { eventName, eventLocation, eventDescription, eventDate: this.state.selectedDay, eventTime: this.state.time };
-    this.props.createEvent(data);
   }
   onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
@@ -74,88 +57,6 @@ class CreateEvents extends Component {
       <div>
         <Navbar />
         <div id="create-event-wrapper">
-<<<<<<< HEAD
-          <div className="container">
-            <div className="text-center">
-              <form className="form-horizontal">
-               <div className="form-group">
-                 <label className="control-label col-sm-3">Event Title</label>
-                  <div className="col-sm-6">
-                     <input type="text" id="title" className="form-control" placeholder="Enter name of event" name="title" />
-                  </div>
-               </div>
-
-
-                <div className="previewComponent" name="photo" id="photo">
-                  <form onSubmit={(e)=>this._handleSubmit(e)}>
-                    <input className="fileInput" 
-                      type="file" 
-                      onChange={(e)=>this._handleImageChange(e)} />
-                    <button className="submitButton" 
-                      type="submit" 
-                      onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
-                  </form>
-                  <div className="imgPreview">
-                    {$imagePreview}
-                  </div>
-                </div>
-
-                <div className="form-group">
-                   <label className="control-label col-sm-3">Location</label>
-                  <div className="col-sm-6">
-                     <input type="text" id="location" className="form-control" placeholder="Enter location for event" name="location" />
-
-                    <label className="control-label col-sm-3">Location </label>
-                    <div className="col-sm-6">
-                      <input type="text" id="eventLocation"className="form-control" placeholder="Enter location for event" name="location" />
-                    </div>
-                  </div>
-                </div>
-
-               <div className="form-group">
-                 <label className="control-label col-sm-3">Date & Time</label>
-                 <div className="col-sm-3">
-                   <DayPicker
-                     selectedDays={selectedDay}
-                     onDayClick={this.handleDayClick.bind(this)}
-                   />
-                   <p>
-                     {selectedDay
-                       ? selectedDay.toLocaleDateString()
-                       : 'Please select a day 👻'}
-                   </p>
-                 </div>
-                 <div className="col-md-3 col-sm-6" >
-                   <TimePicker defaultValue={moment()} onChange={this.onChange.bind(this)} />
-                 </div>
-               </div>
-
-
-
-               <div className="form-group">
-                 <label className="control-label col-sm-3">Description </label>
-                 <div className="col-sm-6">
-                   <textarea className="form-control" rows="5" id="comment" id="about"></textarea>
-                 </div>
-               </div>
-
-               <div className="form-group">
-                 <label className="control-label col-sm-3">Ticket Link </label>
-                 <div className="col-sm-6">
-                   <textarea className="form-control" rows="1" id="comment" id="ticketLink"></textarea>
-                   <textarea className="form-control" rows="5" id="comment" id="eventDescription"></textarea>
-                 </div>
-               </div>
-
-               <div className="form-group">
-                 <div className="col-sm-offset-1 col-sm-10">
-                   <button type="submit" className="btn btn-primary" onClick={this.onClick.bind(this)}>Create</button>
-                 </div>
-               </div>
-             </form>
-            </div>
-          </div>
-=======
           <TextField
             hintText="Event Title"
             floatingLabelText="Enter Name Of The Event"
@@ -226,7 +127,6 @@ class CreateEvents extends Component {
             style={{ marginTop: '15px' }}
             disabled={loading}
           />
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
         </div>
       </div>
     )

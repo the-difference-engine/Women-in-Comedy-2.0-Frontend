@@ -2,21 +2,6 @@ import firebase from 'firebase'
 import axios from 'axios'
 import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT } from './types';
 
-<<<<<<< HEAD
-export function createEvent(data){
-  console.log('createEvent', data);
-  return async (dispatch) => {
-    try {
-      await axios.post('http://localhost:9000/api/v1/users/user_events', { 
-        user_id: data.userId,
-        title: data.title,
-        photo: data.photo,
-        date: data.date,
-        time: data.time,
-        ticket_link: data.ticketLink,
-        location: data.location,
-        about: data.about
-=======
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
     if(validate(eventInfo)) {
@@ -29,7 +14,6 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         method: 'post',
         url: 'http://localhost:9000/api/v1/events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
       })
       console.log(request.data);
       callback();
@@ -45,16 +29,7 @@ const validate = eventInfo => {
       return false;
     }
   }
-<<<<<<< HEAD
-// export const createEvent = (data) => {
-//   console.log('createEvent', data);
-//   return {
-//     type: CREATE_EVENT,
-//     payload: data
-//   };
-=======
   return true;
->>>>>>> fdc2576c5d6c93af6751f28fe873a2b38f9b0803
 };
 
 export const eventInputChange = ({ prop, value }) => {
