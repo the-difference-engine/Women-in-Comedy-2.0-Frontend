@@ -16,9 +16,26 @@
   text-align: left;
 }
 
+
+.bio-desc {
+  width: 100%;
+}
+
+.bio-name {
+  margin-top:2px;
+  color:  #990000;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.bio-title {
+  color: #990000;
+  font-size: 15px;
+}
+
 .profile-photo img {
-  width: 175px;
-  height: 180px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   margin-bottom: 15px;
 }

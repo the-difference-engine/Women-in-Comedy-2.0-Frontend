@@ -9,10 +9,10 @@
 
 #activity-users p {
   position: fixed;
-  top: 18%;
+  top: 17%;
   padding-left: 25px;
   width: 20%;
-  right: 2%;
+  right: -1%;
   font-weight: 900;
 }
 
@@ -20,7 +20,7 @@
   float: left;
   position: fixed;
   top: 12%;
-  padding-left: 25px;
+  padding-left: 54px;
   padding-right: 25px;
   width: 20%;
   right: 0%;

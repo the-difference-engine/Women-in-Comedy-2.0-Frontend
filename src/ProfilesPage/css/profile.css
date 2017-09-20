@@ -9,16 +9,77 @@
     padding: 10px;
 }
 
+.form-control-input {
+  align-items: center;
+  display: flex;
+  margin-top: 100px;
+}
+
 #randomizer {
   text-align: left;
 }
 
-.events-header img {
-  float: right;
-  margin: 5px;
-  margin-left: 5%;
-  margin-right: 5%;
+#comment-input {
+  margin-top: 20px;
 }
+#comment-input img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  float:left;
+  margin: 5px;
+  margin-left: 15px;
+}
+
+#comment-input input {
+  width: 80%;
+  padding-top: 3px;
+  padding-bottom: 6px;
+  padding-left: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  height: 35px;
+  position: relative;
+  margin-bottom: 27px;
+  margin-top: 6px;
+  margin-left: 15px;
+
+}
+
+
+.feeds-header img {
+  float: right;
+  margin: 18px;
+  margin-left: 5%;
+  margin-right: 13%;
+}
+
+#feed-icons a {
+    text-decoration: none;
+    color: #9b1522;
+    padding-right: 20px;
+}
+
+#feed-icons a span {
+    font-size: 18px;
+
+}
+
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+
 
 #profile-pic img {
   margin-top: 10px; 
@@ -32,11 +93,20 @@
 }
 
 #personal-feed {
-  margin: 20px;
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 10%;
-  font-size: 200%;
+  width: 61%;
+    position: relative;
+    left: 20%;
+    top: 65px;
+    padding-bottom: 50px;
+}
+
+#comment-content-margin {
+margin-top: -59px;
+margin-left: -34px;
+margin-right: 40px;
+margin-bottom: 25px;
+height: 100%;
+
 }
 
 .profile_info_connections {
@@ -49,43 +119,195 @@
 
 /* below is copy+paste from EventsPage/css/events.css couldn't get it to import*/
 
-.event-title {
+.feed-title {
 padding: 10px 5px 0px 10px;
 }
 
-.event-title p {
-font-size: 18px;
+
+.feed-title {
+  color: grey;
+  font-family: sans-serif;
+  font-size: 168%;
+
+}
+.feed-title span {
 font-weight: 400;
+color: #9B1526;
 margin-bottom: 0;
+font-family: sans-serif;
 }
 
-.event {
+.comment-title {
+  color: grey;
+  font-family: sans-serif;
+  font-size: 55%;
+}
+
+.comment-title span {
+font-weight: 400;
+color: #9B1526;
+margin-bottom: 0;
+font-family: sans-serif;
+}
+
+#feed-photo-in-corner img {
+  border-radius: 50%;
+  /* position: absolute; */
+  /* z-index: -1; */
+  margin-left: -40px;
+  margin-top: 12px;
+  margin-bottom: -5px;
+
+}
+
+.no-feed {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(211,211,211,0.9);
+  margin-top: 100px;
+  z-index: 1;
+
+}
+
+.feed-for-form {
+border-radius: 3px;
+width: 696px;
+margin-left: 163px;
+font-size: 114%;
+}
+
+
+.feed {
 border: 1px solid rgba(211,211,211,0.9);
 border-radius: 3px;
-padding: 5px;
-margin: 10px;
-height: 250px;
-margin: 50px;
-
+min-height: 275px;
+margin: -23px;
+width: 792px;
+margin-bottom: -6px;
 }
 
-.event-page-content {
-margin-left: 5%;
+.feed-page-content {
+margin-left: 1.5%;
 margin-right: 5%;
+font-size: 15px;
+font-family: sans-serif;
+color: gray;
+font-weight: 200;
+
 }
 
-.event-page-content p {
-font-size: 18px;
-}
-
-.events-header {
+.comment-header {
 color: #9b1522;
 font-size: 25px;
 font-weight: 200;
+margin: 8px;
+margin-top: 1px;
+}
+
+.comment {
+border-radius: 3px;
+padding: 5px;
+min-height: 275px;
+margin: -23px;
+width: 781px;
+}
+
+#comment-photo img {
+  float: left;
+  border-radius: 50%;
+}
+
+.comment-author p {
+font-size: 40%;
+color: #9B1526;
+float: right;
+font-family: sans-serif;
+}
+
+.comment-content {
+margin-left: 1.5%;
+margin-top: -8px;
+margin-right: 5%;
+font-size: 16px;
+font-family: sans-serif;
+color: gray;
+font-weight: 200;
+}
+
+.your-activity {
+padding-bottom: 23px;
+margin-top: 160px;
+margin-right: 771px;
+padding-left: 165px;
+
+
+font-size: 180%;
+color: #9B1526;
+text-align: left;
+align-items: center;
+/*width:250px;*/
+/*display: flex;
+*/
+/*justify-content: center;*/
+}
+
+.your-activity form {
+/*margin: 20px;*/
+/*padding-left: 15%;*/
+/*padding-right: 15%;*/
+/*padding-top: 5%;*/
+/*width:250px;*/
+border: 1px solid rgba(211,211,211,0.9);
+/*margin-top: 100px;
+*/}
+
+.form-button {
+/*margin: 20px;*/
+/*padding-left: 15%;*/
+/*padding-right: 15%;*/
+/*padding-top: 5%;*/
+/*width:250px;*/
+float: right;
+margin-right: 167px;
+
+border: 1px solid rgba(211,211,211,0.9);
+/*margin-top: 100px;
+*/}
+
+
+.feeds-header {
+color: #9b1522;
+font-size:80%;
+font-weight: 200;
+margin-left: 16px;
+margin-top: 17px;
+/*padding: 0 30px 10px 30px;*/
 }
 
 .col-xs-offset-1 {
 margin-left: 3%;
+}
+
+.personal-feed-post-button {
+margin-right: 202px;
+margin-top: -32px;
+right: -50px;
+width: 40px;
+height: 46px;
+text-align: center;
+border-radius: 5px;
+cursor: pointer;
+font-size: 20px;
+float: right;
+
+}
+
+.personal-feed-post-button button {
+background-color: #9b1522;
+color: white;
+line-height: 1.37;
+
 }
 
 .col-xs-3 {

@@ -6,22 +6,6 @@ const Users = (props) => {
  	const { usersInfo } = props;
     console.log('usersInfo belowbruno');
     console.log({usersInfo});
-    const list = renderUsers(usersInfo);
-    const connections = list.length;
-
-	function getRandom(arr, n) {
-    	var result = new Array(n),
-    	    len = arr.length,
-        	taken = new Array(len);
-    	while (n--) {
-    	    var x = Math.floor(Math.random() * len);
-    	    result[n] = arr[x in taken ? taken[x] : x];
-    	    taken[x] = --len;
-    	}
-    	return result;
-	}
-
-  const users = usersInfo;
 
 	function getUsers(result, users, count) {
 	    if(users.length === 0 || count === 10) {
@@ -38,11 +22,12 @@ const Users = (props) => {
 
 	      getUsers(result, users, count);
 	    }
+	    return result;
 	}
 
-	const listMaker = getUsers([], users, 0)
-
-
+    const list = renderUsers(usersInfo);
+    const connections = list.length;
+	const listMaker = getUsers([], list, 0);
 
 	return (
 	    <div id="activity-users">
@@ -50,7 +35,7 @@ const Users = (props) => {
 		    	<h4> <span>Connections({connections})</span></h4>
 		    </div>
 		    <div className="user-list">
-		    	<div id="right-side-bar">
+		    	<div id="right-side-bar-content">
 				    	<p> {listMaker} </p>
 			    </div>
 			</div>
@@ -61,7 +46,7 @@ const Users = (props) => {
 
 
 const renderUsers = (users) => {
-  return users.map(user => {
+  return _.map(users, user => {
     return (
       <div key={user.id}>
       	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.firstName} {user.lastName}</a>
