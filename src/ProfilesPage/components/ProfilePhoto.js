@@ -10,25 +10,41 @@ const ProfilePhoto = (props) => {
 	// console.log('props.children below');
 	// console.log(props.children);
 
-    const { firstName, lastName, bio } = props.userInfo;
+    const { firstName, lastName, bio, admin, superuser } = props.userInfo;
+    console.log('superuser below');
+    console.log({superuser});
 
     const { userConnections } = props;
     // console.log('userConnections = props below');
     // console.log({userConnections});
 
     // width="180px" height="180px"
+    if ({superuser !== true}) {
+      return (
+        <div id="left-side-bar">
+          <div id="left-side-bar-content">
+            <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
+              <p className="bio-name">{firstName} {lastName}</p>
+         	    <p className="bio-title">Bio</p>
+         	    <p className="bio-desc">{bio}</p>
 
-  return (
-    <div id="left-side-bar">
-      <div id="left-side-bar-content">
-        <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
-          <p className="bio-name">{firstName} {lastName}</p>
-     	    <p className="bio-title">Bio</p>
-     	    <p className="bio-desc">{bio}</p>
+          </div>
+        </div>
+      	);
+    } else if({superuser === true}) {
+      return (
+        <div id="left-side-bar">
+          <div id="left-side-bar-content">
+            <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
+            <p className="bio-title">SuperUser!</p>
+              <p className="bio-name">{firstName} {lastName}</p>
+              <p className="bio-title">Bio</p>
+              <p className="bio-desc">{bio}</p>
 
-      </div>
-    </div>
-  	);
+          </div>
+        </div>
+        );
+    }
 };
 
 const renderConnections = (connections) => {

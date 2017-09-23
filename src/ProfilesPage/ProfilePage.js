@@ -67,10 +67,8 @@ class ProfilePage extends Component {
     return (
       <div>
         <Navbar />
-        <LeftGraySideBar>
-          <UserInfo userInfo={this.props.userInfo}/>
-          {this.renderConnection()}
-        </LeftGraySideBar>
+        <UserInfo userInfo={this.props.userInfo}/>
+        {this.renderConnection()}
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
         </RightGraySideBar>
