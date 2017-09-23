@@ -12,7 +12,9 @@ class UserInfo extends Component {
     this.state = { superuser_show: false,
                    super_user_string: 'SuperUser!(click to show)',
                    superuser_show_two: false,
-                   super_user_string_two: 'Update(click to show)!',
+                   super_user_string_two: 'Update!(click to show)',
+                   superuser_show_three: false,
+                   super_user_string_three: 'Delete!(click to show)',
                    admin_term: false,
                    admin_string: 'Admin!(click to show)',
                    userMade: false }
@@ -40,10 +42,36 @@ class UserInfo extends Component {
     if(this.state.superuser_show_two === false) {
       this.setState({ superuser_show_two: true });
       this.setState({ super_user_string_two: 'Update(click to hide)' });
+
     } else if(this.state.superuser_show_two === true) {
       this.setState({ superuser_show_two: false });
       this.setState({ super_user_string_two: 'Update!(click to show)' });
     }
+    console.log('superuser_show');
+    console.log(this.state.superuser_show);
+    console.log('superuser_show_two');
+    console.log(this.state.superuser_show_two);
+    console.log('superuser_show_three');
+    console.log(this.state.superuser_show_three);
+
+
+  }
+  onClickSuperUserThree() {
+    console.log('onClickSuperUserThree');
+
+    if(this.state.superuser_show_three === false) {
+      this.setState({ superuser_show_three: true });
+      this.setState({ super_user_string_three: 'Delete!(click to hide)' });
+    } else if(this.state.superuser_show_three === true) {
+      this.setState({ superuser_show_three: false });
+      this.setState({ super_user_string_three: 'Delete!(click to show)' });
+    }
+    console.log('superuser_show');
+    console.log(this.state.superuser_show);
+    console.log('superuser_show_two');
+    console.log(this.state.superuser_show_two);
+    console.log('superuser_show_three');
+    console.log(this.state.superuser_show_three);
   }
   renderTitleField(field) {
     const { meta: {touched, error} } = field
@@ -161,6 +189,27 @@ class UserInfo extends Component {
     )
   }
 
+  onSubmitDelete(userId) {
+    console.log('onSubmitDelete', userId);
+    console.log('id below');
+    console.log(userId);
+    const superId = sessionStorage.getItem('userId');
+    if(superId === userId.userId) {
+      alert('You cannot delete your account to ensure there is always at least one superuser')
+    } else {
+      axios.post('http://localhost:9000/api/v1/users/superuser/delete_user', userId)
+        .then(payload => {
+          console.log('delete payload below');
+          console.log(payload);
+          this.setState({ userMade: true });
+          alert('User delete attempted');
+          // window.location = "http://localhost:3000/profile/" + superId;
+        })
+        .catch(err => {alert(err)});
+    }
+
+  }
+
   onSubmitUpdate(values) {
     console.log('onSubmitUpdate');
     console.log('values below');
@@ -219,7 +268,7 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if(this.state.superuser_show === true && this.state.superuser_show_two !== true) {
+    } else if(this.state.superuser_show === true && this.state.superuser_show_two !== true && this.state.superuser_show_three !== true) {
         console.log('show');
         return (
           <div id="left-side-bar-superuser">
@@ -278,12 +327,17 @@ class UserInfo extends Component {
                       <p id="profile-title">{this.state.super_user_string_two}</p>
                     </div>
                   </div>
+                  <div id="onClickSuperUserThree">
+                    <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
+                      <p id="profile-title">{this.state.super_user_string_three}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         );
-    } else if(superuser && (this.state.superuser_show && this.state.superuser_show_two)) {
+    } else if(this.state.superuser_show && this.state.superuser_show_two) {
         return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">
@@ -322,10 +376,81 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } 
-
-
-    else if (!superuser && !admin) {
+    } else if (this.state.superuser_show && this.state.superuser_show_two && this.state.superuser_show_three === false) {
+        return (
+          <div id="left-side-bar-superuser">
+            <div id="left-side-bar-content-superuser">
+              <div id="userinfo-left">
+                <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+                <p id="profile-name">{firstName} {lastName}</p>
+                <p id="profile-bio-title">Bio</p>
+                <p id="profile-bio-content">{bio}</p>
+                  <div id="onClickSuperUserTwo">
+                    <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
+                      <p id="profile-title">{this.state.super_user_string_two}</p>
+                    </div>
+                  </div>
+                  <h1>Update User!</h1>
+                  <form onSubmit={handleSubmit(this.onSubmitUpdate.bind(this))}>
+                    <Field 
+                      label="User ID"
+                      name="userId"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Admin true/false"
+                      name="admin"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="SuperUser true/false"
+                      name="superuser"
+                      component={this.renderTitleField}
+                    />
+                    <div id="button-superuser">
+                      <button className="btn btn-success" type="submit">Update User</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+                  <div id="onClickSuperUserThree">
+                    <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
+                      <p id="profile-title">{this.state.super_user_string_three}</p>
+                    </div>
+                  </div>
+          </div>
+        );
+    } else if(this.state.superuser_show && this.state.superuser_show_three && (this.state.superuser_show_two === false)) {
+       return (
+          <div id="left-side-bar-superuser">
+            <div id="left-side-bar-content-superuser">
+              <div id="userinfo-left">
+                <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+                <p id="profile-name">{firstName} {lastName}</p>
+                <p id="profile-bio-title">Bio</p>
+                <p id="profile-bio-content">{bio}</p>
+                  <div id="onClickSuperUserThree">
+                    <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
+                      <p id="profile-title">{this.state.super_user_string_three}</p>
+                    </div>
+                  </div>
+                  <h1>Delete User!</h1>
+                  <form onSubmit={handleSubmit(this.onSubmitDelete.bind(this))}>
+                    <Field 
+                      label="User Id"
+                      name="userId"
+                      component={this.renderTitleField}
+                    />
+                    <div id="button-superuser">
+                      <button className="btn btn-success" type="submit">Delete User</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+      );
+    }
+     else if (!superuser && !admin) {
       return (
         <div id="left-side-bar-superuser">
           <div id="left-side-bar-content-superuser">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, UPDATE_USER_AS_SUPERUSER } from './types';
+import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, UPDATE_USER_AS_SUPERUSER, DELETE_USER_AS_SUPERUSER } from './types';
 
 export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => async dispatch => {
   await axios({
@@ -10,6 +10,15 @@ export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => a
   callback(userId);
   dispatch({ type: POSTED });
 
+};
+
+export const deleteUserAsSuperUser = (id) => async dispatch => {
+  await axios({
+    method: 'delete',
+    url: 'http://localhost:9000/api/v1/users/delete_user',
+    data: ( id )
+  });
+  dispatch({ type: DELETE_USER_AS_SUPERUSER })
 };
 
 export const updateUserAsSuperuser = (values) => async dispatch => {
