@@ -25,7 +25,6 @@ class ProfilePage extends Component {
       this.props.fetchUserFeeds(this.props.match.params.id);
       this.props.fetchUserConnections(this.props.match.params.id);
       this.props.fetchConnectionStatus({ sender_id, receiver_id });
-
     }
 
   onPress() {
@@ -62,7 +61,7 @@ class ProfilePage extends Component {
   render () {
     const { userInfo, userConnections, userFeeds, status } = this.props;
     console.log('render');
-    console.log({userConnections});
+    console.log(this.updateUser);
 
     return (
       <div>

@@ -18,7 +18,8 @@ class UserInfo extends Component {
                    userMade: false }
   };
   componentWillMount() {  
-    const { firstName, lastName, bio, admin, superuser } = this.props.userInfo
+    const { firstName, lastName, bio, admin, superuser } = this.props.userInfo;
+
   }
   onClickSuperUser() {
     console.log('onClickSuperUser');
@@ -163,37 +164,41 @@ class UserInfo extends Component {
   onSubmitUpdate(values) {
     console.log('onSubmitUpdate');
     console.log('values below');
-    console.log(values);
-    axios.patch('http://localhost:9000/api/v1/users', values)
+    console.log(values.userId);
+    const userId = sessionStorage.getItem('userId');
+    axios.post('http://localhost:9000/api/v1/users/superuserupdate', values)
       .then(payload => {
         console.log(payload)
         this.setState({ userMade: true });
-        alert('user created');
+        alert('user updated');
+        window.location = "http://localhost:3000/profile/" + userId;
       })
       .catch(err => {alert(err)});
+
 
   }
 
   onSubmit(values) {
     console.log('values below');
     console.log(values);
+    const userId = sessionStorage.getItem('userId');
+
     // axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/users', values)
     axios.post('http://localhost:9000/api/v1/users', values)
       .then(payload => {
         console.log(payload)
         this.setState({ userMade: true });
         alert('user created');
+        window.location = "http://localhost:3000/profile/" + userId;
       })
       .catch(err => {alert(err)});
-
-    // window.location = "http://localhost:3000/feed";
-
   }
 
 
   render() {
     console.log('register');
     const { firstName, lastName, bio, admin, superuser } = this.props.userInfo
+    const { updateUser } = this.props;
     const { handleSubmit } = this.props;
 
     if(superuser && (this.state.superuser_show === false)) {
@@ -287,12 +292,32 @@ class UserInfo extends Component {
                 <p id="profile-name">{firstName} {lastName}</p>
                 <p id="profile-bio-title">Bio</p>
                 <p id="profile-bio-content">{bio}</p>
-                <p id="profile-title">Update Actvated!</p>
                   <div id="onClickSuperUserTwo">
                     <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
                       <p id="profile-title">{this.state.super_user_string_two}</p>
                     </div>
                   </div>
+                  <h1>Update User!</h1>
+                  <form onSubmit={handleSubmit(this.onSubmitUpdate.bind(this))}>
+                    <Field 
+                      label="User ID"
+                      name="userId"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Admin true/false"
+                      name="admin"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="SuperUser true/false"
+                      name="superuser"
+                      component={this.renderTitleField}
+                    />
+                    <div id="button-superuser">
+                      <button className="btn btn-success" type="submit">Update User</button>
+                    </div>
+                  </form>
               </div>
             </div>
           </div>
@@ -302,21 +327,25 @@ class UserInfo extends Component {
 
     else if (!superuser && !admin) {
       return (
-        <div>
-          <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-          <p id="profile-name">{firstName} {lastName}</p>
-          <p id="profile-bio-title">Bio</p>
-          <p id="profile-bio-content">{bio}</p>
+        <div id="left-side-bar-superuser">
+          <div id="left-side-bar-content-superuser">
+            <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+            <p id="profile-name">{firstName} {lastName}</p>
+            <p id="profile-bio-title">Bio</p>
+            <p id="profile-bio-content">{bio}</p>
+          </div>
         </div>
       );
     } else if (!superuser && admin) {
       return (
-        <div>
-          <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-          <p id="profile-name">{firstName} {lastName}</p>
-          <p id="profile-bio-title">Bio</p>
-          <p id="profile-bio-content">{bio}</p>
-          <p id="profile-title">{this.state.admin_string}</p>
+        <div id="left-side-bar-superuser">
+          <div id="left-side-bar-content-superuser">
+            <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+            <p id="profile-name">{firstName} {lastName}</p>
+            <p id="profile-bio-title">Bio</p>
+            <p id="profile-bio-content">{bio}</p>
+            <p id="profile-title">{this.state.admin_string}</p>
+          </div>
         </div>
       );
     }
@@ -364,7 +393,8 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: 'newAccountFormSuperUserAdminable'
+  form: 'newAccountFormSuperUserAdminable',
+  form: 'updatAccountForm'
 })(
   connect(null)(UserInfo)
 );

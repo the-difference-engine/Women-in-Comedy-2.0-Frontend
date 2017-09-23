@@ -17,8 +17,18 @@
   height: 100%;
 }
 
+#userinfo-left h1 {
+  font-size: 160%;
+}
+
+#button-superuser {
+  padding-bottom: 10px;
+}
+
 #onClickSuperUserTwo {
-  margin: 25px;
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
 }
 
 #profile-img {
@@ -86,9 +96,9 @@
 }
 
 #register-superuser input {
-  font-size: 90%;
-  min-width: 200px;
-  height: 25px;
+  font-size: 120%;
+  min-width: 232px;
+  height: 35px;
 }
 
 #field-form .form-control {
