@@ -9,28 +9,28 @@ import axios from 'axios';
 class UserInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = { superuser_show: false,
+    this.state = { super_user_show: false,
                    super_user_string: 'SuperUser!(click to show)',
-                   superuser_show_two: false,
+                   super_user_show_two: false,
                    super_user_string_two: 'Update!(click to show)',
-                   superuser_show_three: false,
+                   super_user_show_three: false,
                    super_user_string_three: 'Delete!(click to show)',
                    admin_term: false,
                    admin_string: 'Admin!(click to show)',
                    userMade: false }
   };
   componentWillMount() {  
-    const { firstName, lastName, bio, admin, superuser } = this.props.userInfo;
+    const { firstName, lastName, bio, admin, super_user } = this.props.userInfo;
 
   }
   onClickSuperUser() {
     console.log('onClickSuperUser');
-    if(this.state.superuser_show === false) {
-      this.setState({ superuser_show: true });
+    if(this.state.super_user_show === false) {
+      this.setState({ super_user_show: true });
       this.setState({ super_user_string: 'SuperUser!(click to hide)' });
 
-    } else if(this.state.superuser_show === true) {
-      this.setState({ superuser_show: false });
+    } else if(this.state.super_user_show === true) {
+      this.setState({ super_user_show: false });
       this.setState({ super_user_string: 'SuperUser!(click to show)' });
     }
       // this.setState({ superuser_term: 'hidden' });
@@ -39,39 +39,39 @@ class UserInfo extends Component {
   }
   onClickSuperUserTwo() {
     console.log('onClickSuperUserTwo');
-    if(this.state.superuser_show_two === false) {
-      this.setState({ superuser_show_two: true });
+    if(this.state.super_user_show_two === false) {
+      this.setState({ super_user_show_two: true });
       this.setState({ super_user_string_two: 'Update(click to hide)' });
 
-    } else if(this.state.superuser_show_two === true) {
-      this.setState({ superuser_show_two: false });
+    } else if(this.state.super_user_show_two === true) {
+      this.setState({ super_user_show_two: false });
       this.setState({ super_user_string_two: 'Update!(click to show)' });
     }
-    console.log('superuser_show');
-    console.log(this.state.superuser_show);
-    console.log('superuser_show_two');
-    console.log(this.state.superuser_show_two);
-    console.log('superuser_show_three');
-    console.log(this.state.superuser_show_three);
+    console.log('super_user_show');
+    console.log(this.state.super_user_show);
+    console.log('super_user_show_two');
+    console.log(this.state.super_user_show_two);
+    console.log('super_user_show_three');
+    console.log(this.state.super_user_show_three);
 
 
   }
   onClickSuperUserThree() {
     console.log('onClickSuperUserThree');
 
-    if(this.state.superuser_show_three === false) {
-      this.setState({ superuser_show_three: true });
+    if(this.state.super_user_show_three === false) {
+      this.setState({ super_user_show_three: true });
       this.setState({ super_user_string_three: 'Delete!(click to hide)' });
-    } else if(this.state.superuser_show_three === true) {
-      this.setState({ superuser_show_three: false });
+    } else if(this.state.super_user_show_three === true) {
+      this.setState({ super_user_show_three: false });
       this.setState({ super_user_string_three: 'Delete!(click to show)' });
     }
-    console.log('superuser_show');
-    console.log(this.state.superuser_show);
-    console.log('superuser_show_two');
-    console.log(this.state.superuser_show_two);
-    console.log('superuser_show_three');
-    console.log(this.state.superuser_show_three);
+    console.log('super_user_show');
+    console.log(this.state.super_user_show);
+    console.log('super_user_show_two');
+    console.log(this.state.super_user_show_two);
+    console.log('super_user_show_three');
+    console.log(this.state.super_user_show_three);
   }
   renderTitleField(field) {
     const { meta: {touched, error} } = field
@@ -202,8 +202,8 @@ class UserInfo extends Component {
           console.log('delete payload below');
           console.log(payload);
           this.setState({ userMade: true });
-          alert('User delete attempted');
-          // window.location = "http://localhost:3000/profile/" + superId;
+          alert('User Delete Processed');
+          window.location = "http://localhost:3000/profile/" + superId;
         })
         .catch(err => {alert(err)});
     }
@@ -246,11 +246,11 @@ class UserInfo extends Component {
 
   render() {
     console.log('register');
-    const { firstName, lastName, bio, admin, superuser } = this.props.userInfo
+    const { firstName, lastName, bio, admin, super_user } = this.props.userInfo
     const { updateUser } = this.props;
     const { handleSubmit } = this.props;
 
-    if(superuser && (this.state.superuser_show === false)) {
+    if(super_user && (this.state.super_user_show === false)) {
       // if(superuser && this.state.superuser_term === 'hidden'); {
         return (
           <div id="left-side-bar-superuser">
@@ -268,7 +268,7 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if(this.state.superuser_show === true && this.state.superuser_show_two !== true && this.state.superuser_show_three !== true) {
+    } else if(this.state.super_user_show === true && this.state.super_user_show_two !== true && this.state.super_user_show_three !== true) {
         console.log('show');
         return (
           <div id="left-side-bar-superuser">
@@ -317,7 +317,7 @@ class UserInfo extends Component {
                       />
                       <Field
                         label="SuperUser true/false"
-                        name="superuser"
+                        name="super_user"
                         component={this.renderTitleField}
                         />
                         <button className="btn btn-success" type="submit">Submit</button>
@@ -337,7 +337,7 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if(this.state.superuser_show && this.state.superuser_show_two) {
+    } else if(this.state.super_user_show && this.state.super_user_show_two) {
         return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">
@@ -365,7 +365,7 @@ class UserInfo extends Component {
                     />
                     <Field
                       label="SuperUser true/false"
-                      name="superuser"
+                      name="super_user"
                       component={this.renderTitleField}
                     />
                     <div id="button-superuser">
@@ -376,7 +376,7 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if (this.state.superuser_show && this.state.superuser_show_two && this.state.superuser_show_three === false) {
+    } else if (this.state.super_user_show && this.state.super_user_show_two && this.state.super_user_show_three === false) {
         return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">
@@ -404,7 +404,7 @@ class UserInfo extends Component {
                     />
                     <Field
                       label="SuperUser true/false"
-                      name="superuser"
+                      name="super_user"
                       component={this.renderTitleField}
                     />
                     <div id="button-superuser">
@@ -420,7 +420,7 @@ class UserInfo extends Component {
                   </div>
           </div>
         );
-    } else if(this.state.superuser_show && this.state.superuser_show_three && (this.state.superuser_show_two === false)) {
+    } else if(this.state.super_user_show && this.state.super_user_show_three && (this.state.super_user_show_two === false)) {
        return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">
@@ -450,7 +450,7 @@ class UserInfo extends Component {
           </div>
       );
     }
-     else if (!superuser && !admin) {
+     else if (!super_user && !admin) {
       return (
         <div id="left-side-bar-superuser">
           <div id="left-side-bar-content-superuser">
@@ -461,7 +461,7 @@ class UserInfo extends Component {
           </div>
         </div>
       );
-    } else if (!superuser && admin) {
+    } else if (!super_user && admin) {
       return (
         <div id="left-side-bar-superuser">
           <div id="left-side-bar-content-superuser">
