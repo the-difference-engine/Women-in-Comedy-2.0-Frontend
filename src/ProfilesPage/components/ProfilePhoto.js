@@ -10,7 +10,7 @@ const ProfilePhoto = (props) => {
 	// console.log('props.children below');
 	// console.log(props.children);
 
-    const { firstName, lastName, bio } = props.userInfo;
+    const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
 
     const { userConnections } = props;
     // console.log('userConnections = props below');

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/user-info.css';
 
 const UserInfo = (props) => {
-  const { firstName, lastName, bio } = props.userInfo;
+  const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
   const { userConnections } = props;
   const userId = sessionStorage.getItem('userId');
   return (

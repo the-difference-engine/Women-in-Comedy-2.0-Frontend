@@ -45,17 +45,21 @@ class ProfilePage extends Component {
   renderConnection() {
     if (this.props.userInfo.id == userId) {
       return <div></div>
-    }
-    if (_.isEmpty(this.props.status)) {
-      return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
-    }
-
+    
     if (this.props.status.status === true) {
       return <div> Connected </div>
     }
 
     if (this.props.status.status === false) {
       return <div> Request Pending...</div>
+    }
+
+    }if (this.props.userInfo.block_connection_requests == true) {
+      return <div>This user is not currently accepting connection requests</div>
+    }
+
+    if (_.isEmpty(this.props.status)) {
+      return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
     }
   }
 
