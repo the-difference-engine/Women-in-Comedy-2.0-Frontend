@@ -8,7 +8,9 @@ import {
   createPostOnUserWall,
   userWallInputChange
 } from '../actions';
-import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar  } from '../common';
+import Navbar from '../common/Navbar';
+import { LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar  } from '../common';
+
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
@@ -44,7 +46,7 @@ class Feed extends Component {
     const { userInfo, userConnections, userFeeds, receivedConnectionRequest } = this.props;
     return (
       <div>
-        <Navbar />
+        <Navbar history={this.props.history} />
 
         <RightGraySideBar>
           <Messages connections={receivedConnectionRequest} />

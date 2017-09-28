@@ -6,7 +6,6 @@ const INITIAL_STATE =[];
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case CREATE_EVENT:
-      console.log(action.payload);
       return action.payload;
     case FETCH_USER_EVENTS:
 			return action.payload.data;
