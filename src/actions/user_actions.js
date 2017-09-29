@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS } from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -13,3 +13,9 @@ export const fetchUserInfo = (userId) => {
    });
  };
 };
+
+export const fetchAllUsers = () => async dispatch => {
+  const request = await axios('http://localhost:9000/api/v1/users');
+  console.log(request);
+  dispatch({ type: FETCH_ALL_USERS, payload: request });
+}

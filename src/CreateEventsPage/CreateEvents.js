@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { LeftGraySideBar, RightGraySideBar, Navbar } from '../common';
+import Navbar from '../common/Navbar';
+import { LeftGraySideBar, RightGraySideBar } from '../common';
 import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
@@ -55,7 +56,7 @@ class CreateEvents extends Component {
 
     return (
       <div>
-        <Navbar />
+        <Navbar history={this.props.history}/>
         <div id="create-event-wrapper">
           <TextField
             hintText="Event Title"

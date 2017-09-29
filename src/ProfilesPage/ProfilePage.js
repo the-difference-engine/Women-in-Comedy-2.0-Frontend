@@ -10,7 +10,8 @@ import {
   userWallInputChange,
   createPostOnUserWall
 } from '../actions';
-import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
+import { LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
+import Navbar from '../common/Navbar';
 import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
 import ProfileFeed from './components/ProfileFeed';
@@ -60,13 +61,11 @@ class ProfilePage extends Component {
   }
 
   render () {
-    const { userInfo, userConnections, userFeeds, status } = this.props;
-    console.log('render');
-    console.log({userConnections});
+
 
     return (
       <div>
-        <Navbar />
+        <Navbar history={this.props.history} />
         <LeftGraySideBar>
           <UserInfo userInfo={this.props.userInfo}/>
           {this.renderConnection()}
