@@ -19,9 +19,6 @@ class ProfileConnections extends Component {
 
   }
   onClickContacts() {
-    console.log('onClickContacts working');
-    console.log('this.state below onClickContacts');
-    console.log(this.state);
 
     if(this.state.term === 'ten') {
       this.setState({ term: 'all' });
@@ -39,9 +36,6 @@ class ProfileConnections extends Component {
 
     }
 
-
-    console.log('this.state below onClickContacts after ');
-    console.log(this.state);
   }
   getUsers(result, users, count) {
     if(users.length === 0 || count === 10) {
@@ -72,22 +66,16 @@ class ProfileConnections extends Component {
     const displayNames = [];
 
     const displayAll = renderConnections(users);
-    console.log('displayAll below');
-    console.log(displayAll);
 
     if(this.state.term === 'ten') {
       displayNames.push(this.getUsers([], displayAll, 0));
-      console.log('displayNames below');
-      console.log(displayNames);
+
 
     } else if(this.state.term === 'all') {
       displayNames.push(this.getAllUsers([], displayAll, 0));
-      console.log('displayNames below');
-      console.log(displayNames);
+
 
     }
-    console.log('state below');
-    console.log(this.state);
 
       return (
         <div id="boop">

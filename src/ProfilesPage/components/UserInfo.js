@@ -3,7 +3,6 @@ import '../css/profile-userinfo.css';
 
 const UserInfo = (props) => {
   if (props.userInfo) {
-    console.log(props.userInfo);
     const { firstName, lastName, bio, block_connection_requests } = props.userInfo
     return (
       <div>

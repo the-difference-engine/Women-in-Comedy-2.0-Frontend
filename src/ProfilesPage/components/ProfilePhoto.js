@@ -5,16 +5,12 @@ import '../css/profilephoto.css';
 const ProfilePhoto = (props) => {
 	const query = window.location.pathname;
 	const new_query = query.slice(9);
-	// console.log('new query below');
-	// console.log(new_query);
-	// console.log('props.children below');
-	// console.log(props.children);
+
 
     const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
 
     const { userConnections } = props;
-    // console.log('userConnections = props below');
-    // console.log({userConnections});
+
 
     // width="180px" height="180px"
 

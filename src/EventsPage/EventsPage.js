@@ -29,8 +29,6 @@ class EventsPage extends Component {
 	}
 }
 function mapStateToProps({ myUpcomingEvents, upcomingEvents }) {
-  console.log(myUpcomingEvents);
-  console.log(upcomingEvents);
   return { myUpcomingEvents, upcomingEvents };
 }
 export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents })(EventsPage);

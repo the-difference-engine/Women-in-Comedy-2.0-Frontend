@@ -8,7 +8,8 @@ import {
   createConnectionRequest,
   fetchConnectionStatus,
   userWallInputChange,
-  createPostOnUserWall
+  createPostOnUserWall,
+  blockConnectionRequests
 } from '../actions';
 import { Navbar, LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import UserInfo from './components/UserInfo';
@@ -35,6 +36,11 @@ class ProfilePage extends Component {
     this.props.createConnectionRequest(data);
   }
 
+  onBlockConnection() {
+    const sender_id = sessionStorage.getItem('userId');
+    this.props.blockConnectionRequests(sender_id);
+  }
+
   onPost() {
     const body = this.props.userWallPost;
     const userId = this.props.match.params.id || sessionStorage.getItem('userId');
@@ -42,37 +48,44 @@ class ProfilePage extends Component {
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
+  renderBlockConnection() {
+    if (this.props.userInfo.id == userId) {
+      return <button type="button"  onClick={this.onBlockConnection.bind(this)}>Block Connection Requests</button>    
+    }
+  }
+
   renderConnection() {
     if (this.props.userInfo.id == userId) {
       return <div></div>
-    
-    if (this.props.status.status === true) {
+    }
+
+    else if (this.props.status.status === true) {
       return <div> Connected </div>
     }
 
-    if (this.props.status.status === false) {
+    else if (this.props.status.status === false) {
       return <div> Request Pending...</div>
     }
 
-    }if (this.props.userInfo.block_connection_requests == true) {
+    else if (this.props.userInfo.block_connection_requests === true) {
       return <div>This user is not currently accepting connection requests</div>
     }
 
-    if (_.isEmpty(this.props.status)) {
+    else if (_.isEmpty(this.props.status)) {
       return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
     }
   }
 
   render () {
     const { userInfo, userConnections, userFeeds, status } = this.props;
-    console.log('render');
-    console.log({userConnections});
+
 
     return (
       <div>
         <Navbar />
         <LeftGraySideBar>
           <UserInfo userInfo={this.props.userInfo}/>
+          {this.renderBlockConnection()}
           {this.renderConnection()}
         </LeftGraySideBar>
         <RightGraySideBar>
@@ -99,7 +112,6 @@ class ProfilePage extends Component {
 
   const mapStateToProps = (state) => {
     const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
-    console.log(userFeeds);
 
     return { userInfo, userFeeds, userConnections, status, userWallPost };
   }
@@ -111,6 +123,7 @@ export default connect(mapStateToProps,
     createConnectionRequest,
     fetchConnectionStatus,
     userWallInputChange,
-    createPostOnUserWall
+    createPostOnUserWall,
+    blockConnectionRequests
   }
   )(ProfilePage);

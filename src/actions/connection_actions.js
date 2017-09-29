@@ -34,6 +34,7 @@ export const createConnectionRequest = ({sender_id, receiver_id}) => async dispa
     }
   });
   dispatch({ type: CREATE_CONNECTION_REQUEST, payload: request })
+
 }
 
 export const fetchConnectionStatus = ({ sender_id, receiver_id }) => async dispatch => {
@@ -80,4 +81,13 @@ export const declineConnection = (userId, requestId, callback) => async dispatch
     url: `http://localhost:9000/api/v1/users/connections/${requestId}`
   });
   await callback(userId)
+}
+
+export const blockConnectionRequests = (sender_id) => async dispatch =>{
+  const request = await axios({
+    method: 'post',
+    url: `http://localhost:9000/api/v1/users/${sender_id}`,
+    headers: { "id": sender_id }
+  });
+
 }
