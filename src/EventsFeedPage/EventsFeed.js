@@ -11,8 +11,8 @@ import {
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
-
-import { RightGraySideBar, LeftGraySideBar, Navbar, PageContent, Feed } from '../common';
+import Navbar from '../common/Navbar';
+import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 
 class EventsFeed extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class EventsFeed extends Component {
   render() {
     return (
       <div id="events-feed-container">
-        <Navbar />
+        <Navbar history={this.props.history} />
         <RightGraySideBar>
           <Guests
             event={this.props.selectedEvent}
