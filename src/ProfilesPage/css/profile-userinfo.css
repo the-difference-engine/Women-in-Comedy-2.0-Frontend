@@ -1,3 +1,54 @@
+#left-side-bar-superuser {
+  position: fixed;
+  left: 0;
+  top: 65px;
+  width: 20%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+
+}
+
+#left-side-bar-content-superuser {
+  margin-top: 65px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 100%;
+}
+
+#userinfo-left h1 {
+  font-size: 160%;
+}
+
+#button-superuser button {
+  margin-bottom: 75px;
+}
+
+#onClickSuperUserOne {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#onClickSuperUserTwo {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#onClickSuperUserThree {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#onClickSuperUserFour {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
 #profile-img {
   width: 100px;
   height: 100px;
@@ -20,4 +71,62 @@
 
 #profile-bio-content {
   font-size: 16px;
+}
+
+.onclick p {
+  cursor: pointer;
+}
+
+#create-edit-superuser {
+  margin-top: 15px;
+  left: 0%;
+  margin-bottom: 70px;
+}
+
+#create-edit-superuser h1 {
+  font-size: 120%;
+}
+
+#create-edit-superuser form {
+  font-size: 90%;
+  position: relative;
+}
+
+#create-edit-superuser input {
+  font-size: 90%;
+  min-width: 200px;
+  height: 25px;
+}
+
+#register-superuser {
+  margin-top: 15px;
+  left: 0%;
+  margin-bottom: 70px;
+}
+
+#register-superuser h1 {
+  font-size: 120%;
+}
+
+#register-superuser form {
+  font-size: 90%;
+  position: relative;
+}
+
+#register-superuser input {
+  font-size: 120%;
+  min-width: 232px;
+  height: 35px;
+}
+
+#field-form .form-control {
+  width: 100px;
+}
+
+input[type=checkbox] {
+  margin-left: 5px;
+}
+
+.btn-success {
+  margin-top: 15px;
 }

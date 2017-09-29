@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE } from './types';
+import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, UPDATE_USER_AS_SUPERUSER, DELETE_USER_AS_SUPERUSER } from './types';
 
 export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => async dispatch => {
   await axios({
@@ -12,6 +12,24 @@ export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => a
 
 };
 
+export const deleteUserAsSuperUser = (id) => async dispatch => {
+  await axios({
+    method: 'delete',
+    url: 'http://localhost:9000/api/v1/users/delete_user',
+    data: ( id )
+  });
+  dispatch({ type: DELETE_USER_AS_SUPERUSER })
+};
+
+export const updateUserAsSuperuser = (values) => async dispatch => {
+  await axios({
+    method: 'post',
+    url: 'http://localhost:9000/api/v1/users/superupdate',
+    data: ( values )
+  });
+  dispatch({ type: UPDATE_USER_AS_SUPERUSER })
+};
+
 export const userWallInputChange = value => dispatch => {
   dispatch({ type: USER_WALL_INPUT_CHANGE, payload: value });
 };
@@ -19,6 +37,7 @@ export const userWallInputChange = value => dispatch => {
 export const eventWallInputChange = value => dispatch => {
   dispatch({ type: EVENT_WALL_INPUT_CHANGE, payload: value })
 }
+
 
 export const createPostOnEventWall = ({ body, eventId, authorId }, callback) => async dispatch => {
   await axios({
