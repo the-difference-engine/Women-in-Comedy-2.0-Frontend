@@ -220,7 +220,7 @@ class UserInfo extends Component {
           console.log('delete payload below');
           console.log(payload);
           this.setState({ userMade: true });
-          alert('User Delete Processed');
+          alert('User Deleted');
           window.location = "http://localhost:3000/profile/" + superId;
         })
         .catch(err => {alert(err)});

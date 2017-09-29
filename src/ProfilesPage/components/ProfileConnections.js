@@ -9,7 +9,7 @@ class ProfileConnections extends Component {
   constructor(props) {
     super(props);
     this.state = { term: 'ten',
-                   connections_string: 'See All Connections' } 
+                   connections_string: 'See All Connections' }
   };
   componentWillMount() {
     const { connections } = this.props;
@@ -19,9 +19,7 @@ class ProfileConnections extends Component {
 
   }
   onClickContacts() {
-    console.log('onClickContacts working');
-    console.log('this.state below onClickContacts');
-    console.log(this.state);
+
 
     if(this.state.term === 'ten') {
       this.setState({ term: 'all' });
@@ -29,7 +27,7 @@ class ProfileConnections extends Component {
       // variable = document.querySelector('.red');
       // variable.innerHTML = "Close All Connections";
 
-      
+
     } else if(this.state.term === 'all') {
       this.setState({ term: 'ten' });
       this.setState({ connections_string: 'See All Connections'})
@@ -72,22 +70,18 @@ class ProfileConnections extends Component {
     const displayNames = [];
 
     const displayAll = renderConnections(users);
-    console.log('displayAll below');
-    console.log(displayAll);
+
 
     if(this.state.term === 'ten') {
       displayNames.push(this.getUsers([], displayAll, 0));
-      console.log('displayNames below');
-      console.log(displayNames);
+
 
     } else if(this.state.term === 'all') {
       displayNames.push(this.getAllUsers([], displayAll, 0));
-      console.log('displayNames below');
-      console.log(displayNames);
+
 
     }
-    console.log('state below');
-    console.log(this.state);
+
 
       return (
         <div id="boop">
@@ -95,15 +89,13 @@ class ProfileConnections extends Component {
             <div className="container">
               <h4>Connections({connections.length})</h4>
             </div>
-
-
             <div className="user-list">
               <div className="container">
                 <div>{displayNames}</div>
               </div>
             </div>
 
-            <div className="onclick" 
+            <div className="onclick"
                  onClick={this.onClickContacts.bind(this)}>
                  <p className="red">{this.state.connections_string}</p>
             </div>
@@ -128,48 +120,3 @@ const renderConnections = (connections) => {
 }
 
 export default ProfileConnections;
-
-
-
-
- // const ProfileConnections = (props) => {
-
-
-
-  // function getUsers(result, users, count) {
-  //   if(users.length === 0 || count === 10) {
-  //     return result;
-  //   } else {
-  //     var x = Math.floor(Math.random() * users.length);
-  //     result.push(users.splice(x, 1)[0]);
-  //     ++count;
-  //     getUsers(result, users, count);
-  //   }
-  //   return result;
-  // }
-
-
-
-  
- //  var displayAll = renderConnections(userConnections);
- //  console.log("Display all below!")
- //  console.log(displayAll)
-
-   
-  // function onClickContacts() {
-  //  console.log('onClickContacts working');
-  //  // changeStatus();
-  //  // console.log('onClickContacts working');
-  // }
-
-
-  // const allUsers = renderConnections(userConnections);
-  // if (userConnections.length >= 10) {
-  //   displayedConnections = 10
-  // } else {
-  //   displayedConnections = userConnections.length
-  // };
- 
-
-
-// }

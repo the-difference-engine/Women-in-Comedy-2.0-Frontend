@@ -7,13 +7,7 @@ const UserInfo = (props) => {
   const { userConnections } = props;
   const userId = sessionStorage.getItem('userId');
   return (
-
     <div>
-      <p>{firstName} {lastName}</p>
-      <p>Bio</p>
-      <p>{bio}</p>
-      <p>Connections({userConnections.length})</p>
-      {renderConnections(userConnections)}
       <div id="user-info">
        <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />
         <p id="user-name">{firstName} {lastName}</p>
@@ -32,7 +26,6 @@ const UserInfo = (props) => {
 
 const renderConnections = (connections) => {
   return connections.map(connection => {
-    console.log(connection);
     return (
       <div key={connection.id}>
         <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />

@@ -66,3 +66,11 @@ i.fa {
 p {
   font-family: 'Quicksand', sans-serif;
 }
+
+#auto {
+  background-color: white;
+}
+
+#list-of-users {
+  position: absolute;
+}
