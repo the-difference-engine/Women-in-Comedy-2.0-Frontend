@@ -15,6 +15,8 @@ class UserInfo extends Component {
                    super_user_string_two: 'Update!(click to show)',
                    super_user_show_three: false,
                    super_user_string_three: 'Delete!(click to show)',
+                   super_user_show_one: false,
+                   super_user_string_one: 'Create!(click to show)',
                    admin_term: false,
                    admin_string: 'Admin!(click to show)',
                    userMade: false }
@@ -36,6 +38,18 @@ class UserInfo extends Component {
       // this.setState({ superuser_term: 'hidden' });
       // this.setState({ super_user_string: 'SuperUser!(click to show)' })
 
+  }
+  onClickSuperUserOne() {
+    console.log('onClickSuperUserOne');
+    if(this.state.super_user_show_one === false) {
+      this.setState({ super_user_show_one: true });
+      this.setState({ super_user_show: false });
+      this.setState({ super_user_string_one: 'Create!(click to hide)' });
+    } else if(this.state.super_user_show_one === true) {
+      this.setState({ super_user_show_one: false });
+      this.setState({ super_user_show: true });
+      this.setState({ super_user_string_one: 'Create!(click to show)' });
+    }
   }
   onClickSuperUserTwo() {
     console.log('onClickSuperUserTwo');
@@ -61,9 +75,13 @@ class UserInfo extends Component {
 
     if(this.state.super_user_show_three === false) {
       this.setState({ super_user_show_three: true });
+      this.setState({ super_user_show_two: false });
+      this.setState({ super_user_show_one: false });
+      this.setState({ super_user_show: false });
       this.setState({ super_user_string_three: 'Delete!(click to hide)' });
     } else if(this.state.super_user_show_three === true) {
       this.setState({ super_user_show_three: false });
+      this.setState({ super_user_show: true });
       this.setState({ super_user_string_three: 'Delete!(click to show)' });
     }
     console.log('super_user_show');
@@ -250,7 +268,7 @@ class UserInfo extends Component {
     const { updateUser } = this.props;
     const { handleSubmit } = this.props;
 
-    if(super_user && (this.state.super_user_show === false)) {
+    if(super_user && ((this.state.super_user_show === false && this.state.super_user_show_one === false) && (this.state.super_user_show_two === false && this.state.super_user_show_three === false))) {
       // if(superuser && this.state.superuser_term === 'hidden'); {
         return (
           <div id="left-side-bar-superuser">
@@ -268,7 +286,39 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if(this.state.super_user_show === true && this.state.super_user_show_two !== true && this.state.super_user_show_three !== true) {
+    } else if(super_user && (this.state.super_user_show ===  true && this.state.super_user_show_one === false) && (this.state.super_user_show_two === false && this.state.super_user_show_three === false)) {
+      return (
+        <div id="left-side-bar-superuser">
+          <div id="left-side-bar-content-superuser">
+            <div id="userinfo-left">
+              <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+              <p id="profile-name">{firstName} {lastName}</p>
+              <p id="profile-bio-title">Bio</p>
+              <p id="profile-bio-content">{bio}</p>
+              <div className="onclick" 
+                onClick={this.onClickSuperUser.bind(this)}>
+                <p id="profile-title">{this.state.super_user_string}</p>
+              </div>
+              <div id="onClickSuperUserOne">
+                <div className="onclick" onClick={this.onClickSuperUserOne.bind(this)}>
+                  <p id="profile-title">{this.state.super_user_string_one}</p>
+                </div>
+              </div>
+              <div id="onClickSuperUserTwo">
+                <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
+                  <p id="profile-title">{this.state.super_user_string_two}</p>
+                </div>
+              </div>
+              <div id="onClickSuperUserThree">
+                <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
+                  <p id="profile-title">{this.state.super_user_string_three}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else if(super_user && (this.state.super_user_show_one === true && this.state.super_user_show_two !== true) && (this.state.super_user_show_three !== true)) {
         console.log('show');
         return (
           <div id="left-side-bar-superuser">
@@ -278,12 +328,14 @@ class UserInfo extends Component {
                 <p id="profile-name">{firstName} {lastName}</p>
                 <p id="profile-bio-title">Bio</p>
                 <p id="profile-bio-content">{bio}</p>
+                <div id="onClickSuperUserOne">
                   <div className="onclick" 
-                       onClick={this.onClickSuperUser.bind(this)}>
-                       <p id="profile-title">{this.state.super_user_string}</p>
+                       onClick={this.onClickSuperUserOne.bind(this)}>
+                       <p id="profile-title">{this.state.super_user_string_one}</p>
                   </div>
+                </div>
                   <div id="register-superuser">
-                    <h1>Create a New Account</h1>
+                    <h1>Create User!</h1>
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                       <Field
                         label="First name"
@@ -315,29 +367,14 @@ class UserInfo extends Component {
                         name="admin"
                         component={this.renderTitleField}
                       />
-                      <Field
-                        label="SuperUser true/false"
-                        name="super_user"
-                        component={this.renderTitleField}
-                        />
                         <button className="btn btn-success" type="submit">Submit</button>
                     </form>
-                  <div id="onClickSuperUserTwo">
-                    <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
-                      <p id="profile-title">{this.state.super_user_string_two}</p>
-                    </div>
-                  </div>
-                  <div id="onClickSuperUserThree">
-                    <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
-                      <p id="profile-title">{this.state.super_user_string_three}</p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         );
-    } else if(this.state.super_user_show && this.state.super_user_show_two) {
+    } else if (super_user && (this.state.super_user_show_one === false) && (this.state.super_user_show_two === true && this.state.super_user_show_three === false)) {
         return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">
@@ -359,13 +396,73 @@ class UserInfo extends Component {
                       component={this.renderTitleField}
                     />
                     <Field
-                      label="Admin true/false"
-                      name="admin"
+                      label="Email"
+                      name="update_email"
                       component={this.renderTitleField}
                     />
                     <Field
-                      label="SuperUser true/false"
-                      name="super_user"
+                      label="City"
+                      name="city"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="About"
+                      name="about"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Website"
+                      name="update_website"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Video Link"
+                      name="video_lik"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Training"
+                      name="update_training"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Experience"
+                      name="update_experience"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="UID"
+                      name="uid"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Provider"
+                      name="provider"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Meeting"
+                      name="meeting"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Birthdate"
+                      name="birthdate"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="First Name"
+                      name="first_name"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Last Name"
+                      name="last_name"
+                      component={this.renderTitleField}
+                    />
+                    <Field
+                      label="Admin true/false"
+                      name="admin"
                       component={this.renderTitleField}
                     />
                     <div id="button-superuser">
@@ -376,51 +473,7 @@ class UserInfo extends Component {
             </div>
           </div>
         );
-    } else if (this.state.super_user_show && this.state.super_user_show_two && this.state.super_user_show_three === false) {
-        return (
-          <div id="left-side-bar-superuser">
-            <div id="left-side-bar-content-superuser">
-              <div id="userinfo-left">
-                <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-                <p id="profile-name">{firstName} {lastName}</p>
-                <p id="profile-bio-title">Bio</p>
-                <p id="profile-bio-content">{bio}</p>
-                  <div id="onClickSuperUserTwo">
-                    <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
-                      <p id="profile-title">{this.state.super_user_string_two}</p>
-                    </div>
-                  </div>
-                  <h1>Update User!</h1>
-                  <form onSubmit={handleSubmit(this.onSubmitUpdate.bind(this))}>
-                    <Field 
-                      label="User ID"
-                      name="userId"
-                      component={this.renderTitleField}
-                    />
-                    <Field
-                      label="Admin true/false"
-                      name="admin"
-                      component={this.renderTitleField}
-                    />
-                    <Field
-                      label="SuperUser true/false"
-                      name="super_user"
-                      component={this.renderTitleField}
-                    />
-                    <div id="button-superuser">
-                      <button className="btn btn-success" type="submit">Update User</button>
-                    </div>
-                  </form>
-              </div>
-            </div>
-                  <div id="onClickSuperUserThree">
-                    <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
-                      <p id="profile-title">{this.state.super_user_string_three}</p>
-                    </div>
-                  </div>
-          </div>
-        );
-    } else if(this.state.super_user_show && this.state.super_user_show_three && (this.state.super_user_show_two === false)) {
+    } else if(super_user && (this.state.super_user_show === false && this.state.super_user_show_one === false) && (this.state.super_user_show_two === false && this.state.super_user_show_three === true)) {
        return (
           <div id="left-side-bar-superuser">
             <div id="left-side-bar-content-superuser">

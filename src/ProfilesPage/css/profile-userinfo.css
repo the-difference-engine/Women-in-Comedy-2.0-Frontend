@@ -21,8 +21,14 @@
   font-size: 160%;
 }
 
-#button-superuser {
-  padding-bottom: 10px;
+#button-superuser button {
+  margin-bottom: 75px;
+}
+
+#onClickSuperUserOne {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
 }
 
 #onClickSuperUserTwo {
@@ -32,6 +38,12 @@
 }
 
 #onClickSuperUserThree {
+  margin: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#onClickSuperUserFour {
   margin: 15px;
   padding-bottom: 25px;
   padding-top: 25px;
