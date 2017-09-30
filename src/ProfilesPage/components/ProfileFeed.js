@@ -1,7 +1,6 @@
 import React from 'react';
 import { Feed } from '../../common';
 const ProfileFeed = (props) => {
-  console.log(props.feeds);
   if (props.feeds) {
     return (
       <div>

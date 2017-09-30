@@ -16,10 +16,7 @@ class Profile extends Component {
 
   componentWillMount() {
     const { userFeeds } = this.props;
-    console.log('userFeeds Below');
-    console.log({ userFeeds });
     const count = this.props.length;
-    console.log(count);
     const sender_id = sessionStorage.getItem('userId');
     const query = window.location.pathname;
     const new_query = query.slice(9);
@@ -77,8 +74,6 @@ class Profile extends Component {
   }
 
   onSubmit(values) {
-    console.log('values below');
-    console.log(values);
     const sender_id = sessionStorage.getItem('userId');
     const query = window.location.pathname;
     const new_query = query.slice(9);
@@ -98,8 +93,6 @@ class Profile extends Component {
   }
 
   onSubmitComment(values) {
-    console.log('values below commets');
-    console.log(values);
     const sender_id = sessionStorage.getItem('userId');
     const query = window.location.pathname;
     const new_query = query.slice(9);
@@ -120,8 +113,6 @@ class Profile extends Component {
 
   render() {
     const { userFeeds } = this.props;
-    console.log('userFeeds below !!! @_@');
-    console.log(userFeeds);
     const commentArray = [];
     userFeeds.forEach(feed => {
       feed.postComments.forEach(comment => {
@@ -131,15 +122,9 @@ class Profile extends Component {
         
       })
     })
-    console.log('@_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@ @_@');
     this.commentsTotal = commentArray.length;
-    console.log('this.commentsTotal below');
-    console.log(this.commentsTotal);
-
 
     const count = this.props.length;
-    console.log('count below @@@_@@@');
-    console.log(count);
 
     const { handleSubmit } = this.props;
 

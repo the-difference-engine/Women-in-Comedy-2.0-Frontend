@@ -19,8 +19,6 @@ class ProfileConnections extends Component {
 
   }
   onClickContacts() {
-
-
     if(this.state.term === 'ten') {
       this.setState({ term: 'all' });
       this.setState({ connections_string: 'Close All Connections'})
@@ -37,9 +35,6 @@ class ProfileConnections extends Component {
 
     }
 
-
-    console.log('this.state below onClickContacts after ');
-    console.log(this.state);
   }
   getUsers(result, users, count) {
     if(users.length === 0 || count === 10) {

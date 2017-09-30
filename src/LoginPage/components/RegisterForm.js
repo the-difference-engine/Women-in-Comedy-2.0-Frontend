@@ -110,16 +110,13 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
     axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/users', values)
       .then(payload => {
-        console.log(payload);
         this.setState({ userMade: true });
       })
       .catch(err => {alert(err)});
   }
   render() {
-    console.log('register');
     const { handleSubmit } = this.props;
     if (this.state.userMade) {
       return (

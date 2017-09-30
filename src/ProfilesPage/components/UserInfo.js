@@ -3,8 +3,7 @@ import '../css/profile-userinfo.css';
 
 const UserInfo = (props) => {
   if (props.userInfo) {
-    console.log(props.userInfo);
-    const { firstName, lastName, bio } = props.userInfo
+    const { firstName, lastName, bio, block_connection_requests } = props.userInfo
     return (
       <div>
         <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
