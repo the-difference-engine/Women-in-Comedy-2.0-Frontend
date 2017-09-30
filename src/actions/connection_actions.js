@@ -89,5 +89,4 @@ export const blockConnectionRequests = (sender_id) => async dispatch =>{
     url: `http://localhost:9000/api/v1/users/${sender_id}`,
     headers: { "id": sender_id }
   });
-
 }

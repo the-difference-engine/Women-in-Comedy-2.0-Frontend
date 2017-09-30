@@ -52,7 +52,11 @@ class ProfilePage extends Component {
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
-      <input type="checkbox" onClick={this.onBlockConnection.bind(this)} /> 
+      <input 
+        type="checkbox"
+        defaultChecked={this.props.userInfo.block_connection_requests}
+        onClick={this.onBlockConnection.bind(this)} 
+      /> 
       Block Incomming Connection Requests
       </label>
     }
