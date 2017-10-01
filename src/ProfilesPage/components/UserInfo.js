@@ -298,11 +298,9 @@ class UserInfo extends Component {
       if(this.state.search_variable === 'firstName') {
         return user.firstName.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'lastName') {
-        return user.lastName.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;        
+        return user.lastName.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;    
       } else if(this.state.search_variable === 'about') {
         return user.about.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
-      } else if(this.state.search_variable === 'admin' && user.admin !== null) {
-        return user.admin.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'birthdate' && user.birthdate !== null) {
         return user.birthdate.indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'city') {
@@ -314,15 +312,15 @@ class UserInfo extends Component {
       } else if(this.state.search_variable === 'gender') {
         return user.gender.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'id') {
-        return user.id.indexOf(this.state.term !== -1;
+        return user.id.indexOf(this.state.term) !== -1;
       } else if(this.state.search_variable === 'lastSignInAt') {
         return user.lastSignInAt.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'lastSignInIP') {
-        return user.lastSignInIP.indexOf(this.state.term !== -1;
+        return user.lastSignInIP.indexOf(this.state.term) !== -1;
       } else if(this.state.search_variable === 'currentSignInAt') {
         return user.lastSignInAt.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'currentSignInIP') {
-        return user.currentSignInIP.indexOf(this.state.term !== -1;
+        return user.currentSignInIP.indexOf(this.state.term) !== -1;
       } else if(this.state.search_variable === 'meeting') {
         return user.meeting.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'provider') {
@@ -332,11 +330,9 @@ class UserInfo extends Component {
       } else if(this.state.search_variable === 'resetPasswordToken') {
         return user.resetPasswordToken.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'signInCount') {
-        return user.signInCount.indexOf(this.state.term !== -1;
+        return user.signInCount.indexOf(this.state.term) !== -1;
       } else if(this.state.search_variable === 'training') {
         return user.training.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
-      } else if(this.state.search_variable === 'superUser' && user.superUser !== null) {
-        return user.superUser.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'videoLink') {
         return user.videoLink.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
       } else if(this.state.search_variable === 'website') {
@@ -370,8 +366,6 @@ class UserInfo extends Component {
                         <option value="lastName">lastName</option>
                         <option value="city">city</option>
                         <option value="about">about</option>
-                        <option value="admin">admin</option>
-                        <option value="superUser">superUser</option>
                         <option value="birthdate">birthdate</option>
                         <option value="currentSignInAt">currentSignInAt</option>
                         <option value="currentSignInIP">currentSignInIP</option>
