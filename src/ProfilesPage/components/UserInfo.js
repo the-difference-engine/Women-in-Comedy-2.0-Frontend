@@ -19,12 +19,28 @@ class UserInfo extends Component {
                    super_user_string_one: 'Create!(click to show)',
                    admin_term: false,
                    admin_string: 'Admin!(click to show)',
-                   userMade: false }
+                   userMade: false,
+                   term: '',
+                   selectValue: '',
+                   search_variable: 'firstName'
+
+                  }
+    this.updateTerm = this.updateTerm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   };
   componentWillMount() {  
     const { firstName, lastName, bio, admin, super_user } = this.props.userInfo;
+    const { fetchUsers } = this.props.allUsers;
 
   }
+  handleChange(e) {
+    const value = e.target.value;
+    console.log('value below');
+    console.log(value);
+    this.setState({ selectValue: value });
+    this.setState({ search_variable: value });
+  }
+
   onClickSuperUser() {
     console.log('onClickSuperUser');
     if(this.state.super_user_show === false) {
@@ -261,12 +277,71 @@ class UserInfo extends Component {
       .catch(err => {alert(err)});
   }
 
+  updateTerm(term) {
+    this.setState({ term: term.substr(0, 50)});
+    console.log(term);
+  }
+
 
   render() {
     console.log('register');
     const { firstName, lastName, bio, admin, super_user } = this.props.userInfo
+    const { allUsers } = this.props;
     const { updateUser } = this.props;
     const { handleSubmit } = this.props;
+    console.log('users below K_K');
+    console.log(allUsers);
+    
+    let filteredUsers = allUsers.filter((user) => {
+      console.log('this.state.search_variable below');
+      console.log(this.state.search_variable);
+      if(this.state.search_variable === 'firstName') {
+        return user.firstName.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'lastName') {
+        return user.lastName.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;        
+      } else if(this.state.searc_variable === 'about') {
+        return user.about.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'birthdate') {
+        return user.birthdate.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'city') {
+        return user.city.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'email') {
+        return user.email.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'experience') {
+        return user.experience.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'gender') {
+        return user.gender.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'id') {
+        return user.id.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'lastSignInAt') {
+        return user.lastSignInAt.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'lastSignInIP') {
+        return user.lastSignInIP.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'currentSignInAt') {
+        return user.lastSignInAt.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'currentSignInIP') {
+        return user.currentSignInIP.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'meeting') {
+        return user.meeting.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'provider') {
+        return user.provider.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'resetPasswordSentAt') {
+        return user.resetPasswordSentAt.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'resetPasswordToken') {
+        return user.resetPasswordToken.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'signInCount') {
+        return user.signInCount.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'training') {
+        return user.training.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'videoLink') {
+        return user.videoLink.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      } else if(this.state.search_variable === 'website') {
+        return user.website.toLowerCase().indexOf(this.state.term.toLowerCase()) !== -1;
+      }
+    });
+    console.log('filteredUsers');
+    console.log(filteredUsers);
+
 
     if(super_user && ((this.state.super_user_show === false && this.state.super_user_show_one === false) && (this.state.super_user_show_two === false && this.state.super_user_show_three === false))) {
       // if(superuser && this.state.superuser_term === 'hidden'); {
@@ -282,6 +357,33 @@ class UserInfo extends Component {
                        onClick={this.onClickSuperUser.bind(this)}>
                        <p id="profile-title">{this.state.super_user_string}</p>
                   </div>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+                  <input type="text" value={this.state.term} onChange={event => this.updateTerm(event.target.value)} placeholder="admin search"/>
               </div>
             </div>
           </div>
@@ -299,6 +401,33 @@ class UserInfo extends Component {
                 onClick={this.onClickSuperUser.bind(this)}>
                 <p id="profile-title">{this.state.super_user_string}</p>
               </div>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+              <input type="text" value={this.state.term} onChange={this.updateTerm} placeholder="admin search" />
               <div id="onClickSuperUserOne">
                 <div className="onclick" onClick={this.onClickSuperUserOne.bind(this)}>
                   <p id="profile-title">{this.state.super_user_string_one}</p>
@@ -333,6 +462,33 @@ class UserInfo extends Component {
                        onClick={this.onClickSuperUserOne.bind(this)}>
                        <p id="profile-title">{this.state.super_user_string_one}</p>
                   </div>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+                  <input type="text" value={this.state.term} onChange={this.updateTerm} placeholder="admin search" />
                 </div>
                   <div id="register-superuser">
                     <h1>Create User!</h1>
@@ -387,6 +543,33 @@ class UserInfo extends Component {
                     <div className="onclick" onClick={this.onClickSuperUserTwo.bind(this)}>
                       <p id="profile-title">{this.state.super_user_string_two}</p>
                     </div>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+                    <input type="text" value={this.state.term} onChange={this.updateTerm} placeholder="admin search" />
                   </div>
                   <h1>Update User!</h1>
                   <form onSubmit={handleSubmit(this.onSubmitUpdate.bind(this))}>
@@ -486,6 +669,33 @@ class UserInfo extends Component {
                     <div className="onclick" onClick={this.onClickSuperUserThree.bind(this)}>
                       <p id="profile-title">{this.state.super_user_string_three}</p>
                     </div>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+                    <input type="text" value={this.state.term} onChange={this.updateTerm} placeholder="admin search" />
                   </div>
                   <h1>Delete User!</h1>
                   <form onSubmit={handleSubmit(this.onSubmitDelete.bind(this))}>
@@ -518,11 +728,40 @@ class UserInfo extends Component {
       return (
         <div id="left-side-bar-superuser">
           <div id="left-side-bar-content-superuser">
-            <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-            <p id="profile-name">{firstName} {lastName}</p>
-            <p id="profile-bio-title">Bio</p>
-            <p id="profile-bio-content">{bio}</p>
-            <p id="profile-title">{this.state.admin_string}</p>
+            <div id="userinfo-left">
+              <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+              <p id="profile-name">{firstName} {lastName}</p>
+              <p id="profile-bio-title">Bio</p>
+              <p id="profile-bio-content">{bio}</p>
+              <p id="profile-title">{this.state.admin_string}</p>
+                    <h4 id="dropdown_desc"> Choose Profile Field </h4>
+                      <select 
+                        value={this.state.selectValue} 
+                        onChange={this.handleChange} 
+                        >
+                        <option value="firstName">firstName</option>
+                        <option value="lastName">lastName</option>
+                        <option value="city">city</option>
+                        <option value="about">about</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="currentSignInAt">currentSignInAt</option>
+                        <option value="currentSignInIP">currentSignInIP</option>
+                        <option value="lastSignInIP">lastSignInIP</option>
+                        <option value="lastSignInAt">lastSignInAt</option>
+                        <option value="meeting">meeting</option>
+                        <option value="provider">provider</option>
+                        <option value="resetPasswordSentAt">resetPasswordSentAt</option>
+                        <option value="resetPasswordToken">resetPasswordToken</option>
+                        <option value="signInCount">signInCount</option>
+                        <option value="training">training</option>
+                        <option value="videoLink">videoLink</option>
+                        <option value="website">website</option>
+
+
+
+                      </select>
+              <input type="text" value={this.state.term} onChange={this.updateTerm} placeholder="admin search" />
+            </div>
           </div>
         </div>
       );
@@ -568,6 +807,15 @@ function validate(values) {
   return errors;
 }
 
+const renderUsers = (users) => {
+  return _.map(users, user => {
+    return (
+      <div key={user.id}>
+        {user}
+      </div>
+    );
+  });
+}
 
 export default reduxForm({
   validate,

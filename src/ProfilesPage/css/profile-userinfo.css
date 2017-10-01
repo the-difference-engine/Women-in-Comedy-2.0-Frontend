@@ -17,6 +17,51 @@
   height: 100%;
 }
 
+#left-side-bar-superuser select {
+  left: 0;
+  top: 8px;
+  width: 100%;
+  margin: 5px;
+  margin-right: 6px;
+  height: 70px;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+
+}
+
+#left-side-bar-content-superuser select {
+/*  margin-top: 65px;
+*/
+  margin-right: 5px;
+  height: 100%;
+  background-color: white;
+}
+
+
+#admin_dropdown {
+  position: fixed;
+  left: 0;
+  top: 65px;
+  width: 20%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+
+#admin_dropdown button {
+  margin-top: 65px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 100%;
+}
+
+
+#left-side-bar-searchbar input {
+  height: 40px;
+}
+
 #userinfo-left h1 {
   font-size: 160%;
 }
@@ -117,6 +162,10 @@
   font-size: 120%;
   min-width: 232px;
   height: 35px;
+}
+
+#dropdown_desc {
+  font-size: 90%;
 }
 
 #field-form .form-control {

@@ -1,10 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import {
   fetchUserInfo,
   fetchUserFeeds,
   fetchUserConnections,
+  fetchUsers,
   createConnectionRequest,
   fetchConnectionStatus,
   userWallInputChange,
@@ -15,17 +16,20 @@ import Navbar from '../common/Navbar';
 import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
 import ProfileFeed from './components/ProfileFeed';
+import './profilepage.css';
 
 const userId = sessionStorage.getItem('userId');
 class ProfilePage extends Component {
   componentWillMount() {
       const sender_id = sessionStorage.getItem('userId');
       const receiver_id = this.props.match.params.id;
-      const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
+      const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchUsers } = this.props;
       this.props.fetchUserInfo(this.props.match.params.id);
       this.props.fetchUserFeeds(this.props.match.params.id);
       this.props.fetchUserConnections(this.props.match.params.id);
       this.props.fetchConnectionStatus({ sender_id, receiver_id });
+      this.props.fetchUsers();
+
     }
 
   onPress() {
@@ -60,15 +64,16 @@ class ProfilePage extends Component {
   }
 
   render () {
-    const { userInfo, userConnections, userFeeds, status } = this.props;
+    const { userInfo, userConnections, userFeeds, allUsers, status } = this.props;
     console.log('render');
     console.log(this.updateUser);
-
+    console.log('users below $_$');
+    console.log(allUsers);
     return (
       <div>
         <Navbar history={this.props.history} />
         <LeftGraySideBar>
-          <UserInfo userInfo={this.props.userInfo}/>
+          <UserInfo userInfo={this.props.userInfo} allUsers={allUsers} />
           {this.renderConnection()}
         </LeftGraySideBar>
         <RightGraySideBar>
@@ -93,17 +98,28 @@ class ProfilePage extends Component {
   };
 }
 
+const renderUsers = (users) => {
+  return _.map(users, user => {
+    return (
+      <div key={user.id}>
+        {user}
+      </div>
+    )
+  })
+}
+
   const mapStateToProps = (state) => {
-    const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
+    const { userInfo, userFeeds, userConnections, allUsers, status, userWallPost } = state;
     console.log(userFeeds);
 
-    return { userInfo, userFeeds, userConnections, status, userWallPost };
+    return { userInfo, userFeeds, userConnections, allUsers, status, userWallPost };
   }
 export default connect(mapStateToProps,
   {
     fetchUserInfo,
     fetchUserFeeds,
     fetchUserConnections,
+    fetchUsers,
     createConnectionRequest,
     fetchConnectionStatus,
     userWallInputChange,

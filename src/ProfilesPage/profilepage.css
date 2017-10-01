@@ -1,0 +1,16 @@
+#left-side-bar-searchbar {
+  position: fixed;
+  left: 0;
+  top: 65px;
+  width: 20%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+
+}
+
+#left-side-bar-searchbar button {
+	height: 80%;
+	width: 100%;
+}
