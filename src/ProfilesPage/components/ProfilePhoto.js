@@ -5,18 +5,18 @@ import '../css/profilephoto.css';
 const ProfilePhoto = (props) => {
 	const query = window.location.pathname;
 	const new_query = query.slice(9);
-	// console.log('new query below');
-	// console.log(new_query);
-	// console.log('props.children below');
-	// console.log(props.children);
 
+<<<<<<< HEAD
     const { firstName, lastName, bio, admin, superuser } = props.userInfo;
     console.log('superuser below');
     console.log({superuser});
+=======
+
+    const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
+>>>>>>> f7a8de494a18c416cab20dff15ceba36f978b3fb
 
     const { userConnections } = props;
-    // console.log('userConnections = props below');
-    // console.log({userConnections});
+
 
     // width="180px" height="180px"
     if ({superuser !== true}) {

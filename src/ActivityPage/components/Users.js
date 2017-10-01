@@ -4,19 +4,13 @@ import '../css/users.css';
 
 const Users = (props) => {
  	const { usersInfo } = props;
-    console.log('usersInfo belowbruno');
-    console.log({usersInfo});
 
 	function getUsers(result, users, count) {
 	    if(users.length === 0 || count === 10) {
 	      return result;
 	    } else {
 	      var x = Math.floor(Math.random() * users.length);
-	      console.log('x below');
-	      console.log(x);
 	      result.push(users.splice(x, 1)[0]);
-	      console.log('result below');
-	      console.log(result);
 	      ++count;
 
 

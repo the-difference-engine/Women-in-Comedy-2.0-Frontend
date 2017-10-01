@@ -9,7 +9,8 @@ import {
   createConnectionRequest,
   fetchConnectionStatus,
   userWallInputChange,
-  createPostOnUserWall
+  createPostOnUserWall,
+  blockConnectionRequests
 } from '../actions';
 import { LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import Navbar from '../common/Navbar';
@@ -39,6 +40,11 @@ class ProfilePage extends Component {
     this.props.createConnectionRequest(data);
   }
 
+  onBlockConnection() {
+    const sender_id = sessionStorage.getItem('userId');
+    this.props.blockConnectionRequests(sender_id);
+  }
+
   onPost() {
     const body = this.props.userWallPost;
     const userId = this.props.match.params.id || sessionStorage.getItem('userId');
@@ -46,20 +52,38 @@ class ProfilePage extends Component {
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
+  renderBlockConnection() {
+    if (this.props.userInfo.id == userId) {
+      return <label>
+      <input 
+        type="checkbox"
+        defaultChecked={this.props.userInfo.block_connection_requests}
+        onClick={this.onBlockConnection.bind(this)} 
+      /> 
+      Block Incomming Connection Requests
+      </label>
+    }
+  }
+
   renderConnection() {
     if (this.props.userInfo.id == userId) {
       return <div></div>
     }
-    if (_.isEmpty(this.props.status)) {
-      return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
-    }
 
-    if (this.props.status.status === true) {
+    else if (this.props.status.status === true) {
       return <div> Connected </div>
     }
 
-    if (this.props.status.status === false) {
+    else if (this.props.status.status === false) {
       return <div> Request Pending...</div>
+    }
+
+    else if (this.props.userInfo.block_connection_requests === true) {
+      return <div>This user is not currently accepting connection requests</div>
+    }
+
+    else if (_.isEmpty(this.props.status)) {
+      return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
     }
   }
 
@@ -69,6 +93,9 @@ class ProfilePage extends Component {
     console.log(this.updateUser);
     console.log('users below $_$');
     console.log(allUsers);
+
+
+
     return (
       <div>
         <Navbar history={this.props.history} />
@@ -123,6 +150,7 @@ export default connect(mapStateToProps,
     createConnectionRequest,
     fetchConnectionStatus,
     userWallInputChange,
-    createPostOnUserWall
+    createPostOnUserWall,
+    blockConnectionRequests
   }
   )(ProfilePage);

@@ -24,7 +24,6 @@ export default (props) => {
 
 const renderEventList = (events) => {
 	return events.map(event => {
-		console.log(event);
 		return (
 			<div key={event.id} className="col-xs-offset-1 col-xs-3">
 				<Link to={`/eventsfeed/${event.id}`}>

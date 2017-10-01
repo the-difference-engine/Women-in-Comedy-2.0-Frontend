@@ -3,7 +3,7 @@ import '../css/bio.css';
 
 
 const Bio = (props) => {
-  const { firstName, lastName, bio } = props.userInfo;
+  const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
 
   return (
     <div id="activity-bio">
