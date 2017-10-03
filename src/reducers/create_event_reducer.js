@@ -1,4 +1,4 @@
-import { EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL } from '../actions/types';
+import { EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, CREATE_EVENT_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
   title: '',
@@ -10,7 +10,8 @@ const INITIAL_STATE = {
   error: '',
   loading: false,
   ticketLink: '',
-  address: ''
+  address: '',
+  id: null
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
@@ -20,6 +21,8 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case LOAD:
       return { ...state, loading: true, error: '' };
+    case CREATE_EVENT_SUCCESS:
+      return { ...state, id: action.eventId };
     case CREATE_EVENT_FAIL:
       return { ...state, error: 'All Fields Must Be Filled Out'}
     default:
