@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import axios from 'axios'
-import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT } from './types';
+import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS } from './types';
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
@@ -15,9 +15,8 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         url: 'http://localhost:9000/api/v1/events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
-      console.log(request.data);
-      callback();
-      dispatch({ type: CLEAR });
+      
+      dispatch({ type: CREATE_EVENT_SUCCESS, eventId: request.data });
   } else {
     dispatch({ type: CREATE_EVENT_FAIL });
   }

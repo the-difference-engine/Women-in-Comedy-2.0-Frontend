@@ -42,14 +42,15 @@ class CreateEvents extends Component {
       );
     }
   }
-  onCreateEvent() {
+   async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
-    this.props.createEvent(
+   await this.props.createEvent(
       { address, date, description, img, location, ticketLink, time, title },
       userId,
-      () => this.props.history.push('/feed')
-    );
+      );
+
+      this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`) 
   }
   render() {
     const { loading } = this.props.createEventForm;
@@ -135,7 +136,6 @@ class CreateEvents extends Component {
 }
 
 function mapStateToProps({ createEventForm }) {
-  console.log(createEventForm.loading);
   return { createEventForm };
 }
 export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);
