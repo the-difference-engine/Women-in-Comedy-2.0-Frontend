@@ -1,4 +1,4 @@
-import { FETCH_USERS } from '../actions/types';
+  import { FETCH_USERS } from '../actions/types';
 
 const INITIAL_STATE = [];
 export default (state = INITIAL_STATE, action) => {

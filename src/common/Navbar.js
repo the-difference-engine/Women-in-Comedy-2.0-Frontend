@@ -7,6 +7,7 @@ import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fe
 import './css/navbar.css';
 
 const userId = sessionStorage.getItem('userId');
+const userIsAdmin = sessionStorage.getItem('userIsAdmin');
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +73,7 @@ const styles = {
 
   },
   hint: {
-    zIndex: 1,
+    Index: 1,
     marginBottom: '7px',
     marginLeft: '10px'
   },
@@ -82,7 +83,14 @@ const styles = {
 }
 function mapStateToProps({ allUsers }) {
   allUsers = allUsers.map(user => {
-    return { text: `${user.firstName} ${user.lastName}`, value: user.id}
+    //If current user is admin, list all users (admin & non-admin) in search list
+    if(userIsAdmin) {
+      return { text: `${user.firstName} ${user.lastName}` , value: user.id}
+    //If current user is not admin, remove other admin users from search list
+    } else {
+      if (user.admin) {return null}
+        else { return {text: `${user.firstName} ${user.lastName}` , value: user.id} }
+  }
   });
 
   return { allUsers };
