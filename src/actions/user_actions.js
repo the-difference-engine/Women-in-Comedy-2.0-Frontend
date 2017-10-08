@@ -18,3 +18,4 @@ export const fetchAllUsers = () => async dispatch => {
   const request = await axios('http://localhost:9000/api/v1/users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
+
