@@ -9,7 +9,8 @@ import {
   fetchConnectionStatus,
   userWallInputChange,
   createPostOnUserWall,
-  blockConnectionRequests
+  blockConnectionRequests,
+  suspendUser
 } from '../actions';
 import { LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import Navbar from '../common/Navbar';
@@ -49,6 +50,12 @@ class ProfilePage extends Component {
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
+  onSuspend() {
+    const id = this.props.userInfo.id
+    // const adminId = sessionStorage.getItem('userId')
+    this.props.suspendUser(id);
+  }
+
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
@@ -61,6 +68,12 @@ class ProfilePage extends Component {
       </label>
     }
   }
+  // SUSPENSION 
+  suspendUserButton() {
+    if (this.props.userInfo)
+    return <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
+  }
+
 
   renderConnection() {
     if (this.props.userInfo.id == userId) {
@@ -96,6 +109,7 @@ class ProfilePage extends Component {
           <UserInfo userInfo={this.props.userInfo}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
+          {this.suspendUserButton()}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
@@ -133,6 +147,7 @@ export default connect(mapStateToProps,
     fetchConnectionStatus,
     userWallInputChange,
     createPostOnUserWall,
-    blockConnectionRequests
+    blockConnectionRequests,
+    suspendUser
   }
   )(ProfilePage);
