@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMyUpcomingEvents, fetchUpcomingEvents } from '../actions';
 import AddEvent from './components/AddEvent';
+import EditEvent from './components/EditEvent';
 import AllUpcomingEvents from './components/AllUpcomingEvents';
 import MyUpcomingEvents from './components/MyUpcomingEvents';
 import HeaderComponent from './components/HeaderComponent';
@@ -24,6 +25,7 @@ class EventsPage extends Component {
 				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
 				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
 				<AddEvent history={this.props.history}/>
+        <EditEvent history={this.props.history}/>
 			</div>
 		);
 	}
