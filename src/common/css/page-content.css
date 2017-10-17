@@ -1,8 +1,9 @@
 #page-content {
-  width: 61%;
-  position: relative;
+  width: 90%;
+  position: absolute;
   left: 20%;
-  top: 65px;
+  
+  
   padding-bottom: 50px;
 }
 
@@ -12,4 +13,12 @@
   margin-right: 40px;
   margin-bottom: 25px;
   height: 100%;
+}
+
+#page-control {
+  position: absolute;
+  top: 150px;
+  left: 80px;
+  width: 950px;
+
 }

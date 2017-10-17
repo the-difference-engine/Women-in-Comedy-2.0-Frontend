@@ -1,14 +1,15 @@
 #left-side-bar {
   position: fixed;
   left: 0;
-  top: 65px;
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 200px;
 }
 
 #left-side-bar-content {
-  margin-top: 65px;
+  margin-top: 25px;
   margin-left: 25px;
   margin-right: 25px;
   height: 100%;
