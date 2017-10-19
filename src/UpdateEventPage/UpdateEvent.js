@@ -137,7 +137,7 @@ class UpdateEvent extends Component {
   }
 }
 
-function mapStateToProps({ createEventForm }) {
-  return { createEventForm };
+function mapStateToProps({ updateEventForm }) {
+  return { updateEventForm };
 }
 export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(UpdateEvent);

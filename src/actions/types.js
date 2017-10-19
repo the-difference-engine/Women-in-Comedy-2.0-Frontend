@@ -15,6 +15,8 @@ export const FETCH_MY_UPCOMING_EVENTS = 'fetch_my_upcoming_events';
 export const FETCH_EVENT_INFO = 'fetch_event_info';
 export const ATTEND_EVENT = 'attend_event';
 export const CREATE_EVENT_SUCCESS = 'create_event_success';
+export const UPDATE_EVENT_SUCCESS = 'update_event_success';
+export const UPDATE_EVENT_FAIL = 'update_event_fail';
 
 //Connections
 export const FETCH_PENDING_USER_CONNECTIONS = 'fetch_pending_user_connections';

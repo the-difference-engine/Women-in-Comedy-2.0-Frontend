@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import axios from 'axios'
-import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS } from './types';
+import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT_FAIL } from './types';
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
@@ -31,7 +31,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
 
       img = imageData.metadata.downloadURLs[0];
       const request = await axios({
-        method: 'patch',
+        method: 'post',
         url: 'http://localhost:9000/api/v1/events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
