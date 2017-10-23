@@ -12,6 +12,7 @@ import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
 import Navbar from '../common/Navbar';
+import UpdateEvent from './components/UpdateEvent';
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 
 class EventsFeed extends Component {
@@ -47,6 +48,7 @@ class EventsFeed extends Component {
             fetchEventInfo={this.props.fetchEventInfo}
             unattendEvent={this.props.unattendEvent}
           />
+          <UpdateEvent history={this.props.history} eventId={this.props.match.params.id}/>
         </LeftGraySideBar>
 
         <PageContent pageTitle={"Event Feed"}>

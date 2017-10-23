@@ -1,4 +1,4 @@
-import { EVENT_INPUT_CHANGE, CLEAR, LOAD, UPDATE_EVENT_FAIL, UPDATE_EVENT_SUCCESS } from '../actions/types';
+import { EVENT_INPUT_CHANGE, CLEAR, LOAD, UPDATE_EVENT_FAIL, UPDATE_EVENT_SUCCESS, FETCH_EVENT_INFO } from '../actions/types';
 
 const INITIAL_STATE = {
   title: '',
@@ -15,6 +15,8 @@ const INITIAL_STATE = {
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
+    case FETCH_EVENT_INFO:
+      return {...state, updateEventForm: action.payload.data};
     case EVENT_INPUT_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CLEAR:

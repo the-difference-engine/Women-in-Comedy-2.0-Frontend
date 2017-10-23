@@ -12,6 +12,7 @@ import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
+import UpdateEvent from './UpdateEventPage/UpdateEvent';
 
 class App extends Component {
   componentWillMount() {
@@ -37,6 +38,7 @@ class App extends Component {
               <Route path="/home" component={HomePage}></Route>
               <Route path='/activities' component={ActivityPage}></Route>
               <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
+              <Route path='/updateevent/:id' component={UpdateEvent}></Route>
               <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/' component={Form}></Route>
             </Switch>

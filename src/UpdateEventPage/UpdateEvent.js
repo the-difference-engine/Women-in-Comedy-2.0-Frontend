@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import Navbar from '../common/Navbar';
 import { LeftGraySideBar, RightGraySideBar } from '../common';
-import {  createEvent, fetchUserInfo, eventInputChange, updateEvent } from '../actions';
+import { createEvent, fetchUserInfo, eventInputChange, updateEvent, fetchEventInfo } from '../actions';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
 
-import './css/create-event.css'
-const userId = sessionStorage.getItem('userId')
+import '../CreateEventsPage/css/create-event.css';
+const userId = sessionStorage.getItem('userId');
 
 class UpdateEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      imgURL: //INTERPOLATED THING this.imgurl?,
-     };
+    this.state = {
+      imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`,
+    }
+  }
+
+  componentDidMount() {
+    const eventId = this.props.match.params.id;
+    this.props.fetchEventInfo(eventId);
+    this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+    this.setState({imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`})
   }
 
   onClick() {
     const input = document.getElementById('input');
     input.click();
   }
+  
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -56,14 +64,15 @@ class UpdateEvent extends Component {
   }
   render() {
     const { loading } = this.props.updateEventForm;
+    console.log(this.props);
 
     return (
       <div>
         <Navbar history={this.props.history}/>
         <div id="create-event-wrapper">
           <TextField
-            hintText="Event Title"
-            floatingLabelText="{this.a}"
+            hintText={`${this.props}`}
+            floatingLabelText=""
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             disabled={loading}
@@ -122,12 +131,12 @@ class UpdateEvent extends Component {
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
           />
-           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
+           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
            {this.renderSpinner()}
           <RaisedButton
             secondary
             label="create event"
-            onClick={this.onCreateEvent.bind(this)}
+            onClick={this.onUpdateEvent.bind(this)}
             style={{ marginTop: '15px' }}
             disabled={loading}
           />
@@ -140,4 +149,4 @@ class UpdateEvent extends Component {
 function mapStateToProps({ updateEventForm }) {
   return { updateEventForm };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(UpdateEvent);
+export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);

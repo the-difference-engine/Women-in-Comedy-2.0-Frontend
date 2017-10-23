@@ -5,7 +5,6 @@ import '../css/add-events.css';
 class UpdateEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
   }
 
 
@@ -14,7 +13,7 @@ class UpdateEvent extends Component {
       <div className="add-event">
         <div className="add-event-content">
         // if current user = event user id?
-          <div className="new-event"><button className="btn btn-default" onClick={() => this.props.history.push('/newevent')}>EDIT THIS EVENT</button></div>
+          <div className="new-event"><a className="btn btn-default" href={`/updateevent/${this.props.eventId}`}>EDIT THIS EVENT</a></div>
         </div>
       </div>
     );
