@@ -64,7 +64,6 @@ class UpdateEvent extends Component {
   }
   render() {
     const { loading } = this.props.updateEventForm;
-    console.log(this.props);
     const event = this.props.updateEventForm.event;
 
     return (
@@ -72,6 +71,7 @@ class UpdateEvent extends Component {
         <Navbar history={this.props.history}/>
         <div id="create-event-wrapper">
           <TextField
+            id="Title"
             value={`${event&&event.info.title}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -79,6 +79,7 @@ class UpdateEvent extends Component {
             onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
           />
           <TextField
+            id="Location"
             value={`${event&&event.info.location}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -86,6 +87,7 @@ class UpdateEvent extends Component {
             disabled={loading}
           />
           <TextField
+            id="Address"
             value={`${event&&event.info.address}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -93,6 +95,7 @@ class UpdateEvent extends Component {
             disabled={loading}
           />
           <TextField
+            id="Ticket Link"
             value={`${event&&event.info.ticket_link}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -100,6 +103,7 @@ class UpdateEvent extends Component {
             disabled={loading}
           />
           <TextField
+            id="Description"
             value={`${event&&event.info.about}`}
             multiLine={true}
             rows={2}
