@@ -65,46 +65,42 @@ class UpdateEvent extends Component {
   render() {
     const { loading } = this.props.updateEventForm;
     console.log(this.props);
+    const event = this.props.updateEventForm.event;
 
     return (
       <div>
         <Navbar history={this.props.history}/>
         <div id="create-event-wrapper">
           <TextField
-            hintText={`${this.props}`}
-            floatingLabelText=""
+            value={`${event&&event.info.title}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             disabled={loading}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
           />
           <TextField
-            hintText="Location"
-            floatingLabelText="Enter Location"
+            value={`${event&&event.info.location}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
             disabled={loading}
           />
           <TextField
-            hintText="Address"
-            floatingLabelText="Enter Address"
+            value={`${event&&event.info.address}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
             disabled={loading}
           />
           <TextField
-            hintText="Ticket Link"
-            floatingLabelText="Enter Ticket Link"
+            value={`${event&&event.info.ticket_link}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
             disabled={loading}
           />
           <TextField
-            hintText="Description"
-            floatingLabelText="Enter Description"
+            value={`${event&&event.info.about}`}
             multiLine={true}
             rows={2}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -121,12 +117,12 @@ class UpdateEvent extends Component {
           <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)}/><br />
           {this.renderImg()}
           <DatePicker
-            hintText="Date"
+            hintText={`${event&&event.info.date}`}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
           />
           <TimePicker
-            hintText="Time"
+            hintText={`${event&&event.info.time}`}
             autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
@@ -135,7 +131,7 @@ class UpdateEvent extends Component {
            {this.renderSpinner()}
           <RaisedButton
             secondary
-            label="create event"
+            label="update event"
             onClick={this.onUpdateEvent.bind(this)}
             style={{ marginTop: '15px' }}
             disabled={loading}

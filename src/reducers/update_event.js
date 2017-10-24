@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case FETCH_EVENT_INFO:
-      return {...state, updateEventForm: action.payload.data};
+      return {...state, event: action.payload.data };
     case EVENT_INPUT_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CLEAR:
