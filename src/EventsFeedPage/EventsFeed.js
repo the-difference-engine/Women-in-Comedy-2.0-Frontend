@@ -38,8 +38,10 @@ class EventsFeed extends Component {
           <Navbar history={this.props.history} />
         </div>
         <div id="pic-wrap">   
-          <EventImg event={this.props.selectedEvent} />    
-          <LeftGraySideBar>
+          <EventImg event={this.props.selectedEvent} />  
+        </div>  
+
+          <LeftGraySideBar className="event-info-bar">
             <EventInfo
               event={this.props.selectedEvent}
               attendEvent={this.props.attendEvent}
@@ -50,8 +52,8 @@ class EventsFeed extends Component {
             />
 
           </LeftGraySideBar>
-          <div id="page-control">
-          <PageContent pageTitle={"Event Feed"}><h4>Event Feed</h4>
+
+          <PageContent pageTitle={"Event Feed"} className="event-feed"><h4>Event Feed</h4>
             <div className="feed-post-bar">
               <div className="wrap">
                 <div className="search">
@@ -66,10 +68,12 @@ class EventsFeed extends Component {
                 </div>
               </div>
             </div>
+
             <NewFeeds event={this.props.selectedEvent}/>
+            
           </PageContent>
-          </div>
-        </div>
+
+        
           <div id="container">
             <RightGraySideBar>
               <Guests

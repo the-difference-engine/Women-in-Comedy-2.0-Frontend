@@ -5,7 +5,6 @@ const EventInfo = (props) => {
   if(props.event) {
     const { title, date, time, location, about, ticket_link } = props.event.info
 
-    console.log('event', props.event);
     return (
       <div>
         <h2 id="event-title">{title}</h2>

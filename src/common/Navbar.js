@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections } from '../actions'
 
 import './css/navbar.css';
-// import './src/images/Women_Logo_New.png';
+import '../images/Women_Logo_New.png';
 
 const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
@@ -31,11 +31,8 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
-
         <div className="container-fluid">
-        
           <div className="navbar-header">
-
             <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
           </div>
           <ul className="nav navbar-nav navbar-right">
