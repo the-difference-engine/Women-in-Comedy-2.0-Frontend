@@ -69,7 +69,7 @@ class EventsFeed extends Component {
               </div>
             </div>
 
-            <NewFeeds event={this.props.selectedEvent}/>
+            <NewFeeds event={this.props.selectedEvent} className="event-comment"/>
             
           </PageContent>
 

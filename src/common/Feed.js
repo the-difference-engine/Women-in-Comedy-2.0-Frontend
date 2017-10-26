@@ -16,7 +16,7 @@ class Feed extends Component {
     return (
       <div id='feed'>
         <img id="post-pro-img" src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
-        <div id='feed-content'>
+        <div id='feed-content' className="event-comment">
           <p id="feed-news"><span>{authorFirstName}</span> commented on your <span>post</span></p>
           <div id="wrap">
             <p id="feed-detail">{body}</p>

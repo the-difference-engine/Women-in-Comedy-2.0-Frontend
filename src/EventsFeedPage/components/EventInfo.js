@@ -11,7 +11,7 @@ const EventInfo = (props) => {
         <h2 id="event-date">{date}</h2>
         <h2 id="event-time">{time}</h2>
         <h3 id="event-location">{location}</h3>
-        <h3 id="event-ticket_link">{ticket_link}</h3>
+        <a><p id="event-ticket_link">{ticket_link}</p></a>
         <p id="event-desc">{about}</p>
         
         {renderButton(props)}
