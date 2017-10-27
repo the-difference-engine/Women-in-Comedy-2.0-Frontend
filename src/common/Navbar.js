@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AutoComplete } from 'material-ui';
+import { DropDownMenu, MenuItem } from 'material-ui';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections } from '../actions'
@@ -37,11 +38,26 @@ class Navbar extends Component {
           <ul className="nav navbar-nav navbar-right">
             <li>
               <form className="navbar-form">
+
+                <div className="input-group">
+                  <DropDownMenu
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    style={styles.filter}
+
+                    >
+                    <MenuItem value={1} primaryText="Never" />
+                    <MenuItem value={2} primaryText="Every Night" />
+                    <MenuItem value={3} primaryText="Weeknights" />
+                    <MenuItem value={4} primaryText="Weekends" />
+                    <MenuItem value={5} primaryText="Weekly" />
+                  </DropDownMenu>
+                </div>
                 <div className="input-group">
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.allUsers}
-                    maxSearchResults={5}
+                    maxSearchResults={10}
                     hintText="Search"
                     underlineShow={false}
                     hintStyle={styles.hint}
@@ -49,6 +65,8 @@ class Navbar extends Component {
                     textareaStyle={styles.text}
                     onNewRequest={(item) => this.onItemClicked(item)}
                   />
+
+
                   <i className="glyphicon glyphicon-search"></i>
                 </div>
               </form>
@@ -65,6 +83,13 @@ class Navbar extends Component {
 };
 
 const styles = {
+  filter: {
+    position: 'relative',
+    top: '50%',
+    height: '30px',
+    backgroundColor: 'white',
+    borderRadius: '20px'
+  },
   input: {
     height: '30px',
     backgroundColor: 'white',
