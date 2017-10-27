@@ -11,7 +11,7 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false };
+    this.state = { showUsers: false, value: 1 };
   }
   componentDidMount() {
     this.props.fetchAllUsers();
@@ -39,20 +39,20 @@ class Navbar extends Component {
             <li>
               <form className="navbar-form">
 
-                <div className="input-group">
+                <div className="input-group" style={styles.container}>
                   <DropDownMenu
                     value={this.state.value}
                     onChange={this.handleChange}
                     style={styles.filter}
-
                     >
-                    <MenuItem value={1} primaryText="Never" />
+                    <MenuItem value={1} primaryText="Filter" />
                     <MenuItem value={2} primaryText="Every Night" />
                     <MenuItem value={3} primaryText="Weeknights" />
                     <MenuItem value={4} primaryText="Weekends" />
                     <MenuItem value={5} primaryText="Weekly" />
                   </DropDownMenu>
                 </div>
+
                 <div className="input-group">
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
@@ -65,8 +65,6 @@ class Navbar extends Component {
                     textareaStyle={styles.text}
                     onNewRequest={(item) => this.onItemClicked(item)}
                   />
-
-
                   <i className="glyphicon glyphicon-search"></i>
                 </div>
               </form>
@@ -83,15 +81,15 @@ class Navbar extends Component {
 };
 
 const styles = {
+  container: {
+    verticalAlign: 'top',
+    height: '30px'
+  },
   filter: {
-    position: 'relative',
-    top: '50%',
-    height: '30px',
     backgroundColor: 'white',
     borderRadius: '20px'
   },
   input: {
-    height: '30px',
     backgroundColor: 'white',
     borderRadius: '20px'
 
