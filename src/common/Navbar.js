@@ -44,6 +44,8 @@ class Navbar extends Component {
                     value={this.state.value}
                     onChange={this.handleChange}
                     style={styles.filter}
+                    labelStyle={styles.label}
+                    iconStyle={styles.button}
                     >
                     <MenuItem value={1} primaryText="Filter" />
                     <MenuItem value={2} primaryText="Every Night" />
@@ -85,11 +87,21 @@ const styles = {
     verticalAlign: 'top',
     height: '30px'
   },
+
+  label: {
+    lineHeight: '35px'
+  },
+
+  button: {
+    top: '0px'
+  },
   filter: {
+    height: '30px',
     backgroundColor: 'white',
     borderRadius: '20px'
   },
   input: {
+    height: '30px',
     backgroundColor: 'white',
     borderRadius: '20px'
 
