@@ -9,12 +9,13 @@ import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fe
 import './css/navbar.css';
 
 const userId = sessionStorage.getItem('userId');
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, open:  false};
+    this.state = { showUsers: false, open:  false, selectedItem: ''};
   }
-
+  //Search filter menu
   handleTouchTap = (event) => {
     // This prevents ghost click.
     event.preventDefault();
@@ -25,9 +26,13 @@ class Navbar extends Component {
     });
   };
 
+  //handle Menu events
   onMenuClicked = (event, value) => {
     event.preventDefault();
-    console.log('The menu is clicked. Value is: ' + value)
+    // console.log('The menu is clicked. Value is: ' + value)
+    this.setState({
+      selectedItem: value
+    }, () => {console.log(this.state.selectedItem)})
   }
 
   handleRequestClose = () => {
@@ -36,7 +41,9 @@ class Navbar extends Component {
    });
  };
 
-
+  returnSomething = () => {
+    return 'Something';
+  }
   componentDidMount() {
     this.props.fetchAllUsers();
   }
@@ -162,14 +169,6 @@ const styles = {
     verticalAlign: 'top',
     height: '30px'
   },
-
-  label: {
-    lineHeight: '35px'
-  },
-
-  button: {
-    top: '-5px'
-  },
   filter: {
     height: '30px',
     textTransform: 'none',
@@ -192,6 +191,7 @@ const styles = {
   }
 }
 function mapStateToProps({ allUsers }) {
+
   allUsers = allUsers.map(user => {
     return { text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
