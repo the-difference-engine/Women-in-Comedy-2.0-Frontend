@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AutoComplete } from 'material-ui';
-import { DropDownMenu, MenuItem } from 'material-ui';
+import { FlatButton, Popover, Menu, MenuItem } from 'material-ui';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections } from '../actions'
@@ -11,11 +12,35 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, value: 1 };
+    this.state = { showUsers: false, open:  false};
   }
+
+  handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault();
+
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
+  };
+
+  onMenuClicked = (event, value) => {
+    event.preventDefault();
+    console.log('The menu is clicked. Value is: ' + value)
+  }
+
+  handleRequestClose = () => {
+   this.setState({
+     open: false,
+   });
+ };
+
+
   componentDidMount() {
     this.props.fetchAllUsers();
   }
+
 
   onItemClicked(item) {
     const sender_id = sessionStorage.getItem('userId');
@@ -40,19 +65,69 @@ class Navbar extends Component {
               <form className="navbar-form">
 
                 <div className="input-group" style={styles.container}>
-                  <DropDownMenu
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    style={styles.filter}
-                    labelStyle={styles.label}
-                    iconStyle={styles.button}
+                  <div>
+                    <FlatButton style={styles.filter}
+                      onClick={this.handleTouchTap}
+                      label="Filter"
+                    />
+                    <Popover
+                      open={this.state.open}
+                      anchorEl={this.state.anchorEl}
+                      anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                      targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                      onRequestClose={this.handleRequestClose}
                     >
-                    <MenuItem value={1} primaryText="Filter" />
-                    <MenuItem value={2} primaryText="Every Night" />
-                    <MenuItem value={3} primaryText="Weeknights" />
-                    <MenuItem value={4} primaryText="Weekends" />
-                    <MenuItem value={5} primaryText="Weekly" />
-                  </DropDownMenu>
+                      <Menu onChange={this.onMenuClicked}>
+                        <MenuItem
+                          primaryText="Location"
+                          rightIcon={<ArrowDropRight />}
+                          menuItems={[
+                            <MenuItem primaryText="Near Me" checked={true} />,
+                            <MenuItem primaryText="San Francisco" />
+                            ]}
+                        />
+                        <MenuItem
+                          primaryText="Training"
+                          rightIcon={<ArrowDropRight />}
+                          menuItems={[
+                            <MenuItem primaryText="less than 1 year" />,
+                            <MenuItem primaryText="1-3 years" />,
+                            <MenuItem primaryText="4-7 years" />,
+                            <MenuItem primaryText="7-10 years" />,
+                            <MenuItem primaryText="11+ years" />,
+
+                            ]}
+                        />
+                        <MenuItem
+                          primaryText="Experience"
+                          rightIcon={<ArrowDropRight />}
+                          menuItems={[
+                            <MenuItem primaryText="less than 1 year" />,
+                            <MenuItem primaryText="1-3 years" />,
+                            <MenuItem primaryText="4-7 years" />,
+                            <MenuItem primaryText="7-10 years" />,
+                            <MenuItem primaryText="11+ years" />,
+
+                            ]}
+
+                        />
+                        <MenuItem primaryText="Gender"
+                          rightIcon={<ArrowDropRight />}
+                          menuItems={[
+                            <MenuItem primaryText="Male" />,
+                            <MenuItem primaryText="Female" />
+
+                            ]}
+                        />
+
+                        <MenuItem
+                          primaryText="Test"
+                          onClick={this.handleClick}
+                          value={5}
+                         />
+                      </Menu>
+                    </Popover>
+            </div>
                 </div>
 
                 <div className="input-group">
@@ -93,10 +168,11 @@ const styles = {
   },
 
   button: {
-    top: '0px'
+    top: '-5px'
   },
   filter: {
     height: '30px',
+    textTransform: 'none',
     backgroundColor: 'white',
     borderRadius: '20px'
   },
