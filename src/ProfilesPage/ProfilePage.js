@@ -10,7 +10,9 @@ import {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
-  suspendUser
+  suspendUser,
+  unsuspendUser,
+  deleteUser
 } from '../actions';
 import { LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import Navbar from '../common/Navbar';
@@ -52,8 +54,22 @@ class ProfilePage extends Component {
 
   onSuspend() {
     const id = this.props.userInfo.id
+    const admin = sessionStorage.getItem('isAdmin')
+    const { suspended } = this.props;
+    suspended ? unsuspendUser() : suspendUser()
+  }
+
+  onUnsuspend() {
+    const id = this.props.userInfo.id
+    const admin = sessionStorage.getItem('isAdmin')
     // const adminId = sessionStorage.getItem('userId')
-    this.props.suspendUser(id);
+    this.props.unsuspendUser(id);
+  }
+
+  onDelete() {
+    const id = this.props.match.params.id || sessionStorage.getItem('userId');
+    this.props.deleteUser(id);
+    console.log(id);
   }
 
   renderBlockConnection() {
@@ -69,11 +85,45 @@ class ProfilePage extends Component {
     }
   }
   // SUSPENSION 
-  suspendUserButton() {
-    if (this.props.userInfo)
-    return <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
-  }
+  // suspendUserButton() {
+  //     const admin = sessionStorage.getItem('isAdmin')
+  //     const suspension_reason = this.props.userInfo.suspension_reason
+  //     console.log(admin);
+  //     console.log(suspension_reason)
+  //     var suspendButton;
+  //     if (admin == true && (this.props.userInfo.suspension_reason == null)) {
+  //       suspendButton = <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
+  //     }   else if (admin == true && (this.props.userInfo.suspension_reason == "Suspended!")) {
+  //       suspendButton = <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
+  //     }
 
+  //     return (
+  //   <div>
+  //      { suspendButton }
+  //   </div>
+  //   );
+  // }
+
+
+
+ suspendUserButton() {
+  const { suspended } = this.props;
+  return <button onClick={this.onSuspend.bind.(this)}> {suspended ? "Unsuspend" : "Suspend" }</button>
+ }
+
+
+
+  //UNSUSPEND
+
+  // unsuspendUserButton() {
+  //   if (this.props.userInfo.suspension_reason == "Suspended!")
+  //   return <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
+  // }
+
+
+  deleteUserButton() {
+    return <button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button>
+}
 
   renderConnection() {
     if (this.props.userInfo.id == userId) {
@@ -101,7 +151,6 @@ class ProfilePage extends Component {
     const { userInfo, userConnections, userFeeds, status } = this.props;
 
 
-
     return (
       <div>
         <Navbar history={this.props.history} />
@@ -110,6 +159,7 @@ class ProfilePage extends Component {
           {this.renderBlockConnection()}
           {this.renderConnection()}
           {this.suspendUserButton()}
+          {this.deleteUserButton()}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
@@ -148,6 +198,8 @@ export default connect(mapStateToProps,
     userWallInputChange,
     createPostOnUserWall,
     blockConnectionRequests,
-    suspendUser
+    suspendUser, 
+    unsuspendUser,
+    deleteUser
   }
   )(ProfilePage);
