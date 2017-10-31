@@ -13,24 +13,22 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, open:  false, selectedItem: ''};
+    this.state = { showUsers: false, open:  false};
   }
   //Search filter menu
   handleTouchTap = (event) => {
     // This prevents ghost click.
     event.preventDefault();
-
     this.setState({
       open: true,
-      anchorEl: event.currentTarget,
-      selectedItem: true
+      anchorEl: event.currentTarget
     });
   };
-
   //handle Menu events
-  onMenuClicked = (event, value) => {
-    this.props.selected_item_changed(value);
-    console.log('you selected: ' + value);
+  onMenuItemClicked = (event, menuItem) => {
+    console.log('you clicked a nested item.');
+    this.props.selected_item_changed(menuItem.props.primaryText);
+    console.log(menuItem.props.primaryText);
   }
 
   handleRequestClose = () => {
@@ -38,10 +36,6 @@ class Navbar extends Component {
      open: false,
    });
  };
-
-  returnSomething = () => {
-    return 'Something';
-  }
   componentDidMount() {
     const { fetchAllUsers } = this.props;
 
@@ -61,10 +55,40 @@ class Navbar extends Component {
     this.props.fetchUserConnections(item.value);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
-
-
   }
   render() {
+    const locationMenuItems = [{
+      primaryText: 'Near Me'
+    }, {
+      primaryText: 'Bay Area'
+    }];
+    const trainingMenuItems = [{
+      primaryText: 'less than 1 year'
+    }, {
+      primaryText: '1-3 years'
+    }, {
+      primaryText: '4-7 years'
+    }, {
+      primaryText: '7-10 years'
+    }, {
+      primaryText: '11+ years'
+    }];
+    const experienceMenuItems = [{
+      primaryText: 'less than 1 year'
+    }, {
+      primaryText: '1-3 years'
+    }, {
+      primaryText: '4-7 years'
+    }, {
+      primaryText: '7-10 years'
+    }, {
+      primaryText: '11+ years'
+    }];
+    const genderMenuItems = [{
+      primaryText: 'Male'
+    }, {
+      primaryText: 'Female'
+    }];
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -92,41 +116,50 @@ class Navbar extends Component {
                         <MenuItem
                           primaryText="Location"
                           rightIcon={<ArrowDropRight />}
-                          menuItems={[
-                            <MenuItem primaryText="Near Me" checked={true} />,
-                            <MenuItem primaryText="San Francisco" />
-                            ]}
+                          menuItems={locationMenuItems.map(menuItem => (
+                            <MenuItem
+                             {...menuItem}
+                             onClick={
+                               event => this.onMenuItemClicked(event, { props: {...menuItem}
+                              })}
+                           />
+                          ))}
                         />
                         <MenuItem
                           primaryText="Training"
                           rightIcon={<ArrowDropRight />}
-                          menuItems={[
-                            <MenuItem primaryText="less than 1 year" />,
-                            <MenuItem primaryText="1-3 years" />,
-                            <MenuItem primaryText="4-7 years" />,
-                            <MenuItem primaryText="7-10 years" />,
-                            <MenuItem primaryText="11+ years" />,
-
-                            ]}
+                          menuItems={trainingMenuItems.map(menuItem => (
+                            <MenuItem
+                             {...menuItem}
+                             onClick={
+                               event => this.onMenuItemClicked(event, { props: {...menuItem}
+                              })}
+                           />
+                          ))}
                         />
                         <MenuItem
                           primaryText="Experience"
                           rightIcon={<ArrowDropRight />}
-                          menuItems={[
-                            <MenuItem primaryText="less than 1 year" />,
-                            <MenuItem primaryText="1-3 years" />,
-                            <MenuItem primaryText="4-7 years" />,
-                            <MenuItem primaryText="7-10 years" />,
-                            <MenuItem primaryText="11+ years" />,
-                            ]}
+                          menuItems={experienceMenuItems.map(menuItem => (
+                            <MenuItem
+                             {...menuItem}
+                             onClick={
+                               event => this.onMenuItemClicked(event, { props: {...menuItem}
+                              })}
+                           />
+                          ))}
 
                         />
                         <MenuItem primaryText="Gender"
                           rightIcon={<ArrowDropRight />}
-                          menuItems={[
-                            <MenuItem primaryText="Male" />,
-                            <MenuItem primaryText="Female" />
-                            ]}
+                          menuItems={genderMenuItems.map(menuItem => (
+                            <MenuItem
+                             {...menuItem}
+                             onClick={
+                               event => this.onMenuItemClicked(event, { props: {...menuItem}
+                              })}
+                           />
+                          ))}
                         />
 
                         <MenuItem
@@ -195,7 +228,7 @@ const styles = {
 function mapStateToProps({ allUsers }) {
   const { selectedItem, open, anchorEl } = allUsers;
   const users = allUsers.userList.map(user => {
-    if(selectedItem)
+
     return { text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
 
