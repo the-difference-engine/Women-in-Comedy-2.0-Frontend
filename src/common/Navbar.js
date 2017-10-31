@@ -4,7 +4,7 @@ import { FlatButton, Popover, Menu, MenuItem } from 'material-ui';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections } from '../actions'
+import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, selected_item_changed } from '../actions'
 
 import './css/navbar.css';
 
@@ -23,16 +23,14 @@ class Navbar extends Component {
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
+      selectedItem: true
     });
   };
 
   //handle Menu events
   onMenuClicked = (event, value) => {
-    event.preventDefault();
-    // console.log('The menu is clicked. Value is: ' + value)
-    this.setState({
-      selectedItem: value
-    }, () => {console.log(this.state.selectedItem)})
+    this.props.selected_item_changed(value);
+    console.log('you selected: ' + value);
   }
 
   handleRequestClose = () => {
@@ -45,15 +43,21 @@ class Navbar extends Component {
     return 'Something';
   }
   componentDidMount() {
-    this.props.fetchAllUsers();
+    const { fetchAllUsers } = this.props;
+
+    console.log(this.props.selectedItem);
+    console.log(this.props.open);
+    fetchAllUsers();
   }
 
 
   onItemClicked(item) {
+    const { fetchUserInfo, fetchUserFeeds } = this.props;
+
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = item.value
-    this.props.fetchUserInfo(item.value);
-    this.props.fetchUserFeeds(item.value);
+    fetchUserInfo(item.value);
+    fetchUserFeeds(item.value);
     this.props.fetchUserConnections(item.value);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
@@ -114,7 +118,6 @@ class Navbar extends Component {
                             <MenuItem primaryText="4-7 years" />,
                             <MenuItem primaryText="7-10 years" />,
                             <MenuItem primaryText="11+ years" />,
-
                             ]}
 
                         />
@@ -123,14 +126,13 @@ class Navbar extends Component {
                           menuItems={[
                             <MenuItem primaryText="Male" />,
                             <MenuItem primaryText="Female" />
-
                             ]}
                         />
 
                         <MenuItem
-                          primaryText="Test"
+                          primaryText="Male"
                           onClick={this.handleClick}
-                          value={5}
+                          value='Male'
                          />
                       </Menu>
                     </Popover>
@@ -140,7 +142,7 @@ class Navbar extends Component {
                 <div className="input-group">
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
-                    dataSource={this.props.allUsers}
+                    dataSource={this.props.users}
                     maxSearchResults={10}
                     hintText="Search"
                     underlineShow={false}
@@ -191,11 +193,12 @@ const styles = {
   }
 }
 function mapStateToProps({ allUsers }) {
-
-  allUsers = allUsers.map(user => {
+  const { selectedItem, open, anchorEl } = allUsers;
+  const users = allUsers.userList.map(user => {
+    if(selectedItem)
     return { text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
 
-  return { allUsers };
+  return { selectedItem, users, open, anchorEl };
 }
-export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections })(Navbar);
+export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,selected_item_changed })(Navbar);
