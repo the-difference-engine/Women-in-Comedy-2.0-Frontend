@@ -1,4 +1,4 @@
-import { FETCH_ALL_USERS, SELECTED_ITEM_CHANGED } from '../actions/types';
+import { FETCH_ALL_USERS, FILTER_USERS } from '../actions/types';
 const INITIAL_STATE = {
   open: false,
   selectedItem: 'none',
@@ -13,10 +13,13 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         userList: action.payload.data
       };
-    case SELECTED_ITEM_CHANGED:
+    case FILTER_USERS:
+      // const filterUserList = state.userList.filter((user) => user.includes(action.selectedItem))
       return {
         ...state,
-        selectedItem: action.payload,
+        // filterUserList,
+        selectedItem: action.payload
+
       }
     default:
       return state;

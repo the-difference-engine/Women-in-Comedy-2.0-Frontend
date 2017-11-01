@@ -6,7 +6,7 @@ export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
 export const FETCH_ALL_USERS = 'fetch_all_users';
 
 // navbar
-export const SELECTED_ITEM_CHANGED = 'selected_item_changed';
+export const FILTER_USERS = 'filter_users';
 //Events
 export const CREATE_EVENT = 'create_event';
 export const EVENT_INPUT_CHANGE = 'event_input_change';

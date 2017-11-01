@@ -4,7 +4,7 @@ import { FlatButton, Popover, Menu, MenuItem } from 'material-ui';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, selected_item_changed } from '../actions'
+import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers } from '../actions'
 
 import './css/navbar.css';
 
@@ -24,12 +24,17 @@ class Navbar extends Component {
       anchorEl: event.currentTarget
     });
   };
-  //handle Menu events
+  //handle nested Menu item events
   onMenuItemClicked = (event, menuItem) => {
-    console.log('you clicked a nested item.');
-    this.props.selected_item_changed(menuItem.props.primaryText);
-    console.log(menuItem.props.primaryText);
+    this.props.filterUsers(menuItem.props.primaryText);
+    console.log('you clicked a nested  menu item: ' + menuItem.props.primaryText);
+    console.log('from the menu: ' + menuItem.props.name)
   }
+  //handle Menu item events
+  onMenuClicked = (event, value) => {
+    console.log('Menu Item: ' + event);
+  }
+
 
   handleRequestClose = () => {
    this.setState({
@@ -58,36 +63,38 @@ class Navbar extends Component {
   }
   render() {
     const locationMenuItems = [{
-      primaryText: 'Near Me'
+      primaryText: 'Near Me',
+      name: 'location'
     }, {
-      primaryText: 'Bay Area'
+      primaryText: 'Bay Area',
+      name: 'location'
     }];
     const trainingMenuItems = [{
-      primaryText: 'less than 1 year'
+      primaryText: 'less than 1 year', name: 'training'
     }, {
-      primaryText: '1-3 years'
+      primaryText: '1-3 years', name: 'training'
     }, {
-      primaryText: '4-7 years'
+      primaryText: '4-7 years', name: 'training'
     }, {
-      primaryText: '7-10 years'
+      primaryText: '7-10 years', name: 'training'
     }, {
-      primaryText: '11+ years'
+      primaryText: '11+ years', name: 'training'
     }];
     const experienceMenuItems = [{
-      primaryText: 'less than 1 year'
+      primaryText: 'less than 1 year', name: 'experience'
     }, {
-      primaryText: '1-3 years'
+      primaryText: '1-3 years',name: 'experience'
     }, {
-      primaryText: '4-7 years'
+      primaryText: '4-7 years', name: 'experience'
     }, {
-      primaryText: '7-10 years'
+      primaryText: '7-10 years', name: 'experience'
     }, {
-      primaryText: '11+ years'
+      primaryText: '11+ years', name: 'experience'
     }];
     const genderMenuItems = [{
-      primaryText: 'Male'
+      primaryText: 'Male', name: 'gender'
     }, {
-      primaryText: 'Female'
+      primaryText: 'Female', name: 'gender'
     }];
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -143,6 +150,7 @@ class Navbar extends Component {
                           menuItems={experienceMenuItems.map(menuItem => (
                             <MenuItem
                              {...menuItem}
+
                              onClick={
                                event => this.onMenuItemClicked(event, { props: {...menuItem}
                               })}
@@ -161,12 +169,6 @@ class Navbar extends Component {
                            />
                           ))}
                         />
-
-                        <MenuItem
-                          primaryText="Male"
-                          onClick={this.handleClick}
-                          value='Male'
-                         />
                       </Menu>
                     </Popover>
             </div>
@@ -226,12 +228,12 @@ const styles = {
   }
 }
 function mapStateToProps({ allUsers }) {
-  const { selectedItem, open, anchorEl } = allUsers;
+  const { selectedItem, userList, filterUserList } = allUsers;
+  console.log(userList);
   const users = allUsers.userList.map(user => {
-
     return { text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
 
-  return { selectedItem, users, open, anchorEl };
+  return { selectedItem, users};
 }
-export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,selected_item_changed })(Navbar);
+export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,filterUsers })(Navbar);

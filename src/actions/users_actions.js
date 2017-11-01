@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USERS, SELECTED_ITEM_CHANGED } from "./types";
+import { FETCH_USERS, FILTER_USERS } from "./types";
 
 export const fetchUsers = () => {
   const request = axios({
@@ -11,10 +11,3 @@ export const fetchUsers = () => {
     payload: request
   };
 };
-
-export const selected_item_changed = (value) => {
-  return {
-    type: SELECTED_ITEM_CHANGED,
-    payload: value
-  }
-}
