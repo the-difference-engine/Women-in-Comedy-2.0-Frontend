@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USERS } from "./types";
+import { FETCH_USERS, FILTER_USERS } from "./types";
 
 export const fetchUsers = () => {
   const request = axios({
