@@ -3,14 +3,19 @@ import '../css/event-info.css';
 
 const EventInfo = (props) => {
   if(props.event) {
-    const { title, date, time, location, about } = props.event.info
+    const { title, date, time, location, about, ticket_link, user_id } = props.event.info
+    
+
     return (
       <div>
         <h2 id="event-title">{title}</h2>
+        <h3> {user_id} </h3>
         <h2 id="event-date">{date}</h2>
         <h2 id="event-time">{time}</h2>
         <h3 id="event-location">{location}</h3>
+        <a><p id="event-ticket_link">{ticket_link}</p></a>
         <p id="event-desc">{about}</p>
+        
         {renderButton(props)}
       </div>
     );
