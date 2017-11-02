@@ -19,9 +19,9 @@ export const fetchAllUsers = () => async dispatch => {
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
 
-export const filterUsers = (value) => {
+export const filterUsers = (item, nestedItem) => {
   return {
     type: FILTER_USERS,
-    payload: value
+    payload: {item, nestedItem}
   }
 }

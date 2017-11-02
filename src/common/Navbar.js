@@ -26,13 +26,11 @@ class Navbar extends Component {
   };
   //handle nested Menu item events
   onMenuItemClicked = (event, menuItem) => {
-    this.props.filterUsers(menuItem.props.primaryText);
-    console.log('you clicked a nested  menu item: ' + menuItem.props.primaryText);
-    console.log('from the menu: ' + menuItem.props.name)
+    let { name, primaryText } = menuItem.props;
+    this.props.filterUsers(name, primaryText);
   }
   //handle Menu item events
   onMenuClicked = (event, value) => {
-    console.log('Menu Item: ' + event);
   }
 
 
@@ -43,9 +41,6 @@ class Navbar extends Component {
  };
   componentDidMount() {
     const { fetchAllUsers } = this.props;
-
-    console.log(this.props.selectedItem);
-    console.log(this.props.open);
     fetchAllUsers();
   }
 
@@ -63,11 +58,17 @@ class Navbar extends Component {
   }
   render() {
     const locationMenuItems = [{
-      primaryText: 'Near Me',
-      name: 'location'
+      primaryText: 'San Francisco',
+      name: 'city'
     }, {
+      primaryText: 'Chicago',
+      name: 'city'
+    },{
+      primaryText: 'Oakland',
+      name: 'city'
+    },{
       primaryText: 'Bay Area',
-      name: 'location'
+      name: 'city'
     }];
     const trainingMenuItems = [{
       primaryText: 'less than 1 year', name: 'training'
@@ -120,6 +121,12 @@ class Navbar extends Component {
                       onRequestClose={this.handleRequestClose}
                     >
                       <Menu onChange={this.onMenuClicked}>
+                        <MenuItem
+                          primaryText="Reset"
+                          onClick={
+                            event => this.onMenuItemClicked(event, { props: 'none'}
+                           )}
+                        />
                         <MenuItem
                           primaryText="Location"
                           rightIcon={<ArrowDropRight />}
@@ -228,12 +235,11 @@ const styles = {
   }
 }
 function mapStateToProps({ allUsers }) {
-  const { selectedItem, userList, filterUserList } = allUsers;
-  console.log(userList);
-  const users = allUsers.userList.map(user => {
+  const { filterUserList } = allUsers;
+  const users = filterUserList.map(user => {
     return { text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
 
-  return { selectedItem, users};
+  return { users };
 }
 export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,filterUsers })(Navbar);
