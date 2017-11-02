@@ -1,0 +1,30 @@
+
+.add-event {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  background-color: #e6e6e6;
+
+
+}
+
+.new-event button{
+  color: white;
+  font-size: 12px;
+  font-weight: 50;
+  background-color: #9b1522;
+
+}
+
+.add-event-content {
+  position: fixed;
+  top: 10%;
+  left: 2%;
+}
+
+.new-event button:hover {
+  background-color: #9b1522;
+  color: white;
+}
