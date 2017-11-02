@@ -18,7 +18,7 @@ export default (state = INITIAL_STATE, action) => {
       var item = action.payload.item;
       var nestedItem = action.payload.nestedItem;
       var filterUserList = state.userList;
-      if(item) {
+      if (item) {
          filterUserList = state.userList.filter(user => user[item] == nestedItem.toLowerCase());
       }
       return {

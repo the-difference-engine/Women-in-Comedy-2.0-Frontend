@@ -44,16 +44,16 @@ class Navbar extends Component {
     fetchAllUsers();
   }
 
-
   onItemClicked(item) {
-    const { fetchUserInfo, fetchUserFeeds } = this.props;
+    const { fetchUserInfo, fetchUserFeeds,
+      fetchUserConnections, fetchConnectionStatus } = this.props;
 
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = item.value
     fetchUserInfo(item.value);
     fetchUserFeeds(item.value);
-    this.props.fetchUserConnections(item.value);
-    this.props.fetchConnectionStatus({ sender_id, receiver_id });
+    fetchUserConnections(item.value);
+    fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
   }
   render() {
