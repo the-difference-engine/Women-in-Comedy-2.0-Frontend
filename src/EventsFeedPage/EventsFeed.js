@@ -49,9 +49,9 @@ class EventsFeed extends Component {
               userInfo={this.props.userInfo}
               eventId={this.props.match.params.id}
               fetchEventInfo={this.props.fetchEventInfo}
-              unattendEvent={this.props.unattendEvent}
-            />
-          <UpdateEvent history={this.props.history} eventId={this.props.match.params.id}/>
+              unattendEvent={this.props.unattendEvent}>
+            </EventInfo>
+          <UpdateEvent id="edit_btn" history={this.props.history} eventId={this.props.match.params.id}/>
 
           </LeftGraySideBar>
 
