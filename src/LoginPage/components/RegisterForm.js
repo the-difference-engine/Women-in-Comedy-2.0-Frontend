@@ -110,8 +110,9 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/users', values)
+    axios.post('http://localhost:9000/api/v1/users', values)
       .then(payload => {
+        console.log(values);
         this.setState({ userMade: true });
       })
       .catch(err => {alert(err)});
@@ -199,17 +200,17 @@ class RegisterForm extends Component {
             />
             <Field
               label="New Friends In Comedy"
-              name="new_friends_in_comedy"
+              name="New Friends In Comedy"
               component={this.renderCheckbox}
             />
             <Field
               label="Open Mic Buddy"
-              name="open_mic_buddy"
+              name="Open Mic Buddy"
               component={this.renderCheckbox}
             />
             <Field
               label="Seeking Mentors"
-              name="seeking_mentors"
+              name="Seeking Mentors"
               component={this.renderCheckbox}
             />
 
