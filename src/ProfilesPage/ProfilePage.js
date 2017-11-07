@@ -59,12 +59,12 @@ class ProfilePage extends Component {
     suspended ? unsuspendUser() : suspendUser()
   }
 
-  onUnsuspend() {
-    const id = this.props.userInfo.id
-    const admin = sessionStorage.getItem('isAdmin')
-    // const adminId = sessionStorage.getItem('userId')
-    this.props.unsuspendUser(id);
-  }
+  // onUnsuspend() {
+  //   const id = this.props.userInfo.id
+  //   const admin = sessionStorage.getItem('isAdmin')
+  //   // const adminId = sessionStorage.getItem('userId')
+  //   this.props.unsuspendUser(id);
+  // }
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem('userId');
@@ -108,17 +108,32 @@ class ProfilePage extends Component {
 
  suspendUserButton() {
   const { suspended } = this.props;
-  return <button onClick={this.onSuspend.bind.(this)}> {suspended ? "Unsuspend" : "Suspend" }</button>
+  asdfasdf
+
+
+  
+  return ( <button onClick={() => this.onSuspend()}> {suspended ? "Unsuspend" : "Suspend" }</button>
+    )
  }
+
+
+
+
+  //SUSPEND
+
+  // suspendUserButton() {
+  //   if (this.props.userInfo.suspension_reason == null)
+  //   return <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
+  // }
 
 
 
   //UNSUSPEND
 
-  // unsuspendUserButton() {
-  //   if (this.props.userInfo.suspension_reason == "Suspended!")
-  //   return <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
-  // }
+  unsuspendUserButton() {
+    if (this.props.userInfo.suspension_reason == "Suspended!")
+    return <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
+  }
 
 
   deleteUserButton() {
