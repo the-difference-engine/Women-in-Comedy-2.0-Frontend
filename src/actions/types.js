@@ -29,3 +29,6 @@ export const POST_USER_WALL = 'post_user_wall';
 export const USER_WALL_INPUT_CHANGE = 'user_wall_input_change';
 export const POSTED = 'posted';
 export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
+
+//Notifications
+export const FETCH_NOTIFICATIONS = 'fetch_notifications';

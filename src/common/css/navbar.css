@@ -5,6 +5,7 @@
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
+  /*z-index: 1000; position:relative;*/
 }
 
 #nav-header {

@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { AutoComplete } from 'material-ui';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections } from '../actions'
+import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, fetchNotifications } from '../actions'
 
 import './css/navbar.css';
 
 const userId = sessionStorage.getItem('userId');
+const NotificationItems = ({notifications}) => {
+  console.log(notifications)
+  return <li>Notifications</li>
+};
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +27,23 @@ class Navbar extends Component {
     this.props.fetchUserFeeds(item.value);
     this.props.fetchUserConnections(item.value);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
+    this.props.fetchNotifications({ sender_id });
     this.props.history.push(`/profile/${item.value}`);
 
 
   }
+
+  // renderNotifications() {
+  //   this.props.fetchNotifications(userId);
+  //   if (this.props.userInfo.id == userId) {
+  //     return <label>
+  //     Notifications
+  //     </label>
+  //   }
+
+  
   render() {
+
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -55,7 +71,7 @@ class Navbar extends Component {
             </li>
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
-            <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
+            <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS {NotificationItems.length}</p></i></a></li>
             <li><Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></Link></li>
           </ul>
         </div>
@@ -87,4 +103,4 @@ function mapStateToProps({ allUsers }) {
 
   return { allUsers };
 }
-export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections })(Navbar);
+export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, fetchNotifications })(Navbar);
