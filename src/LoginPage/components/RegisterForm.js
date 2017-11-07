@@ -199,17 +199,17 @@ class RegisterForm extends Component {
             />
             <Field
               label="New Friends In Comedy"
-              name="new_friends_in_comedy"
+              name="New Friends In Comedy"
               component={this.renderCheckbox}
             />
             <Field
               label="Open Mic Buddy"
-              name="open_mic_buddy"
+              name="Open Mic Buddy"
               component={this.renderCheckbox}
             />
             <Field
               label="Seeking Mentors"
-              name="seeking_mentors"
+              name="Seeking Mentors"
               component={this.renderCheckbox}
             />
 
