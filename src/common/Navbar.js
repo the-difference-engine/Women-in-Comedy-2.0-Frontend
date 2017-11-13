@@ -5,6 +5,8 @@ import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers } from '../actions'
+import axios from 'axios';
+
 
 import './css/navbar.css';
 
@@ -13,32 +15,42 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, open:  false};
+    this.state = { showUsers: false, open: false};
   }
-  //Search filter menu
-  handleTouchTap = (event) => {
-    // This prevents ghost click.
-    event.preventDefault();
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget
+
+  Logout() {
+    axios.get('http://localhost:9000/api/v1/sessions/sign_out')
+    .then(response => {
+      console.log(response.data.logout_message);
+      sessionStorage.setItem('confirmed', null);
+      sessionStorage.setItem('userId', null);
+      this.props.history.push('/')
     });
   };
-  //handle nested Menu item events
-  onMenuItemClicked = (event, menuItem) => {
-    let { name, primaryText } = menuItem.props;
-    this.props.filterUsers(name, primaryText);
-  }
-  //handle Menu item events
-  onMenuClicked = (event, value) => {
-  }
+ //  //Search filter menu
+ //  handleTouchTap = (event) => {
+ //    // This prevents ghost click.
+ //    event.preventDefault();
+ //    this.setState({
+ //      open: true,
+ //      anchorEl: event.currentTarget
+ //    });
+ //  };
+ //  //handle nested Menu item events
+ //  onMenuItemClicked = (event, menuItem) => {
+ //    let { name, primaryText } = menuItem.props;
+ //    this.props.filterUsers(name, primaryText);
+ //  }
+ //  //handle Menu item events
+ //  onMenuClicked = (event, value) => {
+ //  }
 
 
-  handleRequestClose = () => {
-   this.setState({
-     open: false,
-   });
- };
+ //  handleRequestClose = () => {
+ //   this.setState({
+ //     open: false,
+ //   });
+ // };
   componentDidMount() {
     const { fetchAllUsers } = this.props;
     fetchAllUsers();
@@ -197,6 +209,7 @@ class Navbar extends Component {
                 </div>
               </form>
             </li>
+            <button onClick={this.Logout.bind(this)}><span>Log out</span></button>
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
             <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
