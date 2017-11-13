@@ -17,6 +17,7 @@ class LoginNavbar extends Component {
     .then(response => {
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
       sessionStorage.setItem('userId', response.data.id);
+      sessionStorage.setItem('isAdmin', response.data.admin);
       response.data.confirmed_at ? this.props.history.push('/feed') : this.setState({notVerified: true});
     })
     .catch(err => {alert(err)});
