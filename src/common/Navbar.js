@@ -3,14 +3,11 @@ import { AutoComplete } from 'material-ui';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, fetchNotifications } from '../actions'
-
+import axios from 'axios';
 import './css/navbar.css';
 
 const userId = sessionStorage.getItem('userId');
-const NotificationItems = ({notifications}) => {
-  console.log(notifications)
-  return <li>Notifications</li>
-};
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +38,12 @@ class Navbar extends Component {
   //     </label>
   //   }
 
-  
+  Notifications() {
+    axios.get(`http://localhost:9000/api/v1/notifications/${userId}`).then(response => {
+      const allNotifications = response.data
+    });
+  };
+
   render() {
 
     return (
@@ -71,7 +73,7 @@ class Navbar extends Component {
             </li>
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
-            <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS {NotificationItems.length}</p></i></a></li>
+            <li><a href="#" className="icon" onClick={this.Notifications.bind(this)}><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
             <li><Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></Link></li>
           </ul>
         </div>
