@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers } from '../actions'
 import axios from 'axios';
 
-
 import './css/navbar.css';
 
 const userId = sessionStorage.getItem('userId');
@@ -15,7 +14,9 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, open: false};
+    this.state = { showUsers: false, open:  false};
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
   }
 
   Logout() {
@@ -27,34 +28,50 @@ class Navbar extends Component {
       this.props.history.push('/')
     });
   };
- //  //Search filter menu
- //  handleTouchTap = (event) => {
- //    // This prevents ghost click.
- //    event.preventDefault();
- //    this.setState({
- //      open: true,
- //      anchorEl: event.currentTarget
- //    });
- //  };
- //  //handle nested Menu item events
- //  onMenuItemClicked = (event, menuItem) => {
- //    let { name, primaryText } = menuItem.props;
- //    this.props.filterUsers(name, primaryText);
- //  }
- //  //handle Menu item events
- //  onMenuClicked = (event, value) => {
- //  }
 
 
- //  handleRequestClose = () => {
- //   this.setState({
- //     open: false,
- //   });
- // };
+  renderLogout() {
+    if (userId) {
+      return <div id='navbar'>
+               <li><button onClick={this.Logout.bind(this)}><span>Log out</span></button></li>
+             </div>
+    };
+  };
+
+
+
+
+
   componentDidMount() {
     const { fetchAllUsers } = this.props;
     fetchAllUsers();
   }
+
+  handleTouchTap(event) {
+    // This prevents ghost click.
+    event.preventDefault();
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget
+    });
+  };
+
+  onMenuItemClicked(event, menuItem) {
+    let { name, primaryText } = menuItem.props;
+    this.props.filterUsers(name, primaryText);
+  };
+
+  onMenuClicked(event, value) {
+  };
+
+  handleRequestClose(){
+    this.setState({
+     open: false,
+    });
+  };
+
+
+  
 
   onItemClicked(item) {
     const { fetchUserInfo, fetchUserFeeds,
@@ -68,6 +85,8 @@ class Navbar extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
   }
+
+
   render() {
     const locationMenuItems = [{
       primaryText: 'San Francisco',
@@ -209,7 +228,7 @@ class Navbar extends Component {
                 </div>
               </form>
             </li>
-            <button onClick={this.Logout.bind(this)}><span>Log out</span></button>
+            {this.renderLogout()}
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
             <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
