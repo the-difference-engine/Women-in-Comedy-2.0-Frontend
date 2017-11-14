@@ -7,7 +7,8 @@ export default (state = {}, action) => {
       suspended: action.suspended}
 
     case UNSUSPEND_USER:
-      return state;
+      return {...state,
+        suspended: action.suspended} 
 
     case DELETE_USER:
       return state;

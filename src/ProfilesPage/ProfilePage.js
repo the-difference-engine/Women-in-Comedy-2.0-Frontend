@@ -55,7 +55,8 @@ class ProfilePage extends Component {
   onSuspend() {
     const id = this.props.userInfo.id
     const admin = sessionStorage.getItem('isAdmin')
-    const { suspended } = this.props;
+    const { suspended }  = this.props;
+    console.log(suspended);
     suspended ? unsuspendUser() : suspendUser()
   }
 
@@ -84,48 +85,6 @@ class ProfilePage extends Component {
       </label>
     }
   }
-  // SUSPENSION 
-  // suspendUserButton() {
-  //     const admin = sessionStorage.getItem('isAdmin')
-  //     const suspension_reason = this.props.userInfo.suspension_reason
-  //     console.log(admin);
-  //     console.log(suspension_reason)
-  //     var suspendButton;
-  //     if (admin == true && (this.props.userInfo.suspension_reason == null)) {
-  //       suspendButton = <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
-  //     }   else if (admin == true && (this.props.userInfo.suspension_reason == "Suspended!")) {
-  //       suspendButton = <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
-  //     }
-
-  //     return (
-  //   <div>
-  //      { suspendButton }
-  //   </div>
-  //   );
-  // }
-
-
-
- suspendUserButton() {
-  const { suspended } = this.props;
-  asdfasdf
-
-
-  
-  return ( <button onClick={() => this.onSuspend()}> {suspended ? "Unsuspend" : "Suspend" }</button>
-    )
- }
-
-
-
-
-  //SUSPEND
-
-  // suspendUserButton() {
-  //   if (this.props.userInfo.suspension_reason == null)
-  //   return <button className="btn btn-danger"  onClick={this.onSuspend.bind(this)}>Suspend</button>
-  // }
-
 
 
   //UNSUSPEND
@@ -163,7 +122,7 @@ class ProfilePage extends Component {
   }
 
   render () {
-    const { userInfo, userConnections, userFeeds, status } = this.props;
+    const { userInfo, userConnections, userFeeds, status, suspended } = this.props;
 
 
     return (
@@ -173,8 +132,8 @@ class ProfilePage extends Component {
           <UserInfo userInfo={this.props.userInfo}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
-          {this.suspendUserButton()}
           {this.deleteUserButton()}
+          <button onClick={() => this.onSuspend()}> {suspended ? "Unsuspend" : "Suspend" }</button>
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>

@@ -8,8 +8,7 @@ export const suspendUser = (suspended) => async dispatch => {
     });
   return {
     type: SUSPEND_USER,
-    suspended,
-    // console.log(action.suspended);
+    suspended: suspended,
   }
 }
 
