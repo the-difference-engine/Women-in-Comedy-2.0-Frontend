@@ -14,9 +14,16 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { showUsers: false, open:  false};
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
   }
-  //Search filter menu
-  handleTouchTap = (event) => {
+
+  componentDidMount() {
+    const { fetchAllUsers } = this.props;
+    fetchAllUsers();
+  }
+
+  handleTouchTap(event) {
     // This prevents ghost click.
     event.preventDefault();
     this.setState({
@@ -24,25 +31,20 @@ class Navbar extends Component {
       anchorEl: event.currentTarget
     });
   };
-  //handle nested Menu item events
-  onMenuItemClicked = (event, menuItem) => {
+
+  onMenuItemClicked(event, menuItem) {
     let { name, primaryText } = menuItem.props;
     this.props.filterUsers(name, primaryText);
-  }
-  //handle Menu item events
-  onMenuClicked = (event, value) => {
-  }
+  };
 
+  onMenuClicked(event, value) {
+  };
 
-  handleRequestClose = () => {
+  handleRequestClose(){
    this.setState({
      open: false,
    });
  };
-  componentDidMount() {
-    const { fetchAllUsers } = this.props;
-    fetchAllUsers();
-  }
 
   onItemClicked(item) {
     const { fetchUserInfo, fetchUserFeeds,
