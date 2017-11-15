@@ -38,10 +38,6 @@ class Navbar extends Component {
     };
   };
 
-
-
-
-
   componentDidMount() {
     const { fetchAllUsers } = this.props;
     fetchAllUsers();
@@ -70,8 +66,6 @@ class Navbar extends Component {
     });
   };
 
-
-  
 
   onItemClicked(item) {
     const { fetchUserInfo, fetchUserFeeds,
