@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "express": "^4.16.2",
     "firebase": "^4.3.1",
     "jsesc": "^2.5.1",
     "lodash": "^4.17.4",
@@ -15,6 +16,7 @@
     "react-day-picker": "^6.1.0",
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",
+    "react-hot-loader": "^3.1.2",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
@@ -22,6 +24,8 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "shuffle-array": "^1.0.1",
+    "socket.io": "^2.0.4",
+    "socket.io-react": "^1.2.0",
     "spdy": "^3.4.7"
   },
   "devDependencies": {
