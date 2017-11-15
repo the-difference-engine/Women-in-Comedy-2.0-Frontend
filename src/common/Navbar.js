@@ -31,10 +31,16 @@ class Navbar extends Component {
 
 
   renderLogout() {
-    if (userId) {
-      return <div id='navbar'>
-               <li><button onClick={this.Logout.bind(this)}><span>Log out</span></button></li>
-             </div>
+    const currentUserId = sessionStorage.getItem('userId');
+
+    console.log(currentUserId);
+
+    if (currentUserId != 'null') {
+      return (
+        <div id='navbar'>
+          <li><button onClick={this.Logout.bind(this)}><span>Log out</span></button></li>
+        </div>
+      )
     };
   };
 
