@@ -5,6 +5,7 @@ import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers } from '../actions'
+import axios from 'axios';
 
 import './css/navbar.css';
 
@@ -17,6 +18,25 @@ class Navbar extends Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
   }
+
+  Logout() {
+    axios.get('http://localhost:9000/api/v1/sessions/sign_out')
+    .then(response => {
+      console.log(response.data.logout_message);
+      sessionStorage.setItem('confirmed', null);
+      sessionStorage.setItem('userId', null);
+      this.props.history.push('/')
+    });
+  };
+
+
+  renderLogout() {
+    if (userId) {
+      return <div id='navbar'>
+               <li><button onClick={this.Logout.bind(this)}><span>Log out</span></button></li>
+             </div>
+    };
+  };
 
   componentDidMount() {
     const { fetchAllUsers } = this.props;
@@ -41,10 +61,11 @@ class Navbar extends Component {
   };
 
   handleRequestClose(){
-   this.setState({
+    this.setState({
      open: false,
-   });
- };
+    });
+  };
+
 
   onItemClicked(item) {
     const { fetchUserInfo, fetchUserFeeds,
@@ -58,6 +79,8 @@ class Navbar extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
   }
+
+
   render() {
     const locationMenuItems = [{
       primaryText: 'San Francisco',
@@ -199,6 +222,7 @@ class Navbar extends Component {
                 </div>
               </form>
             </li>
+            {this.renderLogout()}
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
             <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
