@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';

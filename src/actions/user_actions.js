@@ -4,7 +4,7 @@ import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS } from './types';
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
-   url: 'http://localhost:9000/api/v1/users/info',
+   url: process.env.REACT_APP_API_URL + '/users/info',
    headers: {"id": userId}
  });
  return (dispatch) => {
