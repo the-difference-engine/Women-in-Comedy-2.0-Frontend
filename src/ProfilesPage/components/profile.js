@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import '../css/profile.css';
 import axios from 'axios';
 
-export const { CREATE_POST } = 'create_post'; 
+export const { CREATE_POST } = 'create_post';
 
 
 class Profile extends Component {
@@ -46,14 +46,10 @@ class Profile extends Component {
   }
 
 
-  
+
   renderField(field) {
     const { meta: { touched, error } } = field;
     const className = `personal-feed ${touched && error ? 'has-danger' : ''}`
-
-
-
-
 
         return (
 
@@ -69,8 +65,6 @@ class Profile extends Component {
             </div>
           </div>
         );
-       
-
   }
 
   onSubmit(values) {
@@ -119,7 +113,7 @@ class Profile extends Component {
         commentArray.push(comment);
         console.log('commentArray below');
         console.log(commentArray);
-        
+
       })
     })
     this.commentsTotal = commentArray.length;
@@ -145,7 +139,7 @@ class Profile extends Component {
               <div id="current-profile"> {renderFeeds(userFeeds)} </div>
             </div>
           </div>
-        ); 
+        );
   };
 };
 
@@ -193,4 +187,3 @@ export default reduxForm({
 })(
   connect(null, { CREATE_POST })(Profile)
 );
-
