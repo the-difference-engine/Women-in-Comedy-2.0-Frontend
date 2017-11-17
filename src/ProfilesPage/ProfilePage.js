@@ -52,11 +52,11 @@ class ProfilePage extends Component {
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
-      <input 
+      <input
         type="checkbox"
         defaultChecked={this.props.userInfo.block_connection_requests}
-        onClick={this.onBlockConnection.bind(this)} 
-      /> 
+        onClick={this.onBlockConnection.bind(this)}
+      />
       Block Incomming Connection Requests
       </label>
     }
@@ -82,13 +82,12 @@ class ProfilePage extends Component {
     else if (_.isEmpty(this.props.status)) {
       return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
     }
+
+
   }
 
   render () {
     const { userInfo, userConnections, userFeeds, status } = this.props;
-
-
-
     return (
       <div>
         <Navbar history={this.props.history} />
