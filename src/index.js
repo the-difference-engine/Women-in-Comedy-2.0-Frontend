@@ -5,12 +5,11 @@ import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
-
 import App from './App';
 import reducers from './reducers';
+import 'dotenv/config';
 
 const store = createStore(reducers, {}, applyMiddleware(promise, thunk));
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

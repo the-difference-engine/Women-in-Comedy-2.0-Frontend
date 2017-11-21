@@ -20,7 +20,7 @@ class Navbar extends Component {
   }
 
   Logout() {
-    axios.get('http://localhost:9000/api/v1/sessions/sign_out')
+    axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out')
     .then(response => {
       console.log(response.data.logout_message);
       sessionStorage.setItem('confirmed', null);
