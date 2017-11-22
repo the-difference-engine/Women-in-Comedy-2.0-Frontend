@@ -18,6 +18,7 @@ import ProfileConnections from './components/ProfileConnections';
 import ProfileFeed from './components/ProfileFeed';
 
 const userId = sessionStorage.getItem('userId');
+const adminUser = sessionStorage.getItem('adminUser');
 class ProfilePage extends Component {
   componentWillMount() {
       const sender_id = sessionStorage.getItem('userId');
@@ -92,7 +93,7 @@ class ProfilePage extends Component {
       <div>
         <Navbar history={this.props.history} />
         <LeftGraySideBar>
-          <UserInfo userInfo={this.props.userInfo}/>
+          <UserInfo userInfo={userInfo} adminUser={adminUser}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
         </LeftGraySideBar>
