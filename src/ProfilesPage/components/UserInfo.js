@@ -5,14 +5,11 @@ const EditButton = (props) => {
   if (props.isAdmin) {
     return <button>Admin Edit</button>
   }
-  return <button>User Edit</button>
+  return <button>Edit</button>
 }
 
 const UserInfo = (props) => {
   if (props.userInfo) {
-
-    // const userIsAdmin = sessionStorage.getItem('adminUser');
-    console.log(props.adminUser);
     const boolean = false;
     const { firstName, lastName, admin, bio, block_connection_requests } = props.userInfo
     return (

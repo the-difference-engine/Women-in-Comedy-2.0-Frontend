@@ -15,8 +15,6 @@ class LoginNavbar extends Component {
     // this.props.createSession(email, password);
     axios.post('http://localhost:9000/api/v1/sessions', { email, password })
     .then(response => {
-      console.log("RESPONSE DATA");
-      console.log(response.data);
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
       sessionStorage.setItem('userId', response.data.id);
       sessionStorage.setItem('adminUser', response.data.admin);
