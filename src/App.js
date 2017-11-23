@@ -12,6 +12,7 @@ import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
+import EditPage from './EditPage/EditPage';
 
 class App extends Component {
   componentWillMount() {
@@ -38,6 +39,7 @@ class App extends Component {
               <Route path='/activities' component={ActivityPage}></Route>
               <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
               <Route path='/profile/:id' component={ProfilePage}></Route>
+              <Route path='profile/test/edit' component={EditPage}></Route>
               <Route path='/' component={Form}></Route>
             </Switch>
           </div>
