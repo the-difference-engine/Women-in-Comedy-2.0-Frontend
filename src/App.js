@@ -43,8 +43,6 @@ class App extends Component {
               <Route exact path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/profile/:id/edit' component={EditPage}></Route>
               <Route path='/test' component={UserEditPage}></Route>
-
-
             </Switch>
 
           </div>

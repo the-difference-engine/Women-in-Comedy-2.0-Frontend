@@ -23,8 +23,6 @@ const adminUser = sessionStorage.getItem('adminUser');
 
 class ProfilePage extends Component {
   componentWillMount() {
-      console.log('match params here');
-      console.log(this.props.match);
 
       const sender_id = sessionStorage.getItem('userId');
       const receiver_id = this.props.match.params.id;
@@ -105,7 +103,6 @@ class ProfilePage extends Component {
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
         </RightGraySideBar>
-        <EditPage />
       </div>
     );
   };
