@@ -1,15 +1,18 @@
 import React from 'react';
 import '../css/profile-userinfo.css';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import EditPage from '../../EditPage/EditPage';
 
 const EditButton = (props) => {
   if (props.isAdmin) {
-    return <Link to='/edit'> Admin Edit </Link>
+    return <Link to={props.url + '/edit'} > Admin Edit </Link>
   }
-  return <Link to='/activities'> User Edit </Link>
+  return <Link to={props.url + '/edit'} > User Edit </Link>
 }
 
-const UserInfo = (props, { match }) => {
+const UserInfo = (props) => {
+  console.log('match in UserInfo');
+  console.log(props.url);
 
   if (props.userInfo) {
     const boolean = false;
@@ -20,8 +23,8 @@ const UserInfo = (props, { match }) => {
         <p id="profile-name">{firstName} {lastName} </p>
         <p id="profile-bio-title">Bio</p>
         <p id="profile-bio-content">{bio}</p>
-        <EditButton isAdmin={props.adminUser} />
-
+        <EditButton isAdmin={props.adminUser} url={props.url} />
+        <Route  path={props.url + '/edit'}  component={EditPage} />
       </div>
     );
   }

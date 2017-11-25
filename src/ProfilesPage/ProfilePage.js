@@ -16,11 +16,16 @@ import Navbar from '../common/Navbar';
 import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
 import ProfileFeed from './components/ProfileFeed';
+import EditPage from '../EditPage/EditPage'
 
 const userId = sessionStorage.getItem('userId');
 const adminUser = sessionStorage.getItem('adminUser');
+
 class ProfilePage extends Component {
   componentWillMount() {
+      console.log('match params here');
+      console.log(this.props.match);
+
       const sender_id = sessionStorage.getItem('userId');
       const receiver_id = this.props.match.params.id;
       const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
@@ -88,32 +93,19 @@ class ProfilePage extends Component {
   }
 
   render () {
-    const { userInfo, userConnections, userFeeds, status } = this.props;
+    const { userInfo, userConnections, userFeeds, status, match } = this.props;
     return (
       <div>
         <Navbar history={this.props.history} />
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} adminUser={adminUser}/>
+          <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
         </RightGraySideBar>
-        <PageContent>
-          <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}
-                />
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
-              </div>
-            </div>
-          </div>
-          <ProfileFeed feeds={this.props.userFeeds}/>
-        </PageContent>
+        <EditPage />
       </div>
     );
   };

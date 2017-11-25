@@ -13,6 +13,7 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
+import UserEditPage from './UserEditPage/UserEditPage';
 
 class App extends Component {
   componentWillMount() {
@@ -32,16 +33,20 @@ class App extends Component {
         <MuiThemeProvider>
           <div>
             <Switch>
+              <Route exact path='/' component={Form}></Route>
               <Route path='/feed' component={Feed}></Route>
               <Route path='/newevent' component={CreateEvents}></Route>
               <Route path='/events' component={EventsPage}></Route>
               <Route path="/home" component={HomePage}></Route>
               <Route path='/activities' component={ActivityPage}></Route>
               <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-              <Route path='/profile/:id' component={ProfilePage}></Route>
+              <Route exact path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/profile/:id/edit' component={EditPage}></Route>
-              <Route path='/' component={Form}></Route>
+              <Route path='/test' component={UserEditPage}></Route>
+
+
             </Switch>
+
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
