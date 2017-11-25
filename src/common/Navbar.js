@@ -11,7 +11,10 @@ const userId = sessionStorage.getItem('userId');
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false };
+    this.state = { showUsers: false, allNotifications: {} };
+  }
+  componentWillMount() {
+    
   }
   componentDidMount() {
     this.props.fetchAllUsers();
@@ -40,11 +43,13 @@ class Navbar extends Component {
 
   Notifications() {
     axios.get(`http://localhost:9000/api/v1/notifications/${userId}`).then(response => {
-      const allNotifications = response.data
+      this.setState({allNotifications: response.data})
+      // console.log(this.allNotifications)
     });
   };
 
   render() {
+    let allNotifications = this.Notifications();
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -73,7 +78,7 @@ class Navbar extends Component {
             </li>
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
-            <li><a href="#" className="icon" onClick={this.Notifications.bind(this)}><i className="fa fa-bell-o"><p>ALERTS</p></i></a></li>
+            <li><a href="#" className="icon" ><i className="fa fa-bell-o"><p>ALERTS {this.state.allNotifications.length}</p></i></a></li>
             <li><Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></Link></li>
           </ul>
         </div>
@@ -81,7 +86,7 @@ class Navbar extends Component {
     );
   }
 };
-
+// onClick={this.Notifications.bind(this)}
 const styles = {
   input: {
     height: '30px',
