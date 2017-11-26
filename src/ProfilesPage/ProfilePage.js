@@ -9,7 +9,8 @@ import {
   fetchConnectionStatus,
   userWallInputChange,
   createPostOnUserWall,
-  blockConnectionRequests
+  blockConnectionRequests,
+  editUser
 } from '../actions';
 import { LeftGraySideBar, RightGraySideBar, PageContent } from '../common';
 import Navbar from '../common/Navbar';
@@ -24,15 +25,15 @@ const adminUser = sessionStorage.getItem('adminUser');
 class ProfilePage extends Component {
   componentWillMount() {
 
-      const sender_id = sessionStorage.getItem('userId');
-      const receiver_id = this.props.match.params.id;
-      const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-      this.props.fetchUserInfo(this.props.match.params.id);
-      this.props.fetchUserFeeds(this.props.match.params.id);
-      this.props.fetchUserConnections(this.props.match.params.id);
-      this.props.fetchConnectionStatus({ sender_id, receiver_id });
+    const sender_id = sessionStorage.getItem('userId');
+    const receiver_id = this.props.match.params.id;
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
+    this.props.fetchUserInfo(this.props.match.params.id);
+    this.props.fetchUserFeeds(this.props.match.params.id);
+    this.props.fetchUserConnections(this.props.match.params.id);
+    this.props.fetchConnectionStatus({ sender_id, receiver_id });
 
-    }
+  }
 
   onPress() {
     const sender_id = sessionStorage.getItem('userId');
@@ -57,17 +58,35 @@ class ProfilePage extends Component {
   onUserEditButton(isClicked) {
     console.log('is Edit button clicked?');
     console.log(isClicked);
+    this.props.editUser(false);
+    if(isClicked) {
+      return true;
+    }
+    else return false;
+
   };
+  onClick() {
+    this.props.editUser(false);
+    console.log(this.props.editUser(false).payload);
+    console.log(this.props.status);
+  }
+
+  renderEditUserButton() {
+    return (
+      <button onClick={this.onClick.bind(this)}> Edit User </button>
+    )
+
+  }
 
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
-      <input
-        type="checkbox"
-        defaultChecked={this.props.userInfo.block_connection_requests}
-        onClick={this.onBlockConnection.bind(this)}
-      />
-      Block Incomming Connection Requests
+        <input
+          type="checkbox"
+          defaultChecked={this.props.userInfo.block_connection_requests}
+          onClick={this.onBlockConnection.bind(this)}
+        />
+        Block Incomming Connection Requests
       </label>
     }
   }
@@ -100,11 +119,12 @@ class ProfilePage extends Component {
     const { userInfo, userConnections, userFeeds, status, match } = this.props;
     return (
       <div>
-        <Navbar history={this.props.history} />
+        {/* <Navbar history={this.props.history} /> */}
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
+          {this.renderEditUserButton()}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>
@@ -121,18 +141,20 @@ class ProfilePage extends Component {
               </div>
             </div>
           </div>
-          <ProfileFeed feeds={this.props.userFeeds}/>
-        </PageContent>
-      </div>
-    );
-  };
+        }
+        <ProfileFeed feeds={this.props.userFeeds}/>
+
+      </PageContent>
+    </div>
+  );
+};
 }
 
-  const mapStateToProps = (state) => {
-    const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
+const mapStateToProps = (state) => {
+  const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
 
-    return { userInfo, userFeeds, userConnections, status, userWallPost };
-  }
+  return { userInfo, userFeeds, userConnections, status, userWallPost };
+}
 export default connect(mapStateToProps,
   {
     fetchUserInfo,
@@ -142,6 +164,7 @@ export default connect(mapStateToProps,
     fetchConnectionStatus,
     userWallInputChange,
     createPostOnUserWall,
-    blockConnectionRequests
+    blockConnectionRequests,
+    editUser
   }
-  )(ProfilePage);
+)(ProfilePage);

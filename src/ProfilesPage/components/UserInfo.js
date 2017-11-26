@@ -29,7 +29,6 @@ const UserInfo = (props) => {
         <p id="profile-name">{firstName} {lastName} </p>
         <p id="profile-bio-title">Bio</p>
         <p id="profile-bio-content">{bio}</p>
-        <button onClick={handleClick}>Click Me</button>
         <EditButton isAdmin={props.adminUser} url={props.url} onButtonClicked={handleClick} />
 
       </div>
