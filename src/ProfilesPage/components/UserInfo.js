@@ -21,7 +21,6 @@ const UserInfo = (props) => {
   }
 
   if (props.userInfo) {
-    const boolean = false;
     const { firstName, lastName, admin, bio, block_connection_requests } = props.userInfo
     return (
       <div>
@@ -29,12 +28,12 @@ const UserInfo = (props) => {
         <p id="profile-name">{firstName} {lastName} </p>
         <p id="profile-bio-title">Bio</p>
         <p id="profile-bio-content">{bio}</p>
-        <EditButton isAdmin={props.adminUser} url={props.url} onButtonClicked={handleClick} />
+        {/* <EditButton isAdmin={props.adminUser} url={props.url} onButtonClicked={handleClick} /> */}
 
       </div>
     );
   }
-  return <div></div>
+  return <div>Something is Here </div>
 };
 
 

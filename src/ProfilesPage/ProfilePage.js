@@ -21,6 +21,7 @@ import EditPage from '../EditPage/EditPage'
 
 const userId = sessionStorage.getItem('userId');
 const adminUser = sessionStorage.getItem('adminUser');
+var editButtonClicked = false;
 
 class ProfilePage extends Component {
   componentWillMount() {
@@ -64,18 +65,20 @@ class ProfilePage extends Component {
     }
     else return false;
 
-  };
-  onClick() {
-    this.props.editUser(false);
-    console.log(this.props.editUser(false).payload);
-    console.log(this.props.status);
   }
 
-  renderEditUserButton() {
-    return (
-      <button onClick={this.onClick.bind(this)}> Edit User </button>
-    )
 
+
+  renderEditUserButton() {
+    let onClick = ()  => {
+      this.props.editUser(true);
+      editButtonClicked = true;
+      console.log('button clicked?');
+      console.log(editButtonClicked);
+    }
+    return (
+      <button onClick={onClick}> Edit User </button>
+    )
   }
 
   renderBlockConnection() {
@@ -115,21 +118,12 @@ class ProfilePage extends Component {
 
   }
 
-  render () {
-    const { userInfo, userConnections, userFeeds, status, match } = this.props;
-    return (
-      <div>
-        {/* <Navbar history={this.props.history} /> */}
-        <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/>
-          {this.renderBlockConnection()}
-          {this.renderConnection()}
-          {this.renderEditUserButton()}
-        </LeftGraySideBar>
-        <RightGraySideBar>
-          <ProfileConnections connections={this.props.userConnections}/>
-        </RightGraySideBar>
-        <PageContent>
+  renderPageContent() {
+
+    //If user does not click edit user button, show feed content
+    if(editButtonClicked) {
+      return (
+        <div>
           <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
@@ -141,9 +135,32 @@ class ProfilePage extends Component {
               </div>
             </div>
           </div>
-        }
-        <ProfileFeed feeds={this.props.userFeeds}/>
+          <ProfileFeed feeds={this.props.userFeeds}/>
+        </div>
+      )
+    }
+    //If user clicks edit button, show Edit page
+    return <EditPage />
 
+  }
+
+  render () {
+    const { userInfo, userConnections, userFeeds, status, match } = this.props;
+    return (
+      <div>
+        {/* <Navbar history={this.props.history} /> */}
+        <LeftGraySideBar>
+          <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/>
+          {this.renderBlockConnection()}
+          {this.renderConnection()}
+          {this.renderEditUserButton()}
+
+        </LeftGraySideBar>
+        <RightGraySideBar>
+          <ProfileConnections connections={this.props.userConnections}/>
+        </RightGraySideBar>
+        <PageContent>
+          {this.renderPageContent()}
       </PageContent>
     </div>
   );
@@ -151,9 +168,9 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
+  const { userInfo, userFeeds, userConnections, status, userWallPost, editUser} = state;
 
-  return { userInfo, userFeeds, userConnections, status, userWallPost };
+  return { userInfo, userFeeds, userConnections, status, userWallPost, editUser };
 }
 export default connect(mapStateToProps,
   {
