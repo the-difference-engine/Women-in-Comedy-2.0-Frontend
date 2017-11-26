@@ -53,6 +53,12 @@ class ProfilePage extends Component {
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
+  //When user clicks on Edit Button
+  onUserEditButton(isClicked) {
+    console.log('is Edit button clicked?');
+    console.log(isClicked);
+  };
+
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
@@ -96,7 +102,7 @@ class ProfilePage extends Component {
       <div>
         <Navbar history={this.props.history} />
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url}/>
+          <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/>
           {this.renderBlockConnection()}
           {this.renderConnection()}
         </LeftGraySideBar>

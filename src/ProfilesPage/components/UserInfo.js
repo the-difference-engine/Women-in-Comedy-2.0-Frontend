@@ -5,14 +5,20 @@ import EditPage from '../../EditPage/EditPage';
 
 const EditButton = (props) => {
   if (props.isAdmin) {
-    return <Link to={props.url + '/edit'} > Admin Edit </Link>
+    return (
+      <Link to={props.url + '/edit'} onClick={props.onButtonClicked} > Admin Edit </Link>
+    )
   }
-  return <Link to={props.url + '/edit'} > User Edit </Link>
+  return (
+    <Link to={props.url + '/edit'} onClick='props.buttonClicked(true)'> User Edit </Link>
+  )
 }
 
 const UserInfo = (props) => {
-  console.log('match in UserInfo');
-  console.log(props.url);
+
+  const handleClick = () => {
+    props.editButtonClicked(true);
+  }
 
   if (props.userInfo) {
     const boolean = false;
@@ -23,13 +29,17 @@ const UserInfo = (props) => {
         <p id="profile-name">{firstName} {lastName} </p>
         <p id="profile-bio-title">Bio</p>
         <p id="profile-bio-content">{bio}</p>
-        <EditButton isAdmin={props.adminUser} url={props.url} />
-        <Route  path={props.url + '/edit'}  component={EditPage} />
+        <button onClick={handleClick}>Click Me</button>
+        <EditButton isAdmin={props.adminUser} url={props.url} onButtonClicked={handleClick} />
+
       </div>
     );
   }
   return <div></div>
 };
+
+
+
 
 
 export default UserInfo;

@@ -9,8 +9,8 @@ class EditPage extends Component {
     return (
       <div>
         <Navbar history={this.props.history} />
-        <LeftGraySideBar history={this.props.history}/>
-        <RightGraySideBar history={this.props.history}/>
+        <LeftGraySideBar />
+        <RightGraySideBar />
         <PageContent>
           <p> This is the edit page. </p>
         </PageContent>
