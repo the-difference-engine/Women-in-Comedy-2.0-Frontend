@@ -34,7 +34,6 @@ class ProfilePage extends Component {
     this.props.fetchUserConnections(this.props.match.params.id);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
     this.setState({editUserEnable: false});
-
   }
 
   onPress() {
@@ -59,7 +58,8 @@ class ProfilePage extends Component {
 
   renderEditUserButton() {
     let onClick = ()  => {
-      this.props.editUser(true);
+    this.props.editUser(true);
+
       this.setState({editUserEnable: true});
     }
     return (
