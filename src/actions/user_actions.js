@@ -30,6 +30,6 @@ export const editUser = (isAdmin) => {
   console.log('editUser function is initialized.');
   return {
     type: EDIT_USER,
-    payload: isAdmin
+    isAdminEdit: isAdmin
   }
 }

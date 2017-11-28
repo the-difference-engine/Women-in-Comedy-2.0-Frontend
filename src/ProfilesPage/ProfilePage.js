@@ -21,7 +21,7 @@ import EditPage from '../EditPage/EditPage'
 
 const userId = sessionStorage.getItem('userId');
 const adminUser = sessionStorage.getItem('adminUser');
-var editButtonClicked = false;
+// var editButtonClicked = false;
 
 class ProfilePage extends Component {
   componentWillMount() {
@@ -33,6 +33,7 @@ class ProfilePage extends Component {
     this.props.fetchUserFeeds(this.props.match.params.id);
     this.props.fetchUserConnections(this.props.match.params.id);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
+    this.setState({editUserEnable: false});
 
   }
 
@@ -55,26 +56,11 @@ class ProfilePage extends Component {
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
   }
 
-  //When user clicks on Edit Button
-  onUserEditButton(isClicked) {
-    console.log('is Edit button clicked?');
-    console.log(isClicked);
-    this.props.editUser(false);
-    if(isClicked) {
-      return true;
-    }
-    else return false;
-
-  }
-
-
 
   renderEditUserButton() {
     let onClick = ()  => {
       this.props.editUser(true);
-      editButtonClicked = true;
-      console.log('button clicked?');
-      console.log(editButtonClicked);
+      this.setState({editUserEnable: true});
     }
     return (
       <button onClick={onClick}> Edit User </button>
@@ -114,34 +100,32 @@ class ProfilePage extends Component {
     else if (_.isEmpty(this.props.status)) {
       return <button type="button"  onClick={this.onPress.bind(this)}>Connect</button>
     }
-
-
   }
 
   renderPageContent() {
+    console.log(this.state.editUserEnable);
 
-    //If user does not click edit user button, show feed content
-    if(editButtonClicked) {
-      return (
-        <div>
-          <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}
-                />
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
-              </div>
+    if(this.state.editUserEnable) {
+      return <EditPage />
+    }
+
+    return (
+      <div>
+        <div className="feed-post-bar">
+          <div className="wrap">
+            <div className="search">
+              <input type="text" className="searchTerm" placeholder="What's New?"
+                onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                value={this.props.userWallPost}
+              />
+              <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
             </div>
           </div>
-          <ProfileFeed feeds={this.props.userFeeds}/>
         </div>
-      )
-    }
-    //If user clicks edit button, show Edit page
-    return <EditPage />
+        <ProfileFeed feeds={this.props.userFeeds}/>
+      </div>
 
+    )
   }
 
   render () {
@@ -161,10 +145,10 @@ class ProfilePage extends Component {
         </RightGraySideBar>
         <PageContent>
           {this.renderPageContent()}
-      </PageContent>
-    </div>
-  );
-};
+        </PageContent>
+      </div>
+    );
+  };
 }
 
 const mapStateToProps = (state) => {
