@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import Navbar from '../common/Navbar';
-import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
-
+import { Field, reduxForm } from 'redux-form';
+import EditForm from './components/EditForm';
 class EditPage extends Component {
 
   render() {
     if(this.props.adminEdit) {
-      console.log(this.props.adminEdit);
-      return <div>You are in admin edit page. </div>
+      return <div>
+        You are in admin edit page.
+        <EditForm />
+      </div>
     }
     console.log(this.props.adminEdit);
     return (
