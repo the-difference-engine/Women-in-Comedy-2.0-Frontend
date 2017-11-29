@@ -10,7 +10,6 @@ class EditPage extends Component {
   }
 
   render() {
-    console.log(this.props.userInfo);
     const { userInfo } = this.props;
     if (this.props.adminEdit) {
       return <div>
@@ -28,7 +27,7 @@ class EditPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    adminEdit: state.adminEdit
+    adminEdit: state.adminEdit.isAdminEdit
   }
 }
 
