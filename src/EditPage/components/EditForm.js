@@ -5,20 +5,19 @@ import { Field, reduxForm } from 'redux-form';
 let EditForm = (props) => {
   const { handleSubmit } = props;
   return <form onSubmit={handleSubmit}>
-
-    <div class="form-group">
+    <div >
       <label htmlFor="firstName">First Name</label>
-      <Field class="col-2 col-form-label" name="firstName" component="input" type="text" />
+      <Field name="firstName" component="input" type="text" />
     </div>
-    <div class="form-group">
+    <div>
       <label htmlFor="lastName">Last Name</label>
-      <Field class="form-control" name="lastName" component="input" type="text" />
+      <Field name="lastName" component="input" type="text" />
     </div>
-    <div class="form-group">
+    <div>
       <label htmlFor="email">Email</label>
-      <Field class="form-control" name="email" component="input" type="email" />
+      <Field name="email" component="input" type="email" />
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button type="submit">Submit</button>
 
   </form>
 }

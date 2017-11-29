@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import EditForm from './components/EditForm';
+
+
 class EditPage extends Component {
 
-  render() {
-    if(this.props.adminEdit) {
-      return <div>
-        You are in admin edit page.
-        <EditForm />
-      </div>
+  submit = (values) => {
+    console.log(values);
+  }
+
+render() {
+  if(this.props.adminEdit) {
+    return <div>
+      You are in admin edit page.
+      <EditForm onSubmit={this.submit}/>
+    </div>
     }
     console.log(this.props.adminEdit);
     return (
       <div>
-          <p> This is user edit page. </p>
+        <p> This is user edit page. </p>
       </div>
     )
   }
