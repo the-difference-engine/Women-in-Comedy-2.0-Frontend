@@ -103,10 +103,12 @@ class ProfilePage extends Component {
   }
 
   renderPageContent() {
-    console.log(this.state.editUserEnable);
+
+    const { userInfo } = this.props;
+    console.log(userInfo);
 
     if(this.state.editUserEnable) {
-      return <EditPage />
+      return <EditPage userInfo={userInfo}/>
     }
 
     return (
