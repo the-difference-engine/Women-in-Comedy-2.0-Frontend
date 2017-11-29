@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 
 let EditForm = (props) => {
   const { handleSubmit } = props;
+  console.log(props);
   return <form onSubmit={handleSubmit}>
     <div >
       <label htmlFor="firstName">First Name</label>

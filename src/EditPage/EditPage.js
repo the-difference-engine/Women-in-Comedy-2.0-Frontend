@@ -6,15 +6,18 @@ import EditForm from './components/EditForm';
 
 class EditPage extends Component {
 
+
+
   submit = (values) => {
     console.log(values);
   }
 
 render() {
+  console.log(this.props.initialValues);
   if(this.props.adminEdit) {
     return <div>
       You are in admin edit page.
-      <EditForm onSubmit={this.submit}/>
+      <EditForm initialValues={this.props.initialValues }onSubmit={this.submit}/>
     </div>
     }
     console.log(this.props.adminEdit);
@@ -28,7 +31,12 @@ render() {
 
 function mapStateToProps(state) {
   return {
-    adminEdit: state.adminEdit
+    adminEdit: state.adminEdit,
+    initialValues: {
+      firstName: 'Daniel',
+      lastName: 'Mai',
+      email: 'dan@gmail.com'
+    }
   }
 }
 
