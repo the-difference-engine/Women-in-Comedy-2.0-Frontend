@@ -30,7 +30,9 @@ class ProfilePage extends Component {
       this.props.fetchUserFeeds(this.props.match.params.id);
       this.props.fetchUserConnections(this.props.match.params.id);
       this.props.fetchConnectionStatus({ sender_id, receiver_id });
-      this.setState({suspendedState: this.props.userInfo.suspended})
+      this.setState(() => {
+        return {suspendedState: this.props.userInfo.suspended}
+      });
     }
 
   onPress() {
@@ -94,15 +96,22 @@ class ProfilePage extends Component {
 
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended
-    if (this.state.suspendedState) {
-    return <button onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
+    const admin = sessionStorage.getItem('isAdmin')
+    console.log(admin)
+    if (admin == true) {
+      if (this.state.suspendedState) {
+        return <button className="btn btn-warning" onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
+        }
+        return <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}> Suspend </button>
+      }
     }
-    return <button onClick={this.onSuspend.bind(this)}> Suspend </button>
-  }
 
 
   deleteUserButton() {
+    const admin = sessionStorage.getItem('isAdmin')
+    if (admin == true) {
     return <button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button>
+  }
 }
 
   renderConnection() {
