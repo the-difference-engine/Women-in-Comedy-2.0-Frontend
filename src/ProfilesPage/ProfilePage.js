@@ -30,7 +30,7 @@ class ProfilePage extends Component {
       this.props.fetchUserFeeds(this.props.match.params.id);
       this.props.fetchUserConnections(this.props.match.params.id);
       this.props.fetchConnectionStatus({ sender_id, receiver_id });
-
+      this.setState({suspendedState: this.props.userInfo.suspended})
     }
 
   onPress() {
@@ -55,17 +55,20 @@ class ProfilePage extends Component {
   onSuspend() {
     const id = this.props.userInfo.id
     const admin = sessionStorage.getItem('isAdmin')
-    const { suspended }  = this.props;
-    console.log(suspended);
-    suspended ? unsuspendUser() : suspendUser()
+    var suspended = this.props.userInfo.suspended
+    const data = { id, suspended }
+    this.props.suspendUser(data)
+    this.setState({suspendedState: true})
   }
 
-  // onUnsuspend() {
-  //   const id = this.props.userInfo.id
-  //   const admin = sessionStorage.getItem('isAdmin')
-  //   // const adminId = sessionStorage.getItem('userId')
-  //   this.props.unsuspendUser(id);
-  // }
+  onUnsuspend() {
+    const id = this.props.userInfo.id
+    const admin = sessionStorage.getItem('isAdmin')
+    var suspended = this.props.userInfo.suspended
+    const data = { id, suspended }
+    this.props.unsuspendUser(data);
+    this.setState({suspendedState: false})
+  }
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem('userId');
@@ -89,9 +92,12 @@ class ProfilePage extends Component {
 
   //UNSUSPEND
 
-  unsuspendUserButton() {
-    if (this.props.userInfo.suspension_reason == "Suspended!")
-    return <button className="btn btn-danger"  onClick={this.onUnsuspend.bind(this)}>Unsuspend</button>
+  suspendUserButton() {
+    const suspended = this.props.userInfo.suspended
+    if (this.state.suspendedState) {
+    return <button onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
+    }
+    return <button onClick={this.onSuspend.bind(this)}> Suspend </button>
   }
 
 
@@ -123,6 +129,7 @@ class ProfilePage extends Component {
 
   render () {
     const { userInfo, userConnections, userFeeds, status, suspended } = this.props;
+    // console.log(this.props.userInfo);
 
 
     return (
@@ -133,7 +140,7 @@ class ProfilePage extends Component {
           {this.renderBlockConnection()}
           {this.renderConnection()}
           {this.deleteUserButton()}
-          <button onClick={() => this.onSuspend()}> {suspended ? "Unsuspend" : "Suspend" }</button>
+          {this.suspendUserButton()}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections}/>

@@ -1,26 +1,28 @@
 import axios from 'axios';
 import { SUSPEND_USER, UNSUSPEND_USER, DELETE_USER } from './types';
 
-export const suspendUser = (suspended) => async dispatch => {
+export const suspendUser = ({ id, suspended }) => async dispatch => {
   const request = await axios({
     method: 'post',
     url: 'http://localhost:9000/api/v1/users/suspend',
-    });
-  return {
+    headers: { "id": id }
+    });    
+  dispatch({
     type: SUSPEND_USER,
-    suspended: suspended,
-  }
+    suspended: true
+  })
 }
 
-export const unsuspendUser = (suspended) => async dispatch => {
+export const unsuspendUser = ({ id, suspended }) => async dispatch => {
   const request = await axios({
     method: 'post',
     url: 'http://localhost:9000/api/v1/users/unsuspend',
+    headers: { "id": id }
     });
-  return {
+  dispatch({
     type: UNSUSPEND_USER,
-    suspended: suspended
-  }
+    suspended: false
+  })
 }
 
 export const deleteUser = (id) => async dispatch => {
