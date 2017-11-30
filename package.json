@@ -12,6 +12,7 @@
     "query-string": "^5.0.0",
     "rc-time-picker": "^2.4.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.5",
     "react-day-picker": "^6.1.0",
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",

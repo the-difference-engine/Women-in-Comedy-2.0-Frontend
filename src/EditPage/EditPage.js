@@ -11,17 +11,17 @@ class EditPage extends Component {
 
   render() {
     const { userInfo } = this.props;
+    console.log(this.props.adminEdit);
     if (this.props.adminEdit) {
       return <div>
-        You are in admin edit page.
+        <h3>Admin Edit</h3>
         <EditForm initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
-    return (<div>
-      <p>
-        This is user edit page.
-      </p>
-    </div>)
+    return <div>
+      <h3>User Edit</h3>
+      <EditForm initialValues={userInfo} onSubmit={this.submit}/>
+    </div>
   }
 }
 

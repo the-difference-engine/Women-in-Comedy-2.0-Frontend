@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import firebase from 'firebase';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
@@ -13,7 +11,6 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
-
 
 class App extends Component {
   componentWillMount() {
@@ -28,26 +25,24 @@ class App extends Component {
     firebase.initializeApp(config);
   }
   render() {
-    return (
-      <BrowserRouter>
-        <MuiThemeProvider>
-          <div>
-            <Switch>
-              <Route exact path='/' component={Form}></Route>
-              <Route path='/feed' component={Feed}></Route>
-              <Route path='/newevent' component={CreateEvents}></Route>
-              <Route path='/events' component={EventsPage}></Route>
-              <Route path="/home" component={HomePage}></Route>
-              <Route path='/activities' component={ActivityPage}></Route>
-              <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-              <Route exact path='/profile/:id' component={ProfilePage}></Route>
-              <Route path='/profile/:id/edit' component={EditPage}></Route>
-            </Switch>
+    return (<BrowserRouter>
+      <MuiThemeProvider>
+        <div>
+          <Switch>
+            <Route exact="exact" path='/' component={Form}></Route>
+            <Route path='/feed' component={Feed}></Route>
+            <Route path='/newevent' component={CreateEvents}></Route>
+            <Route path='/events' component={EventsPage}></Route>
+            <Route path="/home" component={HomePage}></Route>
+            <Route path='/activities' component={ActivityPage}></Route>
+            <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
+            <Route exact="exact" path='/profile/:id' component={ProfilePage}></Route>
+            <Route path='/profile/:id/edit' component={EditPage}></Route>
+          </Switch>
 
-          </div>
-        </MuiThemeProvider>
-      </BrowserRouter>
-    )
+        </div>
+      </MuiThemeProvider>
+    </BrowserRouter>)
   }
 }
 
