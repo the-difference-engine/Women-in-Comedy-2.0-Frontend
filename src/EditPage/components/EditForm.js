@@ -20,13 +20,13 @@ let EditForm = (props) => {
 
     </div>
     <div className="form-group row">
-      <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
+      <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
       <div className="col-sm-5">
-          <Field name="email"  className="form-control col-sm-4" component="input" type="email" />
+          <Field name="bio"  className="form-control col-sm-4" component="textarea" type="text" />
       </div>
 
     </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-danger">Submit</button>
   </form>
 }
 

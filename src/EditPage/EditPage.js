@@ -19,12 +19,10 @@ class EditPage extends Component {
 
   render() {
     const {userInfo} = this.props;
-    var id = userInfo.id;
-    console.log(userInfo.id);
     if (this.props.adminEdit) {
       return <div>
         <h3>Admin Edit</h3>
-        <EditForm enableReinitialize={true} initialValues={userInfo} onSubmit={this.submit}/>
+        <EditForm initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
     return <div>
