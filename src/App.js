@@ -29,14 +29,14 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Switch>
-            <Route exact="exact" path='/' component={Form}></Route>
+            <Route exact path='/' component={Form}></Route>
             <Route path='/feed' component={Feed}></Route>
             <Route path='/newevent' component={CreateEvents}></Route>
             <Route path='/events' component={EventsPage}></Route>
             <Route path="/home" component={HomePage}></Route>
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-            <Route exact="exact" path='/profile/:id' component={ProfilePage}></Route>
+            <Route exact path='/profile/:id' component={ProfilePage}></Route>
             <Route path='/profile/:id/edit' component={EditPage}></Route>
           </Switch>
 

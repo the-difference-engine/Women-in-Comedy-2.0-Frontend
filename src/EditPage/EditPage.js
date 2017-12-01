@@ -2,20 +2,29 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import EditForm from './components/EditForm';
+import axios from 'axios';
 
 class EditPage extends Component {
 
   submit = (values) => {
     console.log(values);
+    const {id} = values.id;
+
+    axios({
+      method: 'patch',
+      url: 'http://localhost:9000/api/v1/users/' + id,
+      data: values
+    }).then(function(response){
+      console.log(response.data);
+    });
   }
 
   render() {
-    const { userInfo } = this.props;
-    console.log(this.props.adminEdit);
+    const {userInfo} = this.props;
     if (this.props.adminEdit) {
       return <div>
         <h3>Admin Edit</h3>
-        <EditForm initialValues={userInfo} onSubmit={this.submit}/>
+        <EditForm enableReinitialize={true} initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
     return <div>
@@ -26,9 +35,7 @@ class EditPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    adminEdit: state.adminEdit.isAdminEdit
-  }
+  return {adminEdit: state.adminEdit.isAdminEdit}
 }
 
 export default connect(mapStateToProps)(EditPage);

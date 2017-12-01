@@ -144,7 +144,8 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    axios.post('https://qa-womenincomedy.herokuapp.com/api/v1/users', values).then(payload => {
+    axios.post('http://localhost:9000/api/v1/users', values).then(payload => {
+      
       this.setState({userMade: true});
     }).catch(err => {
       alert(err)

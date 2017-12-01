@@ -26,8 +26,7 @@ let EditForm = (props) => {
       </div>
 
     </div>
-    <button type="submit" className="btn btn-danger">Update</button>
-
+    <button type="submit" className="btn btn-primary">Submit</button>
   </form>
 }
 
