@@ -7,9 +7,7 @@ import axios from 'axios';
 class EditPage extends Component {
 
   submit = (values) => {
-    console.log(values);
-    const {id} = values.id;
-
+    let id = this.props.userInfo.id;
     axios({
       method: 'patch',
       url: 'http://localhost:9000/api/v1/users/' + id,
@@ -21,6 +19,8 @@ class EditPage extends Component {
 
   render() {
     const {userInfo} = this.props;
+    var id = userInfo.id;
+    console.log(userInfo.id);
     if (this.props.adminEdit) {
       return <div>
         <h3>Admin Edit</h3>
