@@ -4,6 +4,9 @@ export const FETCH_USER_INFO = 'fetch_user_info';
 export const FETCH_USER_FEEDS = 'fetch_user_feeds';
 export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
 export const FETCH_ALL_USERS = 'fetch_all_users';
+
+// navbar
+export const FILTER_USERS = 'filter_users';
 //Events
 export const CREATE_EVENT = 'create_event';
 export const EVENT_INPUT_CHANGE = 'event_input_change';

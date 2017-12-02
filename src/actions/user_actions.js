@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS } from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS } from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
-   url: 'http://localhost:9000/api/v1/users/info',
+   url: process.env.REACT_APP_API_URL_DEV + '/users/info',
    headers: {"id": userId}
  });
  return (dispatch) => {
@@ -15,6 +15,13 @@ export const fetchUserInfo = (userId) => {
 };
 
 export const fetchAllUsers = () => async dispatch => {
-  const request = await axios('http://localhost:9000/api/v1/users');
+  const request = await axios(process.env.REACT_APP_API_URL_DEV + 'users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
+}
+
+export const filterUsers = (item, nestedItem) => {
+  return {
+    type: FILTER_USERS,
+    payload: {item, nestedItem}
+  }
 }

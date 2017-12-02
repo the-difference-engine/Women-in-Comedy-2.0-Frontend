@@ -24,7 +24,7 @@ class Feed extends Component {
 
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
-    if(valid == 'null' || !valid) {
+    if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections } = this.props;

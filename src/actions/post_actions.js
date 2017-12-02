@@ -4,7 +4,7 @@ import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE
 export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => async dispatch => {
   await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/posts',
+    url: process.env.REACT_APP_API_URL_DEV + 'posts',
     data: { body, userId, authorId }
   });
   callback(userId);
@@ -23,7 +23,7 @@ export const eventWallInputChange = value => dispatch => {
 export const createPostOnEventWall = ({ body, eventId, authorId }, callback) => async dispatch => {
   await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/posts/event',
+    url: process.env.REACT_APP_API_URL_DEV + 'posts/event',
     data: { body, eventId, authorId }
   });
   callback(eventId);
