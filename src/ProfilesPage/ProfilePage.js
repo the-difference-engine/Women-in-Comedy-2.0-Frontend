@@ -80,6 +80,12 @@ class ProfilePage extends Component {
     }));
   }
 
+  //This is to be passed to child components to update
+  //the state of editUserEnable boolean value
+  handleEditUserEnable(editable) {
+    this.setState({editUserEnable: editable});
+  }
+
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
@@ -113,7 +119,7 @@ class ProfilePage extends Component {
     console.log(this.state.editUserEnable);
 
     if (this.state.editUserEnable) {
-      return <EditPage editUserEnable = {this.state.editUserEnable} history={history} userInfo={userInfo}/>
+      return <EditPage editable= {this.handleEditUserEnable.bind(this)} history={history} userInfo={userInfo}/>
     }
 
     return (<div>

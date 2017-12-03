@@ -7,7 +7,6 @@ import {Link, Route} from 'react-router-dom';
 
 class EditPage extends Component {
 
-
   submit = (values) => {
     //Show confirmation box before information is updated
     if (window.confirm("Information will be updated. Continue?") == true) {
@@ -18,13 +17,15 @@ class EditPage extends Component {
           method: 'patch',
           url: 'http://localhost:9000/api/v1/users/' + id,
           data: values
-        }).then(function(response) {
-          // history.push('/profile/' + id);
-        });
-        // this.props.editUserEnable = false;
+        }).then(function(response) {});
+
+        //After confirmation, set editable boolean value to false
+        //to go back to Feed event page
+        this.props.editable(false);
       }
+      //If user decides not to change, go back to Event page as well
     } else {
-      return null;
+      this.props.editable(false);
     }
   }
 
