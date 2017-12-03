@@ -12,10 +12,8 @@ class EditForm extends Component {
 
     return <form onSubmit={handleSubmit}>
       {/* First Name */}
-      <Field label="First Name" name="firstName" component={this.renderTitleField}/>
-      {/* Last Name */}
-      <Field label="Last Name" name="lastName" component={this.renderTitleField}/>
-      {/* Bio/ About */}
+      <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
+      <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
       <div className="form-group row">
         <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
         <div className="col-sm-5">
@@ -28,17 +26,66 @@ class EditForm extends Component {
       <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
 
-      <Field label="Years of comedy training" name="training" component={this.renderMultipleChoice}/>
-
-      <Field label="Years of professional comedy working in the industry" name="experience" component={this.renderMultipleChoice}/>
+      <div>
+        <label className="form-check-label">Years of comedy training</label>
+        <div>
+          <div>
+            <div><Field className="form-check-input" name="training" component="input" type="radio" value="less than 1 year"/>
+              less than 1 year</div>
+          </div>
+          <div>
+            <div><Field name="training" component="input" type="radio" value="1-3 years"/>
+              1-3 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="training" component="input" type="radio" value="4-7 years"/>
+              4-7 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="training" component="input" type="radio" value="7-10 years"/>
+              7-10 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="training" component="input" type="radio" value="11+ years"/>
+              11+ years</div>
+          </div>
+        </div>
+      </div>
 
       <div>
-    <label>Sex</label>
-    <div>
-      <label><Field name="sex" component="input" type="radio" value="male"/> Male</label>
-      <label><Field name="sex" component="input" type="radio" value="female"/> Female</label>
-    </div>
-  </div>
+        <label className="form-check-label">Years of professional comedy working in the industry</label>
+        <div>
+          <div>
+            <div><Field className="form-check-input" name="experience" component="input" type="radio" value="less than 1 year"/>
+              less than 1 year</div>
+          </div>
+          <div>
+            <div><Field name="experience" component="input" type="radio" value="1-3 years"/>
+              1-3 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="experience" component="input" type="radio" value="4-7 years"/>
+              4-7 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="experience" component="input" type="radio" value="7-10 years"/>
+              7-10 years</div>
+          </div>
+          <div>
+            <div><Field className="form-check-input" name="experience" component="input" type="radio" value="11+ years"/>
+              11+ years</div>
+          </div>
+        </div>
+      </div>
+
+      
+      <label>Avaliable to meet for</label>
+      <Field label="Coffee" name="Coffee" component={this.renderCheckbox}/>
+      <Field label="Feedback/Advice" name="Feedback/Advice" component={this.renderCheckbox}/>
+      <Field label="Mentorship" name="Mentorship" component={this.renderCheckbox}/>
+      <Field label="New Friends In Comedy" name="New Friends In Comedy" component={this.renderCheckbox}/>
+      <Field label="Open Mic Buddy" name="Open Mic Buddy" component={this.renderCheckbox}/>
+      <Field label="Seeking Mentors" name="Seeking Mentors" component={this.renderCheckbox}/>
 
       <button type="submit" className="btn btn-danger">Submit</button>
     </form>
@@ -76,51 +123,6 @@ class EditForm extends Component {
     return (<div>
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
-  }
-
-  renderMultipleChoice(field) {
-    const {
-      meta: {
-        touched,
-        error
-      }
-    } = field
-    const className = `form-group ${touched && error
-      ? 'has-danger'
-      : ''}`;
-    return (<div className={className}>
-      <label>{field.label}</label>
-      <div>
-        <div className="radio">
-          <label><input type="radio" {...field.input} value="less than 1 year"/>
-            less than 1 year</label>
-        </div>
-        <div className="radio">
-          <label><input type="radio" {...field.input} value="1-3 years"/>
-            1-3 years</label>
-        </div>
-        <div className="radio">
-          <label><input type="radio" {...field.input} value="4-7 years"/>
-            4-7 years</label>
-        </div>
-        <div className="radio">
-          <label><input type="radio" {...field.input} value="7-10 years"/>
-            7-10 years</label>
-        </div>
-        <div className="radio">
-          <label><input type="radio" {...field.input} value="11+ years"/>
-            11+ years
-          </label>
-        </div>
-      </div>
-      <div className="text-help">
-        {
-          touched
-            ? error
-            : ''
-        }
-      </div>
-    </div>);
   }
 
 }
