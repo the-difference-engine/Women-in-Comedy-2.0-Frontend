@@ -3,39 +3,32 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import EditForm from './components/EditForm';
 import axios from 'axios';
+import {Link, Route} from 'react-router-dom';
 
 class EditPage extends Component {
+
 
   submit = (values) => {
     //Show confirmation box before information is updated
     if (window.confirm("Information will be updated. Continue?") == true) {
       {
         let id = this.props.userInfo.id;
+        let history = this.props.history;
         axios({
           method: 'patch',
           url: 'http://localhost:9000/api/v1/users/' + id,
           data: values
         }).then(function(response) {
-          console.log(response.data);
+          history.push('/profile/' + id);
         });
       }
     } else {
       return null;
     }
-
-    // {
-    //   let id = this.props.userInfo.id;
-    //   axios({
-    //     method: 'patch',
-    //     url: 'http://localhost:9000/api/v1/users/' + id,
-    //     data: values
-    //   }).then(function(response) {
-    //     console.log(response.data);
-    //   });
-    // }
   }
 
   render() {
+    console.log(this.props.history);
     const {userInfo} = this.props;
     if (this.props.adminEdit) {
       return <div>

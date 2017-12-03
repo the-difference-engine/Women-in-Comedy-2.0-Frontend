@@ -107,11 +107,11 @@ class ProfilePage extends Component {
 
   renderPageContent() {
 
-    const {userInfo} = this.props;
-    console.log(userInfo);
+    const {userInfo, history} = this.props;
+    console.log(history);
 
     if (this.state.editUserEnable) {
-      return <EditPage userInfo={userInfo}/>
+      return <EditPage history={history} userInfo={userInfo}/>
     }
 
     return (<div>
@@ -142,7 +142,7 @@ class ProfilePage extends Component {
       <RightGraySideBar>
         <ProfileConnections connections={this.props.userConnections}/>
       </RightGraySideBar>
-      <PageContent>
+      <PageContent history={this.props.history}>
         {this.renderPageContent()}
       </PageContent>
     </div>);
