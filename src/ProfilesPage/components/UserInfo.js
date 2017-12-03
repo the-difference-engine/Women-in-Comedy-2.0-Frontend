@@ -3,17 +3,6 @@ import '../css/profile-userinfo.css';
 import {Link, Route} from 'react-router-dom';
 import EditPage from '../../EditPage/EditPage';
 
-const EditButton = (props) => {
-  if (props.isAdmin) {
-    return (<Link to={props.url + '/edit'} onClick={props.onButtonClicked}>
-      Admin Edit
-    </Link>)
-  }
-  return (<Link to={props.url + '/edit'} onClick='props.buttonClicked(true)'>
-    User Edit
-  </Link>)
-}
-
 const UserInfo = (props) => {
 
   const handleClick = () => {
@@ -29,12 +18,11 @@ const UserInfo = (props) => {
       </p>
       <p id="profile-bio-title">Bio</p>
       <p id="profile-bio-content">{bio}</p>
-      {/* <EditButton isAdmin={props.adminUser} url={props.url} onButtonClicked={handleClick} /> */}
 
     </div>);
   }
   return <div>Something is Here
-  </div>
+  </div>``
 };
 
 export default UserInfo;
