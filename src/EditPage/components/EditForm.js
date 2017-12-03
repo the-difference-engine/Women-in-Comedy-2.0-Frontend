@@ -27,9 +27,18 @@ class EditForm extends Component {
 
       <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
-      
+
       <Field label="Years of comedy training" name="training" component={this.renderMultipleChoice}/>
+
       <Field label="Years of professional comedy working in the industry" name="experience" component={this.renderMultipleChoice}/>
+
+      <div>
+    <label>Sex</label>
+    <div>
+      <label><Field name="sex" component="input" type="radio" value="male"/> Male</label>
+      <label><Field name="sex" component="input" type="radio" value="female"/> Female</label>
+    </div>
+  </div>
 
       <button type="submit" className="btn btn-danger">Submit</button>
     </form>

@@ -12,6 +12,7 @@ class EditPage extends Component {
     if (window.confirm("Information will be updated. Continue?") == true) {
       {
         let id = this.props.userInfo.id;
+        // console.log(values);
 
         axios({
           method: 'patch',
@@ -32,6 +33,7 @@ class EditPage extends Component {
   render() {
     const {userInfo, adminEdit} = this.props;
     console.log(this.props.userInfo);
+    
     if (adminEdit) {
       //Render Admin edit page
       return <div>
