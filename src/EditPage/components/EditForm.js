@@ -1,37 +1,63 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Field, reduxForm} from 'redux-form';
 
-let EditForm = (props) => {
-  const { handleSubmit } = props;
-  return <form onSubmit={handleSubmit}>
-    <div className="form-group row">
-      <label htmlFor="firstName" className="col-sm-2 col-form-label">First Name</label>
+class EditForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  renderTitleField(field) {
+    const {
+      meta: {
+        touched,
+        error
+      }
+    } = field
+    const className = `form-group row ${touched && error
+      ? 'has-danger'
+      : ''}`;
+
+    return (
+      <div className={className} id="field-form">
+      <label className="col-sm-2 col-form-label">{field.label}</label>
       <div className="col-sm-5">
-        <Field name="firstName" className="form-control" component="input" type="text" />
+        <input className="form-control" type="text" {...field.input} placeholder={field.label}/>
       </div>
-
-    </div>
-    <div className="form-group row">
-      <label htmlFor="lastName" className="col-sm-2 col-form-label">Last Name</label>
-      <div className="col-sm-5">
-        <Field name="lastName"  className="form-control col-sm-4" component="input" type="text" />
+      <div className="text-help">
+        {
+          touched
+            ? error
+            : ''
+        }
       </div>
-
     </div>
-    <div className="form-group row">
-      <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
-      <div className="col-sm-5">
-          <Field name="bio"  className="form-control col-sm-4" component="textarea" type="text" />
+  );
+  }
+
+  render() {
+    const {handleSubmit} = this.props;
+
+    return <form onSubmit={handleSubmit}>
+      {/* First Name */}
+      <Field label="First Name" name="firstName" component={this.renderTitleField}/>
+      {/* Last Name */}
+      <Field label="Last Name" name="lastName" component={this.renderTitleField}/>
+      {/* Bio/ About */}
+      <div className="form-group row">
+        <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
+        <div className="col-sm-5">
+          <Field name="bio" className="form-control col-sm-4" component="textarea" type="text"/>
+        </div>
       </div>
+      {/* City */}
+      <Field label="City" name="city" component={this.renderTitleField}/>
 
-    </div>
-    <button type="submit" className="btn btn-danger">Submit</button>
-  </form>
+      <button type="submit" className="btn btn-danger">Submit</button>
+    </form>
+  }
 }
 
-EditForm = reduxForm({
-  form: 'userEdit'
-})(EditForm)
+EditForm = reduxForm({form: 'userEdit'})(EditForm)
 
 export default EditForm
