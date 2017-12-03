@@ -23,14 +23,16 @@ class EditForm extends Component {
       <label className="col-sm-2 col-form-label">{field.label}</label>
       <div className="col-sm-5">
         <input className="form-control" type="text" {...field.input} placeholder={field.label}/>
+
+        <div className="text-help">
+          {
+            touched
+              ? error
+              : ''
+          }
+        </div>
       </div>
-      <div className="text-help">
-        {
-          touched
-            ? error
-            : ''
-        }
-      </div>
+
     </div>
   );
   }
@@ -56,8 +58,47 @@ class EditForm extends Component {
       <button type="submit" className="btn btn-danger">Submit</button>
     </form>
   }
+
+
 }
 
-EditForm = reduxForm({form: 'userEdit'})(EditForm)
+function validate(values) {
+  const errors = {};
+  if (!values.firstName) {
+    errors.firstName = 'Enter a first name';
+  }
+  if (!values.lastName) {
+    errors.lastName = "Enter a last name";
+  }
+
+  if (!values.email) {
+    errors.email = "Enter an email";
+  }
+  if (!values.password) {
+    errors.password = "Enter an password";
+  }
+  if (!values.gender) {
+    errors.gender = "Enter a gender";
+  }
+  if (!values.video) {
+    errors.video = "Enter a video link";
+  }
+  if (!values.city) {
+    errors.city = "Enter a city";
+  }
+  if (!values.training) {
+    errors.training = "Enter training";
+  }
+  if (!values.experience) {
+    errors.experience = "Enter experience";
+  }
+  if (!values.website) {
+    errors.website = "Enter website";
+  }
+
+  return errors;
+}
+
+EditForm = reduxForm({validate, form: 'userEdit'})(EditForm)
 
 export default EditForm
