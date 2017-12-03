@@ -19,8 +19,9 @@ class EditPage extends Component {
           url: 'http://localhost:9000/api/v1/users/' + id,
           data: values
         }).then(function(response) {
-          history.push('/profile/' + id);
+          // history.push('/profile/' + id);
         });
+        // this.props.editUserEnable = false;
       }
     } else {
       return null;
