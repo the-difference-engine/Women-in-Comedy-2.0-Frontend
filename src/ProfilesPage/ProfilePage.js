@@ -113,7 +113,6 @@ class ProfilePage extends Component {
   }
 
   renderPageContent() {
-
     const {userInfo, history} = this.props;
     if (this.state.editUserEnable) {
       return <EditPage editable= {this.handleEditUserEnable.bind(this)} history={history} userInfo={userInfo}/>

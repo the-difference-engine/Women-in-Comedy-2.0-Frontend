@@ -12,7 +12,7 @@ class EditPage extends Component {
     if (window.confirm("Information will be updated. Continue?") == true) {
       {
         let id = this.props.userInfo.id;
-        
+
         axios({
           method: 'patch',
           url: 'http://localhost:9000/api/v1/users/' + id,
@@ -35,7 +35,7 @@ class EditPage extends Component {
       //Render Admin edit page
       return <div>
         <h3>Admin Edit</h3>
-        <EditForm initialValues={userInfo} onSubmit={this.submit}/>
+        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
     //Render User edit page

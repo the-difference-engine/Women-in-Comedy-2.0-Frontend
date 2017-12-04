@@ -5,15 +5,20 @@ import {Field, reduxForm} from 'redux-form';
 class EditForm extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   render() {
     const {handleSubmit, initialValues} = this.props;
     let meeting_options = this.props.initialValues.meeting_options;
+    let isAdminEdit = this.props.adminEdit;
+
     Object.assign(initialValues, meeting_options);
+    console.log(this.props.adminEdit);
 
 
     return <form onSubmit={handleSubmit}>
+      <div>{isAdminEdit ? (<p> this is admin</p>): (<div></div>)}</div>
       {/* First Name */}
       <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
       <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
