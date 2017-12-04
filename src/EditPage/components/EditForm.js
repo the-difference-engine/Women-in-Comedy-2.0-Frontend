@@ -8,7 +8,10 @@ class EditForm extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit, initialValues} = this.props;
+    let meeting_options = this.props.initialValues.meeting_options;
+    Object.assign(initialValues, meeting_options);
+
 
     return <form onSubmit={handleSubmit}>
       {/* First Name */}
@@ -78,14 +81,25 @@ class EditForm extends Component {
         </div>
       </div>
 
-      
       <label>Avaliable to meet for</label>
-      <Field label="Coffee" name="Coffee" component={this.renderCheckbox}/>
-      <Field label="Feedback/Advice" name="Feedback/Advice" component={this.renderCheckbox}/>
-      <Field label="Mentorship" name="Mentorship" component={this.renderCheckbox}/>
-      <Field label="New Friends In Comedy" name="New Friends In Comedy" component={this.renderCheckbox}/>
-      <Field label="Open Mic Buddy" name="Open Mic Buddy" component={this.renderCheckbox}/>
-      <Field label="Seeking Mentors" name="Seeking Mentors" component={this.renderCheckbox}/>
+      <div><Field name="Coffee" component="input" type="checkbox"/>
+        Coffee
+      </div>
+      <div><Field name="Feedback/Advice" component="input" type="checkbox"/>
+        Feedback/Advice
+      </div>
+      <div><Field name="Mentorship" component="input" type="checkbox"/>
+        Mentorship
+      </div>
+      <div><Field name="New Friends In Comedy" component="input" type="checkbox"/>
+        New Friends In Comedy
+      </div>
+      <div><Field name="Open Mic Buddy" component="input" type="checkbox"/>
+        Open Mic Buddy
+      </div>
+      <div><Field name="Seeking Mentors" component="input" type="checkbox"/>
+        Seeking Mentors
+      </div>
 
       <button type="submit" className="btn btn-danger">Submit</button>
     </form>
@@ -102,7 +116,7 @@ class EditForm extends Component {
       ? 'has-danger'
       : ''}`;
 
-    return (<div className={className} id="field-form">
+    return (<div className={className}>
       <label className="col-sm-2 col-form-label">{field.label}</label>
       <div className="col-sm-5">
         <input className="form-control" type="text" {...field.input} placeholder={field.label}/>
@@ -119,7 +133,7 @@ class EditForm extends Component {
     </div>);
   }
 
-  renderCheckbox(field) {
+  renderCheckbox(field) {``
     return (<div>
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
