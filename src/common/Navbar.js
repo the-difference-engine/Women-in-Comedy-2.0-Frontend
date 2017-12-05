@@ -25,7 +25,7 @@ class Navbar extends Component {
       console.log(response.data.logout_message);
       sessionStorage.setItem('confirmed', null);
       sessionStorage.setItem('userId', null);
-      this.props.history.push('/')
+      this.props.history.push('/');
     });
   };
 
