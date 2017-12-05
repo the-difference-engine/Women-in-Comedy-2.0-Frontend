@@ -11,4 +11,3 @@ export const LeftGraySideBar = (props) => {
     </div>
   )
 };
-
