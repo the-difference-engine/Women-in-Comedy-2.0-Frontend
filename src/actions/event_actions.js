@@ -12,7 +12,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
       img = imageData.metadata.downloadURLs[0];
       const request = await axios({
         method: 'post',
-        url: 'http://localhost:9000/api/v1/events',
+        url: process.env.REACT_APP_API_URL_DEV + 'events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
       
@@ -70,7 +70,7 @@ export const attendEvent = (data, eventId, callback) => async dispatch => {
 
   await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/guests',
+    url: process.env.REACT_APP_API_URL_DEV + 'guests',
     data: { userId: id, eventId, firstName, lastName }
   });
   callback(eventId)

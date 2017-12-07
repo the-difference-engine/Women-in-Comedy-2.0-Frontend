@@ -74,3 +74,23 @@ p {
 #list-of-users {
   position: absolute;
 }
+
+#navbar button {
+  float: right;
+  margin-top: 32px;
+  background-color: #C82222;
+  height: 25px;
+  border: 1px solid #860A0A;
+  border-radius: 2px;
+}
+
+#navbar button span {
+  color: white;
+  font-size: 12px;
+  display: block;
+}
+
+#navbar button:hover {
+  background-color: #860A0A;
+}
+

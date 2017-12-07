@@ -2,7 +2,7 @@ import axios from 'axios';
 import { FETCH_UPCOMING_EVENTS, FETCH_MY_UPCOMING_EVENTS, FETCH_EVENT_INFO, FETCH_HOST_PHOTO } from './types';
 
 export const fetchUpcomingEvents = () => async dispatch => {
-  const request = await axios('http://localhost:9000/api/v1/events');
+  const request = await axios(process.env.REACT_APP_API_URL_DEV + 'events');
   dispatch({ type: FETCH_UPCOMING_EVENTS, payload: request });
 };
 

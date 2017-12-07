@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "dotenv": "^4.0.0",
     "firebase": "^4.3.1",
+    "jsesc": "^2.5.1",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.1",
     "moment": "^2.18.1",
     "query-string": "^5.0.0",
     "rc-time-picker": "^2.4.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.5",
     "react-day-picker": "^6.1.0",
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",
@@ -20,7 +23,8 @@
     "redux-form": "^7.0.3",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "shuffle-array": "^1.0.1"
+    "shuffle-array": "^1.0.1",
+    "spdy": "^3.4.7"
   },
   "devDependencies": {
     "eslint": "^4.4.1",
