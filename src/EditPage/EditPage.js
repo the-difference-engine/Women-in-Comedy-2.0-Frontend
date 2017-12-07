@@ -34,13 +34,11 @@ class EditPage extends Component {
     if (adminEdit) {
       //Render Admin edit page
       return <div>
-        <h3>Admin Edit</h3>
         <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
     //Render User edit page
     return <div>
-      <h3>User Edit</h3>
       <EditForm initialValues={userInfo} onSubmit={this.submit}/>
     </div>
   }

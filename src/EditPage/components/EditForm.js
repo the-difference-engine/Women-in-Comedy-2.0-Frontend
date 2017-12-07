@@ -18,7 +18,7 @@ class EditForm extends Component {
 
 
     return <form onSubmit={handleSubmit}>
-      <div>{isAdminEdit ? (<p> this is admin</p>): (<div></div>)}</div>
+      <h3>{isAdminEdit ? (<p> this is admin</p>): (<div></div>)}</h3>
       {/* First Name */}
       <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
       <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
