@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchEventInfo,
+  fetchHostPhoto,
   attendEvent,
   fetchUserInfo,
   unattendEvent,
@@ -20,10 +21,12 @@ class EventsFeed extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
+  async componentDidMount() {
     const eventId = this.props.match.params.id;
-    this.props.fetchEventInfo(eventId);
+    await this.props.fetchEventInfo(eventId);
+    const hostId = await this.props.selectedEvent.info.user_id;
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+    this.props.fetchHostPhoto(hostId);
   }
   onCreatePost() {
     const body = this.props.eventWallPost;
@@ -49,6 +52,7 @@ class EventsFeed extends Component {
               userInfo={this.props.userInfo}
               eventId={this.props.match.params.id}
               fetchEventInfo={this.props.fetchEventInfo}
+              fetchHostPhoto={this.props.fetchHostPhoto}
               unattendEvent={this.props.unattendEvent}>
             </EventInfo>
           <UpdateEvent id="edit_btn" history={this.props.history} eventId={this.props.match.params.id}/>
@@ -96,6 +100,7 @@ export default connect(mapStateToProps,
     fetchEventInfo,
     attendEvent,
     fetchUserInfo,
+    fetchHostPhoto,
     unattendEvent,
     eventWallInputChange,
     createPostOnEventWall

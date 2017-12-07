@@ -13,6 +13,7 @@ export const CREATE_EVENT_FAIL = 'create_event_fail';
 export const FETCH_UPCOMING_EVENTS = 'fetch_upcoming_events';
 export const FETCH_MY_UPCOMING_EVENTS = 'fetch_my_upcoming_events';
 export const FETCH_EVENT_INFO = 'fetch_event_info';
+export const FETCH_HOST_PHOTO = 'fetch_host_photo';
 export const ATTEND_EVENT = 'attend_event';
 export const CREATE_EVENT_SUCCESS = 'create_event_success';
 export const UPDATE_EVENT_SUCCESS = 'update_event_success';
