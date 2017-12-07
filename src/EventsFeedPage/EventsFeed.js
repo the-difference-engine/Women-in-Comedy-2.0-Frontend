@@ -26,7 +26,7 @@ class EventsFeed extends Component {
     await this.props.fetchEventInfo(eventId);
     const hostId = await this.props.selectedEvent.info.user_id;
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
-    this.props.fetchHostPhoto(hostId);
+    const photoUrl = await this.props.fetchHostPhoto(hostId);
   }
   onCreatePost() {
     const body = this.props.eventWallPost;

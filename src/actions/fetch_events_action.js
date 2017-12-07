@@ -17,6 +17,12 @@ export const fetchEventInfo = eventId => async dispatch => {
 }
 
 export const fetchHostPhoto = (userId) => async (dispatch) => {
-  const response = await axios(`method: 'GET', url: 'http://localhost:9000/api/v1/users/info', headers: {"id": ${userId}}`);
-  return dispatch({ type: FETCH_HOST_PHOTO, payload: response.photo });
+  const response = await axios({
+    method: 'get',
+    url:'http://localhost:9000/api/v1/users/info',
+    headers: {"id": userId},
+  });
+  debugger;
+  return dispatch({ type: FETCH_HOST_PHOTO, payload: response.data.photo });
 }
+
