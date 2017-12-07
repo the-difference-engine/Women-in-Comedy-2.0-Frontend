@@ -34,9 +34,8 @@ const rootReducer = combineReducers({
   userWallPost: userWallPostReducer,
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
-  updateEventForm: UpdateEventReducer
+  updateEventForm: UpdateEventReducer,
   adminEdit: editUserReducer
-
 });
 
 export default rootReducer;
