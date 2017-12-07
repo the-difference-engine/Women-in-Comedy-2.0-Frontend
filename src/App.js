@@ -11,8 +11,14 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
+import { Widget, handleNewUserMessage } from 'react-chat-widget';
 
 class App extends Component {
+  handleNewUserMessage = (newMessage) => {
+    console.log(`New message incomig! ${newMessage}`);
+    // Now send the message throught the backend API
+  }
+
   componentWillMount() {
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
@@ -39,6 +45,10 @@ class App extends Component {
             <Route exact path='/profile/:id' component={ProfilePage}></Route>
             <Route path='/profile/:id/edit' component={EditPage}></Route>
           </Switch>
+
+          <Widget
+            handleNewUserMessage={this.handleNewUserMessage}
+          />
 
         </div>
       </MuiThemeProvider>
