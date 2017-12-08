@@ -11,13 +11,19 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
-import { Widget, handleNewUserMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage, handleNewUserMessage } from 'react-chat-widget';
+import logo  from './images/Women.png';
 
 class App extends Component {
   handleNewUserMessage = (newMessage) => {
     console.log(`New message incomig! ${newMessage}`);
     // Now send the message throught the backend API
   }
+  componentDidMount() {
+     addResponseMessage("Welcome to this awesome chat!");
+  }
+
+
 
   componentWillMount() {
     var config = {
@@ -48,6 +54,9 @@ class App extends Component {
 
           <Widget
             handleNewUserMessage={this.handleNewUserMessage}
+            profileAvatar={logo}
+            title="Women In Comedy"
+            subtitle="Chat Message"
           />
 
         </div>
