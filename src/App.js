@@ -36,6 +36,23 @@ class App extends Component {
     };
     firebase.initializeApp(config);
   }
+
+  //Prepare the Action Cable socket for chat function
+  createSocket() {
+    let cable = Cable.createConsumer('ws://localhost:3001/cable');
+    this.chats = cable.subscriptions.create({
+      channel: 'ChatChannel'
+    }, {
+      connected: () => {},
+      received: (data) => {
+        console.log(data);
+      },
+      create: function(chatContent) {
+        this.perform('create', {content: chatContent});
+      }
+    });
+  }
+
   render() {
     return (<BrowserRouter>
       <MuiThemeProvider>
