@@ -13,19 +13,39 @@ import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
 import { Widget, addResponseMessage, handleNewUserMessage } from 'react-chat-widget';
 import logo  from './images/Women.png';
+import Cable from 'actioncable';
 
 class App extends Component {
+
+
+
+  //User types in new message in chat box
   handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
-    // Now send the message throught the backend API
+    // Now send the message to the backend API
+    this.chats.create(newMessage);
+    //Update the state of current message
+    this.state.currentMessage = newMessage;
   }
   componentDidMount() {
+    //Add welcome message at the beginning
      addResponseMessage("Welcome to this awesome chat!");
   }
 
-
+  getResponseMessage(message) {
+    //Make sure not to display own message in chat logs
+    if (this.state.currentMessage === message) {
+      return '';
+    }
+    else  {
+    addResponseMessage(message);
+    }
+  }
 
   componentWillMount() {
+    //Create a Socket Connection for chat function
+    this.createSocket();
+    this.setState({currentMessage:''});
+
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
       authDomain: "womenincomedy-cd5b5.firebaseapp.com",
@@ -39,13 +59,19 @@ class App extends Component {
 
   //Prepare the Action Cable socket for chat function
   createSocket() {
-    let cable = Cable.createConsumer('ws://localhost:3001/cable');
+    let cable = Cable.createConsumer('ws://localhost:9000/cable');
+    //Obtain user id
+    const userId = sessionStorage.getItem('userId');
+
+    //Create chat function
     this.chats = cable.subscriptions.create({
       channel: 'ChatChannel'
     }, {
       connected: () => {},
       received: (data) => {
-        console.log(data);
+
+        console.log(userId);
+        this.getResponseMessage(data.content);
       },
       create: function(chatContent) {
         this.perform('create', {content: chatContent});
@@ -75,7 +101,6 @@ class App extends Component {
             title="Women In Comedy"
             subtitle="Chat Message"
           />
-
         </div>
       </MuiThemeProvider>
     </BrowserRouter>)

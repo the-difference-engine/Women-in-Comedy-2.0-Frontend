@@ -29,13 +29,16 @@ class LoginNavbar extends Component {
         <div id="container">
           <h1 id="login-nav-header">Women in Comedy </h1>
           <button onClick={this.Login.bind(this)}><span>Log in</span></button>
-          <div className="cred">
-            <p>Password</p>
-            <input type="password" id="password" />
-          </div>
-          <div className="cred">
-            <p>Email</p>
-            <input  id="email"/>
+          <div id="login-cred">
+            <div className="cred">
+              <p>Email</p>
+              <input  id="email"/>
+            </div>
+
+            <div className="cred">
+              <p>Password</p>
+              <input type="password" id="password" />
+            </div>
           </div>
         </div>
       </div>
