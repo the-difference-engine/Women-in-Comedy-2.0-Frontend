@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER } from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, IS_USER_LOGIN} from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -30,5 +30,12 @@ export const editUser = (isAdmin) => {
   return {
     type: EDIT_USER,
     isAdminEdit: isAdmin
+  }
+}
+
+export const isUserLoggedIn = (boolean) => {
+  return {
+    type: IS_USER_LOGIN,
+    isUserLoggedIn: boolean
   }
 }
