@@ -11,13 +11,12 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
-import { Widget, addResponseMessage, handleNewUserMessage } from 'react-chat-widget';
-import logo  from './images/Women.png';
+import {Widget, addResponseMessage, handleNewUserMessage} from 'react-chat-widget';
+import logo from './images/Women.png';
 import Cable from 'actioncable';
+import LoginModal from './common/LoginModal';
 
 class App extends Component {
-
-
 
   //User types in new message in chat box
   handleNewUserMessage = (newMessage) => {
@@ -28,23 +27,31 @@ class App extends Component {
   }
   componentDidMount() {
     //Add welcome message at the beginning
-     addResponseMessage("Welcome to this awesome chat!");
+    addResponseMessage("Welcome to this awesome chat!");
   }
 
   getResponseMessage(message) {
     //Make sure not to display own message in chat logs
     if (this.state.currentMessage === message) {
+
+      //Reset the current message to null and return empty string
+      this.state.currentMessage = '';
       return '';
-    }
-    else  {
-    addResponseMessage(message);
+    } else {
+      //If it's not an own message, add to the chat log
+      addResponseMessage(message);
+
+      //Reset the current message to null
+      this.state.currentMessage = '';
+
     }
   }
 
   componentWillMount() {
     //Create a Socket Connection for chat function
     this.createSocket();
-    this.setState({currentMessage:''});
+    this.setState({currentMessage: ''});
+    this.setState({userLoggedIn: false});
 
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
@@ -60,8 +67,6 @@ class App extends Component {
   //Prepare the Action Cable socket for chat function
   createSocket() {
     let cable = Cable.createConsumer('ws://localhost:9000/cable');
-    //Obtain user id
-    const userId = sessionStorage.getItem('userId');
 
     //Create chat function
     this.chats = cable.subscriptions.create({
@@ -69,14 +74,26 @@ class App extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-
-        console.log(userId);
         this.getResponseMessage(data.content);
       },
       create: function(chatContent) {
         this.perform('create', {content: chatContent});
       }
     });
+  }
+
+  renderChatWidget() {
+
+    //Obtain user id
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) {
+      return <LoginModal/>
+    } else {
+      this.state.userLoggedIn = true;
+      return (<Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo} title="Women In Comedy" subtitle="Chat Message"/>)
+
+    }
   }
 
   render() {
@@ -91,16 +108,12 @@ class App extends Component {
             <Route path="/home" component={HomePage}></Route>
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-            <Route exact path='/profile/:id' component={ProfilePage}></Route>
-            <Route path='/profile/:id/edit' component={EditPage}></Route>
+            {/* <Route exact path='/profile/:id' component={ProfilePage}></Route>
+            <Route path='/profile/:id/edit' component={EditPage}></Route> */
+            }
           </Switch>
+          {this.renderChatWidget()}
 
-          <Widget
-            handleNewUserMessage={this.handleNewUserMessage}
-            profileAvatar={logo}
-            title="Women In Comedy"
-            subtitle="Chat Message"
-          />
         </div>
       </MuiThemeProvider>
     </BrowserRouter>)
