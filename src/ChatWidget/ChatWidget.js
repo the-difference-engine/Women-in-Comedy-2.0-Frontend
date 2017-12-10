@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { Widget, addResponseMessage, handleNewUserMessage } from 'react-chat-widget';
-import logo  from '../images/Women.png';
+import {Widget, addResponseMessage, handleNewUserMessage} from 'react-chat-widget';
+import logo from '../images/Women.png';
 import Cable from 'actioncable';
 import LoginModal from '../common/LoginModal';
+import './css/chat.css';
 
 class ChatWidget extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class ChatWidget extends Component {
 
   componentWillMount() {
     this.createSocket();
-    this.setState({currentMessage:''});
+    this.setState({currentMessage: ''});
   }
 
   //User types in new message in chat box
@@ -23,7 +24,7 @@ class ChatWidget extends Component {
   }
   componentDidMount() {
     //Add welcome message at the beginning
-     addResponseMessage("Welcome to this awesome chat!");
+    addResponseMessage("Welcome to this awesome chat!");
   }
 
   getResponseMessage(message) {
@@ -33,8 +34,7 @@ class ChatWidget extends Component {
       //Reset the current message to null and return empty string
       this.state.currentMessage = '';
       return '';
-    }
-    else  {
+    } else {
       //If it's not an own message, add to the chat log
       addResponseMessage(message);
 
@@ -63,14 +63,7 @@ class ChatWidget extends Component {
   }
 
   render() {
-    return (
-      <Widget
-        handleNewUserMessage={this.handleNewUserMessage}
-        profileAvatar={logo}
-        title="Women In Comedy"
-        subtitle="Chat Message"
-      />
-    )
+    return (<Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo} title="Women In Comedy" subtitle="Chat Message"/>)
   }
 }
 

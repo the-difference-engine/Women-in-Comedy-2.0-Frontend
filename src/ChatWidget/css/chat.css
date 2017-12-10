@@ -1,0 +1,21 @@
+.conversation-container > .header {
+  background-color: #9b1522;
+}
+
+.message > .response {
+  /*background-color: black;
+  color: white;*/
+}
+
+.message > .client {
+  background-color: #fce9ea;
+  /*color: black;*/
+}
+
+.launcher{
+  background-color: #9b1522;
+}
+
+/*.close-launcher {
+  background-color: white;
+}*/
