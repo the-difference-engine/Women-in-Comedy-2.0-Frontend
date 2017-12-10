@@ -25,6 +25,8 @@ class ChatWidget extends Component {
   componentDidMount() {
     //Add welcome message at the beginning
     addResponseMessage("Welcome to this awesome chat!");
+    let userId = sessionStorage.getItem('userId');
+    console.log(userId);
   }
 
   getResponseMessage(message) {

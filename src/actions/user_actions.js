@@ -27,7 +27,6 @@ export const filterUsers = (item, nestedItem) => {
 }
 
 export const editUser = (isAdmin) => {
-  console.log('editUser function is initialized.');
   return {
     type: EDIT_USER,
     isAdminEdit: isAdmin

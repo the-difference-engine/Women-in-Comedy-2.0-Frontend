@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Modal } from '../../common';
 import '../css/login-navbar.css';
+import { Route, Redirect } from 'react-router';
 
 class LoginNavbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {notVerified: false};
+    this.state = {notVerified: false, userLoggedIn: false};
+  }
+
+  goToFeedPage() {
+    this.props.history.push('/feed', this.state.userLoggedIn: true);
   }
 
   login(e) {
@@ -19,7 +24,7 @@ class LoginNavbar extends Component {
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
       sessionStorage.setItem('userId', response.data.id);
       sessionStorage.setItem('adminUser', response.data.admin);
-      response.data.confirmed_at ? this.props.history.push('/feed') : this.setState({notVerified: true});
+      response.data.confirmed_at ? this.goToFeedPage() : this.setState({notVerified: true});
     })
     .catch(err => {alert(err)});
   }
