@@ -9,7 +9,8 @@ class LoginNavbar extends Component {
     this.state = {notVerified: false};
   }
 
-  Login() {
+  login(e) {
+    e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     // this.props.createSession(email, password);
@@ -28,18 +29,20 @@ class LoginNavbar extends Component {
       <div id="navbar">
         <div id="container">
           <h1 id="login-nav-header">Women in Comedy </h1>
-          <button onClick={this.Login.bind(this)}><span>Log in</span></button>
-          <div id="login-cred">
-            <div className="cred">
-              <p>Email</p>
-              <input  id="email"/>
+          <form onSubmit={this.login.bind(this)}>
+            <div id="login-cred">
+              <div className="cred">
+                <p>Email</p>
+                <input  id="email"/>
+              </div>
+              <div className="cred">
+                <p>Password</p>
+                <input type="password" id="password" />
+              </div>
+              <button type="submit"><span>Log in</span></button>
             </div>
+          </form>
 
-            <div className="cred">
-              <p>Password</p>
-              <input type="password" id="password" />
-            </div>
-          </div>
         </div>
       </div>
     )
