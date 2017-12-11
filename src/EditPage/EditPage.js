@@ -31,17 +31,21 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
-    if (adminEdit) {
+
+    if (adminEdit == true) {
       //Render Admin edit page
       return <div>
         <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit}/>
       </div>
     }
-    //Render User edit page
-    return <div>
-      <EditForm initialValues={userInfo} onSubmit={this.submit}/>
-    </div>
-  }
+    else {
+      //Render User edit page
+      return <div>
+        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit}/>
+      </div>
+    }
+    }
+
 }
 
 function mapStateToProps(state) {
