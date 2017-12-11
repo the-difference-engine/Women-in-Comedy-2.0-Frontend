@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/event-info.css';
 
+//THIS FILE NOT IN USE
 
 const EventImg = (props) => {
   console.log('eventimgprop', props);

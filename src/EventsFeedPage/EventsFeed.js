@@ -26,7 +26,8 @@ class EventsFeed extends Component {
     await this.props.fetchEventInfo(eventId);
     const hostId = await this.props.selectedEvent.info.user_id;
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
-    const photoUrl = await this.props.fetchHostPhoto(hostId);
+    await this.props.fetchHostPhoto(hostId); 
+    // const photoUrl = await this.props.selectedEvent.hostPhoto;
   }
   onCreatePost() {
     const body = this.props.eventWallPost;
@@ -34,7 +35,6 @@ class EventsFeed extends Component {
     const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnEventWall({ body, eventId, authorId}, this.props.fetchEventInfo);
   }
-
   render() {
     return (
       <div id="events-feed-container">
@@ -52,7 +52,6 @@ class EventsFeed extends Component {
               userInfo={this.props.userInfo}
               eventId={this.props.match.params.id}
               fetchEventInfo={this.props.fetchEventInfo}
-              fetchHostPhoto={this.props.fetchHostPhoto}
               unattendEvent={this.props.unattendEvent}>
             </EventInfo>
           <UpdateEvent id="edit_btn" history={this.props.history} eventId={this.props.match.params.id}/>
