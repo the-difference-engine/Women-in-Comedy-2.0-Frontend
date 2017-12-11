@@ -10,13 +10,14 @@ class EditForm extends Component {
   render() {
     const {handleSubmit, initialValues, adminEdit} = this.props;
     let meeting_options = this.props.initialValues.meeting_options;
+    let isAdminEdit = (adminEdit == 'true');
 
     Object.assign(initialValues, meeting_options);
     console.log(this.props.adminEdit);
 
 
     return <form onSubmit={handleSubmit}>
-      <h3>{adminEdit ? (<p>Admin Edit</p>): (<p>User Edit</p>)}</h3>
+      <h3>{isAdminEdit ? (<p>Admin Edit</p>): (<p>User Edit</p>)}</h3>
       {/* First Name */}
       <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
       <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
