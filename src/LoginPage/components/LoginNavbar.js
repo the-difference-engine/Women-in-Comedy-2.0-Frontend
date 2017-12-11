@@ -24,11 +24,15 @@ class LoginNavbar extends Component {
     // this.props.createSession(email, password);
     axios.post(process.env.REACT_APP_API_URL_DEV + 'sessions', { email, password })
     .then(response => {
-      this.props.setUserLoggedIn(true);
+
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
       sessionStorage.setItem('userId', response.data.id);
       sessionStorage.setItem('adminUser', response.data.admin);
-      response.data.confirmed_at ? this.goToFeedPage() : this.setState({notVerified: true});
+
+      this.props.setUserLoggedIn(true, response.data.id);
+
+      response.data.confirmed_at ? this.goToFeedPage() :
+       this.setState({notVerified: true});
     })
     .catch(err => {alert(err)});
   }

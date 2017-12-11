@@ -33,9 +33,10 @@ export const editUser = (boolean) => {
   }
 }
 
-export const setUserLoggedIn = (boolean) => {
+export const setUserLoggedIn = (boolean, userId) => {
   return {
     type: SET_USER_LOGGED_IN,
-    loggedIn: boolean
+    loggedIn: boolean,
+    userId: userId
   }
 }
