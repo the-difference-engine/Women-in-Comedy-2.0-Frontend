@@ -23,7 +23,6 @@ class ChatWidget extends Component {
     this.chats.create(newMessage);
     //Update the state of current message
     this.state.currentMessage = newMessage;
-    console.log(this.props.loggedIn);
   }
   componentDidMount() {
     //Add welcome message at the beginning
@@ -52,7 +51,6 @@ class ChatWidget extends Component {
   createSocket() {
     let cable = Cable.createConsumer('ws://localhost:9000/cable');
     let userId = this.props.loggedIn.userId;
-    console.log(userId);
 
     //Create chat function
     this.chats = cable.subscriptions.create({

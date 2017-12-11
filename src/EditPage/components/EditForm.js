@@ -13,8 +13,6 @@ class EditForm extends Component {
     let isAdminEdit = (adminEdit == 'true');
 
     Object.assign(initialValues, meeting_options);
-    console.log(this.props.adminEdit);
-
 
     return <form onSubmit={handleSubmit}>
       <h3>{isAdminEdit ? (<p>Admin Edit</p>): (<p>User Edit</p>)}</h3>
