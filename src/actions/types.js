@@ -5,7 +5,7 @@ export const FETCH_USER_FEEDS = 'fetch_user_feeds';
 export const FETCH_USER_CONNECTIONS = 'fetch_user_connections';
 export const FETCH_ALL_USERS = 'fetch_all_users';
 export const EDIT_USER = 'edit_user';
-export const IS_USER_LOGIN = 'is_user_login';
+export const SET_USER_LOGGED_IN = 'set_user_logged_in';
 
 // navbar
 export const FILTER_USERS = 'filter_users';

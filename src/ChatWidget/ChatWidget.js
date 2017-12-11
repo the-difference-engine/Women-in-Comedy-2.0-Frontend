@@ -4,6 +4,8 @@ import logo from '../images/Women.png';
 import Cable from 'actioncable';
 import LoginModal from '../common/LoginModal';
 import './css/chat.css';
+import {connect} from 'react-redux';
+
 
 class ChatWidget extends Component {
   constructor(props) {
@@ -21,12 +23,14 @@ class ChatWidget extends Component {
     this.chats.create(newMessage);
     //Update the state of current message
     this.state.currentMessage = newMessage;
+    console.log(this.props.loggedIn);
   }
   componentDidMount() {
     //Add welcome message at the beginning
     addResponseMessage("Welcome to this awesome chat!");
     let userId = sessionStorage.getItem('userId');
     console.log(userId);
+
   }
 
   getResponseMessage(message) {
@@ -69,4 +73,7 @@ class ChatWidget extends Component {
   }
 }
 
-export default ChatWidget;
+function mapStateToProps(state) {
+  return { loggedIn: state.isUserLoggedIn };
+}
+export default connect(mapStateToProps)(ChatWidget);

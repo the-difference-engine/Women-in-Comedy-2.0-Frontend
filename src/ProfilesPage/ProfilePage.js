@@ -10,7 +10,8 @@ import {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
-  editUser
+  editUser,
+  setUserLoggedIn
 } from '../actions';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import Navbar from '../common/Navbar';
@@ -160,7 +161,7 @@ const mapStateToProps = (state) => {
     userConnections,
     status,
     userWallPost,
-    editUser
+    editUser,setUserLoggedIn
   } = state;
 
   return {
@@ -169,7 +170,7 @@ const mapStateToProps = (state) => {
     userConnections,
     status,
     userWallPost,
-    editUser
+    editUser, setUserLoggedIn
   };
 }
 export default connect(mapStateToProps, {

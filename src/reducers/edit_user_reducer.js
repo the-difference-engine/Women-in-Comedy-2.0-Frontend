@@ -4,6 +4,8 @@ export default (state = null, action) => {
   switch (action.type) {
     case EDIT_USER:
       return { isAdminEdit: action.isAdminEdit }
+    default:
+      return state;
   }
-  return state;
+
 }
