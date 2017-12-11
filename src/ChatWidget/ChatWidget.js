@@ -29,8 +29,6 @@ class ChatWidget extends Component {
     //Add welcome message at the beginning
     addResponseMessage("Welcome to this awesome chat!");
     let userId = sessionStorage.getItem('userId');
-    console.log(userId);
-
   }
 
   getResponseMessage(message) {
@@ -53,6 +51,8 @@ class ChatWidget extends Component {
   //Prepare the Action Cable socket for chat function
   createSocket() {
     let cable = Cable.createConsumer('ws://localhost:9000/cable');
+    let userId = this.props.loggedIn.userId;
+    console.log(userId);
 
     //Create chat function
     this.chats = cable.subscriptions.create({
@@ -63,7 +63,7 @@ class ChatWidget extends Component {
         this.getResponseMessage(data.content);
       },
       create: function(chatContent) {
-        this.perform('create', {content: chatContent});
+        this.perform('create', {content: chatContent, userId: userId});
       }
     });
   }

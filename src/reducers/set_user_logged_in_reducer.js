@@ -2,7 +2,7 @@ import {SET_USER_LOGGED_IN } from '../actions/types';
 
 const userId = sessionStorage.getItem('userId');
 
-const INITIAL_STATE = userId ? {loggedIn: true, userId: parseInt(userId)} : {loggedIn: false}
+const INITIAL_STATE = userId ? {loggedIn: true, userId: userId} : {loggedIn: false}
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
