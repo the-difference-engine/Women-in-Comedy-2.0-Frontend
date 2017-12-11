@@ -16,6 +16,7 @@ import userWallPostReducer from './user_wall_post_reducer';
 import eventWallPostReducer from './event_wall_post_reducer';
 import allUsersReducer from './all_users_reducer';
 import adminReducer from './admin_reducer';
+import editUserReducer from './edit_user_reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
   admin: adminReducer
+  adminEdit: editUserReducer
 });
 
 export default rootReducer;

@@ -28,6 +28,7 @@ class EventsPage extends Component {
 		);
 	}
 }
+
 function mapStateToProps({ myUpcomingEvents, upcomingEvents }) {
   return { myUpcomingEvents, upcomingEvents };
 }

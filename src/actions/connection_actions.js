@@ -13,7 +13,7 @@ export const fetchUserConnections = (userId) => {
 
  const request = axios({
    method: 'get',
-   url: 'http://localhost:9000/api/v1/users/connections',
+   url: process.env.REACT_APP_API_URL_DEV + 'users/connections',
    headers: {"id": userId}
  });
  return (dispatch) => {
@@ -27,7 +27,7 @@ export const fetchUserConnections = (userId) => {
 export const createConnectionRequest = ({sender_id, receiver_id}) => async dispatch =>{
   const request = await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/users/connections',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/connections',
     headers: { "id": sender_id },
     data: {
       sender_id, receiver_id
@@ -41,7 +41,7 @@ export const fetchConnectionStatus = ({ sender_id, receiver_id }) => async dispa
 
   const request = await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/users/connection/status',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/connection/status',
     data: { sender_id, receiver_id }
   });
   dispatch({ type: FETCH_CONNECTION_STATUS, payload: request });
@@ -52,7 +52,7 @@ export const fetchPendingUserConnections = (userId) => {
 
   const request = axios({
     method: 'get',
-    url: 'http://localhost:9000/api/v1/users/pending_connections',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/pending_connections',
     headers: { "id": userId}
   });
   return(dispatch) => {
@@ -66,7 +66,7 @@ export const acceptConnection = (userId, sender_id, callback, callback2) => asyn
 
   const request = await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/users/accept_connections',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/accept_connections',
     data: { sender_id, receiver_id: userId }
   });
   await callback(userId);

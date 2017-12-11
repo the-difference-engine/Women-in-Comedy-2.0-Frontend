@@ -1,8 +1,27 @@
 import React from 'react';
 import '../css/profile-userinfo.css';
+import {Link, Route} from 'react-router-dom';
+import EditPage from '../../EditPage/EditPage';
+
+const EditButton = (props) => {
+  if (props.isAdmin) {
+    return (<Link to={props.url + '/edit'} onClick={props.onButtonClicked}>
+      Admin Edit
+    </Link>)
+  }
+  return (<Link to={props.url + '/edit'} onClick='props.buttonClicked(true)'>
+    User Edit
+  </Link>)
+}
 
 const UserInfo = (props) => {
+
+  const handleClick = () => {
+    props.editButtonClicked(true);
+  }
+
   if (props.userInfo) {
+
     
     const { id, suspended, firstName, lastName, bio, block_connection_requests, admin } = props.userInfo
     console.log(props.userInfo.admin);
@@ -15,8 +34,10 @@ const UserInfo = (props) => {
         <p id="profile-bio-content">{bio}</p>
       </div>
     );
+
   }
-  return <div></div>
+  return <div>Something is Here
+  </div>
 };
 
 const AdminInfo = (props) => {}
