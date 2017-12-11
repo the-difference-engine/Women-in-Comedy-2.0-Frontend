@@ -97,8 +97,7 @@ class ProfilePage extends Component {
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended
     const admin = sessionStorage.getItem('isAdmin')
-    console.log(admin)
-    if (admin == true) {
+    if (admin === true) {
       if (this.state.suspendedState) {
         return <button className="btn btn-warning" onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
         }
@@ -107,11 +106,11 @@ class ProfilePage extends Component {
     }
 
 
+
   deleteUserButton() {
     const admin = sessionStorage.getItem('isAdmin')
-    if (admin == true) {
+    console.log(admin)
     return <button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button>
-  }
 }
 
   renderConnection() {
