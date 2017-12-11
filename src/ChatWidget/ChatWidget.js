@@ -67,7 +67,7 @@ class ChatWidget extends Component {
   }
 
   render() {
-    return (<Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo} title="Women In Comedy" subtitle="Chat Message"/>)
+    return (<Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo} title="Women In Comedy" subtitle="Chat Conversation"/>)
   }
 }
 
