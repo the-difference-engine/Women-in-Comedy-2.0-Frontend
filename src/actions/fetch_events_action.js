@@ -7,11 +7,11 @@ export const fetchUpcomingEvents = () => async dispatch => {
 };
 
 export const fetchMyUpcomingEvents = (userId) => async dispatch => {
-  const request = await axios(`http://localhost:9000/api/v1/events/user/${userId}`);
+  const request = await axios(process.env.REACT_APP_API_URL_DEV + `events/user/${userId}`);
   dispatch({ type: FETCH_MY_UPCOMING_EVENTS, payload: request });
 }
 
 export const fetchEventInfo = eventId => async dispatch => {
-  const request = await axios(`http://localhost:9000/api/v1/events/${eventId}`);
+  const request = await axios(process.env.REACT_APP_API_URL_DEV + `events/${eventId}`);
   dispatch({ type: FETCH_EVENT_INFO, payload: request });
 }

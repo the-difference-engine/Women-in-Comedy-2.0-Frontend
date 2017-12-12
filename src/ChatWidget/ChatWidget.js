@@ -6,7 +6,6 @@ import LoginModal from '../common/LoginModal';
 import './css/chat.css';
 import {connect} from 'react-redux';
 
-
 class ChatWidget extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +48,7 @@ class ChatWidget extends Component {
 
   //Prepare the Action Cable socket for chat function
   createSocket() {
-    let cable = Cable.createConsumer('ws://localhost:9000/cable');
+    let cable = Cable.createConsumer(process.env.REACT_APP_API_URL_QA_WS + 'cable');
     let userId = this.props.loggedIn.userId;
 
     //Create chat function
@@ -61,7 +60,10 @@ class ChatWidget extends Component {
         this.getResponseMessage(data.content);
       },
       create: function(chatContent) {
-        this.perform('create', {content: chatContent, userId: userId});
+        this.perform('create', {
+          content: chatContent,
+          userId: userId
+        });
       }
     });
   }
@@ -72,6 +74,6 @@ class ChatWidget extends Component {
 }
 
 function mapStateToProps(state) {
-  return { loggedIn: state.isUserLoggedIn };
+  return {loggedIn: state.isUserLoggedIn};
 }
 export default connect(mapStateToProps)(ChatWidget);
