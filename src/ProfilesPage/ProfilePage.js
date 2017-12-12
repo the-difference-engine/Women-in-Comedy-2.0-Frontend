@@ -10,13 +10,10 @@ import {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
-<<<<<<< HEAD
   suspendUser,
   unsuspendUser,
-  deleteUser
-=======
+  deleteUser,
   editUser
->>>>>>> c897d87fcc1ea675fb5144dff750fffd8710dbe3
 } from '../actions';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import Navbar from '../common/Navbar';
@@ -31,7 +28,6 @@ const adminUser = sessionStorage.getItem('adminUser');
 
 class ProfilePage extends Component {
   componentWillMount() {
-<<<<<<< HEAD
       const sender_id = sessionStorage.getItem('userId');
       const receiver_id = this.props.match.params.id;
       const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
@@ -42,19 +38,8 @@ class ProfilePage extends Component {
       this.setState(() => {
         return {suspendedState: this.props.userInfo.suspended}
       });
+      this.setState({editUserEnable: false});
     }
-=======
-
-    const sender_id = sessionStorage.getItem('userId');
-    const receiver_id = this.props.match.params.id;
-    const {fetchUserInfo, fetchUserFeeds, fetchUserConnections} = this.props;
-    this.props.fetchUserInfo(this.props.match.params.id);
-    this.props.fetchUserFeeds(this.props.match.params.id);
-    this.props.fetchUserConnections(this.props.match.params.id);
-    this.props.fetchConnectionStatus({sender_id, receiver_id});
-    this.setState({editUserEnable: false});
-  }
->>>>>>> c897d87fcc1ea675fb5144dff750fffd8710dbe3
 
   onPress() {
     const sender_id = sessionStorage.getItem('userId');
@@ -145,20 +130,19 @@ class ProfilePage extends Component {
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended
     const admin = sessionStorage.getItem('isAdmin')
-    if (admin === true) {
       if (this.state.suspendedState) {
         return <button className="btn btn-warning" onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
         }
         return <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}> Suspend </button>
       }
-    }
+
 
 
 
   deleteUserButton() {
     const admin = sessionStorage.getItem('isAdmin')
     console.log(admin)
-    return <button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button>
+    return <a href = "http://localhost:3000/message"><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
 }
 
   renderConnection() {
@@ -184,36 +168,6 @@ class ProfilePage extends Component {
       return <EditPage editable= {this.handleEditUserEnable.bind(this)} history={history} userInfo={userInfo}/>
     }
 
-<<<<<<< HEAD
-  render () {
-    const { userInfo, userConnections, userFeeds, status, suspended } = this.props;
-    // console.log(this.props.userInfo);
-
-
-    return (
-      <div>
-        <Navbar history={this.props.history} />
-        <LeftGraySideBar>
-          <UserInfo userInfo={this.props.userInfo}/>
-          {this.renderBlockConnection()}
-          {this.renderConnection()}
-          {this.deleteUserButton()}
-          {this.suspendUserButton()}
-        </LeftGraySideBar>
-        <RightGraySideBar>
-          <ProfileConnections connections={this.props.userConnections}/>
-        </RightGraySideBar>
-        <PageContent>
-          <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}
-                />
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
-              </div>
-=======
     return (<div>
       <div className="feed-post-bar">
         <div className="wrap">
@@ -221,7 +175,6 @@ class ProfilePage extends Component {
             <input type="text" className="searchTerm" placeholder="What's New?" onChange={(event) => this.props.userWallInputChange(event.target.value)} value={this.props.userWallPost}/>
             <div className="post-button">
               <button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button>
->>>>>>> c897d87fcc1ea675fb5144dff750fffd8710dbe3
             </div>
           </div>
         </div>
@@ -238,7 +191,8 @@ class ProfilePage extends Component {
         <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/> {this.renderBlockConnection()}
         {this.renderConnection()}
         {this.renderEditUserButton()}
-
+        {this.suspendUserButton()}
+        {this.deleteUserButton()}
       </LeftGraySideBar>
       <RightGraySideBar>
         <ProfileConnections connections={this.props.userConnections}/>
@@ -250,28 +204,6 @@ class ProfilePage extends Component {
   };
 }
 
-<<<<<<< HEAD
-  const mapStateToProps = (state) => {
-    const { userInfo, userFeeds, userConnections, status, userWallPost } = state;
-
-    return { userInfo, userFeeds, userConnections, status, userWallPost };
-  }
-export default connect(mapStateToProps,
-  {
-    fetchUserInfo,
-    fetchUserFeeds,
-    fetchUserConnections,
-    createConnectionRequest,
-    fetchConnectionStatus,
-    userWallInputChange,
-    createPostOnUserWall,
-    blockConnectionRequests,
-    suspendUser, 
-    unsuspendUser,
-    deleteUser
-  }
-  )(ProfilePage);
-=======
 const mapStateToProps = (state) => {
   const {
     userInfo,
@@ -300,6 +232,9 @@ export default connect(mapStateToProps, {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
-  editUser
+  editUser,
+  suspendUser, 
+  unsuspendUser,
+  deleteUser
 })(ProfilePage);
->>>>>>> c897d87fcc1ea675fb5144dff750fffd8710dbe3
+

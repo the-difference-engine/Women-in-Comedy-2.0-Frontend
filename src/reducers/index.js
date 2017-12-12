@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
   userWallPost: userWallPostReducer,
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
-  admin: adminReducer
+  admin: adminReducer,
   adminEdit: editUserReducer
 });
 
