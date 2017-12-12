@@ -4,16 +4,17 @@ import { FlatButton, Popover, Menu, MenuItem } from 'material-ui';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers, fetchNotifications } from '../actions'
+import { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections, filterUsers } from '../actions'
 import axios from 'axios';
 import './css/navbar.css';
+import NotificationButton from '../containers/notification_button';
 
 const userId = sessionStorage.getItem('userId');
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { showUsers: false, open:  false, fetchNotifications: [] };
+    this.state = { showUsers: false, open:  false };
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
   }
@@ -38,10 +39,8 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    // const allNotifications = this.notifications();
-    const { fetchAllUsers, fetchNotifications } = this.props;
+    const { fetchAllUsers } = this.props;
     fetchAllUsers();
-    fetchNotifications(sessionStorage.getItem('userId'));
   }
 
   handleTouchTap(event) {
@@ -70,23 +69,28 @@ class Navbar extends Component {
 
   onItemClicked(item) {
     const { fetchUserInfo, fetchUserFeeds,
-      fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+      fetchUserConnections, fetchConnectionStatus } = this.props;
 
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = item.value
     fetchUserInfo(item.value);
-    fetchNotifications();
     fetchUserFeeds(item.value);
     fetchUserConnections(item.value);
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
   }
 
-  // notifications() {
-  //   axios.get(`http://localhost:9000/api/v1/notifications/${userId}`).then(response => {
-  //     this.setState({allNotifications: response.data})
-  //   });
-  // };
+
+
+  // renderNotifications() {
+  //   if (this.props.allNotifications) {
+  //     return this.props.allNotifications.map((notification) => {
+  //       return (
+  //         <li key={notification.id}>{notification.action}</li>
+  //         );
+  //     });
+  //   };
+  // }
 
   render() {
     const locationMenuItems = [{
@@ -232,11 +236,7 @@ class Navbar extends Component {
             {this.renderLogout()}
             <li><Link to="/feed"><i className="fa fa-home"><p>HOME</p></i></Link></li>
             <li><Link to="/events"><i className="fa fa-calendar-o"><p>EVENTS</p></i></Link></li>
-            <li>
-
-              <a href="#" onClick={console.log(fetchNotifications)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS {fetchNotifications.length}</p></i></a>
-           
-            </li>
+            <li><NotificationButton /></li>
             <li><Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /></Link></li>
           </ul>
         </div>
@@ -244,6 +244,9 @@ class Navbar extends Component {
     );
   }
 };
+
+// <a href="#" onClick={console.log(this.state)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS {this.props.allNotifications}</p></i></a>
+
 const styles = {
   container: {
     verticalAlign: 'top',
@@ -279,4 +282,4 @@ function mapStateToProps({ allUsers }) {
   return { users };
 }
 
-export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,filterUsers, fetchNotifications })(Navbar);
+export default connect(mapStateToProps, { fetchAllUsers, fetchUserInfo, fetchUserFeeds, fetchConnectionStatus, fetchUserConnections,filterUsers })(Navbar);

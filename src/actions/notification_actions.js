@@ -7,7 +7,7 @@ export const fetchNotifications = (userId) => {
    method: 'get',
    url: process.env.REACT_APP_API_URL_DEV + `/notifications/${userId}`,
    headers: { "id": userId}
- });
+ }).then(response => {console.log(response.data)} );
  return (dispatch) => {
    request.then((data) => {
      dispatch({ type: FETCH_NOTIFICATIONS, payload: request })
@@ -15,8 +15,9 @@ export const fetchNotifications = (userId) => {
  };
 };
 
+//actions
+
 // export const fetchNotifications = (userId) => async dispatch => {
 //   const request = await axios(process.env.REACT_APP_API_URL_DEV + `/notifications/${userId}`);
 //   dispatch({ type: FETCH_NOTIFICATIONS, payload: request });
 // }
-

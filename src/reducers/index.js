@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
   userWallPost: userWallPostReducer,
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
-  notificationsReducer: notificationsReducer
+  notifications: notificationsReducer
 });
 
 export default rootReducer;
