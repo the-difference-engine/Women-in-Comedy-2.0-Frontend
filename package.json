@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "actioncable": "^5.1.4",
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
     "firebase": "^4.3.1",
