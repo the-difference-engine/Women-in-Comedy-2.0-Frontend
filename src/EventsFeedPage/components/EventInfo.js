@@ -4,12 +4,12 @@ import '../css/event-info.css';
 const EventInfo = (props) => {
   if(props.event) {
     const { title, date, time, location, about, ticket_link, user_id } = props.event.info
-    const hostPhoto = props.event.hostPhoto
+    const { photo, firstName, lastName } = props.event.hostInfo
 
     return (
       <div>
         <h2 id="event-title">{title}</h2>
-        <img src={hostPhoto} width="100" height="100" alt=""/>
+        <img src={photo} width="100" height="100" alt=""/>
         <h3 id="host-details"> </h3>
         <h2 id="event-date">{date}</h2>
         <h2 id="event-time">{time}</h2>

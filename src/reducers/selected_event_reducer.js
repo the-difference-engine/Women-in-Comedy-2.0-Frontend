@@ -7,7 +7,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_EVENT_INFO:
       return action.payload.data;
     case FETCH_HOST_PHOTO:
-      return {...state, hostPhoto: action.payload}  
+      return {...state, hostInfo: action.payload.data}  
     default:
       return state;
   }

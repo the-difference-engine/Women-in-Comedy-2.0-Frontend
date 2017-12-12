@@ -90,9 +90,9 @@ class EventsFeed extends Component {
     );
   }
 }
-function mapStateToProps({ selectedEvent, userInfo, eventWallPost }) {
+function mapStateToProps({ selectedEvent, hostInfo, userInfo, eventWallPost }) {
   console.log(selectedEvent);
-  return { selectedEvent, userInfo, eventWallPost };
+  return { selectedEvent, hostInfo, userInfo, eventWallPost };
 }
 export default connect(mapStateToProps,
   {
