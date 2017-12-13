@@ -24,6 +24,7 @@ import EditPage from '../EditPage/EditPage'
 
 const userId = sessionStorage.getItem('userId');
 const adminUser = sessionStorage.getItem('adminUser');
+const admin = sessionStorage.getItem('isAdmin');
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
@@ -93,11 +94,11 @@ class ProfilePage extends Component {
 
   onSuspend() {
     const id = this.props.userInfo.id
-    const admin = sessionStorage.getItem('isAdmin')
     var suspended = this.props.userInfo.suspended
     const data = { id, suspended }
     this.props.suspendUser(data)
     this.setState({suspendedState: true})
+    console.log(sessionStorage.getItem('userId'))
   }
 
   onUnsuspend() {
@@ -141,7 +142,6 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem('isAdmin')
-    console.log(admin)
     return <a href = "http://localhost:3000/message"><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
 }
 
