@@ -11,10 +11,13 @@ import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
+
 import DeletedUser from './ProfilesPage/DeletedUser';
+import ChatWidget from './ChatWidget/ChatWidget';
 
 
 class App extends Component {
+
   componentWillMount() {
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
@@ -26,6 +29,7 @@ class App extends Component {
     };
     firebase.initializeApp(config);
   }
+
   render() {
     return (<BrowserRouter>
       <MuiThemeProvider>
@@ -41,7 +45,9 @@ class App extends Component {
             <Route exact path='/profile/:id' component={ProfilePage}></Route>
             <Route path='/profile/:id/edit' component={EditPage}></Route>
             <Route path='/message' component={DeletedUser}></Route>
+            <Route path='/profile/:id' component={ProfilePage}></Route>
           </Switch>
+          <ChatWidget />
 
         </div>
       </MuiThemeProvider>
