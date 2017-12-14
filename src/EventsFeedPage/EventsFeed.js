@@ -21,13 +21,13 @@ class EventsFeed extends Component {
   constructor(props) {
     super(props);
   }
-  async componentDidMount() {
+  async componentWillMount() {
+    const currentUserId = await sessionStorage.getItem('userId');
+    this.props.fetchUserInfo(currentUserId);
     const eventId = this.props.match.params.id;
     await this.props.fetchEventInfo(eventId);
-    const hostId = await this.props.selectedEvent.info.user_id;
-    this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+    const hostId = this.props.selectedEvent.info.user_id;
     await this.props.fetchHostPhoto(hostId); 
-    // const photoUrl = await this.props.selectedEvent.hostPhoto;
   }
   onCreatePost() {
     const body = this.props.eventWallPost;
@@ -90,9 +90,8 @@ class EventsFeed extends Component {
     );
   }
 }
-function mapStateToProps({ selectedEvent, hostInfo, userInfo, eventWallPost }) {
-  console.log(selectedEvent);
-  return { selectedEvent, hostInfo, userInfo, eventWallPost };
+function mapStateToProps({ selectedEvent, userInfo, eventWallPost }) {
+  return { selectedEvent, userInfo, eventWallPost };
 }
 export default connect(mapStateToProps,
   {
