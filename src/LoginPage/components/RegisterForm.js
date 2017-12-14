@@ -144,7 +144,7 @@ class RegisterForm extends Component {
   }
 
   onSubmit(values) {
-    axios.post('http://localhost:9000/api/v1/users', values).then(payload => {
+    axios.post(process.env.REACT_APP_API_URL_DEV + 'users', values).then(payload => {
       this.setState({userMade: true});
     }).catch(err => {
       alert(err)
