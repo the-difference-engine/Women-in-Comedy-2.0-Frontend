@@ -13,7 +13,7 @@ import 'dotenv/config';
 const store = createStore(
   reducers,
   {},
-  composeWithDevTools(applyMiddleware(promise, thunk))
+  // composeWithDevTools(applyMiddleware(promise, thunk))
 );
 ReactDOM.render(
   <Provider store={store}>
