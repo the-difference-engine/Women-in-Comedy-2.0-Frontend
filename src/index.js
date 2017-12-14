@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import reducers from './reducers';
 import 'dotenv/config';
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   reducers,
