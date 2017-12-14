@@ -7,7 +7,7 @@ import {Link, Route} from 'react-router-dom';
 
 class EditPage extends Component {
 
-  submit = (values) => {
+  submit(values) {
     //Show confirmation box before information is updated
     if (window.confirm("Information will be updated. Continue?") == true) {
       {
@@ -15,7 +15,7 @@ class EditPage extends Component {
 
         axios({
           method: 'patch',
-          url: 'http://localhost:9000/api/v1/users/' + id,
+          url: process.env.REACT_APP_API_URL_DEV + `users/${id}`,
           data: values
         }).then(function(response) {});
 
@@ -31,17 +31,21 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
-    if (adminEdit) {
+
+    if (adminEdit == true) {
       //Render Admin edit page
       return <div>
-        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit}/>
+        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
       </div>
     }
-    //Render User edit page
-    return <div>
-      <EditForm initialValues={userInfo} onSubmit={this.submit}/>
-    </div>
-  }
+    else {
+      //Render User edit page
+      return <div>
+        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
+      </div>
+    }
+    }
+
 }
 
 function mapStateToProps(state) {

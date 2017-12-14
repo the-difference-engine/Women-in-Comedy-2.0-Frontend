@@ -12,8 +12,10 @@ import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
+import ChatWidget from './ChatWidget/ChatWidget';
 
 class App extends Component {
+
   componentWillMount() {
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
@@ -25,6 +27,7 @@ class App extends Component {
     };
     firebase.initializeApp(config);
   }
+
   render() {
     return (<BrowserRouter>
       <MuiThemeProvider>
@@ -37,9 +40,9 @@ class App extends Component {
             <Route path="/home" component={HomePage}></Route>
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-            <Route exact path='/profile/:id' component={ProfilePage}></Route>
-            <Route path='/profile/:id/edit' component={EditPage}></Route>
+            <Route path='/profile/:id' component={ProfilePage}></Route>
           </Switch>
+          <ChatWidget />
 
         </div>
       </MuiThemeProvider>

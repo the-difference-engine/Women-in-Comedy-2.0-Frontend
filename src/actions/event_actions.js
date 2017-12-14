@@ -15,7 +15,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         url: process.env.REACT_APP_API_URL_DEV + 'events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
-      
+
       dispatch({ type: CREATE_EVENT_SUCCESS, eventId: request.data });
   } else {
     dispatch({ type: CREATE_EVENT_FAIL });
@@ -81,7 +81,7 @@ export const unattendEvent = (guestId, eventId, callback) => async dispatch => {
   console.log(eventId);
   await axios({
     method: 'delete',
-    url: `http://localhost:9000/api/v1/guests/${guestId}`
+    url: process.env.REACT_APP_API_URL_DEV + `guests/${guestId}`
   });
   callback(eventId);
 }

@@ -7,8 +7,6 @@ import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import reducers from './reducers';
-import 'dotenv/config';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   reducers,

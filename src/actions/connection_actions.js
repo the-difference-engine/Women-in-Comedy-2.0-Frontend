@@ -78,7 +78,7 @@ export const acceptConnection = (userId, sender_id, callback, callback2) => asyn
 export const declineConnection = (userId, requestId, callback) => async dispatch => {
   const request = await axios({
     method: 'delete',
-    url: `http://localhost:9000/api/v1/users/connections/${requestId}`
+    url: process.env.REACT_APP_API_URL_DEV + `users/connections/${requestId}`
   });
   await callback(userId)
 }
@@ -86,7 +86,7 @@ export const declineConnection = (userId, requestId, callback) => async dispatch
 export const blockConnectionRequests = (sender_id) => async dispatch =>{
   const request = await axios({
     method: 'post',
-    url: `http://localhost:9000/api/v1/users/${sender_id}`,
+    url: process.env.REACT_APP_API_URL_DEV + `users/${sender_id}`,
     headers: { "id": sender_id }
   });
 }
