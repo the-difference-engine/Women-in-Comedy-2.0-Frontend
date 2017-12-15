@@ -15,6 +15,7 @@ import selectedEventReducer from './selected_event_reducer';
 import userWallPostReducer from './user_wall_post_reducer';
 import eventWallPostReducer from './event_wall_post_reducer';
 import allUsersReducer from './all_users_reducer';
+import adminReducer from './admin_reducer';
 import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
 
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   userWallPost: userWallPostReducer,
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
+  admin: adminReducer,
   adminEdit: editUserReducer,
   isUserLoggedIn: setUserLoggedInReducer
 
