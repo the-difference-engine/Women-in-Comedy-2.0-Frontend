@@ -143,7 +143,6 @@ class ProfilePage extends Component {
   deleteUserButton() {
     const admin = sessionStorage.getItem('isAdmin')
     return <a href = {process.env.REACT_APP_API_URL_QA + 'message'}><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
-    // return <a href = "http://localhost:3000/message"><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
 }
 
   renderConnection() {
