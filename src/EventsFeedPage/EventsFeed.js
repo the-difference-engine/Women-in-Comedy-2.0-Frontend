@@ -12,12 +12,10 @@ import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
 import Navbar from '../common/Navbar';
-import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
+import { RightGraySideBar, LeftGraySideBar, PageContent } from '../common';
 
 class EventsFeed extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   componentDidMount() {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
