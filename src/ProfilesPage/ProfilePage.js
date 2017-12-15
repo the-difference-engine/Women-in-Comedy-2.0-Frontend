@@ -10,6 +10,9 @@ import {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
+  suspendUser,
+  unsuspendUser,
+  deleteUser,
   editUser
 } from '../actions';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
@@ -21,20 +24,23 @@ import EditPage from '../EditPage/EditPage'
 
 const userId = sessionStorage.getItem('userId');
 const adminUser = sessionStorage.getItem('adminUser');
+const admin = sessionStorage.getItem('isAdmin');
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
   componentWillMount() {
-
-    const sender_id = sessionStorage.getItem('userId');
-    const receiver_id = this.props.match.params.id;
-    const {fetchUserInfo, fetchUserFeeds, fetchUserConnections} = this.props;
-    this.props.fetchUserInfo(this.props.match.params.id);
-    this.props.fetchUserFeeds(this.props.match.params.id);
-    this.props.fetchUserConnections(this.props.match.params.id);
-    this.props.fetchConnectionStatus({sender_id, receiver_id});
-    this.setState({editUserEnable: false});
-  }
+      const sender_id = sessionStorage.getItem('userId');
+      const receiver_id = this.props.match.params.id;
+      const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
+      this.props.fetchUserInfo(this.props.match.params.id);
+      this.props.fetchUserFeeds(this.props.match.params.id);
+      this.props.fetchUserConnections(this.props.match.params.id);
+      this.props.fetchConnectionStatus({ sender_id, receiver_id });
+      this.setState(() => {
+        return {suspendedState: this.props.userInfo.suspended}
+      });
+      this.setState({editUserEnable: false});
+    }
 
   onPress() {
     const sender_id = sessionStorage.getItem('userId');
@@ -86,6 +92,30 @@ class ProfilePage extends Component {
     this.setState({editUserEnable: editable});
   }
 
+  onSuspend() {
+    const id = this.props.userInfo.id
+    var suspended = this.props.userInfo.suspended
+    const data = { id, suspended }
+    this.props.suspendUser(data)
+    this.setState({suspendedState: true})
+    console.log(sessionStorage.getItem('userId'))
+  }
+
+  onUnsuspend() {
+    const id = this.props.userInfo.id
+    const admin = sessionStorage.getItem('isAdmin')
+    var suspended = this.props.userInfo.suspended
+    const data = { id, suspended }
+    this.props.unsuspendUser(data);
+    this.setState({suspendedState: false})
+  }
+
+  onDelete() {
+    const id = this.props.match.params.id || sessionStorage.getItem('userId');
+    this.props.deleteUser(id);
+    console.log(id);
+  }
+
   renderBlockConnection() {
     if (this.props.userInfo.id == userId) {
       return <label>
@@ -94,6 +124,26 @@ class ProfilePage extends Component {
       </label>
     }
   }
+
+
+  //UNSUSPEND
+
+  suspendUserButton() {
+    const suspended = this.props.userInfo.suspended
+    const admin = sessionStorage.getItem('isAdmin')
+      if (this.state.suspendedState) {
+        return <button className="btn btn-warning" onClick={this.onUnsuspend.bind(this)}> Unsuspend </button>
+        }
+        return <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}> Suspend </button>
+      }
+
+
+
+
+  deleteUserButton() {
+    const admin = sessionStorage.getItem('isAdmin')
+    return <a href = "http://localhost:3000/message"><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
+}
 
   renderConnection() {
     if (this.props.userInfo.id == userId) {
@@ -141,7 +191,8 @@ class ProfilePage extends Component {
         <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/> {this.renderBlockConnection()}
         {this.renderConnection()}
         {this.renderEditUserButton()}
-
+        {this.suspendUserButton()}
+        {this.deleteUserButton()}
       </LeftGraySideBar>
       <RightGraySideBar>
         <ProfileConnections connections={this.props.userConnections}/>
@@ -181,5 +232,9 @@ export default connect(mapStateToProps, {
   userWallInputChange,
   createPostOnUserWall,
   blockConnectionRequests,
-  editUser
+  editUser,
+  suspendUser, 
+  unsuspendUser,
+  deleteUser
 })(ProfilePage);
+

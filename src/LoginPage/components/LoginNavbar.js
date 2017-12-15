@@ -27,6 +27,7 @@ class LoginNavbar extends Component {
 
       sessionStorage.setItem('confirmed', response.data.confirmed_at);
       sessionStorage.setItem('userId', response.data.id);
+      // sessionStorage.setItem('isAdmin', response.data.admin);
       sessionStorage.setItem('adminUser', response.data.admin);
 
       this.props.setUserLoggedIn(true, response.data.id);
