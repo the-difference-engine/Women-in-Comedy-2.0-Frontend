@@ -4,9 +4,9 @@ import { SUSPEND_USER, UNSUSPEND_USER, DELETE_USER } from './types';
 export const suspendUser = ({ id, suspended }) => async dispatch => {
   const request = await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/users/suspend',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/suspend',
     headers: { "id": id }
-    });    
+    });
   dispatch({
     type: SUSPEND_USER,
     suspended: true
@@ -16,7 +16,7 @@ export const suspendUser = ({ id, suspended }) => async dispatch => {
 export const unsuspendUser = ({ id, suspended }) => async dispatch => {
   const request = await axios({
     method: 'post',
-    url: 'http://localhost:9000/api/v1/users/unsuspend',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/unsuspend',
     headers: { "id": id }
     });
   dispatch({
@@ -28,7 +28,7 @@ export const unsuspendUser = ({ id, suspended }) => async dispatch => {
 export const deleteUser = (id) => async dispatch => {
   const request = await axios({
     method: 'delete',
-    url: `http://localhost:9000/api/v1/users/${id}`,
+    url: process.env.REACT_APP_API_URL_DEV + `users/${id}`,
     headers: {"id": id}
     });
   return {
@@ -36,4 +36,3 @@ export const deleteUser = (id) => async dispatch => {
     payload: id
   }
 }
-
