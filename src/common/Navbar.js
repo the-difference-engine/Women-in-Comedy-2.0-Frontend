@@ -216,7 +216,7 @@ class Navbar extends Component {
                 <p>LOG OUT</p>
               </i>
             </a>
-          </li>``
+          </li>
         </ul>
       </div>
     </nav>);
