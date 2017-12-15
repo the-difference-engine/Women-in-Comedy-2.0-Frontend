@@ -9,7 +9,7 @@ import {
   userWallInputChange
 } from '../actions';
 import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar  } from '../common';
+import { LeftGraySideBar, RightGraySideBar, PageContent  } from '../common';
 
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
@@ -24,7 +24,7 @@ class Feed extends Component {
 
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
-    if(valid == 'null' || !valid) {
+    if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections } = this.props;

@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import reducers from './reducers';
+import 'dotenv/config';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
@@ -15,7 +16,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(promise, thunk)),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

@@ -1,8 +1,11 @@
 Requires Node and npm
+
 Get it here:
+
 [https://nodejs.org/en/](https://nodejs.org/en/)
 
 Steps for setting up the local database are on the API backend for this app:
+
 [Women-in-Comedy-API](https://github.com/the-difference-engine/Women-in-Comedy-API)
 
 The rest of the information can be found below.
