@@ -1,21 +1,18 @@
 import React from 'react';
 import '../css/event-info.css';
 
-const EventInfo = (props) => {
-
-  const renderButton = (props) => {
-    for(var i = 0; i < props.event.guests.length; i++) {
-      if (props.event.guests[i].user_id === props.userInfo.id) {
-        return <button onClick={() => props.unattendEvent(props.event.guests[i].id, props.event.info.id, props.fetchEventInfo)}> Unattend</button>
+const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo}) => {
+  const renderButton = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo }) => {
+    for(var i = 0; i < event.guests.length; i++) {
+      if (event.guests[i].user_id === userInfo.id) {
+        return <button onClick={() => unattendEvent(event.guests[i].id, event.info.id, fetchEventInfo)}> Unattend</button>
       }
     }
-    return <button onClick={() => props.attendEvent(props.userInfo, props.eventId, props.fetchEventInfo)}> Attend </button>;
+    return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
-
-  if(props.event && props.event.hostInfo) {
-    const { title, date, time, location, about, ticket_link, user_id } = props.event.info;
-    const { photo, firstName, lastName } = props.event.hostInfo;
-
+  if(event && event.hostInfo) {
+    const { title, date, time, location, about, ticket_link, user_id } = event.info;
+    const { photo, firstName, lastName } = event.hostInfo;
     return (
       <div>
         <h2 id="event-title">{title}</h2>
@@ -26,15 +23,10 @@ const EventInfo = (props) => {
         <a><p id="event-ticket_link">{ticket_link}</p></a>
         <p id="event-desc">{about}</p>
         
-        {renderButton(props)}
+        {renderButton({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo })}
       </div>
     );
   }
   return <div></div>
 };
-
-
-
-
-
 export default EventInfo;
