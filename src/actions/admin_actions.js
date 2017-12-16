@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SUSPEND_USER, UNSUSPEND_USER, DELETE_USER } from './types';
 
 export const suspendUser = ({ id, suspended }) => async dispatch => {
+  // eslint-disable-next-line
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'users/suspend',
@@ -14,6 +15,7 @@ export const suspendUser = ({ id, suspended }) => async dispatch => {
 }
 
 export const unsuspendUser = ({ id, suspended }) => async dispatch => {
+  // eslint-disable-next-line
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'users/unsuspend',
@@ -26,6 +28,7 @@ export const unsuspendUser = ({ id, suspended }) => async dispatch => {
 }
 
 export const deleteUser = (id) => async dispatch => {
+  // eslint-disable-next-line
   const request = await axios({
     method: 'delete',
     url: process.env.REACT_APP_API_URL_DEV + `users/${id}`,
