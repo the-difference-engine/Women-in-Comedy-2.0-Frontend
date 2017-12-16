@@ -8,6 +8,7 @@ import {Link, Route} from 'react-router-dom';
 class EditPage extends Component {
 
   submit(values) {
+    console.log(values);
     //Show confirmation box before information is updated
     if (window.confirm("Information will be updated. Continue?") == true) {
       {
