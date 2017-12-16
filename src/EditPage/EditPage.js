@@ -31,20 +31,9 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
-    console.log(adminEdit);
-
-    if (adminEdit === 'true') {
-      //Render Admin edit page
       return <div>
         <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
       </div>
-    }
-    else {
-      //Render User edit page
-      return <div>
-        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
-      </div>
-    }
     }
 
 }
