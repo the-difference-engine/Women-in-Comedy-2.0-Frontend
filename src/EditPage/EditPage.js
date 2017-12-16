@@ -34,12 +34,18 @@ class EditPage extends Component {
     console.log(adminEdit);
 
     if (adminEdit === 'true') {
-      //Render edit page
+      //Render Admin edit page
       return <div>
         <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
       </div>
     }
-  }
+    else {
+      //Render User edit page
+      return <div>
+        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
+      </div>
+    }
+    }
 
 }
 
