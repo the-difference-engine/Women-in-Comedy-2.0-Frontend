@@ -97,8 +97,7 @@ class ProfilePage extends Component {
     var suspended = this.props.userInfo.suspended
     const data = { id, suspended }
     this.props.suspendUser(data)
-    this.setState({suspendedState: true})
-    console.log(sessionStorage.getItem('userId'))
+    this.setState({suspendedState: true});
   }
 
   onUnsuspend() {

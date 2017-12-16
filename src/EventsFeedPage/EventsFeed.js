@@ -71,7 +71,6 @@ class EventsFeed extends Component {
   }
 }
 function mapStateToProps({ selectedEvent, userInfo, eventWallPost }) {
-  console.log(selectedEvent);
   return { selectedEvent, userInfo, eventWallPost };
 }
 export default connect(mapStateToProps,

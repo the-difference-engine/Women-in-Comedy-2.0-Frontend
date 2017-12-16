@@ -57,8 +57,6 @@ export const attendEvent = (data, eventId, callback) => async dispatch => {
 }
 
 export const unattendEvent = (guestId, eventId, callback) => async dispatch => {
-  console.log(guestId);
-  console.log(eventId);
   await axios({
     method: 'delete',
     url: process.env.REACT_APP_API_URL_DEV + `guests/${guestId}`
