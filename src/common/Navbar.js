@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 
 import './css/navbar.css';
+import '../images/Women_Logo_New.png';
 
 const userId = sessionStorage.getItem('userId');
 

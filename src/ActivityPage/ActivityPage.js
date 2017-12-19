@@ -5,8 +5,6 @@ import { fetchUserInfo, fetchUsers } from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';
-import YourActivity from './ActivityPage';
-import feedSearch from './ActivityPage';
 
 class ActivityPage extends Component {
 	componentWillMount() {

@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import axios from 'axios'
-import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS } from './types';
+import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT_FAIL } from './types';
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
@@ -21,6 +21,26 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     dispatch({ type: CREATE_EVENT_FAIL });
   }
 }
+
+export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
+    let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
+    if(validate(eventInfo)) {
+      dispatch({ type: LOAD })
+      const ext = img.name.slice(img.name.lastIndexOf('.'));
+      const imageData = await firebase.storage().ref(`/events/${title}${ext}`).put(img);
+
+      img = imageData.metadata.downloadURLs[0];
+      const request = await axios({
+        method: 'post',
+        url: 'http://localhost:9000/api/v1/events',
+        data: { userId, address, date, description, img, location, ticketLink, time, title }
+      })
+      
+      dispatch({ type: UPDATE_EVENT_SUCCESS, eventId: request.data });
+  } else {
+    dispatch({ type: UPDATE_EVENT_FAIL });
+  }
+};
 
 const validate = eventInfo => {
   for (let key in eventInfo) {
