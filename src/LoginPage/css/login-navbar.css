@@ -17,10 +17,14 @@
   vertical-align: middle;
 
 }
-.cred {
-  float: right;
 
+#login-cred {
+  float:right;
   margin-right: 20px;
+}
+.cred {
+  float: left;
+  margin-left: 20px;
 
 
 }
@@ -40,7 +44,8 @@
 }
 
 #navbar button {
-  float: right;
+  /*float: right;*/
+  margin-left: 10px;
   margin-top: 32px;
   background-color: #C82222;
   height: 25px;

@@ -6,18 +6,21 @@ import { fetchNotifications } from '../actions';
 class NotificationButton extends Component {
   constructor(props) {
     super(props);
-
     this.state = { notifications: [] };
+
   }
 
-  // componentDidMount() {
-  //   const { fetchNotifications } = this.props;
-  //   fetchNotifications();
-  // }
+  componentDidMount() {
+    const userId = sessionStorage.getItem('userId');
+    const {fetchNotifications} = this.props;
+    fetchNotifications(userId);
+    // const allNotifications = fetchNotifications(userId);
+    // this.setState( {notifications: allNotifications} );
+  }
 
   render() {
     return (
-      <a href="#" onClick={console.log(this.state)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+      <a href="#" onClick={console.log(this.props)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
       );
   }
 }
