@@ -19,9 +19,8 @@ export const fetchEventInfo = eventId => async dispatch => {
 export const fetchHostPhoto = (userId) => async (dispatch) => {
   const response = await axios({
     method: 'get',
-    url:'http://localhost:9000/api/v1/users/info',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/info',
     headers: {"id": userId},
   });
   return dispatch({ type: FETCH_HOST_PHOTO, payload: response });
 }
-

@@ -32,10 +32,10 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
       img = imageData.metadata.downloadURLs[0];
       const request = await axios({
         method: 'post',
-        url: 'http://localhost:9000/api/v1/events',
+        url: process.env.REACT_APP_API_URL_DEV + 'events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
-      
+
       dispatch({ type: UPDATE_EVENT_SUCCESS, eventId: request.data });
   } else {
     dispatch({ type: UPDATE_EVENT_FAIL });
