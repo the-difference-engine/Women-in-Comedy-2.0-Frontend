@@ -6,8 +6,6 @@ import { fetchNotifications } from '../actions';
 class NotificationButton extends Component {
   constructor(props) {
     super(props);
-    this.state = { notifications: [] };
-
   }
 
   componentDidMount() {
@@ -20,13 +18,19 @@ class NotificationButton extends Component {
 
   render() {
     return (
-      <a href="#" onClick={console.log(this.props)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+      <a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
       );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchNotifications }, dispatch);
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ fetchNotifications }, dispatch);
+// }
+
+const mapStateToProps = state => {
+  const {notifications} = state;
+  return {notifications};
 }
 
-export default connect(null, mapDispatchToProps)(NotificationButton);
+// export default connect(null, mapDispatchToProps)(NotificationButton);
+export default connect(mapStateToProps, {fetchNotifications})(NotificationButton);
