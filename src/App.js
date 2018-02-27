@@ -12,6 +12,7 @@ import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import EditPage from './EditPage/EditPage';
 import ChatWidget from './ChatWidget/ChatWidget';
+import NotificationsPage from "./NotificationsPage/NotificationsPage";
 
 class App extends Component {
 
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
             <Route path='/profile/:id' component={ProfilePage}></Route>
+            <Route path='/notifications' component={NotificationsPage}></Route>
           </Switch>
           <ChatWidget />
 
