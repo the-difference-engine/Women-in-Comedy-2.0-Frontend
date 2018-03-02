@@ -5,7 +5,7 @@ import firebase from 'firebase'
 import axios from 'axios'
 // import {  createEvent, fetchUserInfo, eventInputChange } from '../../actions';
 import { TextField, RaisedButton, CircularProgress, SelectField, MenuItem, Label } from 'material-ui';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { TextValidator, ValidatorForm, SelectValidator } from 'react-material-ui-form-validator';
 import '../css/register.css'
 import createFragment from 'react-addons-create-fragment';
@@ -25,17 +25,14 @@ class RegisterForm extends Component {
 
   handleChange(event) {
     const { user } = this.state;
-    console.log(event.target.name);
     user[event.target.name] = event.target.value;
     this.state.user = user;
   }
 
   handleDropdownChange(event, index, value) {
-    console.log(event.target);
     const { user } = this.state;
     user.training = value;
     this.setState({ user });
-    // console.log(this.state.user);
   }
 
   onClick() {
@@ -89,7 +86,6 @@ class RegisterForm extends Component {
           <div>
 
             <ValidatorForm
-              // onSubmit={this.handleSubmit}
               onSubmit={this.onSubmit}
             >
               <div>
@@ -98,9 +94,6 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="firstName"
                   type="text"
-                  // value={this.state.user.firstName}
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
@@ -111,8 +104,6 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="lastName"
                   type="text"
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
@@ -123,8 +114,6 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="email"
                   type="text"
-                  // validators={['required', 'isEmail']}
-                  // errorMessages={['this field is required', 'email is not valid']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
@@ -135,20 +124,16 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="password"
                   type="password"
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
               </div>
               <div>
                 <TextValidator
-                  floatingLabelText="city"
+                  floatingLabelText="City"
                   onChange={this.handleChange}
                   name="city"
                   type="text"
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
@@ -159,8 +144,6 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="video"
                   type="text"
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
@@ -171,27 +154,26 @@ class RegisterForm extends Component {
                   onChange={this.handleChange}
                   name="website"
                   type="text"
-                  // validators={['required']}
-                  // errorMessages={['this field is required']}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 />
               </div>
               <div>
-                <label>Gender</label>
-                <RadioButtonGroup 
-                  name="gender" 
-                  label="Gender"
-                  onChange={this.handleChange}>
-                  <RadioButton
-                    value="Female"
-                    label="Female"
-                  />
-                  <RadioButton
-                    value="Male"
-                    label="Male"
-                  />
-                </RadioButtonGroup>
+                <SelectField
+                  floatingLabelText="Gender"
+                  onChange={(event, index, value) => {
+                    const { user } = this.state;
+                    user.gender = value;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.gender}
+                  name="gender"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  <MenuItem primaryText="Female" value="Female" />
+                  <MenuItem primaryText="Male" value="Male" />
+                </SelectField>
               </div>
               <div>
                 <SelectField
@@ -233,11 +215,30 @@ class RegisterForm extends Component {
                   <MenuItem primaryText="11+ years" value="11+ years" />
                 </SelectField>
               </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Available to meet for"
+                  onChange={(event, index, value) => {
+                    const { user } = this.state;
+                    user.meeting = value;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.meeting_options}
+                  name="training"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  <MenuItem primaryText="Less than 1 year" value="Less than 1 year" />
+                  <MenuItem primaryText="1-3 years" value="1-3 years" />
+                  <MenuItem primaryText="4-7 years" value="4-7 years" />
+                  <MenuItem primaryText="7-10 years" value="7-10 years" />
+                  <MenuItem primaryText="11+ years" value="11+ years" />
+                </SelectField>
+              </div>
               <RaisedButton
                 secondary
                 label="upload image"
                 onClick={this.onClick.bind(this)}
-              // disabled={loading}
               />
               <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
               {this.renderImg()}
@@ -247,27 +248,11 @@ class RegisterForm extends Component {
                 type="submit"
                 onClick={this.onSubmit.bind(this)}
                 style={{ marginTop: '15px' }}
-              // disabled={loading}
               />
             </ValidatorForm>
           </div>
 
-
-
-
-          {/* <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="First name" name="firstName" component={this.renderTitleField}/>
-          <Field label="Last name" name="lastName" component={this.renderTitleField}/>
-          <Field label="Email" name="email" component={this.renderTitleField}/>
-          <Field label="Password" name="password" component={this.renderPasswordField}/>
-          <Field label="Profile Picture" name="profilePhoto" component={this.renderImageUpload}/>
-          <Field label="City" name="city" component={this.renderTitleField}/>
-          <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
-          <Field label="Link to website" name="website" component={this.renderTitleField}/>
-          <Field label="Gender" name="gender" value="male" component={this.renderGenderField}/>
-
-          <Field label="Years of comedy training" name="training" component={this.renderMultipleChoice}/>
-          <Field label="Years of professional comedy working in the industry" name="experience" component={this.renderMultipleChoice}/>
+          {/* 
           <label>Avaliable to meet for</label>
           <Field label="Coffee" name="Coffee" component={this.renderCheckbox}/>
           <Field label="Feedback/Advice" name="Feedback/Advice" component={this.renderCheckbox}/>
