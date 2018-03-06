@@ -14,7 +14,7 @@ class RegisterForm extends Component {
     super(props)
     this.state = {
       user: {},
-      imgURL: null,
+      imgURL: "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg"
     }
     this.allMeetingOptions = [];
 
@@ -67,7 +67,7 @@ class RegisterForm extends Component {
 
   renderImg() {
     if (this.state.imgURL) {
-      return <img id="img" src={this.state.imgURL} alt="" width="250" height="250" />
+      return <div><img id="img" src={this.state.imgURL} alt="" width="250" height="250" /></div>
     }
   }
 
