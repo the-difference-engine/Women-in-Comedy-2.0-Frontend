@@ -38,7 +38,7 @@ class RegisterForm extends Component {
         primaryText={item.name}
         value={item.id}
         insetChildren={true}
-        checked={this.state.user.meeting_options && this.state.user.meeting_options.indexOf(item.id) > -1}
+        checked={this.state.user.meet_options && this.state.user.meet_options.indexOf(item.id) > -1}
       />)
     );
   }
@@ -245,11 +245,11 @@ class RegisterForm extends Component {
                   floatingLabelText="Available to meet for"
                   onChange={(event, index, values) => {
                     const { user } = this.state;
-                    user.meeting_options = values;
+                    user.meet_options = values;
                     this.setState({ user });
                   }}
-                  value={this.state.user.meeting_options}
-                  name="meeting_options"
+                  value={this.state.user.meet_options}
+                  name="meet_options"
                   multiple={true}
                   selectionRenderer={this.selectionRenderer}
                   underlineFocusStyle={{ display: 'none' }}
