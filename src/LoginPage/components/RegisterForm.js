@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import firebase from 'firebase'
 import axios from 'axios'
-// import {  createEvent, fetchUserInfo, eventInputChange } from '../../actions';
 import { TextField, RaisedButton, CircularProgress, SelectField, MenuItem, Label } from 'material-ui';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { TextValidator, ValidatorForm, SelectValidator } from 'react-material-ui-form-validator';
@@ -15,24 +14,50 @@ class RegisterForm extends Component {
     super(props)
     this.state = {
       user: {},
-      imgURL: null
+      imgURL: null,
     }
+    this.allMeetingOptions = [];
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleDropdownChange = this.handleDropdownChange.bind(this);
+    this.renderMenuItems = this.renderMenuItems.bind(this);
+  }
 
+  componentWillMount() {
+    axios.get("http://localhost:9000/api/v1/meet_options").then(payload => {
+      this.allMeetingOptions = payload.data;
+      this.forceUpdate();
+    }).catch(err => {
+      alert(err)
+    });
+  }
+
+  renderMenuItems() {
+    return this.allMeetingOptions.map((item) => (
+      <MenuItem
+        key={item.id}
+        primaryText={item.name}
+        value={item.id}
+        insetChildren={true}
+        checked={this.state.user.meeting_options && this.state.user.meeting_options.indexOf(item.id) > -1}
+      />)
+    );
+  }
+
+  selectionRenderer = (values) => {
+    switch (values.length) {
+      case 0:
+        return '';
+      case 1:
+        return this.allMeetingOptions[values[0] - 1].name;
+      default:
+        return `${values.length} options selected`;
+    }
   }
 
   handleChange(event) {
     const { user } = this.state;
     user[event.target.name] = event.target.value;
     this.state.user = user;
-  }
-
-  handleDropdownChange(event, index, value) {
-    const { user } = this.state;
-    user.training = value;
-    this.setState({ user });
   }
 
   onClick() {
@@ -89,7 +114,7 @@ class RegisterForm extends Component {
               onSubmit={this.onSubmit}
             >
               <div>
-                <TextField
+                <TextValidator
                   floatingLabelText="First Name"
                   onChange={this.handleChange}
                   name="firstName"
@@ -184,7 +209,7 @@ class RegisterForm extends Component {
                     this.setState({ user });
                   }}
                   value={this.state.user.experience}
-                  name="training"
+                  name="experience"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 >
@@ -218,21 +243,19 @@ class RegisterForm extends Component {
               <div>
                 <SelectField
                   floatingLabelText="Available to meet for"
-                  onChange={(event, index, value) => {
+                  onChange={(event, index, values) => {
                     const { user } = this.state;
-                    user.meeting = value;
+                    user.meeting_options = values;
                     this.setState({ user });
                   }}
                   value={this.state.user.meeting_options}
-                  name="training"
+                  name="meeting_options"
+                  multiple={true}
+                  selectionRenderer={this.selectionRenderer}
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
                 >
-                  <MenuItem primaryText="Less than 1 year" value="Less than 1 year" />
-                  <MenuItem primaryText="1-3 years" value="1-3 years" />
-                  <MenuItem primaryText="4-7 years" value="4-7 years" />
-                  <MenuItem primaryText="7-10 years" value="7-10 years" />
-                  <MenuItem primaryText="11+ years" value="11+ years" />
+                  {this.renderMenuItems()}
                 </SelectField>
               </div>
               <RaisedButton
@@ -251,19 +274,6 @@ class RegisterForm extends Component {
               />
             </ValidatorForm>
           </div>
-
-          {/* 
-          <label>Avaliable to meet for</label>
-          <Field label="Coffee" name="Coffee" component={this.renderCheckbox}/>
-          <Field label="Feedback/Advice" name="Feedback/Advice" component={this.renderCheckbox}/>
-          <Field label="Mentorship" name="Mentorship" component={this.renderCheckbox}/>
-          <Field label="New Friends In Comedy" name="New Friends In Comedy" component={this.renderCheckbox}/>
-          <Field label="Open Mic Buddy" name="Open Mic Buddy" component={this.renderCheckbox}/>
-          <Field label="Seeking Mentors" name="Seeking Mentors" component={this.renderCheckbox}/>
-
-          <button className="btn btn-success" type="submit">Submit</button>
-        </form> */}
-
         </div>
       </div>);
     }
