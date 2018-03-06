@@ -13,19 +13,16 @@ class NotificationButton extends Component {
     const {fetchNotifications} = this.props;
     fetchNotifications(userId);
     console.log(fetchNotifications(userId));
-    // const allNotifications = fetchNotifications(userId);
-    // this.setState( {notifications: allNotifications} );
-    //   debugger;
+
   }
 
   handleOnClick() {
     debugger;
-    //Notifications are here in this.props
   }
 
   render() {
     return (
-      <a href="#" onClick={this.handleOnClick.bind(this)} className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+      <a href={'/notifications'} onClick={this.handleOnClick.bind(this)} className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
       );
   }
 }
@@ -38,7 +35,7 @@ const mapStateToProps = state => {
     const {notifications} = state;
     return {notifications};
 
-}
+};
 
 // export default connect(null, mapDispatchToProps)(NotificationButton);
 export default connect(mapStateToProps, {fetchNotifications})(NotificationButton);

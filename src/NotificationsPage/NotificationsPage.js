@@ -7,8 +7,9 @@ import {
     fetchNotifications
 } from '../actions';
 import Navbar from '../common/Navbar';
-import NotificationButton from '../containers/notification_button';
 import {LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar} from '../common';
+import UnreadNotifications from './components/UnreadNotifications';
+import NotificationButton from '../containers/notification_button';
 
 // import NewFeeds from '../FeedPage/components/NewFeeds';
 import UserInfo from '../FeedPage/components/UserInfo';
@@ -19,11 +20,33 @@ class Notification extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rerender: false,
-            notifications: this.props.notifications
+            rerender: false
         };
-        // console.log(this.props);
+        this._myHandler = this._myHandler.bind(this);
+        this.renderNotis = this.renderNotis.bind(this);
+        // this.renderNotifications = this.renderNotifications.bind(this);
     }
+
+    _myHandler = (props) => {
+        console.log(props.notifications);
+        debugger;
+        console.log(props);
+    };
+
+    renderNotis = (props) => {
+
+        debugger;
+        this.setState.notifications = this.props.notifications;
+         this.props.notifications.map(notification => {
+            return <div>Hello</div>
+                // <div key={notification.id}>
+                //     <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/><a
+                //         href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
+                //     </div>
+                // </div>
+
+        });
+    };
 
     componentDidMount() {
         // const valid = sessionStorage.getItem('confirmed');
@@ -34,56 +57,47 @@ class Notification extends Component {
         fetchUserInfo(sessionStorage.getItem('userId'));
         fetchNotifications(sessionStorage.getItem('userId'));
         fetchUserConnections(sessionStorage.getItem('userId'));
-        fetchPendingUserConnections(sessionStorage.getItem('userId'));
-        console.log('*******************');
-        console.log(sessionStorage.getItem('userId'));
 
-        debugger;
     }
 
-    renderNotifications = (notifications) => {
+    renderNotifications(notifications) {
         return notifications.map(notification => {
             return (
                 <div key={notification.id}>
-                    <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
+                    <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/><a
+                        href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
                     </div>
                 </div>
             );
         });
     };
 
-    // onPost() {
-    //     const body = this.props.userWallPost;
-    //
-    //     const userId = this.props.match.params.id || sessionStorage.getItem('userId');
-    //     const authorId = sessionStorage.getItem('userId');
-    //     this.props.createPostOnUserWall({body, userId, authorId}, this.props.fetchUserFeeds);
-    // }
-
     render() {
-        const {userInfo, userConnections, userNotifications, receivedConnectionRequest} = this.props;
-        // console.log(this.props);
+        const {userInfo, userConnections, notifications, receivedConnectionRequest} = this.props;
         return (
             <div>
                 <Navbar history={this.props.history}/>
-                <NotificationButton notifications={this.props.notifications}/>
+                <UnreadNotifications notifications={notifications}/>
                 <RightGraySideBar>
                     <Messages connections={receivedConnectionRequest}/>
                 </RightGraySideBar>
-                {/*<LeftGraySideBar>*/}
-                    {/*<UserInfo userInfo={userInfo} userNotifications={userNotifications}/>*/}
-                {/*</LeftGraySideBar>*/}
+                <LeftGraySideBar>
+                    <UserInfo userInfo={userInfo} userConnections={userConnections}/>
+                </LeftGraySideBar>
                 <PageContent>
                     <div className="feed-post-bar">
                         <div className="wrap">
 
                             <div className="notifications">
 
-                                <p id="notification">Notifications<span
-                                    id="notification-count">Need to fill later</span></p>
-                                <div id="notification-info-wrapper">
-                                    {userNotifications}
-                                </div>
+                                <button type="button" className="btn btn-danger" onClick={this._myHandler}><i className="fa fa-trash"> Delete</i></button>
+                                <button type="button" className="btn btn-danger" onClick={this.renderNotis}><i className="fa fa-trash"> Notifications</i></button>
+
+                                {/*<p id="notification">Notifications<span*/}
+                                {/*id="notification-count">Need to fill later</span></p>*/}
+                                {/*<div id="notification-info-wrapper">*/}
+                                {/*{notifications}*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>
@@ -95,8 +109,8 @@ class Notification extends Component {
 
 
 const mapStateToProps = (state) => {
-    const {userInfo, userNotifications, userConnections, receivedConnectionRequest, userWallPost} = state;
-    return {userInfo, userNotifications, userConnections, receivedConnectionRequest, userWallPost};
+    const {userInfo, notifications, userConnections, receivedConnectionRequest, userWallPost} = state;
+    return {userInfo, notifications, userConnections, receivedConnectionRequest, userWallPost};
 }
 export default connect(mapStateToProps,
     {

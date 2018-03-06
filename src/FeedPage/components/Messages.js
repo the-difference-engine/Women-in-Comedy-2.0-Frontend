@@ -31,6 +31,7 @@ class Messages extends Component {
         <div>
           <p id="next-event">Next Event</p>
           <Link to="/events" id="events-link">View Upcoming Events</Link>
+          <Link to="/notifications" id="notifications-link">View Notifications</Link>
         </div>
         <br/>
         <div>
