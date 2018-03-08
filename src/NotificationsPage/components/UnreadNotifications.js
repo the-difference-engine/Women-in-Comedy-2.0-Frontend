@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 // import '../css/events.css';
 
 export default (props) => {
-    if (props.notifications.length === 0) {
-        return <div></div>
+    console.log(props.notifications)
+    if (props.notifications === null) {
+        return <div>You have no notifications at this time.</div>
     }
     return (
         <div className="event-page-content" >
@@ -24,36 +25,58 @@ export default (props) => {
                 </div>
                 <div className="row">
                     {renderNotifications(props.notifications)}
+                    {renderConnections(props.userConnections)}
                 </div>
             </div>
         </div>
     );
 };
 
-// const renderEventList = (events) => {
-//     return events.map(event => {
-//         return (
-//             <div key={event.id} className="col-xs-offset-1 col-xs-3">
-//                 <Link to={`/eventsfeed/${event.id}`}>
-//                     <div className="event">
-//                         <div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
-//                         <div className="event-title"><p>{event.title}</p></div>
-//                         <div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
-//                     </div>
-//                 </Link>
-//             </div>
-//         );
-//     });
-// };
 
 const renderNotifications = (notifications) => {
-    return notifications.map(notification => {
-        return (
-            <div key={notification.id}>
-                <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/><a
-                    href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
+    if (notifications.length === 0) {
+        return <div>You have no notifications at this time, please check back later!</div>
+    } else {
+        return notifications.map(notification => {
+            return (
+                <div key={notification.id}>
+                    <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+                        <a href={"http://localhost:3000/notifications/" + notification.notifiable_id}>
+                        {notification.action + notification.notifiable_id + notification.recipient_id}</a>
+                    </div>
                 </div>
+            );
+        });
+    }
+};
+const testing123 = (props) => {
+    if (props.notifications.length === 0) {
+        return <div>You have no notifications at this time, please check back later!</div>
+    } else {
+        return props.notifications.map(notification => {
+            let receiver = notification.recipient_id
+            return (
+                <div key={notification.id}>
+                    <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+                        <a href={"http://localhost:3000/notifications/" + notification.notifiable_id}>
+                            {renderConnections(props.userConnections)}
+                            {renderConnections(props.userConnections.filter(function (connection) {return connection.id === receiver}))}
+                            </a>
+                    </div>
+                </div>
+            );
+        });
+    }
+};
+
+const renderConnections = (connections) => {
+    return connections.map(connection => {
+        return (
+            <div key={connection.id}>
+                <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+                <Link to={`/profile/${connection.id}`}><p id="connection-name">{connection.firstName} {connection.lastName}</p></Link>
             </div>
         );
     });
 };
+
