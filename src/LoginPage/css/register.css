@@ -1,8 +1,8 @@
-#register {
-  margin-top: 50px;
-  position: relative;
-  left: 60%;
-  margin-bottom: 70px;
+.container {
+display: flex;
+flex-direction: row; 
+justify-content: center; 
+margin: auto;
 }
 
 #field-form .form-control {
