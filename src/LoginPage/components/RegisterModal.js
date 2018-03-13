@@ -31,9 +31,8 @@ class RegisterModal extends Component {
       <div>
         <div>
           {" "}
-          <h1> test for rendering </h1>{" "}
         </div>
-        <RaisedButton label="Scrollable Dialog" onClick={this.handleOpen} />
+        <button id="navbar-button" label="Scrollable Dialog" onClick={this.handleOpen} > Register </button>
         <Dialog
           autoScrollBodyContent={true}
           modal={false}

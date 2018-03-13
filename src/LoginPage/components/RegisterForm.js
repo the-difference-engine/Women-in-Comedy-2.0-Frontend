@@ -105,7 +105,7 @@ class RegisterForm extends Component {
         Thank You For Signing Up for Women In Comedy! A confirmation email has been sent.
       </div>)
     } else {
-      return (<div>
+      return (<div> 
         <h1>Create a New Account</h1>
         <div className="container">
           <div>

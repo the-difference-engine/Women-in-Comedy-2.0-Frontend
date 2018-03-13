@@ -9,7 +9,7 @@ class Form extends Component {
     return (
       <div id="form">
         <LoginNavbar history={this.props.history} />
-        <RegisterModal />
+        
       </div>
     );
   }
