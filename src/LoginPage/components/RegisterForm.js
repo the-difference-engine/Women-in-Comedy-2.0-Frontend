@@ -20,6 +20,8 @@ class RegisterForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
+    this.storeProfilePicture = this.storeProfilePicture.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -87,16 +89,14 @@ class RegisterForm extends Component {
     this.state.user.photo = imageData.metadata.downloadURLs[0];
   }
 
-  onSubmit(values) {
-    this.storeProfilePicture();
-    console.log("values: " + values);
-    axios.post("http://localhost:9000/api/v1/users", values).then(payload => {
+  onSubmit() {
+    this.storeProfilePicture;
+    let user = this.state.user
+    axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
       this.setState({ userMade: true });
     }).catch(err => {
       alert(err)
     });
-    console.log(this.state.user);
-    this.setState({ userMade: true })
   }
   render() {
     const { handleSubmit } = this.props;
@@ -117,7 +117,7 @@ class RegisterForm extends Component {
                 <TextValidator
                   floatingLabelText="First Name"
                   onChange={this.handleChange}
-                  name="firstName"
+                  name="first_name"
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
@@ -245,10 +245,10 @@ class RegisterForm extends Component {
                   floatingLabelText="Available to meet for"
                   onChange={(event, index, values) => {
                     const { user } = this.state;
-                    user.meet_options = values;
+                    user.meet_option_user_attributes = values;
                     this.setState({ user });
                   }}
-                  value={this.state.user.meet_options}
+                  value={this.state.user.meet_option_user_attributes}
                   name="meet_options"
                   multiple={true}
                   selectionRenderer={this.selectionRenderer}
@@ -269,7 +269,6 @@ class RegisterForm extends Component {
                 secondary
                 label="register"
                 type="submit"
-                onClick={this.onSubmit.bind(this)}
                 style={{ marginTop: '15px' }}
               />
             </ValidatorForm>
