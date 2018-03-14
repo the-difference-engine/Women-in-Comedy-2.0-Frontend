@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 // import '../css/events.css';
 
 export default (props) => {
-    console.log(props.notifications)
+    console.log(props.notifications);
+    console.log(props.userConnections);
     if (props.notifications === null) {
         return <div>You have no notifications at this time.</div>
     }
@@ -24,8 +25,12 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    {renderNotifications(props.notifications)}
-                    {renderConnections(props.userConnections)}
+                    {/*{renderNotifications(props.notifications)}*/}
+                    <br/>
+                    {/*{renderConnections(props.userConnections)}*/}
+                    <br/>
+                    {/*{testing123(props)}*/}
+                    {bothNotificationsAndConnections(props.notifications)}
                 </div>
             </div>
         </div>
@@ -49,12 +54,36 @@ const renderNotifications = (notifications) => {
         });
     }
 };
+
+const bothNotificationsAndConnections = (notifications) => {
+    if (notifications.notifications.length === 0) {
+        return <div>You have no notifications at this time, please check back later!</div>
+    } else {
+        return notifications.notifications.map(notification => {
+            if (notification.action === "connection_accepted") {
+                // let matchedConnections = connections.filter(function (connection) {return connection.id === notification.recipient_id});
+                // return matchedConnections.map(matchedConnection => {
+                    return (
+                        <div key={notification.id}>
+                            <div >
+                                <Link to={`/profile/${notification.sent_from}`}><p id="connection-name">{notification.sent_from_name} has accepted your connection request</p></Link>
+                                {/*<a href={"http://localhost:3000/profile/" + notification.sent_from}>*/}
+                                    {/*{ notification.sent_from_name + " " + matchedConnection.lastName + " has accepted your Connection Request" }</a>*/}
+                            </div>
+                        </div>
+                    );
+                // });
+            }
+        });
+    }
+};
+
 const testing123 = (props) => {
     if (props.notifications.length === 0) {
         return <div>You have no notifications at this time, please check back later!</div>
     } else {
         return props.notifications.map(notification => {
-            let receiver = notification.recipient_id
+            let receiver = notification.recipient_id;
             return (
                 <div key={notification.id}>
                     <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>

@@ -22,41 +22,25 @@ class Notification extends Component {
         this.state = {
             rerender: false
         };
-        // this._myHandler = this._myHandler.bind(this);
+        this._myHandler = this._myHandler.bind(this);
         // this.renderNotis = this.renderNotis.bind(this);
         // this.renderNotifications = this.renderNotifications.bind(this);
     }
 
-    // _myHandler = (props) => {
-    //     console.log(props.notifications);
-    //     debugger;
-    //     console.log(props);
-    // };
-    //
-    // renderNotis = (props) => {
-    //
-    //     debugger;
-    //     this.setState.notifications = this.props.notifications;
-    //      this.props.notifications.map(notification => {
-    //         return <div>Hello</div>
-    //             // <div key={notification.id}>
-    //             //     <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/><a
-    //             //         href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
-    //             //     </div>
-    //             // </div>
-    //
-    //     });
-    // };
+    _myHandler() {
+        debugger;
+    }
 
     componentDidMount() {
-        // const valid = sessionStorage.getItem('confirmed');
-        // if (valid === 'null' || !valid) {
-        //     this.props.history.push('/');
-        // }
+        const valid = sessionStorage.getItem('confirmed');
+        if (valid === 'null' || !valid) {
+            this.props.history.push('/');
+        }
         const {fetchUserInfo, fetchNotifications, fetchUserConnections, fetchPendingUserConnections} = this.props;
         fetchUserInfo(sessionStorage.getItem('userId'));
         fetchNotifications(sessionStorage.getItem('userId'));
         fetchUserConnections(sessionStorage.getItem('userId'));
+        // debugger;
 
     }
 
@@ -90,7 +74,7 @@ class Notification extends Component {
 
                             {/*<div className="notifications">*/}
 
-                                {/*<button type="button" className="btn btn-danger" onClick={this._myHandler}><i className="fa fa-trash"> Delete</i></button>*/}
+                                <button type="button" className="btn btn-danger" onClick={this._myHandler}><i className="fa fa-trash"> Delete</i></button>
                                 {/*<button type="button" className="btn btn-danger" onClick={this.renderNotis}><i className="fa fa-trash"> Notifications</i></button>*/}
 
                                 {/*<p id="notification">Notifications<span*/}
