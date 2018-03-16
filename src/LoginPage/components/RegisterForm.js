@@ -245,10 +245,10 @@ class RegisterForm extends Component {
                   floatingLabelText="Available to meet for"
                   onChange={(event, index, values) => {
                     const { user } = this.state;
-                    user.meet_option_user_attributes = values;
+                    user.meet_option_users_attributes = values;
                     this.setState({ user });
                   }}
-                  value={this.state.user.meet_option_user_attributes}
+                  value={this.state.user.meet_option_users_attributes}
                   name="meet_options"
                   multiple={true}
                   selectionRenderer={this.selectionRenderer}
