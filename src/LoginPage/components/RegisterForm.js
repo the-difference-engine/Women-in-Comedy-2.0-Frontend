@@ -127,7 +127,7 @@ class RegisterForm extends Component {
                 <TextValidator
                   floatingLabelText="Last Name"
                   onChange={this.handleChange}
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
@@ -167,7 +167,7 @@ class RegisterForm extends Component {
                 <TextValidator
                   floatingLabelText="Youtube Video"
                   onChange={this.handleChange}
-                  name="video"
+                  name="video_link"
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
@@ -249,7 +249,7 @@ class RegisterForm extends Component {
                     this.setState({ user });
                   }}
                   value={this.state.user.meet_option_users_attributes}
-                  name="meet_options"
+                  name="meet_option_users_attributes"
                   multiple={true}
                   selectionRenderer={this.selectionRenderer}
                   underlineFocusStyle={{ display: 'none' }}
