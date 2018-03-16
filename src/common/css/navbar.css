@@ -95,3 +95,14 @@ p {
   background-color: #860A0A;
 }
 
+.badge {
+  background: rgba(0,0,0,0.5);
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 50%;
+  position:absolute;
+  top:-1px;
+  padding:5px;
+}
+

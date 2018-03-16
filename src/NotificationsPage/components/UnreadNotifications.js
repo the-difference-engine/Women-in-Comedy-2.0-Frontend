@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 // import '../css/events.css';
 
 export default (props) => {
-    console.log(props.notifications);
-    console.log(props.userConnections);
+    // console.log(props.notifications);
+    // console.log(props.userConnections);
     if (props.notifications === null) {
         return <div>You have no notifications at this time.</div>
     }
@@ -25,11 +25,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    {/*{renderNotifications(props.notifications)}*/}
                     <br/>
-                    {/*{renderConnections(props.userConnections)}*/}
-                    <br/>
-                    {/*{testing123(props)}*/}
                     {bothNotificationsAndConnections(props.notifications)}
                 </div>
             </div>
@@ -56,6 +52,7 @@ const renderNotifications = (notifications) => {
 };
 
 const bothNotificationsAndConnections = (notifications) => {
+    const text = `  `;
     if (notifications.notifications.length === 0) {
         return <div>You have no notifications at this time, please check back later!</div>
     } else {
@@ -66,7 +63,8 @@ const bothNotificationsAndConnections = (notifications) => {
                     return (
                         <div key={notification.id}>
                             <div >
-                                <Link to={`/profile/${notification.sent_from}`}><p id="connection-name">{notification.sent_from_name} has accepted your connection request</p></Link>
+                                <Link to={`/profile/${notification.sent_from}`}><p id="connection-name">{notification.sent_from_name + text} </p></Link>
+                                <span>has accepted your connection request</span>
                                 {/*<a href={"http://localhost:3000/profile/" + notification.sent_from}>*/}
                                     {/*{ notification.sent_from_name + " " + matchedConnection.lastName + " has accepted your Connection Request" }</a>*/}
                             </div>
@@ -78,34 +76,5 @@ const bothNotificationsAndConnections = (notifications) => {
     }
 };
 
-const testing123 = (props) => {
-    if (props.notifications.length === 0) {
-        return <div>You have no notifications at this time, please check back later!</div>
-    } else {
-        return props.notifications.map(notification => {
-            let receiver = notification.recipient_id;
-            return (
-                <div key={notification.id}>
-                    <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
-                        <a href={"http://localhost:3000/notifications/" + notification.notifiable_id}>
-                            {renderConnections(props.userConnections)}
-                            {renderConnections(props.userConnections.filter(function (connection) {return connection.id === receiver}))}
-                            </a>
-                    </div>
-                </div>
-            );
-        });
-    }
-};
 
-const renderConnections = (connections) => {
-    return connections.map(connection => {
-        return (
-            <div key={connection.id}>
-                <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-                <Link to={`/profile/${connection.id}`}><p id="connection-name">{connection.firstName} {connection.lastName}</p></Link>
-            </div>
-        );
-    });
-};
 

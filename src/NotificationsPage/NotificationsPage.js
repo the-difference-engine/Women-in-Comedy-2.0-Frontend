@@ -22,14 +22,12 @@ class Notification extends Component {
         this.state = {
             rerender: false
         };
-        this._myHandler = this._myHandler.bind(this);
+        // this._myHandler = this._myHandler.bind(this);
         // this.renderNotis = this.renderNotis.bind(this);
         // this.renderNotifications = this.renderNotifications.bind(this);
     }
 
-    _myHandler() {
-        debugger;
-    }
+
 
     componentDidMount() {
         const valid = sessionStorage.getItem('confirmed');
@@ -56,11 +54,13 @@ class Notification extends Component {
     //     });
     // };
 
+
     render() {
         const {userInfo, userConnections, notifications, receivedConnectionRequest} = this.props;
+        debugger;
         return (
             <div>
-                <Navbar history={this.props.history}/>
+                <Navbar history={this.props.history} notifications={notifications}/>
                 <UnreadNotifications notifications={notifications} userConnections={userConnections}/>
                 <RightGraySideBar>
                     <Messages connections={receivedConnectionRequest}/>
