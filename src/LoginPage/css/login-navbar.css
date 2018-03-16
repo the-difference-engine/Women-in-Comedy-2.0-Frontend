@@ -5,10 +5,11 @@
 
 #login-nav-header {
   font-family: 'alwaysforever', sans-serif;
-  color: white;
+  color:white;
   padding: 20px 0;
   display: inline-block;
   float: left;
+  margin-right: 20%; 
 }
 
 #container {
@@ -20,11 +21,17 @@
 
 #login-cred {
   float:right;
-  margin-right: 20px;
+  
+  
+  
 }
 .cred {
   float: left;
-  margin-left: 20px;
+  margin-left: 15px;
+  font-size: 12px;
+  color: white;
+  
+  
 
 
 }
@@ -61,4 +68,13 @@
 
 #navbar button:hover {
   background-color: #860A0A;
+}
+
+#createButton{
+  float: right; 
+  color: white;
+  font-size: 12px;
+}
+#form-cred{
+  float:left; 
 }
