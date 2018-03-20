@@ -92,7 +92,25 @@ class RegisterForm extends Component {
       });
   }
 
-  onSubmit() {
+ validate = (err) => {
+     let isError = false;
+        const errors = {
+       
+    };
+
+    this.setState({
+      ...this.state,
+      ...errors
+    });
+
+    return isError;
+  };
+
+  onSubmit(e) {
+          
+    // this.props.onSubmit(this.state);
+    const err = this.validate();
+      e.preventDefault();
     this.storeProfilePicture()
       .then(() => {
         let user = this.state.user
@@ -103,6 +121,7 @@ class RegisterForm extends Component {
         });
       });
   }
+
   render() {
     const { handleSubmit } = this.props;
     if (this.state.userMade) {
