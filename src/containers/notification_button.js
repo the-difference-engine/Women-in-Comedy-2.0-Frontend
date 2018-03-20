@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchNotifications } from '../actions';
+import React from 'react';
 
 // class NotificationButton extends Component {
 
@@ -51,24 +48,62 @@ import { fetchNotifications } from '../actions';
 // };
 // export default connect(null, {fetchNotifications})(NotificationButton);
 
-
-
-
-
-
-
-
-
-
-
-const NotificationButton = (props) => {
-    const { notifications} = props;
+export default (props) => {
+    if (props.notifications === null) {
+        return <div>
+            <a href='#' className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+        </div>
+    }
     return (
         <div>
-            <a href='#' className="icon"><i className="fa fa-bell-o"><span className="badge">123</span><p>ALERTS </p></i></a>
-                </div>
+            <a href='#' className="icon"><i className="fa fa-bell-o"><span className="badge">{props.notifications.notifications.length}</span><p>ALERTS </p></i></a>
+        </div>
     );
 };
 
-export default NotificationButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const NotificationButton = (props) => {
+//     const { notifications} = props;
+//
+//     return (
+//         <div>
+//             {notificationPopUp(notifications)}
+//                 </div>
+//     );
+// };
+{/*//*/}
+{/*// const notificationPopUp = ({notifications}) => {*/}
+//     if (!notifications) {
+//         return <a href='#' className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+//     }
+//     return (
+//         <a href='#' className="icon"><i className="fa fa-bell-o"><span className="badge">123</span>
+//             <p>ALERTS </p></i></a>
+//     );
+// };
+//
+// export default NotificationButton;
 

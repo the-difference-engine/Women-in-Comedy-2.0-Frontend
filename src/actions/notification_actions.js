@@ -9,11 +9,20 @@ export const fetchNotifications = (userId) => {
         headers: {"id": userId}
     });
     return (dispatch) => {
-        console.log(request);
         request.then((data) => {
-            console.log('hello');
             dispatch({type: FETCH_NOTIFICATIONS, payload: request})
         });
     };
+};
+
+export const markNotificationsAsRead = (userId, sender_id, callback, callback2) => async dispatch => {
+
+    const request = await axios({
+        method: 'post',
+        url: process.env.REACT_APP_API_URL_DEV + `/notifications/${userId}`,
+        // data: { sender_id, receiver_id: userId }
+    });
+    await callback(userId);
+    await callback2(userId);
 };
 

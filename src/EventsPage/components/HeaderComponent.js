@@ -23,9 +23,7 @@ export default (props) => {
                     </li>
                     <li><a href="#" className="icon"><i className="fa fa-home"><p>HOME</p></i></a></li>
                     <li><a href="#" className="icon"><i className="fa fa-calendar-o"><p>EVENTS</p></i></a></li>
-                    <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS</p></i>
-                        <span className="badge">123</span>
-                    </a></li>
+                    <li><a href="#" className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a></li>
                     <li><a><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif"
                                 alt=""/></a></li>
                 </ul>
