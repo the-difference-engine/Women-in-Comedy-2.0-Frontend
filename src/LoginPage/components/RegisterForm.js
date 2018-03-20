@@ -20,7 +20,6 @@ class RegisterForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
-    this.storeProfilePicture = this.storeProfilePicture.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -83,20 +82,26 @@ class RegisterForm extends Component {
     };
   }
 
-  async storeProfilePicture() {
+  storeProfilePicture() {
     const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf('.'));
-    const imageData = await firebase.storage().ref(`/users/${this.state.user.firstName + this.state.user.lastName}${ext}`).put(this.state.img);
-    this.state.user.photo = imageData.metadata.downloadURLs[0];
+    return firebase.storage()
+      .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
+      .put(this.state.img)
+      .then(snapshot => {
+        this.state.user.photo = snapshot.downloadURL;
+      });
   }
 
   onSubmit() {
-    this.storeProfilePicture;
-    let user = this.state.user
-    axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
-      this.setState({ userMade: true });
-    }).catch(err => {
-      alert(err)
-    });
+    this.storeProfilePicture()
+      .then(() => {
+        let user = this.state.user
+        axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
+          this.setState({ userMade: true });
+        }).catch(err => {
+          alert(err)
+        });
+      });
   }
   render() {
     const { handleSubmit } = this.props;
@@ -105,7 +110,7 @@ class RegisterForm extends Component {
         Thank You For Signing Up for Women In Comedy! A confirmation email has been sent.
       </div>)
     } else {
-      return (<div> 
+      return (<div>
         <h1>Create a New Account</h1>
         <div className="container">
           <div>
