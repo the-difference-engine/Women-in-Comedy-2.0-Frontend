@@ -57,7 +57,7 @@ class Notification extends Component {
 
     render() {
         const {userInfo, userConnections, notifications, receivedConnectionRequest} = this.props;
-        debugger;
+        // debugger;
         return (
             <div>
                 <Navbar history={this.props.history} notifications={notifications}/>

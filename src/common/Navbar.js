@@ -10,7 +10,7 @@ import {
     fetchUserFeeds,
     fetchConnectionStatus,
     fetchUserConnections,
-    fetchNotifications,
+    markNotificationsAsRead,
     filterUsers
 } from '../actions'
 import axios from 'axios';
@@ -148,7 +148,7 @@ class Navbar extends Component {
             }
         ];
         const {notifications} = this.props;
-        debugger;
+        // debugger;
         return (<nav className="navbar navbar-default navbar-fixed-top">
             <div className="container-fluid">
                 <div className="navbar-header">
