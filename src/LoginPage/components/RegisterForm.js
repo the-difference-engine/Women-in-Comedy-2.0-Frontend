@@ -32,7 +32,6 @@ class RegisterForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
-    this.storeProfilePicture = this.storeProfilePicture.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -111,29 +110,46 @@ class RegisterForm extends Component {
     };
   }
 
-  async storeProfilePicture() {
-    const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf("."));
-    const imageData = await firebase
-      .storage()
-      .ref(
-        `/users/${this.state.user.firstName + this.state.user.lastName}${ext}`
-      )
-      .put(this.state.img);
-    this.state.user.photo = imageData.metadata.downloadURLs[0];
-  }
-
-  onSubmit() {
-    this.storeProfilePicture;
-    let user = this.state.user;
-    axios
-      .post("http://localhost:9000/api/v1/users", user)
-      .then(payload => {
-        this.setState({ userMade: true });
-      })
-      .catch(err => {
-        alert(err);
+  storeProfilePicture() {
+    const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf('.'));
+    return firebase.storage()
+      .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
+      .put(this.state.img)
+      .then(snapshot => {
+        this.state.user.photo = snapshot.downloadURL;
       });
   }
+
+ validate = (err) => {
+     let isError = false;
+        const errors = {
+       
+    };
+
+    this.setState({
+      ...this.state,
+      ...errors
+    });
+
+    return isError;
+  };
+
+  onSubmit(e) {
+          
+    // this.props.onSubmit(this.state);
+    const err = this.validate();
+      e.preventDefault();
+    this.storeProfilePicture()
+      .then(() => {
+        let user = this.state.user
+        axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
+          this.setState({ userMade: true });
+        }).catch(err => {
+          alert(err)
+        });
+      });
+  }
+
   render() {
     const { handleSubmit } = this.props;
     if (this.state.userMade) {
@@ -144,180 +160,160 @@ class RegisterForm extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h1>Create a New Account</h1>
-          <div className="container">
-            <div>
-              <ValidatorForm onSubmit={this.onSubmit}>
-                
-                  <RaisedButton
-                    secondary
-                    label="upload image"
-                    onClick={this.onClick.bind(this)}
-                  />
-                  <div id="ImgBlock">
-                  <input
-                    type="file"
-                    id="input"
-                    style={{ display: "none" }}
-                    onChange={this.onUpload.bind(this)}
-                  />
-                  <br />
-                  {this.renderImg()}
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="First Name"
-                    onChange={this.handleChange}
-                    name="first_name"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="Last Name"
-                    onChange={this.handleChange}
-                    name="lastName"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="Email Address"
-                    onChange={this.handleChange}
-                    name="email"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="Password"
-                    onChange={this.handleChange}
-                    name="password"
-                    type="password"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="City"
-                    onChange={this.handleChange}
-                    name="city"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="Youtube Video"
-                    onChange={this.handleChange}
-                    name="video"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <TextValidator
-                    floatingLabelText="Website"
-                    onChange={this.handleChange}
-                    name="website"
-                    type="text"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  />
-                </div>
-                <div>
-                  <SelectField
-                    floatingLabelText="Gender"
-                    onChange={(event, index, value) => {
-                      const { user } = this.state;
-                      user.gender = value;
-                      this.setState({ user });
-                    }}
-                    value={this.state.user.gender}
-                    name="gender"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  >
-                    <MenuItem primaryText="Female" value="Female" />
-                    <MenuItem primaryText="Male" value="Male" />
-                  </SelectField>
-                </div>
-                <div>
-                  <SelectField
-                    floatingLabelText="Years of Experience"
-                    onChange={(event, index, value) => {
-                      const { user } = this.state;
-                      user.experience = value;
-                      this.setState({ user });
-                    }}
-                    value={this.state.user.experience}
-                    name="experience"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  >
-                    <MenuItem
-                      primaryText="Less than 1 year"
-                      value="Less than 1 year"
-                    />
-                    <MenuItem primaryText="1-3 years" value="1-3 years" />
-                    <MenuItem primaryText="4-7 years" value="4-7 years" />
-                    <MenuItem primaryText="7-10 years" value="7-10 years" />
-                    <MenuItem primaryText="11+ years" value="11+ years" />
-                  </SelectField>
-                </div>
-                <div>
-                  <SelectField
-                    floatingLabelText="Years of Comedy Training"
-                    onChange={(event, index, value) => {
-                      const { user } = this.state;
-                      user.training = value;
-                      this.setState({ user });
-                    }}
-                    value={this.state.user.training}
-                    name="training"
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  >
-                    <MenuItem
-                      primaryText="Less than 1 year"
-                      value="Less than 1 year"
-                    />
-                    <MenuItem primaryText="1-3 years" value="1-3 years" />
-                    <MenuItem primaryText="4-7 years" value="4-7 years" />
-                    <MenuItem primaryText="7-10 years" value="7-10 years" />
-                    <MenuItem primaryText="11+ years" value="11+ years" />
-                  </SelectField>
-                </div>
-                <div>
-                  <SelectField
-                    floatingLabelText="Available to meet for"
-                    onChange={(event, index, values) => {
-                      const { user } = this.state;
-                      user.meet_option_user_attributes = values;
-                      this.setState({ user });
-                    }}
-                    value={this.state.user.meet_option_user_attributes}
-                    name="meet_options"
-                    multiple={true}
-                    selectionRenderer={this.selectionRenderer}
-                    underlineFocusStyle={{ display: "none" }}
-                    floatingLabelFocusStyle={{ color: "red" }}
-                  >
-                    {this.renderMenuItems()}
-                  </SelectField>
-                </div>
-                {/* <RaisedButton
+      return (<div>
+        <h1>Create a New Account</h1>
+        <div className="container">
+          <div>
+
+            <ValidatorForm
+              onSubmit={this.onSubmit}
+            >
+              <div>
+                <TextValidator
+                  floatingLabelText="First Name"
+                  onChange={this.handleChange}
+                  name="first_name"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="Last Name"
+                  onChange={this.handleChange}
+                  name="last_name"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="Email Address"
+                  onChange={this.handleChange}
+                  name="email"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="Password"
+                  onChange={this.handleChange}
+                  name="password"
+                  type="password"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="City"
+                  onChange={this.handleChange}
+                  name="city"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="Youtube Video"
+                  onChange={this.handleChange}
+                  name="video_link"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <TextValidator
+                  floatingLabelText="Website"
+                  onChange={this.handleChange}
+                  name="website"
+                  type="text"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                />
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Gender"
+                  onChange={(event, index, value) => {
+                    const { user } = this.state;
+                    user.gender = value;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.gender}
+                  name="gender"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  <MenuItem primaryText="Female" value="Female" />
+                  <MenuItem primaryText="Male" value="Male" />
+                </SelectField>
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Years of Experience"
+                  onChange={(event, index, value) => {
+                    const { user } = this.state;
+                    user.experience = value;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.experience}
+                  name="experience"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  <MenuItem primaryText="Less than 1 year" value="Less than 1 year" />
+                  <MenuItem primaryText="1-3 years" value="1-3 years" />
+                  <MenuItem primaryText="4-7 years" value="4-7 years" />
+                  <MenuItem primaryText="7-10 years" value="7-10 years" />
+                  <MenuItem primaryText="11+ years" value="11+ years" />
+                </SelectField>
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Years of Comedy Training"
+                  onChange={(event, index, value) => {
+                    const { user } = this.state;
+                    user.training = value;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.training}
+                  name="training"
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  <MenuItem primaryText="Less than 1 year" value="Less than 1 year" />
+                  <MenuItem primaryText="1-3 years" value="1-3 years" />
+                  <MenuItem primaryText="4-7 years" value="4-7 years" />
+                  <MenuItem primaryText="7-10 years" value="7-10 years" />
+                  <MenuItem primaryText="11+ years" value="11+ years" />
+                </SelectField>
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Available to meet for"
+                  onChange={(event, index, values) => {
+                    const { user } = this.state;
+                    user.meet_option_users_attributes = values;
+                    this.setState({ user });
+                  }}
+                  value={this.state.user.meet_option_users_attributes}
+                  name="meet_option_users_attributes"
+                  multiple={true}
+                  selectionRenderer={this.selectionRenderer}
+                  underlineFocusStyle={{ display: 'none' }}
+                  floatingLabelFocusStyle={{ color: 'red' }}
+                >
+                  {this.renderMenuItems()}
+                </SelectField>
+              </div>
+              <RaisedButton
                 secondary
                 label="upload image"
                 onClick={this.onClick.bind(this)}
