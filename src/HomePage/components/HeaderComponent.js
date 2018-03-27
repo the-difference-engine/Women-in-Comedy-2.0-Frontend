@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
+import LoginNavbar from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/components/LoginNavbar.js'
+import Form from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/Form.js'
+import RegisterModal from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/components/RegisterModal.js'
 import '../css/header.css';
 import '../css/images.css';
 
 export default (props) => {
+  
+
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="container-fluid">
@@ -13,12 +18,11 @@ export default (props) => {
 
 
         <ul className="nav navbar-nav navbar-right">
-
-          <li><a href="http://localhost:8080/users/sign_up" className="icon"><i className="fa fa-user-plus"><p>SignUp</p></i></a></li>
-          <li><a href="http://localhost:8080/users/sign_in" className="icon"><i className="fa fa-sign-in"><p>SignIn</p></i></a></li>
-          <li><a href="http://localhost:8080/users/auth/facebook" className="icon"><i className="fa fa-facebook-square" ><p>Facebook Login</p></i></a></li>
+          <RegisterModal /> 
+          <LoginNavbar history={ this.props } />
         </ul>
       </div>
     </nav>
   );
 };
+

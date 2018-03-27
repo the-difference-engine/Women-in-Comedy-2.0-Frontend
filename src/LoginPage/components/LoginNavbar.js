@@ -45,7 +45,7 @@ class LoginNavbar extends Component {
     return (
       <div id="navbar">
         <div id="container">
-          <h1 id="login-nav-header">Women in Comedy</h1>
+          <h1 id="login-nav-header">Women in Comedy</h1> 
           <div id="form-cred">
           <form onSubmit={this.login.bind(this)}>
             <div id="login-cred">
