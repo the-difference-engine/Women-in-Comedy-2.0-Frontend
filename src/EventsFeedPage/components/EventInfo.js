@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/event-info.css';
+import UpdateEventButton from './UpdateEventButton.js'
 
 const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo}) => {
   const renderButton = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo }) => {
@@ -10,6 +11,16 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
     }
     return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
+
+  const renderUpdateEvent = ({ event, userInfo, eventId }) => {
+    if (event.hostInfo.id === userInfo.id){
+      return(
+        <UpdateEventButton id="edit_btn" eventId={eventId}/>
+      )
+    }
+    return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
+  };
+
   if(event && event.hostInfo) {
     const { title, date, time, location, about, ticket_link, user_id } = event.info;
     const { photo, firstName, lastName } = event.hostInfo;
@@ -24,6 +35,8 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         <p id="event-desc">{about}</p>
         
         {renderButton({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo })}
+        {renderUpdateEvent({ event, userInfo, eventId})}
+
       </div>
     );
   }
