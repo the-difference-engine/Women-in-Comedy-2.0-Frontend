@@ -19,6 +19,7 @@ import {
 } from "react-material-ui-form-validator";
 import "../css/register.css";
 import createFragment from "react-addons-create-fragment";
+import { ValidatorComponent } from 'react-material-ui-form-validator';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class RegisterForm extends Component {
   handleChange(event) {
     const { user } = this.state;
     user[event.target.name] = event.target.value;
-    this.state.user = user;
+    this.setState({ user });
   }
 
   onClick() {
@@ -120,25 +121,7 @@ class RegisterForm extends Component {
       });
   }
 
- validate = (err) => {
-     let isError = false;
-        const errors = {
-       
-    };
-
-    this.setState({
-      ...this.state,
-      ...errors
-    });
-
-    return isError;
-  };
-
   onSubmit(e) {
-          
-    // this.props.onSubmit(this.state);
-    const err = this.validate();
-      e.preventDefault();
     this.storeProfilePicture()
       .then(() => {
         let user = this.state.user
@@ -176,6 +159,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['First Name is required']}
+                  value={this.state.user.first_name}
                 />
               </div>
               <div>
@@ -186,6 +172,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['Last Name is required']}
+                  value={this.state.user.last_name}
                 />
               </div>
               <div>
@@ -196,6 +185,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['Email is required']}
+                  value={this.state.user.email}
                 />
               </div>
               <div>
@@ -206,6 +198,9 @@ class RegisterForm extends Component {
                   type="password"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['Password is required']}
+                  value={this.state.user.password}
                 />
               </div>
               <div>
@@ -216,6 +211,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['City is required']}
+                  value={this.state.user.city}
                 />
               </div>
               <div>
@@ -226,6 +224,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['Video link is required']}
+                  value={this.state.user.video_link}
                 />
               </div>
               <div>
@@ -236,6 +237,9 @@ class RegisterForm extends Component {
                   type="text"
                   underlineFocusStyle={{ display: 'none' }}
                   floatingLabelFocusStyle={{ color: 'red' }}
+                  validators={['required']}
+                  errorMessages={['Website is required']}
+                  value={this.state.user.website}
                 />
               </div>
               <div>
@@ -335,42 +339,6 @@ class RegisterForm extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-  if (!values.firstName) {
-    errors.firstName = "Enter a first name";
-  }
-  if (!values.lastName) {
-    errors.lastName = "Enter a last name";
-  }
-  if (!values.email) {
-    errors.email = "Enter an email";
-  }
-  if (!values.password) {
-    errors.password = "Enter an password";
-  }
-  if (!values.gender) {
-    errors.gender = "Enter a gender";
-  }
-  if (!values.video) {
-    errors.video = "Enter a video link";
-  }
-  if (!values.city) {
-    errors.city = "Enter a city";
-  }
-  if (!values.training) {
-    errors.training = "Enter training";
-  }
-  if (!values.experience) {
-    errors.experience = "Enter experience";
-  }
-  if (!values.website) {
-    errors.website = "Enter website";
-  }
-
-  return errors;
-}
-
-export default reduxForm({ validate, form: "newAccountForm" })(
+export default reduxForm({ form: "newAccountForm" })(
   connect(null)(RegisterForm)
 );
