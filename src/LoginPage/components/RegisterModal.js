@@ -11,18 +11,18 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 class RegisterModal extends Component {
   constructor(props) {
     super(props);
-  }
-  //this.state
-
-  state = {
-    open: false
+    this.state = {
+      open: false
+    };
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   };
-
-  handleOpen = () => {
+  
+  handleOpen() {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose() {
     this.setState({ open: false });
   };
 

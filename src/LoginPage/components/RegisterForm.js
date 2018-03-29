@@ -62,7 +62,7 @@ class RegisterForm extends Component {
     ));
   }
 
-  selectionRenderer = values => {
+  selectionRenderer(values){
     switch (values.length) {
       case 0:
         return "";

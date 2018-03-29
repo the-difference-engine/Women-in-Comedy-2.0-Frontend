@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
-import LoginNavbar from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/components/LoginNavbar.js'
-import Form from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/Form.js'
-import RegisterModal from '/Users/JamesScott/Personal/TDE/WIC/Women-in-Comedy-2.0-Frontend/src/LoginPage/components/RegisterModal.js'
 import '../css/header.css';
 import '../css/images.css';
 
@@ -17,10 +14,10 @@ export default (props) => {
         </div>
 
 
-        <ul className="nav navbar-nav navbar-right">
+{/*         <ul className="nav navbar-nav navbar-right">
           <RegisterModal /> 
           <LoginNavbar history={ this.props } />
-        </ul>
+        </ul> */}
       </div>
     </nav>
   );
