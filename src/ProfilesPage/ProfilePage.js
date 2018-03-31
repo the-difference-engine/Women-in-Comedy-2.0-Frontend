@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {
   fetchUserInfo,
   fetchUserFeeds,
+    fetchNotifications,
   fetchUserConnections,
   createConnectionRequest,
   fetchConnectionStatus,
@@ -134,9 +135,9 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const {userInfo, userConnections, userFeeds, status, match} = this.props;
+    const {userInfo, userConnections, userFeeds, status, match, notifications} = this.props;
     return (<div>
-      <Navbar history={this.props.history} />
+      f<Navbar history={this.props.history}  notifications={notifications}/>
       <LeftGraySideBar>
         <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/> {this.renderBlockConnection()}
         {this.renderConnection()}
@@ -157,6 +158,7 @@ const mapStateToProps = (state) => {
   const {
     userInfo,
     userFeeds,
+      notifications,
     userConnections,
     status,
     userWallPost,
@@ -165,6 +167,7 @@ const mapStateToProps = (state) => {
 
   return {
     userInfo,
+      notifications,
     userFeeds,
     userConnections,
     status,
@@ -175,6 +178,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchUserInfo,
   fetchUserFeeds,
+    fetchNotifications,
   fetchUserConnections,
   createConnectionRequest,
   fetchConnectionStatus,

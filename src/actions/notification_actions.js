@@ -21,8 +21,9 @@ export const fetchNotifications = (userId) => {
 export const markNotificationsAsRead = (user_id)  => {
     // debugger;
     const request = axios({
-        method: 'put',
+        method: 'get',
         url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_all_read/${user_id}`,
+        headers: {"id": user_id},
         data: {user_id}
     });
 
@@ -38,8 +39,9 @@ export const markNotificationsAsRead = (user_id)  => {
 export const markNotificationAsRead = (notification_id, user_id)  => {
     // debugger;
     const request = axios({
-        method: 'put',
+        method: 'get',
         url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_read/${user_id}`,
+        headers: {"id": user_id},
         data : {notification_id, user_id}
     });
     return (dispatch) => {

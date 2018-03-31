@@ -12,6 +12,15 @@ class UnreadNotification extends Component {
         }
     }
 
+    // componentWillReceiveProps(nextProps) {
+    //     if (this.props.notifications !== nextProps.notifications) {
+    //         nextProps.notifications.map( notification => {
+    //             this.updateIfSeen(notification)
+    //         });
+    //     }
+    // }
+
+
     renderNotifications() {
         if (this.props.notifications===null) {
             return <div>You have no notifications at this time.</div>
@@ -22,7 +31,7 @@ class UnreadNotification extends Component {
                         <div key={notification.id}>
                             {this.updateIfSeen(notification)}
                             <div>
-                                <Link to='#' onClick={() => this.props.markNotificationAsRead(notification.id, sessionStorage.getItem('userId'))}><p
+                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markNotificationAsRead(notification.id, notification.sent_to)}><p
                                     id="connection-name">{notification.sent_from_name} </p></Link>
                                 <span>has accepted your connection request</span>
                             </div>
