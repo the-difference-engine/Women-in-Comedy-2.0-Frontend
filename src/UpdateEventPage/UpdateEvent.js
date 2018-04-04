@@ -11,23 +11,29 @@ const userId = sessionStorage.getItem('userId');
 class UpdateEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`,
-    }
   }
 
   componentDidMount() {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
-    this.setState({imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`})
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.updateEventForm) {
+      let event = newProps.updateEventForm.event;
+      if (event.info.user_id.toString !== userId) {
+        this.props.history.push(`/eventsfeed/${event.info.id}`);
+      }
+      this.setState({ imgURL: event.info.photo });
+    }
   }
 
   onClick() {
     const input = document.getElementById('input');
     input.click();
   }
-  
+
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -41,26 +47,26 @@ class UpdateEvent extends Component {
 
   renderImg() {
     if (this.state.imgURL) {
-      return <img id="img" src={this.state.imgURL} alt="" width="250" height="250"/>
+      return <img id="img" src={this.state.imgURL} alt="" width="250" height="250" />
     }
   }
   renderSpinner() {
     const { loading } = this.props.updateEventForm;
     if (loading) {
-      return(
+      return (
         <CircularProgress />
       );
     }
   }
-   async onUpdateEvent() {
+  async onUpdateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
-   await this.props.updateEvent(
+    await this.props.updateEvent(
       { address, date, description, img, location, ticketLink, time, title },
       userId,
-      );
+    );
 
-      this.props.history.push(`/eventsfeed/${this.props.updateEventForm.id}`) 
+    this.props.history.push(`/eventsfeed/${this.props.updateEventForm.id}`)
   }
   render() {
     const { loading } = this.props.updateEventForm;
@@ -68,79 +74,81 @@ class UpdateEvent extends Component {
 
     return (
       <div>
-        <Navbar history={this.props.history}/>
-        <div id="create-event-wrapper">
-          <TextField
-            id="Title"
-            value={`${event&&event.info.title}`}
-            underlineFocusStyle={{ display: 'none' }}
-            floatingLabelFocusStyle={{ color: 'red' }}
-            disabled={loading}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
-          />
-          <TextField
-            id="Location"
-            value={`${event&&event.info.location}`}
-            underlineFocusStyle={{ display: 'none' }}
-            floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
-            disabled={loading}
-          />
-          <TextField
-            id="Address"
-            value={`${event&&event.info.address}`}
-            underlineFocusStyle={{ display: 'none' }}
-            floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
-            disabled={loading}
-          />
-          <TextField
-            id="Ticket Link"
-            value={`${event&&event.info.ticket_link}`}
-            underlineFocusStyle={{ display: 'none' }}
-            floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
-            disabled={loading}
-          />
-          <TextField
-            id="Description"
-            value={`${event&&event.info.about}`}
-            multiLine={true}
-            rows={2}
-            floatingLabelFocusStyle={{ color: 'red' }}
-            underlineFocusStyle={{ display: 'none' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
-            disabled={loading}
-          />
-          <RaisedButton
-            secondary
-            label="upload image"
-            onClick={this.onClick.bind(this)}
-            disabled={loading}
-          />
-          <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)}/><br />
-          {this.renderImg()}
-          <DatePicker
-            hintText={`${event&&event.info.date}`}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
-            disabled={loading}
-          />
-          <TimePicker
-            hintText={`${event&&event.info.time}`}
-            autoOk={true}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
-            disabled={loading}
-          />
-           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
-           {this.renderSpinner()}
-          <RaisedButton
-            secondary
-            label="update event"
-            onClick={this.onUpdateEvent.bind(this)}
-            style={{ marginTop: '15px' }}
-            disabled={loading}
-          />
-        </div>
+        <Navbar history={this.props.history} />
+        {event && (event.info.user_id === userId) &&
+          <div id="create-event-wrapper">
+            <TextField
+              id="Title"
+              value={`${event && event.info.title}`}
+              underlineFocusStyle={{ display: 'none' }}
+              floatingLabelFocusStyle={{ color: 'red' }}
+              disabled={loading}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
+            />
+            <TextField
+              id="Location"
+              value={`${event && event.info.location}`}
+              underlineFocusStyle={{ display: 'none' }}
+              floatingLabelFocusStyle={{ color: 'red' }}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
+              disabled={loading}
+            />
+            <TextField
+              id="Address"
+              value={`${event && event.info.address}`}
+              underlineFocusStyle={{ display: 'none' }}
+              floatingLabelFocusStyle={{ color: 'red' }}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
+              disabled={loading}
+            />
+            <TextField
+              id="Ticket Link"
+              value={`${event && event.info.ticket_link}`}
+              underlineFocusStyle={{ display: 'none' }}
+              floatingLabelFocusStyle={{ color: 'red' }}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+              disabled={loading}
+            />
+            <TextField
+              id="Description"
+              value={`${event && event.info.about}`}
+              multiLine={true}
+              rows={2}
+              floatingLabelFocusStyle={{ color: 'red' }}
+              underlineFocusStyle={{ display: 'none' }}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+              disabled={loading}
+            />
+            <RaisedButton
+              secondary
+              label="upload image"
+              onClick={this.onClick.bind(this)}
+              disabled={loading}
+            />
+            <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
+            {this.renderImg()}
+            <DatePicker
+              hintText={`${event && event.info.date}`}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
+              disabled={loading}
+            />
+            <TimePicker
+              hintText={`${event && event.info.time}`}
+              autoOk={true}
+              onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
+              disabled={loading}
+            />
+            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
+            {this.renderSpinner()}
+            <RaisedButton
+              secondary
+              label="update event"
+              onClick={this.onUpdateEvent.bind(this)}
+              style={{ marginTop: '15px' }}
+              disabled={loading}
+            />
+          </div>
+        }
       </div>
     )
   }
