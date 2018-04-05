@@ -20,9 +20,6 @@ class UpdateEvent extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps.updateEventForm.event.info.user_id);
-    console.log(userId);
-    console.log((newProps.updateEventForm.event.info.user_id.toString() === userId));
     if (newProps.updateEventForm.event) {
       let event = newProps.updateEventForm.event;
       if (event.info.user_id.toString() !== userId) {
