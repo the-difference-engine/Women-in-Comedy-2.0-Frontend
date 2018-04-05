@@ -20,9 +20,12 @@ class UpdateEvent extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.updateEventForm) {
+    console.log(newProps.updateEventForm.event.info.user_id);
+    console.log(userId);
+    console.log((newProps.updateEventForm.event.info.user_id.toString() === userId));
+    if (newProps.updateEventForm.event) {
       let event = newProps.updateEventForm.event;
-      if (event.info.user_id.toString !== userId) {
+      if (event.info.user_id.toString() !== userId) {
         this.props.history.push(`/eventsfeed/${event.info.id}`);
       }
       this.setState({ imgURL: event.info.photo });
@@ -75,7 +78,7 @@ class UpdateEvent extends Component {
     return (
       <div>
         <Navbar history={this.props.history} />
-        {event && (event.info.user_id === userId) &&
+        {event && (event.info.user_id.toString() === userId) &&
           <div id="create-event-wrapper">
             <TextField
               id="Title"
