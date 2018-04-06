@@ -26,6 +26,7 @@ class UpdateEvent extends Component {
         this.props.history.push(`/eventsfeed/${event.info.id}`);
       }
       this.setState({ imgURL: event.info.photo });
+     
     }
   }
 
@@ -59,7 +60,8 @@ class UpdateEvent extends Component {
     }
   }
   async onUpdateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
+    const { address, date, description, img, location, ticketLink, time, title } = this.props.updateEvent;
+    
 
     await this.props.updateEvent(
       { address, date, description, img, location, ticketLink, time, title },
@@ -79,7 +81,7 @@ class UpdateEvent extends Component {
           <div id="create-event-wrapper">
             <TextField
               id="Title"
-              value={`${event && event.info.title}`}
+            defaultValue={`${event && event.info.title}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               disabled={loading}
@@ -87,7 +89,7 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Location"
-              value={`${event && event.info.location}`}
+              defaultValue={`${event && event.info.location}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
@@ -95,7 +97,7 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Address"
-              value={`${event && event.info.address}`}
+              defaultValue={`${event && event.info.address}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
@@ -103,7 +105,7 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Ticket Link"
-              value={`${event && event.info.ticket_link}`}
+              defaultValue={`${event && event.info.ticket_link}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
@@ -111,7 +113,7 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Description"
-              value={`${event && event.info.about}`}
+              defaultValue={`${event && event.info.about}`}
               multiLine={true}
               rows={2}
               floatingLabelFocusStyle={{ color: 'red' }}
@@ -157,4 +159,4 @@ class UpdateEvent extends Component {
 function mapStateToProps({ updateEventForm }) {
   return { updateEventForm };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);
+export default connect(mapStateToProps, { updateEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);
