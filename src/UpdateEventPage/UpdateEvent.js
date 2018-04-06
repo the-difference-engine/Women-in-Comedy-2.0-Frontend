@@ -69,7 +69,7 @@ class UpdateEvent extends Component {
       userId,
     );
 
-    this.props.history.push(`/eventsfeed/${this.props.updateEventForm.id}`)
+    this.props.history.push(`/eventsfeed/${this.props.updateEventForm.event.info.id}`)
   }
   render() {
     const { loading } = this.props.updateEventForm;
