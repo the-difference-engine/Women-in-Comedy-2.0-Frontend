@@ -29,7 +29,6 @@ class UpdateEvent extends Component {
         this.props.history.push(`/eventsfeed/${event.info.id}`);
       }
       this.setState({ imgURL: event.info.photo });
-     
     }
   }
 
@@ -63,8 +62,7 @@ class UpdateEvent extends Component {
     }
   }
   async onUpdateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.updateEvent;
-    
+    const { address, date, description, img, location, ticketLink, time, title } = this.props.updateEventForm;
 
     await this.props.updateEvent(
       { address, date, description, img, location, ticketLink, time, title },
