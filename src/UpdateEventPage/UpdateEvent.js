@@ -11,6 +11,9 @@ const userId = sessionStorage.getItem('userId');
 class UpdateEvent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      imgURL: null
+    };
   }
 
   componentDidMount() {
@@ -79,7 +82,8 @@ class UpdateEvent extends Component {
           <div id="create-event-wrapper">
             <TextField
               id="Title"
-              value={`${event && event.info.title}`}
+              floatingLabelText="Event Name"
+              defaultValue={`${event && event.info.title || ""}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               disabled={loading}
@@ -87,7 +91,8 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Location"
-              value={`${event && event.info.location}`}
+              floatingLabelText="Location"
+              defaultValue={`${event && event.info.location || ""}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
@@ -95,7 +100,8 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Address"
-              value={`${event && event.info.address}`}
+              floatingLabelText="Address"
+              defaultValue={`${event && event.info.address || ""}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
@@ -103,7 +109,8 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Ticket Link"
-              value={`${event && event.info.ticket_link}`}
+              floatingLabelText="Ticket Link"
+              defaultValue={`${event && event.info.ticket_link || ""}`}
               underlineFocusStyle={{ display: 'none' }}
               floatingLabelFocusStyle={{ color: 'red' }}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
@@ -111,7 +118,8 @@ class UpdateEvent extends Component {
             />
             <TextField
               id="Description"
-              value={`${event && event.info.about}`}
+              floatingLabelText="Description"
+              defaultValue={`${event && event.info.about || ""}`}
               multiLine={true}
               rows={2}
               floatingLabelFocusStyle={{ color: 'red' }}
@@ -121,19 +129,21 @@ class UpdateEvent extends Component {
             />
             <RaisedButton
               secondary
-              label="upload image"
+              label="upload new image"
               onClick={this.onClick.bind(this)}
               disabled={loading}
             />
             <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
             {this.renderImg()}
             <DatePicker
-              hintText={`${event && event.info.date}`}
+              floatingLabelText="Event Date"
+              defaultDate={event && event.info.date && new Date((event.info.date.split('-')[0], event.info.date.split('-')[1] - 1, event.info.date.split('-')[2]))}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
               disabled={loading}
             />
             <TimePicker
-              hintText={`${event && event.info.time}`}
+              floatingLabelText="Event Time"
+              defaultTime={event && event.info.date && event.info.time && new Date((event.info.date.split('-')[0], event.info.date.split('-')[1] - 1, event.info.date.split('-')[2]), event.info.time.toString())}
               autoOk={true}
               onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
               disabled={loading}
