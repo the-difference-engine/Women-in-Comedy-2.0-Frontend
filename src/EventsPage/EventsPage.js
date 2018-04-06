@@ -1,35 +1,39 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchMyUpcomingEvents, fetchUpcomingEvents } from '../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {fetchMyUpcomingEvents, fetchNotifications, fetchUpcomingEvents} from '../actions';
 import AddEvent from './components/AddEvent';
 import AllUpcomingEvents from './components/AllUpcomingEvents';
 import MyUpcomingEvents from './components/MyUpcomingEvents';
-import HeaderComponent from './components/HeaderComponent';
-import Navbar  from '../common/Navbar';
+import Navbar from '../common/Navbar';
 
 class EventsPage extends Component {
-  constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
+    }
 
-	}
-  componentDidMount() {
-    const userId = sessionStorage.getItem('userId');
-    this.props.fetchMyUpcomingEvents(userId);
-    this.props.fetchUpcomingEvents();
-  }
-	render () {
-		return (
-			<div id="events-page">
-        <Navbar history={this.props.history} />
-				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
-				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
-				<AddEvent history={this.props.history}/>
-			</div>
-		);
-	}
+    componentDidMount() {
+        const userId = sessionStorage.getItem('userId');
+        console.log(this.props);
+        this.props.fetchMyUpcomingEvents(userId);
+        this.props.fetchUpcomingEvents();
+        this.props.fetchNotifications(userId);
+    }
+
+    render() {
+        const {notifications} = this.props;
+        return (
+            <div id="events-page">
+                <Navbar history={this.props.history} notifications={notifications}/>
+                <MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents}/>
+                <AllUpcomingEvents upcomingEvents={this.props.upcomingEvents}/>
+                <AddEvent history={this.props.history}/>
+            </div>
+        );
+    }
 }
 
-function mapStateToProps({ myUpcomingEvents, upcomingEvents }) {
-  return { myUpcomingEvents, upcomingEvents };
+function mapStateToProps({myUpcomingEvents, upcomingEvents, notifications}) {
+    return {myUpcomingEvents, upcomingEvents, notifications};
 }
-export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents })(EventsPage);
+
+export default connect(mapStateToProps, {fetchMyUpcomingEvents, fetchUpcomingEvents, fetchNotifications})(EventsPage);

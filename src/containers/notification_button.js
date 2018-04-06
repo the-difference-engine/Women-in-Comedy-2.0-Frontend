@@ -2,25 +2,25 @@ import React from 'react';
 
 // class NotificationButton extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
-  //
-  // componentDidMount() {
-  //   const userId = sessionStorage.getItem('userId');
-  //   const {fetchNotifications} = this.props;
-  //   fetchNotifications(userId);
-  //
-  // }
+// constructor(props) {
+//   super(props);
+// }
+//
+// componentDidMount() {
+//   const userId = sessionStorage.getItem('userId');
+//   const {fetchNotifications} = this.props;
+//   fetchNotifications(userId);
+//
+// }
 
 
-  // render() {
-  //
-  //   return (
-  //
-  //     <a href='#'className="icon"><i className="fa fa-bell-o"><span className="badge">{this.props.notifications.length}</span><p>ALERTS </p></i></a>
-  //     );
-  // }
+// render() {
+//
+//   return (
+//
+//     <a href='#'className="icon"><i className="fa fa-bell-o"><span className="badge">{this.props.notifications.length}</span><p>ALERTS </p></i></a>
+//     );
+// }
 
 
 // function mapDispatchToProps(dispatch) {
@@ -51,38 +51,24 @@ import React from 'react';
 export default (props) => {
     if (props.notifications === null) {
         return <div>
-            <a href='#' className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
+            <a href={'/notifications'} className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
         </div>
     }
+
+    function findConnectionActions(props) {
+        if (props.notifications !== null) {
+            var connectionAccepted = props.notifications.notifications.filter(not => not.action === "connection_accepted");
+            return connectionAccepted.length;
+        }
+    }
+
     return (
         <div>
-            <a href='#' className="icon"><i className="fa fa-bell-o"><span className="badge">{props.notifications.notifications.length}</span><p>ALERTS </p></i></a>
+            <a href={'/notifications'} className="icon"><i className="fa fa-bell-o"><span
+                className="badge">{findConnectionActions(props)}</span><p>ALERTS </p></i></a>
         </div>
     );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // const NotificationButton = (props) => {
@@ -94,8 +80,10 @@ export default (props) => {
 //                 </div>
 //     );
 // };
-{/*//*/}
-{/*// const notificationPopUp = ({notifications}) => {*/}
+{/*//*/
+}
+{/*// const notificationPopUp = ({notifications}) => {*/
+}
 //     if (!notifications) {
 //         return <a href='#' className="icon"><i className="fa fa-bell-o"><p>ALERTS </p></i></a>
 //     }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {markNotificationsAsRead, markNotificationAsRead} from "../../actions";
+import {markNotificationAsRead, markNotificationsAsRead} from "../../actions";
 
 class UnreadNotification extends Component {
 
@@ -31,7 +31,8 @@ class UnreadNotification extends Component {
                         <div key={notification.id}>
                             {this.updateIfSeen(notification)}
                             <div>
-                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markNotificationAsRead(notification.id, notification.sent_to)}><p
+
+                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markNotificationAsRead(notification.id, notification.sent_to, "hello")}><p
                                     id="connection-name">{notification.sent_from_name} </p></Link>
                                 <span>has accepted your connection request</span>
                             </div>

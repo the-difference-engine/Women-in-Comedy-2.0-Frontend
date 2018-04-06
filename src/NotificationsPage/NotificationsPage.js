@@ -1,17 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-    fetchUserInfo,
-    fetchUserConnections,
-    fetchPendingUserConnections,
-    fetchNotifications
-} from '../actions';
+import {fetchNotifications, fetchPendingUserConnections, fetchUserConnections, fetchUserInfo} from '../actions';
 import Navbar from '../common/Navbar';
-import {LeftGraySideBar, RightGraySideBar, PageContent, FeedPostBar} from '../common';
+import {LeftGraySideBar, RightGraySideBar} from '../common';
 import UnreadNotifications from './components/UnreadNotifications';
-import NotificationButton from '../containers/notification_button';
-
-// import NewFeeds from '../FeedPage/components/NewFeeds';
 import UserInfo from '../FeedPage/components/UserInfo';
 import Messages from '../FeedPage/components/Messages';
 

@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {
-  fetchUserInfo,
-  fetchUserFeeds,
+    blockConnectionRequests,
+    createConnectionRequest,
+    createPostOnUserWall,
+    editUser,
+    fetchConnectionStatus,
     fetchNotifications,
-  fetchUserConnections,
-  createConnectionRequest,
-  fetchConnectionStatus,
-  userWallInputChange,
-  createPostOnUserWall,
-  blockConnectionRequests,
-  editUser
+    fetchUserConnections,
+    fetchUserFeeds,
+    fetchUserInfo,
+    userWallInputChange
 } from '../actions';
-import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
+import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';
 import Navbar from '../common/Navbar';
 import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
@@ -29,11 +29,11 @@ class ProfilePage extends Component {
 
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = this.props.match.params.id;
-    const {fetchUserInfo, fetchUserFeeds, fetchUserConnections} = this.props;
     this.props.fetchUserInfo(this.props.match.params.id);
     this.props.fetchUserFeeds(this.props.match.params.id);
     this.props.fetchUserConnections(this.props.match.params.id);
     this.props.fetchConnectionStatus({sender_id, receiver_id});
+    this.props.fetchNotifications(sender_id);
     this.setState({editUserEnable: false});
   }
 
@@ -135,9 +135,9 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const {userInfo, userConnections, userFeeds, status, match, notifications} = this.props;
+    const {userInfo, match, notifications} = this.props;
     return (<div>
-      f<Navbar history={this.props.history}  notifications={notifications}/>
+      <Navbar history={this.props.history}  notifications={notifications}/>
       <LeftGraySideBar>
         <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/> {this.renderBlockConnection()}
         {this.renderConnection()}

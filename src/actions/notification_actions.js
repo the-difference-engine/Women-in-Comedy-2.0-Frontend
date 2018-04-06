@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-import {
-    CREATE_CONNECTION_REQUEST, FETCH_NOTIFICATIONS, MARK_NOTIFICATION_AS_READ,
-    MARK_NOTIFICATIONS_AS_READ
-} from './types';
+import {FETCH_NOTIFICATIONS, MARK_NOTIFICATION_AS_READ, MARK_NOTIFICATIONS_AS_READ} from './types';
 
 export const fetchNotifications = (userId) => {
     const request = axios({
@@ -26,7 +23,7 @@ export const markNotificationsAsRead = (user_id)  => {
         headers: {"id": user_id},
         data: {user_id}
     });
-
+    console.table(request.data);
     return (dispatch) => {
         request.then((data) => {
             dispatch({type: MARK_NOTIFICATIONS_AS_READ, payload: request})
@@ -36,14 +33,15 @@ export const markNotificationsAsRead = (user_id)  => {
 
 };
 
-export const markNotificationAsRead = (notification_id, user_id)  => {
-    // debugger;
+export const markNotificationAsRead = (id, user_id, random)  => {
+    debugger;
     const request = axios({
         method: 'get',
         url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_read/${user_id}`,
-        headers: {"id": user_id},
-        data : {notification_id, user_id}
+        headers: {"user_id": user_id, "id": id},
+        data : {id, user_id, random}
     });
+    console.table(request.data);
     return (dispatch) => {
         request.then((data) => {
             dispatch({type: MARK_NOTIFICATION_AS_READ, payload: request})

@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import {AutoComplete} from 'material-ui';
-import {FlatButton, Popover, Menu, MenuItem} from 'material-ui';
+import {AutoComplete, FlatButton, Menu, MenuItem, Popover} from 'material-ui';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {
     fetchAllUsers,
-    fetchUserInfo,
-    fetchUserFeeds,
     fetchConnectionStatus,
+    fetchNotifications,
     fetchUserConnections,
-    markNotificationsAsRead,
+    fetchUserFeeds,
+    fetchUserInfo,
     filterUsers
 } from '../actions'
 import axios from 'axios';
@@ -298,7 +297,7 @@ export default connect(mapStateToProps,
     fetchUserInfo,
     fetchUserFeeds,
     fetchConnectionStatus,
-    // fetchNotifications,
+    fetchNotifications,
     fetchUserConnections,
     filterUsers
 }

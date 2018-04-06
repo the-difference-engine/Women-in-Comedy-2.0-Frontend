@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar } from '../common';
-import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
-import { connect } from 'react-redux';
-import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import {createEvent, eventInputChange, fetchNotifications, fetchUserInfo} from '../actions';
+import {connect} from 'react-redux';
+import {CircularProgress, DatePicker, RaisedButton, TextField, TimePicker} from 'material-ui';
 
 import './css/create-event.css'
+
 const userId = sessionStorage.getItem('userId')
 
 class CreateEvents extends Component {
@@ -13,6 +13,9 @@ class CreateEvents extends Component {
     super(props);
     this.state = { imgURL: null };
   }
+    componentDidMount() {
+        this.props.fetchNotifications(sessionStorage.getItem('userId'));
+    }
 
   onClick() {
     const input = document.getElementById('input');
@@ -54,10 +57,11 @@ class CreateEvents extends Component {
   }
   render() {
     const { loading } = this.props.createEventForm;
+    const { notifications } = this.props;
 
     return (
       <div>
-        <Navbar history={this.props.history}/>
+        <Navbar history={this.props.history} notifications={notifications}/>
         <div id="create-event-wrapper">
           <TextField
             hintText="Event Title"
@@ -135,7 +139,7 @@ class CreateEvents extends Component {
   }
 }
 
-function mapStateToProps({ createEventForm }) {
-  return { createEventForm };
+function mapStateToProps({ createEventForm, notifications }) {
+  return { createEventForm, notifications };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);
+export default connect(mapStateToProps, { createEvent, fetchUserInfo, fetchNotifications, eventInputChange })(CreateEvents);
