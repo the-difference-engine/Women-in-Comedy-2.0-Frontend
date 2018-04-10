@@ -38,4 +38,4 @@ export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
 //Notifications
 export const FETCH_NOTIFICATIONS = 'fetch_notifications';
 export const MARK_NOTIFICATIONS_AS_READ = 'mark_notifications_as_read';
-export const MARK_NOTIFICATION_AS_READ = 'mark_notification_as_read';
+export const MARK_ONE_AS_READ = 'mark_one_as_read';

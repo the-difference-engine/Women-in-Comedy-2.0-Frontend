@@ -1,25 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Form from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {markNotificationAsRead, markNotificationsAsRead} from "../../actions";
+import {markNotificationsAsRead, markOneAsRead} from "../../actions";
 
 class UnreadNotification extends Component {
-
-    updateIfSeen(notification) {
-        if (notification.seen !== null) {
-            return <p>Seen!</p>
-        }
-    }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (this.props.notifications !== nextProps.notifications) {
-    //         nextProps.notifications.map( notification => {
-    //             this.updateIfSeen(notification)
-    //         });
-    //     }
-    // }
-
 
     renderNotifications() {
         if (this.props.notifications===null) {
@@ -29,10 +15,8 @@ class UnreadNotification extends Component {
                 if (notification.action === "connection_accepted") {
                     return (
                         <div key={notification.id}>
-                            {this.updateIfSeen(notification)}
                             <div>
-
-                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markNotificationAsRead(notification.id, notification.sent_to, "hello")}><p
+                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markOneAsRead(notification.sent_to, notification.id)} method="POST" ><p
                                     id="connection-name">{notification.sent_from_name} </p></Link>
                                 <span>has accepted your connection request</span>
                             </div>
@@ -71,7 +55,7 @@ class UnreadNotification extends Component {
 }
 
 
-export default connect(null, {markNotificationsAsRead, markNotificationAsRead})(UnreadNotification);
+export default connect(null, {markNotificationsAsRead, markOneAsRead})(UnreadNotification);
 
 
 
