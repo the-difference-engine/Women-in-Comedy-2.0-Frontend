@@ -23,7 +23,8 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
 }
 
 export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
-    let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
+  console.log('updating event method');
+    let { address, date, description, img, location, ticketLink, time, title, id } = eventInfo; 
     if(validate(eventInfo)) {
       dispatch({ type: LOAD })
       const ext = img.name.slice(img.name.lastIndexOf('.'));
@@ -32,7 +33,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
       img = imageData.metadata.downloadURLs[0];
       const request = await axios({
         method: 'post',
-        url: process.env.REACT_APP_API_URL_DEV + 'events',
+        url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
 

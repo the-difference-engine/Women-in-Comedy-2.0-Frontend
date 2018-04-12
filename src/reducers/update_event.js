@@ -11,12 +11,13 @@ const INITIAL_STATE = {
   loading: false,
   ticketLink: '',
   address: '',
-  id: null
+  id: null,
+  user_id: null
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case FETCH_EVENT_INFO:
-      return {...state, event: action.payload.data };
+      return {...state, title: action.payload.data.info.title, user_id: action.payload.data.info.user_id, id: action.payload.data.info.id };
     case EVENT_INPUT_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CLEAR:
