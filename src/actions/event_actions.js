@@ -23,7 +23,6 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
 }
 
 export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
-  console.log('updating event method');
     let { address, date, description, img, location, ticketLink, time, title, id } = eventInfo; 
     if(validate(eventInfo)) {
       dispatch({ type: LOAD })

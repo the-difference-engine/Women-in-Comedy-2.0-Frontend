@@ -72,7 +72,6 @@ async onUpdateEvent() {
 render() {
   const { loading } = this.props.updateEventForm;
   const event = this.props.updateEventForm;
-  console.log(event);
 
   return (
     <div>
