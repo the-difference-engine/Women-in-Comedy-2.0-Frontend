@@ -60,10 +60,10 @@ renderSpinner() {
   }
 }
 async onUpdateEvent() {
-  const { address, date, description, img, location, ticketLink, time, title, id } = this.props.updateEventForm;
+  const { address, date, description, photo, location, ticketLink, time, title, id } = this.props.updateEventForm;
 
   await this.props.updateEvent(
-    { address, date, description, img, location, ticketLink, time, title, id },
+    { address, date, description, photo, location, ticketLink, time, title, id },
     userId
   );
 
@@ -72,6 +72,7 @@ async onUpdateEvent() {
 render() {
   const { loading } = this.props.updateEventForm;
   const event = this.props.updateEventForm;
+  console.log(this.props.updateEventForm);
 
   return (
     <div>
