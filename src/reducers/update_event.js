@@ -17,20 +17,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_EVENT_INFO:
-    console.log(action.payload.data.info);
-      return {
-        ...state,
-        title: action.payload.data.info.title,
-        about: action.payload.data.info.about,
-        location: action.payload.data.info.location,
-        photo: action.payload.data.info.photo,
-        time: action.payload.data.info.time,
-        date: action.payload.data.info.date,
-        ticket_link: action.payload.data.info.ticket_link,
-        address: action.payload.data.info.address,
-        id: action.payload.data.info.id,
-        user_id: action.payload.data.info.user_id,
-      };
+      return  action.payload.data.info;
     case EVENT_INPUT_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CLEAR:
