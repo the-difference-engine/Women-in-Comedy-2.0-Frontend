@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import EditForm from './components/EditForm';
+import UserList from './components/UserList';
 import axios from 'axios';
 import {Link, Route} from 'react-router-dom';
 
@@ -31,15 +32,26 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
-      return <div>
-        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
-      </div>
+      return (
+        <div>
+          <div>
+            <UserList  users={this.props.allUsersList} />          
+          </div>
+          <div>
+            <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
+          </div>
+        </div>
+      );
     }
 
 }
 
+//create component called UserList
+//render component on Edit page next to Editform 
+//
+
 function mapStateToProps(state) {
-  return {adminEdit: state.adminEdit.isAdminEdit}
+  return {adminEdit: state.adminEdit.isAdminEdit, allUsersList: state.allUsers }
 }
 
 export default connect(mapStateToProps)(EditPage);
