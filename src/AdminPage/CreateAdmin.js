@@ -22,7 +22,8 @@ class CreateAdmin extends Component {
   // }
 
   render(){
-    return <div>Hi</div>
+    // console.log(fetchAllUsers()); //set this function in mapstateto props?
+    return <div></div>
   }
 
 }
