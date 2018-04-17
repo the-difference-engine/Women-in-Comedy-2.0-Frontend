@@ -10,9 +10,9 @@ import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
+import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
-
 import DeletedUser from './ProfilesPage/DeletedUser';
 import ChatWidget from './ChatWidget/ChatWidget';
 
@@ -40,6 +40,7 @@ class App extends Component {
             <Route path='/feed' component={Feed}></Route>
             <Route path='/newevent' component={CreateEvents}></Route>
             <Route path='/events' component={EventsPage}></Route>
+            <Route path='/admins' component={CreateAdmin}></Route>   
             <Route path="/home" component={HomePage}></Route>
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
