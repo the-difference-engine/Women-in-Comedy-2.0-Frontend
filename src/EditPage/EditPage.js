@@ -35,7 +35,7 @@ class EditPage extends Component {
       return (
         <div>
           <div>
-            <UserList  users={this.props.allUsersList} />          
+            <UserList users={this.props.allUsersList} />          
           </div>
           <div>
             <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
@@ -46,9 +46,6 @@ class EditPage extends Component {
 
 }
 
-//create component called UserList
-//render component on Edit page next to Editform 
-//
 
 function mapStateToProps(state) {
   return {adminEdit: state.adminEdit.isAdminEdit, allUsersList: state.allUsers }

@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
+// import fetchAllUsers from '../actions/users_actions';
+
+
+
 
 export default class UserList extends Component {
 
   renderList(){
     const users = this.props.users.userList;
       return  users.map(user => {
+        const adminStatus = user.admin;
         return (
           <li key={user.id}>{user.firstName}</li>
-          
         );
       });
   }
 
     render(){
-      // const users = this.props.users.userList;
-      // const currentUsers = users.map(user => user.admin);
-      // console.log(currentUsers);
       return (
         <ul>
           {this.renderList()}

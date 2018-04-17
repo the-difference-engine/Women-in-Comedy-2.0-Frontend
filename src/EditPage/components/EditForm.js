@@ -142,7 +142,10 @@ class EditForm extends Component {
   }
 
   renderCheckbox(field) {
+
+  
     return (<div>
+
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
   }
