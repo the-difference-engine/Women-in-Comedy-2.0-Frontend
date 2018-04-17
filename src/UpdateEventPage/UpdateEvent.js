@@ -41,7 +41,7 @@ onUpload(event) {
 
   fileReader.readAsDataURL(file[0]);
   fileReader.onload = () => {
-    this.props.eventInputChange({ prop: 'img', value: file[0] })
+    this.props.eventInputChange({ prop: 'photo', value: file[0] })
     this.setState({ imgURL: fileReader.result });
   };
 }
@@ -72,7 +72,10 @@ async onUpdateEvent() {
 render() {
   const { loading } = this.props.updateEventForm;
   const event = this.props.updateEventForm;
-  console.log(this.props.updateEventForm);
+  var time = null;
+  if (event.time && event.time != "Invalid Date") {
+    time = new Date('1 Jan 2018 ' + event.time);
+  }
 
   return (
     <div>
@@ -136,16 +139,19 @@ render() {
           {this.renderImg()}
           <DatePicker
             floatingLabelText="Event Date"
-            defaultDate={event.date && new Date((event.date.split('-')[0], event.date.split('-')[1] - 1, event.date.split('-')[2]))}
+            // defaultDate={new Date()}
+            minDate={new Date()}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            value={new Date(Date.parse(event.date))}
           />
           <TimePicker
             floatingLabelText="Event Time"
-            defaultTime={event && event.date && event.time && new Date((event.date.split('-')[0], event.date.split('-')[1] - 1, event.date.split('-')[2]), event.time.toString())}
+            // defaultTime={event && event.date && event.time && new Date()}
             autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            value={time}
           />
           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
           {this.renderSpinner()}
