@@ -113,6 +113,7 @@ class CreateEvents extends Component {
             hintText="Date"
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            minDate={new Date()}
           />
           <TimePicker
             hintText="Time"
