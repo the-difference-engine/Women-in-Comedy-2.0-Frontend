@@ -9,7 +9,6 @@ export default class UserList extends Component {
   renderList(){
     const users = this.props.users.userList;
       return  users.map(user => {
-        const adminStatus = user.admin;
         return (
           <li key={user.id}>{user.firstName}</li>
         );
@@ -31,4 +30,3 @@ export default class UserList extends Component {
 //Render out each user individually to update status? 
 //Check the status of checkbox on edit form (previous feature?)
 //create component for new USerList page( or add more markup on render of UserList)
-//find out how to hit api to update status in db

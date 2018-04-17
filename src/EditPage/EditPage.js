@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import EditForm from './components/EditForm';
 import UserList from './components/UserList';
+import CreateAdmin from './components/CreateAdmin';
 import axios from 'axios';
 import {Link, Route} from 'react-router-dom';
 
@@ -34,6 +35,10 @@ class EditPage extends Component {
     const {userInfo, adminEdit} = this.props;
       return (
         <div>
+          <div>
+            <CreateAdmin />          
+          </div>
+
           <div>
             <UserList users={this.props.allUsersList} />          
           </div>

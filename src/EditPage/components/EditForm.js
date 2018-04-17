@@ -37,7 +37,7 @@ class EditForm extends Component {
         </div>
         : null }
 
-      <div>
+      <div> 
         <label className="form-check-label">Years of comedy training</label>
         <div>
           <div>
@@ -145,7 +145,6 @@ class EditForm extends Component {
 
   
     return (<div>
-
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
   }
