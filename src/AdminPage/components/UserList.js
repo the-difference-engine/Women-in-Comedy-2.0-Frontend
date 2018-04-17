@@ -16,6 +16,11 @@ export default class UserList extends Component {
   }
 
     render(){
+
+      if(this.props.users.userList.length == 0){
+        return <div>Lets Make some Admins!</div>
+      }
+  
       return (
         <ul>
           {this.renderList()}
