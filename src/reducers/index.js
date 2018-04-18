@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-
 import UserFeedReducer from './feeds_reducer';
 import UserInfoReducer from './user_reducer';
 import UsersReducer from './users_info_reducer';
@@ -38,7 +37,7 @@ const rootReducer = combineReducers({
   updateEventForm: UpdateEventReducer,
   admin: adminReducer,
   adminEdit: editUserReducer,
-  isUserLoggedIn: setUserLoggedInReducer
+  isUserLoggedIn: setUserLoggedInReducer,
 });
 
 export default rootReducer;

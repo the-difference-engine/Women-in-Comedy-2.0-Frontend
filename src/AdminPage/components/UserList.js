@@ -1,28 +1,35 @@
 import React, {Component} from 'react';
-// import fetchAllUsers from '../actions/users_actions';
+import { connect } from 'react-redux';
 
 
-
-
-export default class UserList extends Component {
+//Try fetchUser or activeUser to grab user. Add activeUser back to reducers if needed
+//Is fetch user a promise? How to grab data 
+//Explore mapStateToDispatch options on detail and list components
+class UserList extends Component {
 
   renderList(){
     const users = this.props.users.userList;
       return  users.map(user => {
         return (
-          <li key={user.id}>{user.firstName}</li>
+          <li 
+            className="list-group-item" 
+            key={user.id}
+            onClick={() => this.props.fetchUser(user.id)}>        
+            {user.firstName} {user.lastName}
+          </li>
         );
       });
   }
 
     render(){
 
+      
       if(this.props.users.userList.length == 0){
-        return <div>Lets Make some Admins!</div>
+        return <strong>Loading....</strong>
       }
   
       return (
-        <ul>
+        <ul className="list-group col-sm-4">
           {this.renderList()}
         </ul>
         
@@ -30,8 +37,12 @@ export default class UserList extends Component {
     }
 };
 
-//TODO
-//Display admin status next to each name in list 
-//Render out each user individually to update status? 
-//Check the status of checkbox on edit form (previous feature?)
-//create component for new USerList page( or add more markup on render of UserList)
+
+//return value will be props into userlist
+function mapStateToProps(state){
+  return {
+    allUsersList: state.allUsers
+  };
+}
+
+export default connect(mapStateToProps)(UserList);
