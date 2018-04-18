@@ -41,7 +41,7 @@ onUpload(event) {
 
   fileReader.readAsDataURL(file[0]);
   fileReader.onload = () => {
-    this.props.eventInputChange({ prop: 'photo', value: file[0] })
+    this.props.eventInputChange({ prop: 'img', value: file[0] })
     this.setState({ imgURL: fileReader.result });
   };
 }
@@ -60,10 +60,10 @@ renderSpinner() {
   }
 }
 async onUpdateEvent() {
-  const { address, date, description, photo, location, ticketLink, time, title, id } = this.props.updateEventForm;
+  const { address, date, description, img, location, ticketLink, time, title, id } = this.props.updateEventForm;
 
   await this.props.updateEvent(
-    { address, date, description, photo, location, ticketLink, time, title, id },
+    { address, date, description, img, location, ticketLink, time, title, id },
     userId
   );
 
@@ -139,7 +139,6 @@ render() {
           {this.renderImg()}
           <DatePicker
             floatingLabelText="Event Date"
-            // defaultDate={new Date()}
             minDate={new Date()}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
@@ -147,10 +146,10 @@ render() {
           />
           <TimePicker
             floatingLabelText="Event Time"
-            // defaultTime={event && event.date && event.time && new Date()}
             autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            pedantic={true}
             value={time}
           />
           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>

@@ -23,19 +23,19 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
 }
 
 export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
-    let { address, date, description, photo, location, ticketLink, time, title, id } = eventInfo;
+    let { address, date, description, img, location, ticketLink, time, title, id } = eventInfo;
     // if(validate(eventInfo)) {
       dispatch({ type: LOAD })
-      if(photo){
-        // const ext = photo.slice(photo.lastIndexOf('.'));
-        // const imageData = await firebase.storage().ref(`/events/${title}${ext}`).put(photo);
+      if(img){
+        const ext = img.name.slice(img.name.lastIndexOf('.'));
+        const imageData = await firebase.storage().ref(`/events/${title}${ext}`).put(img);
 
-        // photo = imageData.metadata.downloadURLs[0];
+        img = imageData.metadata.downloadURLs[0];
       }
       const request = await axios({
         method: 'put',
         url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
-        data: { userId, address, date, description, photo, location, ticketLink, time, title }
+        data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
 
       dispatch({ type: UPDATE_EVENT_SUCCESS, eventId: request.data });
