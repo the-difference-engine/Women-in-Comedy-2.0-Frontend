@@ -56,7 +56,7 @@ const validate = eventInfo => {
 export const eventInputChange = ({ prop, value }) => {
 
   if (prop === 'time') {
-    value = value.toLocaleTimeString();
+    value = value.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
   } else if (prop === 'date') {
     value = value.toLocaleDateString(['en-US'], {
       month: 'short',

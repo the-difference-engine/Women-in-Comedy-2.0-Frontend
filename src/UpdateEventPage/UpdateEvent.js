@@ -76,6 +76,7 @@ render() {
   if (event.time && event.time != "Invalid Date") {
     time = new Date('1 Jan 2018 ' + event.time);
   }
+  console.log(event.time) 
 
   return (
     <div>
@@ -146,11 +147,10 @@ render() {
           />
           <TimePicker
             floatingLabelText="Event Time"
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
-            pedantic={true}
             value={time}
+            minutesStep={5}
           />
           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
           {this.renderSpinner()}
