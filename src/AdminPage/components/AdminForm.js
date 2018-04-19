@@ -1,33 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import axios from 'axios';
 
  
 class AdminForm extends Component {
 
-  handleSubmit(val) {
-    // Do anything you want with the form value
-    console.log(val);
+  constructor(props){
+    super(props)
+
+    this.state = {
+      value: "False"
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  };
+
+//delete axios if needed. That is experienmental
+//check post route - is this right? 
+  handleSubmit(event, userId = this.props.userId) {
+    console.log(userId)
+    const request = axios({
+      method: "post",
+      url: process.env.REACT_APP_API_URL_DEV + '/users/info',
+      headers: {"id": userId},
+    })
+    request.then(data => console.log(data))
+
+    
+    alert("Admin Privlages Updated" +  " " + this.state.value)
+    event.preventDefault()
   }
 
-  renderCheckbox(field) {
-    return (<div>
-      <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
-    </div>)
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
-
  
   render() {
     return (
       <div>
-        <form model="user" onSubmit={(val) => this.handleSubmit(val)}>
-          <label>Switch User to Admin?</label><br/>
-          <button>Submit</button>
+        <form onSubmit={this.handleSubmit}>
+        Create Admin?
+          <input type="text" name="admin" onChange={this.handleChange} value={this.state.value} />
+          <input type="submit" value="Submit"/>
         </form>
       </div>
     );
   }
 }
  
-// No need to connect()!
-export default AdminForm;
+export default reduxForm({form: 'userEdit'})(AdminForm)

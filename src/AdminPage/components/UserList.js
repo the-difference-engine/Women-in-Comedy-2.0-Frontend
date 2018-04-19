@@ -20,7 +20,7 @@ class UserList extends Component {
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>        
             {user.firstName} {user.lastName}
-            <AdminForm />
+            <AdminForm userId={user.id} />
           </li>
         );
       });

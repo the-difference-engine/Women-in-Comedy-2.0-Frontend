@@ -21,7 +21,6 @@ class CreateAdmin extends Component {
   componentDidMount() {
     const { fetchAllUsers, fetchUserInfo, activeUser } = this.props;
     fetchAllUsers();
-    // fetchUserInfo();
   };
 
   render(){
