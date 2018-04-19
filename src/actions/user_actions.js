@@ -2,7 +2,6 @@ import axios from 'axios';
 import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
 
 export const fetchUserInfo = (userId) => {
- console.log(userId)
  const request = axios({
    method: 'get',
    url: process.env.REACT_APP_API_URL_DEV + '/users/info',
@@ -10,6 +9,8 @@ export const fetchUserInfo = (userId) => {
  });
  return (dispatch) => {
    request.then((data) => {
+     console.log("********")
+     console.log(data)
      dispatch({ type: FETCH_USER_INFO, payload: request })
    });
  };
@@ -42,6 +43,7 @@ export const setUserLoggedIn = (boolean, userId) => {
   }
 }
 //Testing:
+//CONSOLE LOG OUT INFO on fetchUser
 export const activeUser = (user) => {
   return {
     type: FETCH_USER_INFO,

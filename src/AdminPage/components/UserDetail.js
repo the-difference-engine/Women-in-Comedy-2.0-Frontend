@@ -7,6 +7,8 @@ class UserDetail extends Component {
 
   render() {
 
+    console.log(this.props.currentUser)
+
     if(!this.props.currentUser){
       return <strong>Select a User to get Started</strong>
     }

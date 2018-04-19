@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import AdminForm from './AdminForm';
+
+
+
 
 
 //Try fetchUser or activeUser to grab user. Add activeUser back to reducers if needed
@@ -16,6 +20,7 @@ class UserList extends Component {
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>        
             {user.firstName} {user.lastName}
+            <AdminForm />
           </li>
         );
       });

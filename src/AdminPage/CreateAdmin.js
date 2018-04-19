@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
+import AdminForm from './components/AdminForm';
 import { bindActionCreators } from 'redux';
 import { fetchAllUsers, fetchUserInfo, activeUser } from '../actions'; //action creators
 
@@ -10,7 +11,6 @@ import { fetchAllUsers, fetchUserInfo, activeUser } from '../actions'; //action 
 //Fix on click - how to grab a current users info and pass down to detail for display
 //
 //display details with onClick function on list item (similar to books)
-
 
 
 //FORM STUFF:
@@ -28,8 +28,8 @@ class CreateAdmin extends Component {
 
     return(
       <div>
-        <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} activeUser={this.props.activeUser} />
-        <UserDetail />
+        <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} />
+        <UserDetail  activeUser={this.props.activeUser} />
       </div>
     ); 
   }
