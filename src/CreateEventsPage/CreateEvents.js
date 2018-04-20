@@ -4,6 +4,12 @@ import { LeftGraySideBar, RightGraySideBar } from '../common';
 import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import {
+  TextValidator,
+  ValidatorForm,
+  SelectValidator,
+  ValidatorComponent
+} from "react-material-ui-form-validator";
 
 import './css/create-event.css'
 const userId = sessionStorage.getItem('userId')
@@ -12,12 +18,15 @@ class CreateEvents extends Component {
   constructor(props) {
     super(props);
     this.state = { imgURL: null };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onClick() {
     const input = document.getElementById('input');
     input.click();
   }
+
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -52,20 +61,30 @@ class CreateEvents extends Component {
 
       this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`) 
   }
+
+  
+
   render() {
     const { loading } = this.props.createEventForm;
 
     return (
       <div>
         <Navbar history={this.props.history}/>
+        <ValidatorForm
+              onSubmit={this.onSubmit}
+        >
         <div id="create-event-wrapper">
-          <TextField
+          <TextValidator
             hintText="Event Title"
+            // name="title"
             floatingLabelText="Enter Name Of The Event"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             disabled={loading}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
+            validators={['required']}
+            errorMessages={['Event Title is required']}
+            value={this.props.createEventForm.title}
           />
           <TextField
             hintText="Location"
@@ -126,11 +145,13 @@ class CreateEvents extends Component {
           <RaisedButton
             secondary
             label="create event"
+            type="submit"
             onClick={this.onCreateEvent.bind(this)}
             style={{ marginTop: '15px' }}
             disabled={loading}
           />
         </div>
+        </ValidatorForm>
       </div>
     )
   }
