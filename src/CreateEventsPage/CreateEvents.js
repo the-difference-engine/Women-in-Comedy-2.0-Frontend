@@ -4,6 +4,12 @@ import { LeftGraySideBar, RightGraySideBar } from '../common';
 import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import {
+  TextValidator,
+  ValidatorForm,
+  SelectValidator,
+  ValidatorComponent
+} from "react-material-ui-form-validator";
 
 import './css/create-event.css'
 const userId = sessionStorage.getItem('userId')
@@ -12,6 +18,8 @@ class CreateEvents extends Component {
   constructor(props) {
     super(props);
     this.state = { imgURL: null };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onCreateEvent.bind(this);
   }
 
   onClick() {
@@ -28,6 +36,10 @@ class CreateEvents extends Component {
       this.props.eventInputChange({ prop: 'img', value: file[0] })
       this.setState({ imgURL: fileReader.result });
     };
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   renderImg() {
@@ -54,20 +66,30 @@ class CreateEvents extends Component {
 
       this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`) 
   }
+
+  
+
   render() {
     const { loading } = this.props.createEventForm;
 
     return (
       <div>
         <Navbar history={this.props.history}/>
+        <ValidatorForm
+            onSubmit={this.onCreateEvent}
+        >
         <div id="create-event-wrapper">
-          <TextField
+          <TextValidator
             hintText="Event Title"
+            name="title"
             floatingLabelText="Enter Name Of The Event"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             disabled={loading}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'title', value })}
+            validators={['required']}
+            errorMessages={['Event Title is required']}
+            value={this.props.createEventForm.title}
           />
           <TextField
             hintText="Location"
@@ -119,7 +141,6 @@ class CreateEvents extends Component {
           />
           <TimePicker
             hintText="Time"
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
             minutesStep={5}
@@ -129,11 +150,13 @@ class CreateEvents extends Component {
           <RaisedButton
             secondary
             label="create event"
+            type="submit"
             onClick={this.onCreateEvent.bind(this)}
             style={{ marginTop: '15px' }}
             disabled={loading}
           />
         </div>
+        </ValidatorForm>
       </div>
     )
   }
