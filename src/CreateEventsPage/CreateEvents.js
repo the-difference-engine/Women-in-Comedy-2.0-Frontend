@@ -18,6 +18,7 @@ class CreateEvents extends Component {
     const input = document.getElementById('input');
     input.click();
   }
+
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -42,6 +43,7 @@ class CreateEvents extends Component {
       );
     }
   }
+  
    async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
@@ -120,6 +122,7 @@ class CreateEvents extends Component {
             autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            minutesStep={5}
           />
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
