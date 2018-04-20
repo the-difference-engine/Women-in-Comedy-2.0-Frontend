@@ -6,7 +6,7 @@ import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import { LeftGraySideBar } from '../common/LeftGraySideBar';
 import { bindActionCreators } from 'redux';
-import { fetchAllUsers, fetchUserInfo, activeUser, updateSettings, updateEvent } from '../actions'; //action 
+import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent } from '../actions'; //action 
 import './css/navbar.css';
 
 
@@ -40,7 +40,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, activeUser: activeUser, updateSettings: updateSettings, updateUser: updateEvent }, dispatch)
+  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAdmin);
