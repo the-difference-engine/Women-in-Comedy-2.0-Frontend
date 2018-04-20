@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import AdminForm from './AdminForm';
 
 
-
-
-
-//Try fetchUser or activeUser to grab user. Add activeUser back to reducers if needed
-//Is fetch user a promise? How to grab data 
-//Explore mapStateToDispatch options on detail and list components
 class UserList extends Component {
 
   renderList(){
@@ -18,9 +12,9 @@ class UserList extends Component {
           <li 
             className="list-group-item" 
             key={user.id}
-            onClick={() => this.props.fetchUser(user.id)}>        
+            onClick={() => this.props.fetchUser(user.id)}>      
             {user.firstName} {user.lastName}
-            <AdminForm userId={user.id} />
+            <AdminForm userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
           </li>
         );
       });

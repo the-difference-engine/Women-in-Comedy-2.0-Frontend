@@ -52,7 +52,7 @@ class UpdateEvent extends Component {
       );
     }
   }
-   async onUpdateEvent() {
+  async onUpdateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
    await this.props.updateEvent(
