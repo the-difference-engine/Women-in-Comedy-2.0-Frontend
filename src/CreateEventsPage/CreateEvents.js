@@ -19,7 +19,7 @@ class CreateEvents extends Component {
     super(props);
     this.state = { imgURL: null };
     this.handleChange = this.handleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onCreateEvent.bind(this);
   }
 
   onClick() {
@@ -36,6 +36,10 @@ class CreateEvents extends Component {
       this.props.eventInputChange({ prop: 'img', value: file[0] })
       this.setState({ imgURL: fileReader.result });
     };
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   renderImg() {
@@ -71,12 +75,12 @@ class CreateEvents extends Component {
       <div>
         <Navbar history={this.props.history}/>
         <ValidatorForm
-              onSubmit={this.onSubmit}
+            onSubmit={this.onCreateEvent}
         >
         <div id="create-event-wrapper">
           <TextValidator
             hintText="Event Title"
-            // name="title"
+            name="title"
             floatingLabelText="Enter Name Of The Event"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -136,9 +140,9 @@ class CreateEvents extends Component {
           />
           <TimePicker
             hintText="Time"
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            minutesStep={5}
           />
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
