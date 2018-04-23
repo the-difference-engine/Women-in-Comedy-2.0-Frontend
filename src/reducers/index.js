@@ -17,6 +17,8 @@ import UpdateEventReducer from './update_event';
 import adminReducer from './admin_reducer';
 import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
+import updateSettingsReducer from './reducer_update_settings';
+
 
 
 const rootReducer = combineReducers({
@@ -38,6 +40,7 @@ const rootReducer = combineReducers({
   admin: adminReducer,
   adminEdit: editUserReducer,
   isUserLoggedIn: setUserLoggedInReducer,
+  updateAdmin: updateSettingsReducer 
 });
 
 export default rootReducer;

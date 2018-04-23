@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
 
 //try users this url to hit a specific user in updateSettings
+//REMEMBER NEW UPDATESETTINGS REDUCER 
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
@@ -10,8 +11,6 @@ export const fetchUserInfo = (userId) => {
  });
  return (dispatch) => {
    request.then((data) => {
-    //  console.log("********")
-    //  console.log(data)
      dispatch({ type: FETCH_USER_INFO, payload: request})
    });
  };
@@ -36,15 +35,34 @@ export const editUser = (boolean) => {
   }
 }
 
-export const updateSettings = (id, item) => {
+//TRY THIS AGAIN WITH THE RIGHT ENDPOINT NOW ENETEREd
+// export const updateSettings = (id, item) => {
+//   console.log(id)
+//   return dispatch => {
+//     console.log(item)
+//     return axios.put(process.env.REACT_APP_API_URL_DEV + `users/connections/${id}`, item).then(response => {
+//         console.log(response.data)
+//     })
+//   }
+// }
+
+export const updateSettings = (userId) => {
+  //
+  const id = userId
   console.log(id)
-  return dispatch => {
-    console.log(item)
-    return axios.put(process.env.REACT_APP_API_URL_DEV + `users/${id}`, item).then(response => {
-        console.log(response.data)
-    })
-  }
-}
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
+    headers: {"id": userId, admin: 'trueboss'},
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+
+      dispatch({ type: EDIT_USER, payload: request})
+    });
+  };
+ };
 
 export const setUserLoggedIn = (boolean, userId) => {
   return {
@@ -53,11 +71,18 @@ export const setUserLoggedIn = (boolean, userId) => {
     userId: userId
   }
 }
-//Testing:
-//CONSOLE LOG OUT INFO on fetchUser
-export const activeUser = (user) => {
-  return {
-    type: FETCH_USER_INFO,
-    payload: user
-  }
-}
+
+// export const updateSettings = () => {
+//   const idea = {
+//     title: this.state.title,
+//     body: this.state.body
+//   }
+
+//   axios.put({
+//     method: 'patch',
+//     url: process.env.REACT_APP_API_URL_DEV + `users/connections/${userId}`,
+//     headers: {"id": userId, admin: 'trueboss'},
+//   }).then(response => console.log(response))
+
+ 
+// }

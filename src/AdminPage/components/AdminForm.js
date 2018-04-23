@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import axios from 'axios';
 import UserList from './UserList';
+import { bindActionCreators } from 'redux';
+
 
 
  
@@ -19,16 +21,15 @@ class AdminForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-  //create get function to pull userInfo 
- //call function 
-//delete axios if needed. That is experienmental
-
+  //USE NET WORK RESPONSE/PREVIEW IN CONSOLE TO TEST RESPONSES!!!
   handleSubmit(event, userId = this.props.userId) {
-    console.log(event)
-    const updateAdmin = this.props.updateSettings(userId, "true")
+    event.preventDefault();
+    // let answer;
+    // response == "1" ? answer = "true" : answer == "false";
+    this.props.updateSettings(userId);
     
     alert("Admin Privlages Updated" +  " " + this.state.value)
-    event.preventDefault()
+    this.setState({ value : '' }); //re-render and clear field 
   }
 
 
@@ -42,7 +43,7 @@ class AdminForm extends Component {
         <form onSubmit={this.handleSubmit}>
         Create Admin?
           <input type="text" name="admin" onChange={this.handleChange} value={this.state.value} />
-          <input type="checkbox" name="admin" value="1"/>
+          <input type="checkbox" name="MEEEE" value="1"/>
           <input type="submit" value="Submit"/>
         </form>
       </div>
