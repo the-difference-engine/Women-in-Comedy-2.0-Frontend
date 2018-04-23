@@ -60,10 +60,10 @@ renderSpinner() {
   }
 }
 async onUpdateEvent() {
-  const { address, date, description, photo, location, ticketLink, time, title, id } = this.props.updateEventForm;
+  const { address, date, description, img, location, ticketLink, time, title, id } = this.props.updateEventForm;
 
   await this.props.updateEvent(
-    { address, date, description, photo, location, ticketLink, time, title, id },
+    { address, date, description, img, location, ticketLink, time, title, id },
     userId
   );
 
@@ -72,7 +72,10 @@ async onUpdateEvent() {
 render() {
   const { loading } = this.props.updateEventForm;
   const event = this.props.updateEventForm;
-  console.log(this.props.updateEventForm);
+  var time = null;
+  if (event.time && event.time != "Invalid Date") {
+    time = new Date('1 Jan 2018 ' + event.time);
+  }
 
   return (
     <div>
@@ -136,16 +139,17 @@ render() {
           {this.renderImg()}
           <DatePicker
             floatingLabelText="Event Date"
-            defaultDate={event.date && new Date((event.date.split('-')[0], event.date.split('-')[1] - 1, event.date.split('-')[2]))}
+            minDate={new Date()}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            value={new Date(Date.parse(event.date))}
           />
           <TimePicker
             floatingLabelText="Event Time"
-            defaultTime={event && event.date && event.time && new Date((event.date.split('-')[0], event.date.split('-')[1] - 1, event.date.split('-')[2]), event.time.toString())}
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            value={time}
+            minutesStep={5}
           />
           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
           {this.renderSpinner()}
