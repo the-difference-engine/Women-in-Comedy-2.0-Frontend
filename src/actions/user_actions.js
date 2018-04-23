@@ -47,9 +47,7 @@ export const editUser = (boolean) => {
 // }
 
 export const updateSettings = (userId) => {
-  //
-  const id = userId
-  console.log(id)
+
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
