@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
 import AdminForm from './components/AdminForm';
-import Navbar from '../common/Navbar';
-import { LeftGraySideBar } from '../common/LeftGraySideBar';
+import HeaderComponent from '../HomePage/components/HeaderComponent';
+import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
 import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent } from '../actions'; //action 
 import './css/navbar.css';
@@ -27,8 +27,19 @@ class CreateAdmin extends Component {
 
     return(
       <div>
-        <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings=      {this.props.updateSettings} />
-        <UserDetail  activeUser={this.props.activeUser} />    
+        <HeaderComponent />
+        <LeftGraySideBar>
+        </LeftGraySideBar>
+        <PageContent>
+         <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings=      {this.props.updateSettings} />
+        <UserDetail  activeUser={this.props.activeUser} /> 
+        </PageContent>
+        <RightGraySideBar>
+        </RightGraySideBar>
+        
+         
+        
+        
       </div>
     ); 
   }
