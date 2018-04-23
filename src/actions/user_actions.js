@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
 
 //try users this url to hit a specific user in updateSettings
+//REMEMBER NEW UPDATESETTINGS REDUCER 
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
@@ -34,27 +35,30 @@ export const editUser = (boolean) => {
   }
 }
 
+//TRY THIS AGAIN WITH THE RIGHT ENDPOINT NOW ENETEREd
 // export const updateSettings = (id, item) => {
 //   console.log(id)
 //   return dispatch => {
 //     console.log(item)
-//     return axios.put(process.env.REACT_APP_API_URL_DEV + `users/${id}`, item).then(response => {
+//     return axios.put(process.env.REACT_APP_API_URL_DEV + `users/connections/${id}`, item).then(response => {
 //         console.log(response.data)
 //     })
 //   }
 // }
 
 export const updateSettings = (userId) => {
-  // const flipToTrue = (answer == 'true')
+  //
+  const id = userId
+  console.log(id)
   const request = axios({
     method: 'patch',
-    url: process.env.REACT_APP_API_URL_DEV + `users/connections/${userId}`,
+    url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
     headers: {"id": userId, admin: 'trueboss'},
   });
+
   return (dispatch) => {
     request.then((data) => {
-      //data is the user object 
-      console.log(data)
+
       dispatch({ type: EDIT_USER, payload: request})
     });
   };
@@ -74,13 +78,11 @@ export const setUserLoggedIn = (boolean, userId) => {
 //     body: this.state.body
 //   }
 
-//   axios.put(
-//     process.env.REACT_APP_API_URL_DEV + 'users',
-//     {
-//       idea: idea
-//     })
-//   .then(response => {
-//     console.log(response)
-//   })
-//   .catch(error => console.log(error))
+//   axios.put({
+//     method: 'patch',
+//     url: process.env.REACT_APP_API_URL_DEV + `users/connections/${userId}`,
+//     headers: {"id": userId, admin: 'trueboss'},
+//   }).then(response => console.log(response))
+
+ 
 // }
