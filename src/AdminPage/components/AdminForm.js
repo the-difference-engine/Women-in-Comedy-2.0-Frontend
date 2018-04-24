@@ -42,9 +42,7 @@ class AdminForm extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
         Create Admin?
-          <input type="text" name="admin" onChange={this.handleChange} value={this.state.value} />
           <input type="checkbox" name="MEEEE" value="1"/>
-          <input type="submit" value="Submit"/>
         </form>
       </div>
     );
