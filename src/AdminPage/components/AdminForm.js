@@ -14,8 +14,8 @@ class AdminForm extends Component {
     super(props)
 
     this.state = {
-      value: '',
-      userMade: false
+      value: false
+
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class AdminForm extends Component {
     this.props.updateSettings(userId);
     
     alert("Admin Privlages Updated" +  " " + this.state.value)
-    this.setState({ value : '' }); //re-render and clear field 
+    this.setState({ value : 'True' }); //re-render and clear field 
   }
 
 
@@ -42,8 +42,7 @@ class AdminForm extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
         Create Admin?
-          <input type="text" name="admin" onChange={this.handleChange} value={this.state.value} />
-          <input type="checkbox" name="MEEEE" value="1"/>
+          <input type="checkbox" name="MEEEE" value="1" />
           <input type="submit" value="Submit"/>
         </form>
       </div>

@@ -47,22 +47,25 @@ export const editUser = (boolean) => {
 // }
 
 export const updateSettings = (userId) => {
+  let switchAdmin = true;
+
+
 
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
-    headers: {"id": userId, admin: 'trueboss'},
+    headers: {"id": userId},
+    data: { "admin":  switchAdmin } 
   });
 
   return (dispatch) => {
     request.then((data) => {
-
       dispatch({ type: EDIT_USER, payload: request})
     });
   };
  };
 
-export const setUserLoggedIn = (boolean, userId) => {
+export const setUserLoggedIn = (boolean, userId) => { ``
   return {
     type: SET_USER_LOGGED_IN,
     loggedIn: boolean,
