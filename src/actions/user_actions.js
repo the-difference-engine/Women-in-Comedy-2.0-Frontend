@@ -49,8 +49,6 @@ export const editUser = (boolean) => {
 export const updateSettings = (userId) => {
   let switchAdmin = true;
 
-
-
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
