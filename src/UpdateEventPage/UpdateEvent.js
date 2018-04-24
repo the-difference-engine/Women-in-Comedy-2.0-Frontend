@@ -76,7 +76,6 @@ render() {
   if (event.time && event.time != "Invalid Date") {
     time = new Date('1 Jan 2018 ' + event.time);
   }
-  console.log(event.time) 
 
   return (
     <div>
