@@ -21,6 +21,13 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
     //return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
 
+  const formatUrl = (url) => {
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'http://' + url;
+    }
+    return url;
+  }
+
   if(event && event.hostInfo) {
     const { title, date, time, location, about, ticket_link, user_id } = event.info;
     const { photo, firstName, lastName } = event.hostInfo;
@@ -31,7 +38,7 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         <h2 id="event-details"> Host: {firstName} {lastName}</h2>
         <h2 id="event-date">{date} at {time}</h2>
         <h3 id="event-location">{location}</h3>
-        <a><p id="event-ticket_link">{ticket_link}</p></a>
+        <a href={formatUrl(ticket_link)} target="_blank" id="event-ticket_link">{ticket_link}</a>
         <p id="event-desc">{about}</p>
         
         {renderButton({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo })}
