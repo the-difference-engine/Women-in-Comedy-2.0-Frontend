@@ -134,7 +134,7 @@ class CreateEvents extends Component {
             label="create event"
             onClick={this.onCreateEvent.bind(this)}
             style={{ marginTop: '15px' }}
-            disabled={loading || !this.props.createEventForm.title || !this.props.createEventForm.location}
+            disabled={loading}
           />
         </div>
       </div>
