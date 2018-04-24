@@ -35,17 +35,9 @@ export const editUser = (boolean) => {
   }
 }
 
-//TRY THIS AGAIN WITH THE RIGHT ENDPOINT NOW ENETEREd
-// export const updateSettings = (id, item) => {
-//   console.log(id)
-//   return dispatch => {
-//     console.log(item)
-//     return axios.put(process.env.REACT_APP_API_URL_DEV + `users/connections/${id}`, item).then(response => {
-//         console.log(response.data)
-//     })
-//   }
-// }
-
+//update to redux form 
+//check docs for checkbox form 
+//pass form object into update settings from the form 
 export const updateSettings = (userId) => {
   let switchAdmin = true;
 
