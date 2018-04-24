@@ -37,7 +37,7 @@ class UnreadNotification extends Component {
             <div className="container">
                 <div className="row events-grid" id="my-events">
                     <div className="col-xs-offset-1 col-xs-3">
-                        <h1 className="events-header">Notifications</h1>
+                        <h1 className="events-header" id="next-event" >Notifications</h1>
                         <button type="button" className="btn btn-danger"
                                 onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
                             All As Read

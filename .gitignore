@@ -17,9 +17,11 @@
 .env.test.local
 .env.production.local
 package-lock.json*
+package.json
 yarn-lock.json*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn-lock.json
+.idea/workspace.xml
