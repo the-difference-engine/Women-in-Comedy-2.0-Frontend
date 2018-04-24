@@ -8,17 +8,22 @@ import {markNotificationsAsRead, markOneAsRead} from "../../actions";
 class UnreadNotification extends Component {
 
     renderNotifications() {
-        if (this.props.notifications===null) {
+        if (this.props.notifications === null) {
             return <div>You have no notifications at this time.</div>
         } else {
             return this.props.notifications.notifications.map(notification => {
                 if (notification.action === "connection_accepted") {
                     return (
                         <div key={notification.id}>
-                            <div>
-                                <Link to={`/profile/${notification.sent_from}`} onClick={ () => this.props.markOneAsRead(notification.sent_to, notification.id)} method="POST" ><p
-                                    id="connection-name">{notification.sent_from_name} </p></Link>
+                            <div id="user-info">
+                                <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+
+                                <Link to={`/profile/${notification.sent_from}`}
+                                      onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
+                                      method="POST"><p
+                                    className="connection-name">{notification.sent_from_name} </p></Link>
                                 <span>has accepted your connection request</span>
+
                             </div>
                         </div>
                     );
@@ -33,14 +38,10 @@ class UnreadNotification extends Component {
                 <div className="row events-grid" id="my-events">
                     <div className="col-xs-offset-1 col-xs-3">
                         <h1 className="events-header">Notifications</h1>
-                    </div>
-                    <div id="events-search-bar">
-                        <div className="col-xs-offset-4 col-xs-4">
-                            <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Find Events"/>
-                                <i className="glyphicon glyphicon-search"></i>
-                            </div>
-                        </div>
+                        <button type="button" className="btn btn-danger"
+                                onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
+                            All As Read
+                        </button>
                     </div>
                 </div>
                 <div className="row">
@@ -48,7 +49,14 @@ class UnreadNotification extends Component {
                     {this.renderNotifications()}
                     <br/>
                 </div>
-                <button type="button" onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark All As Read</button>
+                <div className="container">
+                    <div id="my-events">
+                        <button type="button" className="btn btn-danger"
+                                onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
+                            All As Read
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     }

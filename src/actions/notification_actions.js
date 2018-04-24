@@ -16,7 +16,6 @@ export const fetchNotifications = (userId) => {
 };
 
 export const markNotificationsAsRead = (user_id)  => {
-    // debugger;
     const request = axios({
         method: 'get',
         url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_all_read/${user_id}`,
@@ -29,8 +28,6 @@ export const markNotificationsAsRead = (user_id)  => {
             dispatch({type: MARK_NOTIFICATIONS_AS_READ, payload: request})
         });
     };
-    // dispatch({ type: MARK_NOTIFICATIONS_AS_READ, payload: request })
-
 };
 
 
@@ -44,7 +41,7 @@ export const markOneAsRead = (user_id, id) => async dispatch => {
     });
     dispatch({ type: MARK_ONE_AS_READ, payload: request });
 
-}
+};
 
 
 

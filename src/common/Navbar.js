@@ -41,7 +41,6 @@ class Navbar extends Component {
     componentDidMount() {
         const {fetchAllUsers} = this.props;
         fetchAllUsers();
-        // fetchNotifications(sessionStorage.getItem('userId'));
     }
 
     handleTouchTap(event) {
@@ -73,17 +72,6 @@ class Navbar extends Component {
         fetchConnectionStatus({sender_id, receiver_id});
         this.props.history.push(`/profile/${item.value}`);
     }
-
-
-    // renderNotifications() {
-    //   if (this.props.allNotifications) {
-    //     return this.props.allNotifications.map((notification) => {
-    //       return (
-    //         <li key={notification.id}>{notification.action}</li>
-    //         );
-    //     });
-    //   };
-    // }
 
     render() {
         const locationMenuItems = [

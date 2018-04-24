@@ -39,7 +39,7 @@
   display: inline-block;
 }
 
-#connection-name {
+.connection-name {
   display: inline-block;
   position: relative;
   /*left: 10px;*/

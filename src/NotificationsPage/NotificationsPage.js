@@ -14,9 +14,6 @@ class Notification extends Component {
         this.state = {
             rerender: false
         };
-        // this._myHandler = this._myHandler.bind(this);
-        // this.renderNotis = this.renderNotis.bind(this);
-        // this.renderNotifications = this.renderNotifications.bind(this);
     }
 
 
@@ -30,26 +27,11 @@ class Notification extends Component {
         fetchUserInfo(sessionStorage.getItem('userId'));
         fetchNotifications(sessionStorage.getItem('userId'));
         fetchUserConnections(sessionStorage.getItem('userId'));
-        // debugger;
 
     }
 
-    // renderNotifications(notifications) {
-    //     return notifications.map(notification => {
-    //         return (
-    //             <div key={notification.id}>
-    //                 <div id="user-pic"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/><a
-    //                     href={"http://localhost:3000/notifications/" + notification.id}>Does this work</a>
-    //                 </div>
-    //             </div>
-    //         );
-    //     });
-    // };
-
-
     render() {
         const {userInfo, userConnections, notifications, receivedConnectionRequest} = this.props;
-        // debugger;
         return (
             <div>
                 <Navbar history={this.props.history} notifications={notifications}/>
@@ -60,24 +42,6 @@ class Notification extends Component {
                 <LeftGraySideBar>
                     <UserInfo userInfo={userInfo} userConnections={userConnections}/>
                 </LeftGraySideBar>
-                {/*<PageContent>*/}
-                    {/*<div className="feed-post-bar">*/}
-                        {/*<div className="wrap">*/}
-
-                            {/*<div className="notifications">*/}
-
-                                <button type="button" className="btn btn-danger" onClick={this._myHandler}><i className="fa fa-trash"> Delete</i></button>
-                                {/*<button type="button" className="btn btn-danger" onClick={this.renderNotis}><i className="fa fa-trash"> Notifications</i></button>*/}
-
-                                {/*<p id="notification">Notifications<span*/}
-                                {/*id="notification-count">Need to fill later</span></p>*/}
-                                {/*<div id="notification-info-wrapper">*/}
-                                {/*{notifications}*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                {/*</PageContent>*/}
             </div>
         );
     }
