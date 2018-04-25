@@ -80,7 +80,7 @@ render() {
   return (
     <div>
       <Navbar history={this.props.history} />
-      {event.user_id && (event.user_id.toString() === userId) &&
+      {event.user_id && (event.user_id.toString() === userId || sessionStorage.adminUser === "true") &&
         <div id="create-event-wrapper">
           <TextField
             id="Title"
