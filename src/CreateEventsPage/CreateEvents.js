@@ -45,6 +45,14 @@ class CreateEvents extends Component {
     }
   }
   
+
+  // componentWillReceiveProps(newProps) {
+  //   const event = newProps.updateEventForm;
+  //   if (event.user_id && event.user_id.toString() !== userId) {
+  //     this.props.history.push(`/eventsfeed/${event.id}`);
+  //   }
+  //   this.setState({ imgURL: event.photo });
+  // }
    async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
@@ -134,7 +142,7 @@ class CreateEvents extends Component {
             label="create event"
             onClick={this.onCreateEvent.bind(this)}
             style={{ marginTop: '15px' }}
-            disabled={loading || !this.props.createEventForm.title || !this.props.createEventForm.location}
+            disabled={loading}
           />
         </div>
       </div>
