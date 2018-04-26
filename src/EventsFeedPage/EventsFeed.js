@@ -37,6 +37,7 @@ class EventsFeed extends Component {
   render() {
     return (
       <div id="events-feed-container">
+      <div> Test </div>
         <div>
           <Navbar history={this.props.history} />
         </div>
