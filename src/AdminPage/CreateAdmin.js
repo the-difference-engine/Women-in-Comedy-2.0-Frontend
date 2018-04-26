@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import UserList from './components/UserList';
-import UserDetail from './components/UserDetail';
 import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
@@ -23,6 +22,10 @@ class CreateAdmin extends Component {
     updateSettings();
   };
 
+  renderUserDetails(event) {
+    const userInfo = this.props.fetchUserInfo()
+  }
+
   render(){
 
     return(
@@ -32,7 +35,6 @@ class CreateAdmin extends Component {
         </LeftGraySideBar>
         <PageContent>
          <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings=      {this.props.updateSettings} />
-        <UserDetail  activeUser={this.props.activeUser} /> 
         </PageContent>
         <RightGraySideBar>
         </RightGraySideBar>

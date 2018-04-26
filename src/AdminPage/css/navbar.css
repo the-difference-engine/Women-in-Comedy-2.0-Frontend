@@ -94,3 +94,8 @@ display: block;
 #navbar button:hover {
 background-color: #860A0A;
 }
+
+#admin-status-display {
+  color:red;
+  font-size: 18px;
+}

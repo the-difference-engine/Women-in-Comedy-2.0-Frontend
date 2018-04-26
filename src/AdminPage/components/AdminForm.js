@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Field, reduxForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 import axios from 'axios';
 import UserList from './UserList';
 import { bindActionCreators } from 'redux';
+import '../css/navbar.css';
 
 
 
@@ -14,36 +15,48 @@ class AdminForm extends Component {
     super(props)
 
     this.state = {
-      value: false
-
+      status: 'Current'
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-  //USE NET WORK RESPONSE/PREVIEW IN CONSOLE TO TEST RESPONSES!!!
+
   handleSubmit(event, userId = this.props.userId) {
     event.preventDefault();
-    // let answer;
-    // response == "1" ? answer = "true" : answer == "false";
-    this.props.updateSettings(userId);
     
-    alert("Admin Privlages Updated" +  " " + this.state.value)
-    this.setState({ value : 'True' }); //re-render and clear field 
+    let adminStatus = this.props.adminStatus;
+    
+    this.props.updateSettings(userId, adminStatus);
+
+    let displayAdmin;
+    adminStatus == true ? displayAdmin = "Have Been Removed" : displayAdmin = "Have Been Added";
+    
+    alert("Admin Privlages " + displayAdmin)
+    this.setState({ status : 'Updated' }); //re-render and clear field 
+    // console.log("yes", this.state.status)
   }
 
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({status: event.target.status});
+  }
+
+  renderAdminStatus(event) {
+    let currentStatus;
+    this.props.adminStatus == true ? currentStatus = "Admin" : currentStatus = "Non-Admin";
+    return currentStatus;
   }
  
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        Create Admin?
-          <input type="checkbox" name="MEEEE" value="1" />
-          <input type="submit" value="Submit"/>
+         <p id="admin-status-display">Admin Status: {this.renderAdminStatus()}</p>
+
+         <h6>Switch Status?</h6>
+         <input type="submit" value="Submit"/>
+         <input type="checkbox" name="checkbox_admin"/><br></br>
         </form>
       </div>
     );
