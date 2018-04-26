@@ -149,10 +149,10 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
-          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-              <MenuItem value={'private'} primaryText="private" />
-              <MenuItem value={'public'} primaryText="public" />
-          </DropDownMenu>
+          <TextField 
+          onChange={(event, value) => this.props.eventInputChange({ prop: 'status', value })}
+          >
+          </TextField>
 
 
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
