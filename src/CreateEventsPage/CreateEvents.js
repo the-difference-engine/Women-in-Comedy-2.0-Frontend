@@ -11,9 +11,17 @@ const userId = sessionStorage.getItem('userId')
 class CreateEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = { imgURL: null };
+    this.state = { 
+      imgURL: null,
+      value: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(event, index, value){ 
+    this.setState({value});
+  }
+  
   onClick() {
     const input = document.getElementById('input');
     input.click();
@@ -44,6 +52,11 @@ class CreateEvents extends Component {
       );
     }
   }
+
+   
+ 
+  
+  
   
 
   // componentWillReceiveProps(newProps) {
@@ -136,9 +149,9 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
-          <DropDownMenu value={this.props.value} onChange={(event , value) => this.props.eventInputChange({prop: 'status', value})}>
-              <MenuItem value="private" primaryText="private" />
-              <MenuItem value="public" primaryText="public" />
+          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+              <MenuItem value={'private'} primaryText="private" />
+              <MenuItem value={'public'} primaryText="public" />
           </DropDownMenu>
 
 
