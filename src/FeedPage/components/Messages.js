@@ -23,6 +23,7 @@ class Messages extends Component {
       );
     });
   }
+
   render() {
     const { pendingUserConnections } = this.props;
     return (
