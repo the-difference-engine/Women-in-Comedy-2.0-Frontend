@@ -3,7 +3,7 @@ import Navbar from '../common/Navbar';
 import { LeftGraySideBar, RightGraySideBar } from '../common';
 import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
-import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress, DropDownMenu, MenuItem } from 'material-ui';
 
 import './css/create-event.css'
 const userId = sessionStorage.getItem('userId')
@@ -54,10 +54,10 @@ class CreateEvents extends Component {
   //   this.setState({ imgURL: event.photo });
   // }
    async onCreateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
+    const { address, date, description, img, location, ticketLink, time, title, status } = this.props.createEventForm;
 
    await this.props.createEvent(
-      { address, date, description, img, location, ticketLink, time, title },
+      { address, date, description, img, location, ticketLink, time, title, status },
       userId,
       );
 
@@ -68,6 +68,7 @@ class CreateEvents extends Component {
 
   render() {
     const { loading } = this.props.createEventForm;
+    console.log(this.props.createEventForm)
 
     return (
       <div>
@@ -135,6 +136,12 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
+          <DropDownMenu value={this.props.value} onChange={(event , value) => this.props.eventInputChange({prop: 'status', value})}>
+              <MenuItem value="private" primaryText="private" />
+              <MenuItem value="public" primaryText="public" />
+          </DropDownMenu>
+
+
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
           <RaisedButton
