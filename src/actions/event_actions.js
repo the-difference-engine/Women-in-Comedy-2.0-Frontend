@@ -3,7 +3,7 @@ import axios from 'axios'
 import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT_FAIL } from './types';
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
-    let { address, date, description, img, location, ticketLink, time, title, status } = eventInfo;
+    let { address, date, description, img, location, ticketLink, time, title, is_private } = eventInfo;
     if(validate(eventInfo)) {
       dispatch({ type: LOAD })
       const ext = img.name.slice(img.name.lastIndexOf('.'));
@@ -13,7 +13,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
       const request = await axios({
         method: 'post',
         url: process.env.REACT_APP_API_URL_DEV + 'events',
-        data: { userId, address, date, description, img, location, ticketLink, time, title, status }
+        data: { userId, address, date, description, img, location, ticketLink, time, title, is_private }
       })
 
       dispatch({ type: CREATE_EVENT_SUCCESS, eventId: request.data });
@@ -23,7 +23,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
 }
 
 export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
-    let { address, date, description, img, location, ticketLink, time, title, id } = eventInfo;
+    let { address, date, description, img, location, ticketLink, time, title, id, is_private } = eventInfo;
     // if(validate(eventInfo)) {
       dispatch({ type: LOAD })
       if(img){
@@ -35,7 +35,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
       const request = await axios({
         method: 'put',
         url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
-        data: { userId, address, date, description, img, location, ticketLink, time, title }
+        data: { userId, address, date, description, img, location, ticketLink, time, title, is_private }
       })
 
       dispatch({ type: UPDATE_EVENT_SUCCESS, eventId: request.data });

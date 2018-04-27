@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   ticketLink: '',
   address: '',
   id: null,
-  status: ''
+  is_private: ''
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {

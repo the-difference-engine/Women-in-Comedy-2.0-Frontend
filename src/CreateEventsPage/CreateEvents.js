@@ -150,7 +150,7 @@ class CreateEvents extends Component {
             minutesStep={5}
           />
           <TextField 
-          onChange={(event, value) => this.props.eventInputChange({ prop: 'status', value })}
+          onChange={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
           >
           </TextField>
 
