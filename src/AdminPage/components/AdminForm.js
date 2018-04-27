@@ -7,8 +7,6 @@ import { bindActionCreators } from 'redux';
 import '../css/navbar.css';
 
 
-
- 
 class AdminForm extends Component {
 
   constructor(props){
@@ -33,8 +31,9 @@ class AdminForm extends Component {
     adminStatus == true ? displayAdmin = "Have Been Removed" : displayAdmin = "Have Been Added";
     
     alert("Admin Privlages " + displayAdmin)
-    this.setState({ status : 'Updated' }); //re-render and clear field 
-    // console.log("yes", this.state.status)
+    setTimeout(function(){
+      window.location.reload();},10); //re-render and clear field 
+    this.setState({ status : 'Updated' });
   }
 
 
@@ -71,23 +70,3 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps)(AdminForm);
  
-// export default reduxForm({form: 'userEdit'})(AdminForm)
-
-
-
-
-//Register
-
-// onSubmit(values) {
-//   axios.post(process.env.REACT_APP_API_URL_DEV + 'users', values).then(payload => {
-//     this.setState({userMade: true});
-//   }).catch(err => {
-//     alert(err)
-//   });
-
-    // console.log(userId)
-    // const request = axios({
-    //   method: "patch",
-    //   url: process.env.REACT_APP_API_URL_DEV + `/users/${userId}`,
-    //   headers: {"id": userId},
-    // }).then(data => console.log(data.data))
