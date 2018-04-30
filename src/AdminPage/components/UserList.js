@@ -9,13 +9,13 @@ class UserList extends Component {
     const users = this.props.users.userList;
       return  users.map(user => {
         return (
-          <li 
-            className="list-group-item" 
+          <dt 
+
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>      
             {user.firstName} {user.lastName}
             <AdminForm adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
-          </li>
+          </dt>
         );
       });
   }
@@ -29,7 +29,7 @@ class UserList extends Component {
   
       return (
         <ul className="list-group col-sm-4">
-          {this.renderList()}
+          <p>{this.renderList()}</p>
         </ul>
         
       );

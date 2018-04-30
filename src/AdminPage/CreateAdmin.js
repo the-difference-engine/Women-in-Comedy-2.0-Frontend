@@ -17,7 +17,7 @@ import './css/navbar.css';
 class CreateAdmin extends Component {
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, activeUser, updateSettings } = this.props;
+    const { fetchAllUsers, fetchUserInfo, updateSettings } = this.props;
     fetchAllUsers();
     updateSettings();
   };

@@ -57,6 +57,7 @@ class AdminForm extends Component {
          <input type="submit" value="Submit"/>
          <input type="checkbox" name="checkbox_admin"/><br></br>
         </form>
+        -------------------------
       </div>
     );
   }
