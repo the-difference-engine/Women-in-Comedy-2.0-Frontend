@@ -12,12 +12,6 @@ export default (props) => {
         <div className="navbar-header">
           <a id="nav-header" className="navbar-brand" href="#">Women in Comedy</a>
         </div>
-
-
-{/*         <ul className="nav navbar-nav navbar-right">
-          <RegisterModal /> 
-          <LoginNavbar history={ this.props } />
-        </ul> */}
       </div>
     </nav>
   );
