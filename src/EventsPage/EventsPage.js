@@ -7,29 +7,23 @@ import MyUpcomingEvents from './components/MyUpcomingEvents';
 import Navbar from '../common/Navbar';
 
 class EventsPage extends Component {
-    constructor(props) {
-        super(props);
-    }
 
-    componentDidMount() {
-        const userId = sessionStorage.getItem('userId');
-        console.log(this.props);
-        this.props.fetchMyUpcomingEvents(userId);
-        this.props.fetchUpcomingEvents();
-        this.props.fetchNotifications(userId);
+  componentDidMount() {
+    const userId = sessionStorage.getItem('userId');
+    console.log(this.props);this.props.fetchMyUpcomingEvents(userId);
+    this.props.fetchUpcomingEvents();
+  this.props.fetchNotifications(userId);
     }
-
-    render() {
-        const {notifications} = this.props;
-        return (
-            <div id="events-page">
-                <Navbar history={this.props.history} notifications={notifications}/>
-                <MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents}/>
-                <AllUpcomingEvents upcomingEvents={this.props.upcomingEvents}/>
-                <AddEvent history={this.props.history}/>
-            </div>
-        );
-    }
+	render () {
+		const {notifications} = this.props;return (
+			<div id="events-page">
+        <Navbar history={this.props.history} notifications={notifications}/>
+				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
+				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
+				<AddEvent history={this.props.history}/>
+			</div>
+		);
+	}
 }
 
 function mapStateToProps({myUpcomingEvents, upcomingEvents, notifications}) {

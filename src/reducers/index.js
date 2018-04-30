@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 import UserFeedReducer from './feeds_reducer';
-import UserConnectionsReducer from './connections_reducer';
 import UserInfoReducer from './user_reducer';
 import UsersReducer from './users_info_reducer';
 import ConnectionsReducer from './connections_reducer';
@@ -15,9 +14,12 @@ import selectedEventReducer from './selected_event_reducer';
 import userWallPostReducer from './user_wall_post_reducer';
 import eventWallPostReducer from './event_wall_post_reducer';
 import allUsersReducer from './all_users_reducer';
+import UpdateEventReducer from './update_event';
+import adminReducer from './admin_reducer';
 import notificationsReducer from './notifications_reducer';
 import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
+
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -34,6 +36,8 @@ const rootReducer = combineReducers({
   userWallPost: userWallPostReducer,
   eventWallPost: eventWallPostReducer,
   allUsers: allUsersReducer,
+  updateEventForm: UpdateEventReducer,
+  admin: adminReducer,
   notifications: notificationsReducer,
   adminEdit: editUserReducer,
   isUserLoggedIn: setUserLoggedInReducer

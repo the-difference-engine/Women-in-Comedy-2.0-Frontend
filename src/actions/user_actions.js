@@ -5,7 +5,7 @@ export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
    url: process.env.REACT_APP_API_URL_DEV + '/users/info',
-   headers: {"id": userId}
+   headers: {"id": userId},
  });
  return (dispatch) => {
    request.then((data) => {

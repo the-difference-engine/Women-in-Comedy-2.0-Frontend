@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 import './css/navbar.css';
 import NotificationButton from '../containers/notification_button';
+import '../images/Women_Logo_New.png';
 
 const userId = sessionStorage.getItem('userId');
 
@@ -29,14 +30,14 @@ class Navbar extends Component {
         this.handleTouchTap = this.handleTouchTap.bind(this);
     }
 
-    Logout() {
-        axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out').then(response => {
-            console.log(response.data.logout_message);
-            sessionStorage.setItem('confirmed', null);
-            sessionStorage.setItem('userId', null);
-            this.props.history.push('/')
-        });
-    };
+  Logout() {
+    axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out').then(response => {
+
+      sessionStorage.setItem('confirmed', null);
+      sessionStorage.setItem('userId', null);
+      this.props.history.push('/')
+    });
+  };
 
     componentDidMount() {
         const {fetchAllUsers} = this.props;
@@ -239,8 +240,6 @@ class Navbar extends Component {
     }
 };
 
-// <a href="#" onClick={console.log(this.state)}className="icon" ><i className="fa fa-bell-o"><p>ALERTS {this.props.allNotifications}</p></i></a>
-
 const styles = {
     container: {
         verticalAlign: 'top',
@@ -269,8 +268,6 @@ const styles = {
 };
 
 const  mapStateToProps = ({allUsers}) =>  {
-    // debugger;
-    // const {notifications} = state;
     const {filterUserList} = allUsers;
     const users = filterUserList.map(user => {
         return {text: `${user.firstName} ${user.lastName}`, value: user.id}

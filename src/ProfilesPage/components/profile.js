@@ -75,7 +75,7 @@ class Profile extends Component {
 
     const request = axios({
         method: "post",
-        url: "http://localhost:9000/api/v1/users/create_post",
+        url: process.env.REACT_APP_API_URL_DEV + 'users/create_post',
         headers: { "id": sender_id },
         body: { "post": values, "postable_id": new_query}
     });
@@ -91,18 +91,6 @@ class Profile extends Component {
     const query = window.location.pathname;
     const new_query = query.slice(9);
 
-    //add axios call for new comment
-    // const request = axios({
-    //     method: "post",
-    //     url: "http://localhost:9000/api/v1/users/create_comment",
-    //     headers: { "id": sender_id },
-    //     body: { "post": values, "postable_id": new_query}
-    // });
-    // return (dispatch) => {
-    //   request.then((data) => {
-    //     dispatch({ type: CREATE_COMMENT, payload: request })
-    //   });
-    // }
   }
 
   render() {

@@ -2,11 +2,11 @@ import React from 'react';
 import './css/page-content.css';
 
 
-const PageContent = (props) => {
+const PageContent = ({children, ...props}) => {
   return (
-    <div id="page-content">
+    <div id="page-content" {...props}>
       <div id="page-content-margin">
-        {props.children}
+        {children}
       </div>
     </div>
   );

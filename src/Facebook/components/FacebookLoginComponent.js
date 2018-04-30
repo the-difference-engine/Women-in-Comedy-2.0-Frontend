@@ -5,7 +5,7 @@ import FacebookLogin from 'react-facebook-login';
 export default class FBLogin extends Component {
 
   responseFacebook(response){
-    console.log(response);
+  
   }
 
   componentClicked(){
