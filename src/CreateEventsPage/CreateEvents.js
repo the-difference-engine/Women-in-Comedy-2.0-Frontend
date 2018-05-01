@@ -46,6 +46,17 @@ class CreateEvents extends Component {
       );
     }
   }
+  privateRender(props){
+    if(sessionStorage.adminUser === "true"){
+      return   <Checkbox
+      id="private-event"
+      label="Private Event"
+      labelPosition="right"
+      labelStyle={{ font: '1.0em', display: 'flex'}}
+       onCheck={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
+      />; 
+    }
+  }
 
    
  
@@ -143,10 +154,7 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
-          <Checkbox
-            label="Private Event"
-            onCheck={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
-          />
+         {this.privateRender()}
 
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
