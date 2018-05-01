@@ -3,7 +3,7 @@ import Navbar from '../common/Navbar';
 import { LeftGraySideBar, RightGraySideBar } from '../common';
 import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
 import { connect } from 'react-redux';
-import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress, DropDownMenu, MenuItem } from 'material-ui';
+import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress, Checkbox} from 'material-ui';
 
 import './css/create-event.css'
 const userId = sessionStorage.getItem('userId')
@@ -12,14 +12,8 @@ class CreateEvents extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      imgURL: null,
-      value: ''
+      imgURL: null
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event, index, value){ 
-    this.setState({value});
   }
   
   onClick() {
@@ -149,11 +143,10 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
-          <TextField 
-          onChange={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
-          >
-          </TextField>
-
+          <Checkbox
+            label="Private Event"
+            onCheck={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
+          />
 
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
