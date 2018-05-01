@@ -5,32 +5,27 @@ import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
-import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent } from '../actions'; //action 
+import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent } from '../actions'; 
 import './css/navbar.css';
 
 
-//TODO
-//
-//display details with onClick function on list item (similar to books)
-//FORM STUFF:
-//display component only if admin edit is true //create 
 class CreateAdmin extends Component {
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, updateSettings } = this.props;
+    const { fetchAllUsers, fetchUserInfo, updateSettings } = this.props;   
     fetchAllUsers();
     updateSettings();
+
   };
 
-  renderUserDetails(event) {
-    const userInfo = this.props.fetchUserInfo()
-  }
+
 
   render(){
 
+
     return(
       <div>
-        <Navbar history={this.props.history} />
+        <Navbar history={this.props.history}/>
         <LeftGraySideBar>
         </LeftGraySideBar>
         <PageContent>
@@ -57,6 +52,3 @@ function mapDispatchToProps(dispatch) {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAdmin);
-
-
-//sessionstorage function 

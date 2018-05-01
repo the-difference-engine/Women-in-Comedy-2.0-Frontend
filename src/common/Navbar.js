@@ -10,7 +10,8 @@ import {
   fetchUserFeeds,
   fetchConnectionStatus,
   fetchUserConnections,
-  filterUsers
+  filterUsers,
+  fetchEventInfo
 } from '../actions'
 import axios from 'axios';
 
@@ -39,8 +40,9 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    const {fetchAllUsers} = this.props;
+    const {fetchAllUsers, fetchUserInfo} = this.props;
     fetchAllUsers();
+    fetchUserInfo(userId);
   }
 
   handleTouchTap(event) {
@@ -71,8 +73,10 @@ class Navbar extends Component {
     fetchConnectionStatus({sender_id, receiver_id});
     this.props.history.push(`/profile/${item.value}`);
   }
+  
 
   render() {
+
     const locationMenuItems = [
       {
         primaryText: 'San Francisco',
@@ -200,6 +204,16 @@ class Navbar extends Component {
               </i>
             </Link>
           </li>
+        
+          <li> 
+          <Link to="/admins">
+            <i className=	"fa fa-male">
+              <p>ADMINS</p>
+            </i>
+          </Link>
+        </li> 
+
+
           <li>
             <a href="#" className="icon">
               <i className="fa fa-bell-o">
@@ -252,7 +266,7 @@ const styles = {
 function mapStateToProps({allUsers}) {
   const {filterUserList} = allUsers;
   const users = filterUserList.map(user => {
-    return {text: `${user.firstName} ${user.lastName}`, value: user.id}
+    return {text: `${user.firstName} ${user.lastName}`, value: user.id }
   });
 
   return {users};

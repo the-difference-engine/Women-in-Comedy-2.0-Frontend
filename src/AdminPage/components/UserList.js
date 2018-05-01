@@ -10,7 +10,6 @@ class UserList extends Component {
       return  users.map(user => {
         return (
           <dt 
-
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>      
             {user.firstName} {user.lastName}

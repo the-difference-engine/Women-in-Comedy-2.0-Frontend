@@ -35,7 +35,7 @@ export const editUser = (boolean) => {
 
 export const updateSettings = (userId, adminStatus) => {
   let switchAdmin;
-  adminStatus == true ? switchAdmin = false : switchAdmin = true;
+    adminStatus == true ? switchAdmin = false : switchAdmin = true;
 
   const request = axios({
     method: 'patch',

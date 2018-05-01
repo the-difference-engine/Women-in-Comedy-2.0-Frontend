@@ -31,6 +31,8 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
+
+
       return (
         <div>
           <div>
