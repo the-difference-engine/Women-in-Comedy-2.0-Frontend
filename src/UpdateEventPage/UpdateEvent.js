@@ -24,7 +24,7 @@ class UpdateEvent extends Component {
 
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
-    if (event.user_id && event.user_id.toString() !== userId) {
+    if ((event.user_id && event.user_id.toString() !== userId) && sessionStorage.adminUser !== "true") {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
     this.setState({ imgURL: event.photo });
@@ -80,7 +80,7 @@ render() {
   return (
     <div>
       <Navbar history={this.props.history} />
-      {event.user_id && (event.user_id.toString() === userId) &&
+      {event.user_id && (event.user_id.toString() === userId || sessionStorage.adminUser === "true") &&
         <div id="create-event-wrapper">
           <TextField
             id="Title"
