@@ -48,16 +48,15 @@ class AdminForm extends Component {
   }
  
   render() {
-    const { adminEdit } = this.props;
-    let isAdmin = (adminEdit === 'true')
+    const superUser = (this.props.isSuperUser == true);
+    console.log(superUser)
 
-    //if isadmin is true, render the list. FIGURE THIS SHIT OUT
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
          <p id="admin-status-display">Admin Status: {this.renderAdminStatus()}</p>
-
+    
          <h6>Switch Status?</h6>
           <input type="submit" value="Submit"/>
           <input type="checkbox" name="checkbox_admin"/><br></br>

@@ -13,7 +13,7 @@ class UserList extends Component {
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>      
             {user.firstName} {user.lastName}
-            <AdminForm adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
+            <AdminForm isSuperUser={user.superuser} adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
           </dt>
         );
       });
