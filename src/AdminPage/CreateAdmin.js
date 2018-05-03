@@ -44,7 +44,7 @@ class CreateAdmin extends Component {
 }
 
 function mapStateToProps(state) {
-  return { allUsersList: state.allUsers }
+  return { allUsersList: state.allUsers}
 };
 
 function mapDispatchToProps(dispatch) {

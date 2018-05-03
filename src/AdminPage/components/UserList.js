@@ -9,27 +9,26 @@ class UserList extends Component {
     const users = this.props.users.userList;
       return  users.map(user => {
         return (
-          <dt 
+          <li 
             key={user.id}
             onClick={() => this.props.fetchUser(user.id)}>      
             {user.firstName} {user.lastName}
             <AdminForm isSuperUser={user.superuser} adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
-          </dt>
+          </li>
         );
       });
   }
 
     render(){
 
-      
       if(this.props.users.userList.length == 0){
         return <strong>Loading....</strong>
       }
   
       return (
-        <ul className="list-group col-sm-4">
+        <ol className="list-group col-sm-4">
           <p>{this.renderList()}</p>
-        </ul>
+        </ol>
         
       );
     }

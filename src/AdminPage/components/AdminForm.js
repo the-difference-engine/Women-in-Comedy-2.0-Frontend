@@ -5,6 +5,7 @@ import axios from 'axios';
 import UserList from './UserList';
 import { bindActionCreators } from 'redux';
 import '../css/navbar.css';
+import { fetchUserInfo } from '../../actions/index';
 
 
 class AdminForm extends Component {
@@ -19,6 +20,7 @@ class AdminForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
+
 
   handleSubmit(event, userId = this.props.userId) {
     event.preventDefault();
@@ -46,32 +48,45 @@ class AdminForm extends Component {
       this.props.adminStatus == true ? currentStatus = "Admin" : currentStatus = "Non-Admin";
     return currentStatus;
   }
+
+  superUserRender(props){
+    const { userInfo } = this.props;
+    const superUser = (userInfo.superuser == true);
+    if(superUser){
+      return (
+         <div>
+          <h6>Switch Status?</h6>
+            <input type="submit" value="Submit"/><br></br>
+            ------------------
+        </div>
+      );
+      setTimeout(function(){
+        window.location.reload();},10);
+    }  
+  }
  
   render() {
-    const superUser = (this.props.isSuperUser == true);
-    console.log(superUser)
-
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
          <p id="admin-status-display">Admin Status: {this.renderAdminStatus()}</p>
     
-         <h6>Switch Status?</h6>
-          <input type="submit" value="Submit"/>
-          <input type="checkbox" name="checkbox_admin"/><br></br>
+          <div>
+            {this.superUserRender()}
+          </div>
         </form>
-        -------------------------
       </div>  
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
-    adminEdit: state.adminEdit 
-  }
+  const { userInfo } = state;
+  return { userInfo }
 };
 
-export default connect(mapStateToProps)(AdminForm);
+export default connect(mapStateToProps, {
+  fetchUserInfo
+})(AdminForm);
  
