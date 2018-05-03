@@ -18,6 +18,7 @@ import UpdateEventReducer from './update_event';
 import adminReducer from './admin_reducer';
 import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
+import userBlocksReducer from './user_blocks_reducer';
 
 
 const rootReducer = combineReducers({
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
   updateEventForm: UpdateEventReducer,
   admin: adminReducer,
   adminEdit: editUserReducer,
-  isUserLoggedIn: setUserLoggedInReducer
+  isUserLoggedIn: setUserLoggedInReducer,
+  userBlocks: userBlocksReducer
 });
 
 export default rootReducer;
