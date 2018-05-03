@@ -3,12 +3,30 @@ import {Link} from 'react-router-dom';
 import Form from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {acceptConnection, declineConnection, fetchPendingUserConnections, fetchUserConnections, markNotificationsAsRead, markOneAsRead} from "../../actions";
+import {
+    acceptConnection,
+    declineConnection,
+    fetchPendingUserConnections,
+    fetchUserConnections,
+    markNotificationsAsRead,
+    markOneAsRead
+} from "../../actions";
 
 class UnreadNotification extends Component {
 
-    doesThisWork() {
-
+    acceptTheConnection(userId, sent_from, callback, callback2, sent_to, id) {
+        this.props.acceptConnection(userId, sent_from, callback, callback2);
+        this.props.markOneAsRead(sent_to, id);
+    }
+    findTheConnection(sent_from, sent_to) {
+        const userId = sessionStorage.getItem('userId');
+        const callback = this.props.fetchPendingUserConnections;
+        const connection = this.props.connections.filter(connection => connection.senderId === sent_from)[0];
+        
+        return (
+            <button type="button"
+                    onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
+        )
     }
 
     renderNotifications() {
@@ -43,11 +61,15 @@ class UnreadNotification extends Component {
                                 <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
 
                                 <Link to={`/profile/${notification.sent_from}`}
-                                      onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)} method="POST"><p
+                                      onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
+                                      method="POST"><p
                                     className="connection-name">{notification.sent_from_name}</p></Link>
                                 <span>has sent you a connection request</span>
-                                <button type="button" onClick={() => this.props.acceptConnection(userId, notification.sent_from, callback, callback2)}>accept</button>
-                                {/*<button type="button" onClick={() => this.props.declineConnection(userId, this.props.connections.requestId, callback)}>decline</button>*/}
+                                {/*<button type="button" onClick={() => this.props.acceptConnection(userId, notification.sent_from, callback, callback2)}>accept</button>*/}
+                                <button type="button"
+                                        onClick={() => this.acceptTheConnection(userId, notification.sent_from, callback, callback2, notification.sent_to, notification.id)}>accept
+                                </button>
+                                {this.findTheConnection(notification.sent_from, notification.sent_to)}
                             </div>
                         </div>
                     );
@@ -56,29 +78,30 @@ class UnreadNotification extends Component {
         }
     }
 
-    // renderPendingConnections2() {
-    //     const userId = sessionStorage.getItem('userId');
-    //     const callback = this.props.fetchPendingUserConnections;
-    //     const callback2 = this.props.fetchUserConnections;
-    //     return this.props.connections.map(connection => {
-    //         return (
-    //             <div key={connection.requestId}>
-    //                 <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-    //                 <p id="connection-name">{connection.firstName} {connection.lastName}</p>
-    //                 <br/>
-    //                 <button type="button" onClick={() => this.props.acceptConnection(userId, connection.senderId, callback, callback2)}>accept</button>
-    //                 <button type="button" onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
-    //             </div>
-    //         );
-    //     });
-    // }
+
+// renderPendingConnections2() {
+//     const userId = sessionStorage.getItem('userId');
+//     const callback = this.props.fetchPendingUserConnections;
+//     const callback2 = this.props.fetchUserConnections;
+//     return this.props.connections.map(connection => {
+//         return (
+//             <div key={connection.requestId}>
+//                 <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
+//                 <p id="connection-name">{connection.firstName} {connection.lastName}</p>
+//                 <br/>
+//                 <button type="button" onClick={() => this.props.acceptConnection(userId, connection.senderId, callback, callback2)}>accept</button>
+//                 <button type="button" onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
+//             </div>
+//         );
+//     });
+// }
 
     render() {
         return <div className="event-page-content">
             <div className="container">
                 <div className="row events-grid" id="my-events">
                     <div className="col-xs-offset-1 col-xs-3">
-                        <h1 className="events-header" id="next-event" >Notifications</h1>
+                        <h1 className="events-header" id="next-event">Notifications</h1>
                         <button type="button" className="btn btn-danger"
                                 onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
                             All As Read
@@ -105,7 +128,14 @@ class UnreadNotification extends Component {
 }
 
 
-export default connect(null, {acceptConnection, declineConnection, fetchPendingUserConnections, fetchUserConnections, markNotificationsAsRead, markOneAsRead})(UnreadNotification);
+export default connect(null, {
+    acceptConnection,
+    declineConnection,
+    fetchPendingUserConnections,
+    fetchUserConnections,
+    markNotificationsAsRead,
+    markOneAsRead
+})(UnreadNotification);
 
 
 
