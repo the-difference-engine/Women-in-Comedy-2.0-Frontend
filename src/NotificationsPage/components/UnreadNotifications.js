@@ -18,15 +18,14 @@ class UnreadNotification extends Component {
         this.props.acceptConnection(userId, sent_from, callback, callback2);
         this.props.markOneAsRead(sent_to, id);
     }
-    findTheConnection(sent_from, sent_to) {
-        const userId = sessionStorage.getItem('userId');
-        const callback = this.props.fetchPendingUserConnections;
-        const connection = this.props.connections.filter(connection => connection.senderId === sent_from)[0];
-        
-        return (
-            <button type="button"
-                    onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
-        )
+
+    declineTheConnection(userId, sent_from, callback, sent_to, id) {
+        const connection = this.props.connections.filter(connection => connection.senderId === sent_from);
+        console.log(connection); 
+        if (connection.size > 0) {
+            this.props.declineConnection(userId, connection[0].requestId, callback);
+        }
+        this.props.markOneAsRead(sent_to, id);
     }
 
     renderNotifications() {
@@ -54,7 +53,7 @@ class UnreadNotification extends Component {
                         </div>
                     );
                 }
-                if (notification.action === "connection_request") {
+                if (notification.action === "connection_request" && notification.seen == null) {
                     return (
                         <div key={notification.id}>
                             <div id="user-info">
@@ -69,7 +68,9 @@ class UnreadNotification extends Component {
                                 <button type="button"
                                         onClick={() => this.acceptTheConnection(userId, notification.sent_from, callback, callback2, notification.sent_to, notification.id)}>accept
                                 </button>
-                                {this.findTheConnection(notification.sent_from, notification.sent_to)}
+                                <button type="button"
+                                        onClick={() => this.declineTheConnection(userId, notification.sent_from, callback, notification.sent_to, notification.id)}>decline
+                                </button>
                             </div>
                         </div>
                     );
@@ -111,7 +112,6 @@ class UnreadNotification extends Component {
                 <div className="row">
                     <br/>
                     {this.renderNotifications()}
-                    {/*{this.renderPendingConnections2()}*/}
                     <br/>
                 </div>
                 <div className="container">
