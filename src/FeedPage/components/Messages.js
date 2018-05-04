@@ -24,6 +24,21 @@ class Messages extends Component {
       );
     });
   }
+
+  renderPendingInvites() {
+    const userId = sessionStorage.getItem('userId');
+    //callback
+    //callback2
+    return (
+      <div>
+        <p id="connection-name">A New Event</p>
+        <br/>
+        <button type="button" /*onClick*/>accept</button>
+        <button type="button" /*onClick*/>decline</button>
+      </div>
+    );
+  }
+
   render() {
     const { pendingUserConnections } = this.props;
     return (
@@ -37,6 +52,10 @@ class Messages extends Component {
           <p id="connection"> Pending Connections <span id="connection-count">({this.props.connections.length})</span></p>
         </div>
         {this.renderPendingConnections()}
+        <div>
+          <p id="connection"> Pending Event Invites <span id="connection-count">({this.props.connections.length})</span></p>
+        </div>
+        {this.renderPendingInvites()}
       </div>
     )
   }
