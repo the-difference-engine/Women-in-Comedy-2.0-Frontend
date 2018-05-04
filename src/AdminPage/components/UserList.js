@@ -10,8 +10,7 @@ class UserList extends Component {
       return  users.map(user => {
         return (
           <li 
-            key={user.id}
-            onClick={() => this.props.fetchUser(user.id)}>      
+            key={user.id}>      
             {user.firstName} {user.lastName}
             <AdminForm isSuperUser={user.superuser} adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
           </li>

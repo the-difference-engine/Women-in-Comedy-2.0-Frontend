@@ -54,10 +54,9 @@ class AdminForm extends Component {
     const superUser = (userInfo.superuser == true);
     if(superUser){
       return (
-         <div>
+         <div className="admin-status">
           <h6>Switch Status?</h6>
             <input type="submit" value="Submit"/><br></br>
-            ------------------
         </div>
       );
       setTimeout(function(){

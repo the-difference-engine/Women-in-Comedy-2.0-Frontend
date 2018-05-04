@@ -99,3 +99,8 @@ background-color: #860A0A;
   color:red;
   font-size: 18px;
 }
+
+.admin-status input {
+  margin: 15px;
+  padding: 5px;
+}
