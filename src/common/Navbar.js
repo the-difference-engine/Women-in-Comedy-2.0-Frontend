@@ -14,7 +14,7 @@ import {
   fetchEventInfo
 } from '../actions'
 import axios from 'axios';
-
+import {render} from 'react-router-dom'
 import './css/navbar.css';
 import '../images/Women_Logo_New.png';
 
@@ -72,16 +72,34 @@ class Navbar extends Component {
     fetchUserConnections(item.value);
     fetchConnectionStatus({sender_id, receiver_id});
     this.props.history.push(`/profile/${item.value}`);
+
+    
   }
+
+  componentWillReceiveProps(newProps){
+    const {userInfo} = newProps;
+    console.log(newProps);
+  }
+
+
+  renderAdminIcon(){
+    const isAdmin = this.props.userInfo.admin;
+    if(isAdmin){
+      return (
+        <li>
+          <Link to="/admins">
+            <i className="fa fa-users">
+              <p>ADMIN</p>
+            </i>
+        </Link>
+      </li>
+    );
+   }
+}
   
 
 
   render() {
-
-    const isAdmin = this.props.userInfo.admin;
-
-    console.log(isAdmin)
-
 
     const locationMenuItems = [
       {
@@ -143,6 +161,7 @@ class Navbar extends Component {
         name: 'gender'
       }
     ];
+
 
 
 
@@ -215,14 +234,11 @@ class Navbar extends Component {
               </i>
             </Link>
           </li>
-      
-      
-        
-         
-
+                          
+          {this.renderAdminIcon()}
           
-
-
+                      
+        
           <li>
             <a href="#" className="icon">
               <i className="fa fa-bell-o">
@@ -272,13 +288,13 @@ const styles = {
     marginLeft: '10px'
   }
 }
-function mapStateToProps({allUsers}) {
+function mapStateToProps({allUsers, userInfo}) {
   const {filterUserList} = allUsers;
   const users = filterUserList.map(user => {
     return {text: `${user.firstName} ${user.lastName}`, value: user.id }
   });
 
-  return {users};
+  return {users, userInfo};
 }
 export default connect(mapStateToProps, {
   fetchAllUsers,

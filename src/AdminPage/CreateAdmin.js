@@ -25,7 +25,7 @@ class CreateAdmin extends Component {
 
     return(
       <div>
-        <Navbar history={this.props.history} userInfo={this.props.userInfo} />
+        <Navbar history={this.props.history}/>
         <LeftGraySideBar>
         </LeftGraySideBar>
         <PageContent>
