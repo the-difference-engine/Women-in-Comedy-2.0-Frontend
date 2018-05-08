@@ -37,9 +37,9 @@ class Notification extends Component {
             <div>
                 <Navbar history={this.props.history} notifications={notifications}/>
                 <UnreadNotifications notifications={notifications} userConnections={userConnections} connections={receivedConnectionRequest}/>
-                <RightGraySideBar>
+                {/* <RightGraySideBar>
                     <Messages connections={receivedConnectionRequest}/>
-                </RightGraySideBar>
+                </RightGraySideBar> */}
                 <LeftGraySideBar>
                     <UserInfo userInfo={userInfo} userConnections={userConnections}/>
                 </LeftGraySideBar>
