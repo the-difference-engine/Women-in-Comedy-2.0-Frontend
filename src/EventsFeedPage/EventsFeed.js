@@ -14,6 +14,7 @@ import NewFeeds from './components/NewFeeds';
 import EventInfo from './components/EventInfo';
 import EventImg from './components/EventImg';
 import Navbar from '../common/Navbar';
+import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 
 class EventsFeed extends Component {
@@ -80,6 +81,7 @@ class EventsFeed extends Component {
         
           <div id="container">
             <RightGraySideBar>
+              <Invites />
               <Guests
                 event={this.props.selectedEvent}
               />
