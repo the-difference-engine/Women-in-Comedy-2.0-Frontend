@@ -32,7 +32,7 @@ export const FETCH_USERS = 'fetch_user';
 export const CREATE_POST = 'create_post';
 export const ACCEPT_CONNECTION = 'accept_connection';
 
-//Invites
+//Invite request
 export const FETCH_USER_INVITES = 'fetch_user_invites'
 export const FETCH_PENDING_USER_INVITES = 'fetch_pending_user_invites'
 export const CREATE_INVITE_REQUEST = 'create_invite_request'
