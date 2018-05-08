@@ -40,7 +40,7 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    const {fetchAllUsers, fetchUserInfo} = this.props;
+    const {fetchAllUsers, fetchUserInfo, userInfo} = this.props;
     fetchAllUsers();
     fetchUserInfo(userId);
   }
@@ -75,7 +75,13 @@ class Navbar extends Component {
   }
   
 
+
   render() {
+
+    const isAdmin = this.props.userInfo.admin;
+
+    console.log(isAdmin)
+
 
     const locationMenuItems = [
       {
@@ -137,7 +143,12 @@ class Navbar extends Component {
         name: 'gender'
       }
     ];
-    return (<nav className="navbar navbar-default navbar-fixed-top">
+
+
+
+    return (
+
+      <nav className="navbar navbar-default navbar-fixed-top">
       <div className="container-fluid">
         <div className="navbar-header">
           <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
@@ -204,14 +215,12 @@ class Navbar extends Component {
               </i>
             </Link>
           </li>
+      
+      
         
-          <li> 
-          <Link to="/admins">
-            <i className=	"fa fa-male">
-              <p>ADMINS</p>
-            </i>
-          </Link>
-        </li> 
+         
+
+          
 
 
           <li>

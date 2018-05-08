@@ -5,7 +5,12 @@ import AdminForm from './AdminForm';
 
 class UserList extends Component {
 
-  renderList(){
+  componentDidMount(){
+    // setTimeout(function(){
+    //   window.location.reload();},10);
+  }
+
+  renderSuperAdminList(){
     const users = this.props.users.userList;
       return  users.map(user => {
         return (
@@ -15,10 +20,29 @@ class UserList extends Component {
             <AdminForm isSuperUser={user.superuser} adminStatus={user.admin} userId={user.id} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
           </li>
         );
-      });
+    });
+    setTimeout(function(){
+      window.location.reload();},10);
   }
 
+  renderNonAdminList(){
+    const users = this.props.users.userList;
+      return  users.map(user => {
+        return (
+          <li 
+            key={user.id}>      
+            <h4>{user.firstName} {user.lastName}</h4>
+            <h5>Admin Status:</h5>{user.admin == true ? <h5 className="admin-show">Admin</h5> : <h5 className="admin-show">Non Admin</h5> }
+          </li>
+        );
+        setTimeout(function(){
+          window.location.reload();},10);
+    });
+  }
+
+
     render(){
+      const user = this.props.userInfo;
 
       if(this.props.users.userList.length == 0){
         return <strong>Loading....</strong>
@@ -26,7 +50,7 @@ class UserList extends Component {
   
       return (
         <ol className="list-group col-sm-4">
-          <p>{this.renderList()}</p>
+          <p>{user.superuser ? this.renderSuperAdminList() : this.renderNonAdminList()}</p>
         </ol>
         
       );

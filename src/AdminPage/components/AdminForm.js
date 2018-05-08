@@ -32,6 +32,7 @@ class AdminForm extends Component {
       adminStatus == true ? displayAdmin = "Have Been Removed" : displayAdmin = "Have Been Added";
     
     alert("Admin Privlages " + displayAdmin)
+
     setTimeout(function(){
       window.location.reload();},10); //re-render and clear field 
     this.setState({ status : 'Updated' });
@@ -50,18 +51,12 @@ class AdminForm extends Component {
   }
 
   superUserRender(props){
-    const { userInfo } = this.props;
-    const superUser = (userInfo.superuser == true);
-    if(superUser){
       return (
          <div className="admin-status">
           <h6>Switch Status?</h6>
             <input type="submit" value="Submit"/><br></br>
         </div>
       );
-      setTimeout(function(){
-        window.location.reload();},10);
-    }  
   }
  
   render() {

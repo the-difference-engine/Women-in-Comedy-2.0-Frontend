@@ -104,3 +104,8 @@ background-color: #860A0A;
   margin: 15px;
   padding: 5px;
 }
+
+.admin-show{
+  color: red;
+  margin: 5px;
+}

@@ -25,18 +25,14 @@ class CreateAdmin extends Component {
 
     return(
       <div>
-        <Navbar history={this.props.history}/>
+        <Navbar history={this.props.history} userInfo={this.props.userInfo} />
         <LeftGraySideBar>
         </LeftGraySideBar>
         <PageContent>
-         <UserList users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings=      {this.props.updateSettings} />
+         <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
         </PageContent>
         <RightGraySideBar>
         </RightGraySideBar>
-        
-         
-        
-        
       </div>
     ); 
   }
@@ -44,7 +40,8 @@ class CreateAdmin extends Component {
 }
 
 function mapStateToProps(state) {
-  return { allUsersList: state.allUsers}
+  const { userInfo } = state;
+  return { allUsersList: state.allUsers, userInfo}
 };
 
 function mapDispatchToProps(dispatch) {
