@@ -43,6 +43,7 @@ class App extends Component {
             <Route path="/home" component={HomePage}></Route>
             <Route path='/activities' component={ActivityPage}></Route>
             <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
+            <Route path='/updateevent/:id' component={UpdateEvent}></Route>
             <Route exact path='/profile/:id' component={ProfilePage}></Route>
             <Route path='/profile/:id/edit' component={EditPage}></Route>
             <Route path='/message' component={DeletedUser}></Route>
