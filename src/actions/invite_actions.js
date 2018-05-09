@@ -8,16 +8,68 @@ FETCH_INVITE_STATUS,
  ACCEPT_INVITE, 
 } from '../types'
 
+export const fetchUserInvites = (userId) => {
+  const request = axios({
+    method: 'get',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/invites',
+    headers: {"id": userId}
+  });
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: FETCH_USER_INVITES, payload: request })
+    });
+  };
+};
 
-export const createInviteRequest = ({sender_id, receiver_id}) => async dispatch =>{
+export const fetchPendingUserInvites = (userId) => {
+  const request = axios({
+    method: 'get',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/pending_invites',
+    headers: {"id": userId}
+  });
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: FETCH_PENDING_USER_INVITES, payload: request })
+    });
+  };
+};
+
+export const createInviteRequest = ({sender_id, receiver_id, event_id}) => async dispatch =>{
     const request = await axios({
       method: 'post',
       url: process.env.REACT_APP_API_URL_DEV + 'users/invites',
       headers: { "id": sender_id },
       data: {
-        sender_id, receiver_id
+        sender_id, receiver_id, event_id
       }
     });
-    dispatch({ type: CREATE_INVITE_REQUEST, payload: request })
+    dispatch({ type: CREATE_INVITE_REQUEST, payload: request });
   
-  }
+}
+
+export const fetchInviteStatus = ({sender_id, receiver_id}) => async dispatch => {
+  const request = await axios({
+    method: 'post',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/invite/status',
+    data: {sender_id, receiver_id}
+  });
+  dispatch({ type: FETCH_INVITE_STATUS, payload: request });
+}
+
+export const acceptInvite = (userId, sender_id, callback, callback2) => async dispatch => {
+  const request = await axios({
+    method: 'post',
+    url: process.env.REACT_APP_API_URL_DEV + 'users/accept_invite',
+    data: {sender_id, receiver_id: userId}
+  });
+  await callback(userId);
+  await callback2(userId);
+}
+
+export const declineInvite = (userId, requestId, callback) => async dispatch => {
+  const request = await axios({
+    method: 'post',
+    url: process.env.REACT_APP_API_URL_DEV + `users/invites/${requestId}`
+  });
+  await callback(userId);
+}
