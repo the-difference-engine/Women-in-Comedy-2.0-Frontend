@@ -7,7 +7,8 @@ import {
   fetchUserInfo,
   unattendEvent,
   eventWallInputChange,
-  createPostOnEventWall
+  createPostOnEventWall,
+  createInviteRequest
 } from '../actions';
 import Guests from './components/Guests';
 import NewFeeds from './components/NewFeeds';
@@ -16,10 +17,15 @@ import EventImg from './components/EventImg';
 import Navbar from '../common/Navbar';
 import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
+import Dialog from 'material-ui/Dialog';
 
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
+    state = {
+      open: false,
+    };
+
   }
   async componentWillMount() {
     const currentUserId = await sessionStorage.getItem('userId');
@@ -35,6 +41,17 @@ class EventsFeed extends Component {
     const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnEventWall({ body, eventId, authorId}, this.props.fetchEventInfo);
   }
+  onCreateInvite(){
+   const senderId = sessionStorage.getItem('userId');
+ 
+  }
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
   render() {
     return (
       <div id="events-feed-container">
@@ -58,7 +75,8 @@ class EventsFeed extends Component {
 
           </LeftGraySideBar>
 
-          <PageContent className="event-feed"><h4>Event Feed</h4>
+          <PageContent className="event-feed"><button > Invite </button>
+          <h4>Event Feed</h4>
             <div className="feed-post-bar">
               <div className="wrap">
                 <div className="search">
