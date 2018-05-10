@@ -22,9 +22,7 @@ import Dialog from 'material-ui/Dialog';
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
-    state = {
-      open: false,
-    };
+   
 
   }
   async componentWillMount() {
@@ -45,13 +43,7 @@ class EventsFeed extends Component {
    const senderId = sessionStorage.getItem('userId');
  
   }
-  handleOpen = () => {
-    this.setState({open: true});
-  };
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
   render() {
     return (
       <div id="events-feed-container">
