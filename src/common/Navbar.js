@@ -10,7 +10,8 @@ import {
   fetchUserFeeds,
   fetchConnectionStatus,
   fetchUserConnections,
-  filterUsers
+  filterUsers,
+  fetchBlockedBy
 } from '../actions'
 import axios from 'axios';
 
@@ -38,9 +39,10 @@ class Navbar extends Component {
     });
   };
 
-  componentDidMount() {
-    const {fetchAllUsers} = this.props;
+  componentWillMount() {
+    const {fetchAllUsers, fetchBlockedBy} = this.props;
     fetchAllUsers();
+    fetchBlockedBy(userId);
   }
 
   handleTouchTap(event) {
@@ -249,19 +251,25 @@ const styles = {
     marginLeft: '10px'
   }
 }
-function mapStateToProps({allUsers}) {
-  const {filterUserList} = allUsers;
-  const users = filterUserList.map(user => {
-    return {text: `${user.firstName} ${user.lastName}`, value: user.id}
-  });
 
+function mapStateToProps({allUsers, userBlocks}) {
+  var blockedByIds = Array.from(userBlocks, user => user.id);
+  const {filterUserList} = allUsers;
+  var users = filterUserList.map(user => {
+    if (!blockedByIds.includes(user.id)){
+      return {text: `${user.firstName} ${user.lastName}`, value: user.id}
+    }
+  });
+  users = users.filter(user => user);
   return {users};
 }
+
 export default connect(mapStateToProps, {
   fetchAllUsers,
   fetchUserInfo,
   fetchUserFeeds,
   fetchConnectionStatus,
   fetchUserConnections,
-  filterUsers
+  filterUsers,
+  fetchBlockedBy
 })(Navbar);
