@@ -18,11 +18,12 @@ import Navbar from '../common/Navbar';
 import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
+import { FlatButton, Checkbox } from 'material-ui';
 
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       open: false,
     };
 
@@ -53,6 +54,39 @@ class EventsFeed extends Component {
     this.setState({open: false});
   };
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose}
+      />
+    ];
+
+    const checkboxes = [
+      <Checkbox
+        key={1}
+        value={1}
+        label="DeMarcus Cousins"
+      />,
+      <Checkbox
+        key={2}
+        value={2}
+        label="Halo Top"
+      />,
+      <Checkbox
+        key={3}
+        value={3}
+        label="Luna Hassen"
+      />
+    ];
+
+
     return (
       <div id="events-feed-container">
       <div> Test </div>
@@ -75,7 +109,17 @@ class EventsFeed extends Component {
 
           </LeftGraySideBar>
 
-          <PageContent className="event-feed"><button > Invite </button>
+          <PageContent className="event-feed"><button onClick={this.handleOpen}> Invite </button>
+          <Dialog
+            title="Invite Users to This Event"
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            autoScrollBodyContent={true}
+          >
+            {checkboxes}
+          </Dialog>
           <h4>Event Feed</h4>
             <div className="feed-post-bar">
               <div className="wrap">
