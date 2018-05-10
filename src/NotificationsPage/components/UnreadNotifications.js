@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-router-dom';
 import {connect} from 'react-redux';
+import '../css/notifications-page.css';
 
 import {
     acceptConnection,
@@ -65,10 +66,10 @@ class UnreadNotification extends Component {
                                     className="connection-name">{notification.sent_from_name}</p></Link>
                                 <span>has sent you a connection request</span>
                                 {/*<button type="button" onClick={() => this.props.acceptConnection(userId, notification.sent_from, callback, callback2)}>accept</button>*/}
-                                <button type="button"
+                                <button type="button" className="btn-accept-decline"
                                         onClick={() => this.acceptTheConnection(userId, notification.sent_from, callback, callback2, notification.sent_to, notification.id)}>accept
                                 </button>
-                                <button type="button"
+                                <button type="button" className="btn-accept-decline"
                                         onClick={() => this.declineTheConnection(userId, notification.sent_from, callback, notification.sent_to, notification.id)}>decline
                                 </button>
                             </div>
@@ -78,24 +79,6 @@ class UnreadNotification extends Component {
             });
         }
     }
-
-
-// renderPendingConnections2() {
-//     const userId = sessionStorage.getItem('userId');
-//     const callback = this.props.fetchPendingUserConnections;
-//     const callback2 = this.props.fetchUserConnections;
-//     return this.props.connections.map(connection => {
-//         return (
-//             <div key={connection.requestId}>
-//                 <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" />
-//                 <p id="connection-name">{connection.firstName} {connection.lastName}</p>
-//                 <br/>
-//                 <button type="button" onClick={() => this.props.acceptConnection(userId, connection.senderId, callback, callback2)}>accept</button>
-//                 <button type="button" onClick={() => this.props.declineConnection(userId, connection.requestId, callback)}>decline</button>
-//             </div>
-//         );
-//     });
-// }
 
     render() {
         return <div className="event-page-content">

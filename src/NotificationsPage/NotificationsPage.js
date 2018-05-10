@@ -16,8 +16,6 @@ class Notification extends Component {
         };
     }
 
-
-
     componentDidMount() {
         const valid = sessionStorage.getItem('confirmed');
         if (valid === 'null' || !valid) {
@@ -38,7 +36,7 @@ class Notification extends Component {
                 <Navbar history={this.props.history} notifications={notifications}/>
                 <UnreadNotifications notifications={notifications} userConnections={userConnections} connections={receivedConnectionRequest}/>
                 <RightGraySideBar>
-                    <Messages/>
+                    <Messages connections={receivedConnectionRequest}/>
                 </RightGraySideBar>
                 <LeftGraySideBar>
                     <UserInfo userInfo={userInfo} userConnections={userConnections}/>
