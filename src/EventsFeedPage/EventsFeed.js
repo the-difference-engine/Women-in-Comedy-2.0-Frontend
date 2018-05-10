@@ -23,9 +23,13 @@ import { FlatButton, Checkbox } from 'material-ui';
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.state = {
       open: false,
     };
+=======
+   
+>>>>>>> 99df453ca8830da0817a2a37f070da3e26ad1518
 
   }
   async componentWillMount() {
@@ -46,13 +50,7 @@ class EventsFeed extends Component {
    const senderId = sessionStorage.getItem('userId');
  
   }
-  handleOpen = () => {
-    this.setState({open: true});
-  };
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
   render() {
     const actions = [
       <FlatButton
