@@ -19,7 +19,7 @@ import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
 import { FlatButton, Checkbox } from 'material-ui';
-
+//Test
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
