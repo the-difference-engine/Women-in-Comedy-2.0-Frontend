@@ -12,67 +12,80 @@ class UpdateEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`,
-    }
+      imgURL: null
+    };
   }
 
   componentDidMount() {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
-    this.setState({imgURL: `https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg`})
   }
 
-  onClick() {
-    const input = document.getElementById('input');
-    input.click();
-  }
-  
-  onUpload(event) {
-    const file = event.target.files;
-    const fileReader = new FileReader();
-
-    fileReader.readAsDataURL(file[0]);
-    fileReader.onload = () => {
-      this.props.eventInputChange({ prop: 'img', value: file[0] })
-      this.setState({ imgURL: fileReader.result });
-    };
-  }
-
-  renderImg() {
-    if (this.state.imgURL) {
-      return <img id="img" src={this.state.imgURL} alt="" width="250" height="250"/>
+  componentWillReceiveProps(newProps) {
+    const event = newProps.updateEventForm;
+    if ((event.user_id && event.user_id.toString() !== userId) && sessionStorage.adminUser !== "true") {
+      this.props.history.push(`/eventsfeed/${event.id}`);
     }
+    this.setState({ imgURL: event.photo });
   }
-  renderSpinner() {
-    const { loading } = this.props.updateEventForm;
-    if (loading) {
-      return(
-        <CircularProgress />
-      );
-    }
+
+onClick() {
+  const input = document.getElementById('input');
+  input.click();
+}
+
+onUpload(event) {
+  const file = event.target.files;
+  const fileReader = new FileReader();
+
+  fileReader.readAsDataURL(file[0]);
+  fileReader.onload = () => {
+    this.props.eventInputChange({ prop: 'img', value: file[0] })
+    this.setState({ imgURL: fileReader.result });
+  };
+}
+
+renderImg() {
+  if (this.state.imgURL) {
+    return <img id="img" src={this.state.imgURL} alt="" width="250" height="250" />
   }
-   async onUpdateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
-
-   await this.props.updateEvent(
-      { address, date, description, img, location, ticketLink, time, title },
-      userId,
-      );
-
-      this.props.history.push(`/eventsfeed/${this.props.updateEventForm.id}`) 
-  }
-  render() {
-    const { loading } = this.props.updateEventForm;
-    const event = this.props.updateEventForm.event;
-
+}
+renderSpinner() {
+  const { loading } = this.props.updateEventForm;
+  if (loading) {
     return (
-      <div>
-        <Navbar history={this.props.history}/>
+      <CircularProgress />
+    );
+  }
+}
+async onUpdateEvent() {
+  const { address, date, description, img, location, ticketLink, time, title, id } = this.props.updateEventForm;
+
+  await this.props.updateEvent(
+    { address, date, description, img, location, ticketLink, time, title, id },
+    userId
+  );
+
+  this.props.history.push(`/eventsfeed/${id}`)
+}
+render() {
+  const { loading } = this.props.updateEventForm;
+  const event = this.props.updateEventForm;
+  var time = null;
+  if (event.time && event.time != "Invalid Date") {
+    time = new Date('1 Jan 2018 ' + event.time);
+  }
+
+  return (
+    <div>
+      <Navbar history={this.props.history} />
+      {event.user_id && (event.user_id.toString() === userId || sessionStorage.adminUser === "true") &&
         <div id="create-event-wrapper">
           <TextField
             id="Title"
-            value={`${event&&event.info.title}`}
+            floatingLabelText="Event Name"
+            defaultValue={`${event.title || ""}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             disabled={loading}
@@ -80,7 +93,8 @@ class UpdateEvent extends Component {
           />
           <TextField
             id="Location"
-            value={`${event&&event.info.location}`}
+            floatingLabelText="Location"
+            defaultValue={`${event.location || ""}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'location', value })}
@@ -88,7 +102,8 @@ class UpdateEvent extends Component {
           />
           <TextField
             id="Address"
-            value={`${event&&event.info.address}`}
+            floatingLabelText="Address"
+            defaultValue={`${event.address || ""}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'address', value })}
@@ -96,7 +111,8 @@ class UpdateEvent extends Component {
           />
           <TextField
             id="Ticket Link"
-            value={`${event&&event.info.ticket_link}`}
+            floatingLabelText="Ticket Link"
+            defaultValue={`${event.ticket_link || ""}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
@@ -104,7 +120,8 @@ class UpdateEvent extends Component {
           />
           <TextField
             id="Description"
-            value={`${event&&event.info.about}`}
+            floatingLabelText="Description"
+            defaultValue={`${event.about || ""}`}
             multiLine={true}
             rows={2}
             floatingLabelFocusStyle={{ color: 'red' }}
@@ -114,25 +131,28 @@ class UpdateEvent extends Component {
           />
           <RaisedButton
             secondary
-            label="upload image"
+            label="upload new image"
             onClick={this.onClick.bind(this)}
             disabled={loading}
           />
-          <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)}/><br />
+          <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
           {this.renderImg()}
           <DatePicker
-            hintText={`${event&&event.info.date}`}
+            floatingLabelText="Event Date"
+            minDate={new Date()}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            value={new Date(Date.parse(event.date))}
           />
           <TimePicker
-            hintText={`${event&&event.info.time}`}
-            autoOk={true}
+            floatingLabelText="Event Time"
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            value={time}
+            minutesStep={5}
           />
-           <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
-           {this.renderSpinner()}
+          <span style={{ marginTop: '15px', color: 'red' }}>{this.props.updateEventForm.error}</span>
+          {this.renderSpinner()}
           <RaisedButton
             secondary
             label="update event"
@@ -141,12 +161,13 @@ class UpdateEvent extends Component {
             disabled={loading}
           />
         </div>
-      </div>
-    )
-  }
+      }
+    </div>
+  )
+}
 }
 
 function mapStateToProps({ updateEventForm }) {
   return { updateEventForm };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);
+export default connect(mapStateToProps, { updateEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);

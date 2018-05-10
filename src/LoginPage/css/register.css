@@ -1,8 +1,16 @@
-#register {
-  margin-top: 50px;
-  position: relative;
-  left: 60%;
-  margin-bottom: 70px;
+.container {
+display: flex;
+flex-direction: row; 
+justify-content: center; 
+margin: auto;
+max-width: 100%;
+
+}
+#ImgBlock{
+
+
+  
+ 
 }
 
 #field-form .form-control {

@@ -5,7 +5,7 @@ import logo from '../images/women_curl.jpg'
 
 
 class HomePage extends Component {
-
+	
 	render () {
 		return (
 			<div id="events-page">
