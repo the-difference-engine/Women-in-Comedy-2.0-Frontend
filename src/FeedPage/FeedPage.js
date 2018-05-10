@@ -50,7 +50,7 @@ class Feed extends Component {
       <div>
         <Navbar history={this.props.history} notifications={notifications}/>
         <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} />
+          <Messages/>
         </RightGraySideBar>
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} userConnections={userConnections}  />
@@ -58,12 +58,10 @@ class Feed extends Component {
         <PageContent>
           <div className="feed-post-bar">
             <div className="wrap">
-
               <div className="search">
                 <input type="text" className="searchTerm" placeholder="What's New?"
                   onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}
-                />
+                  value={this.props.userWallPost}/>
                 <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
               </div>
             </div>
