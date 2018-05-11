@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  fetchAllUsers,
   fetchEventInfo,
   fetchHostPhoto,
   attendEvent,
@@ -18,7 +19,7 @@ import Navbar from '../common/Navbar';
 import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
-import { FlatButton, Checkbox } from 'material-ui';
+import { FlatButton, Checkbox, RaisedButton } from 'material-ui';
 //Test
 class EventsFeed extends Component {
   constructor(props) {
@@ -28,8 +29,15 @@ class EventsFeed extends Component {
     };
 
   }
+  componentDidMount() {
+    const {fetchAllUsers} = this.props;
+    fetchAllUsers();
+  }
+
   async componentWillMount() {
     const currentUserId = await sessionStorage.getItem('userId');
+    //const users = await 
+    //this.props.fetchAllUsers();
     this.props.fetchUserInfo(currentUserId);
     const eventId = this.props.match.params.id;
     await this.props.fetchEventInfo(eventId);
@@ -69,23 +77,40 @@ class EventsFeed extends Component {
       />
     ];
 
-    const checkboxes = [
-      <Checkbox
-        key={1}
-        value={1}
-        label="DeMarcus Cousins"
-      />,
-      <Checkbox
-        key={2}
-        value={2}
-        label="Halo Top"
-      />,
-      <Checkbox
-        key={3}
-        value={3}
-        label="Luna Hassen"
-      />
+    const inviteButtons = [];
+
+    this.props.users.map(user => {
+      inviteButtons.push(
+      <div>
+        <label>{user.text}</label>
+        <RaisedButton label="Invite" />
+      </div>
+      );
+    });
+    
+    /*
+
+    const inviteButtons = (users) => {
+      return users.map(user => {
+        return (
+        <div>
+          <label>{user.firstName} {user.lastName}</label>
+          <RaisedButton label="Invite" />
+        </div>
+        );
+      });
+    }
+    */
+
+    /*
+    const inviteButtons = [
+      <div>
+        <label>DeMarcus Cousins</label>
+        <RaisedButton label="Invite" />
+      </div>
     ];
+    */
+
 
 
     return (
@@ -119,7 +144,7 @@ class EventsFeed extends Component {
             onRequestClose={this.handleClose}
             autoScrollBodyContent={true}
           >
-            {checkboxes}
+            {inviteButtons}
           </Dialog>
           <h4>Event Feed</h4>
             <div className="feed-post-bar">
@@ -154,11 +179,18 @@ class EventsFeed extends Component {
     );
   }
 }
-function mapStateToProps({ selectedEvent, userInfo, eventWallPost }) {
-  return { selectedEvent, userInfo, eventWallPost };
+function mapStateToProps({ selectedEvent, userInfo, eventWallPost, allUsers }) {
+  const {filterUserList} = allUsers;
+  const users = filterUserList.map(user => {
+    return {text: `${user.firstName} ${user.lastName}`, value: user.id}
+  });
+
+  return { selectedEvent, userInfo, eventWallPost, users };
 }
+
 export default connect(mapStateToProps,
   {
+    fetchAllUsers,
     fetchEventInfo,
     attendEvent,
     fetchUserInfo,
