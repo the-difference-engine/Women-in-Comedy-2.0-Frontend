@@ -6,3 +6,4 @@ export * from './fetch_events_action';
 export * from './post_actions';
 export * from './users_actions';
 export * from './admin_actions';
+export * from './invite_actions';

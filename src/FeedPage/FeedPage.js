@@ -5,6 +5,7 @@ import {
   fetchUserFeeds,
   fetchUserConnections,
   fetchPendingUserConnections,
+  fetchPendingUserInvites,
   createPostOnUserWall,
   userWallInputChange
 } from '../actions';
@@ -27,11 +28,12 @@ class Feed extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections } = this.props;
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites } = this.props;
     fetchUserInfo(sessionStorage.getItem('userId'));
     fetchUserFeeds(sessionStorage.getItem('userId'));
     fetchUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
+    fetchPendingUserInvites(sessionStorage.getItem('userId'));
   }
 
   onPost() {
@@ -43,7 +45,7 @@ class Feed extends Component {
   }
 
   render() {
-    const { userInfo, userConnections, userFeeds, receivedConnectionRequest } = this.props;
+    const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest } = this.props;
     return (
       <div>
         <Navbar history={this.props.history} />
@@ -52,7 +54,7 @@ class Feed extends Component {
           <Messages connections={receivedConnectionRequest} />
         </RightGraySideBar>
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections}  />
+          <UserInfo userInfo={userInfo} userConnections={userConnections} userInvites={userInvites} />
         </LeftGraySideBar>
         <PageContent>
           <div className="feed-post-bar">
@@ -75,8 +77,8 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { userInfo, userFeeds, userConnections,  receivedConnectionRequest, userWallPost } = state;
-  return { userInfo, userFeeds, userConnections, receivedConnectionRequest, userWallPost };
+  const { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost } = state;
+  return { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost };
 }
 export default connect(mapStateToProps,
   {
@@ -84,6 +86,7 @@ export default connect(mapStateToProps,
     fetchUserFeeds,
     fetchUserConnections,
     fetchPendingUserConnections,
+    fetchPendingUserInvites,
     createPostOnUserWall,
     userWallInputChange
   }

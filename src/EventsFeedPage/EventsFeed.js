@@ -27,14 +27,16 @@ class EventsFeed extends Component {
     this.state = {
       open: false,
     };
-
+    //this.props.createInviteRequest = this.createInviteRequest.bind(this);
   }
   componentDidMount() {
-    const {fetchAllUsers} = this.props;
-    fetchAllUsers();
+  //  const {fetchAllUsers} = this.props;
+    //fetchAllUsers();
   }
 
   async componentWillMount() {
+    const {fetchAllUsers} = this.props;
+    fetchAllUsers();
     const currentUserId = await sessionStorage.getItem('userId');
     //const users = await 
     //this.props.fetchAllUsers();
@@ -50,9 +52,10 @@ class EventsFeed extends Component {
     const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnEventWall({ body, eventId, authorId}, this.props.fetchEventInfo);
   }
-  onCreateInvite(){
+  onCreateInvite(receiverId){
    const senderId = sessionStorage.getItem('userId');
- 
+   const eventId = this.props.match.params.id;
+   this.props.createInviteRequest(senderId, receiverId, eventId); 
   }
 
   handleOpen = () => {
@@ -83,7 +86,7 @@ class EventsFeed extends Component {
       inviteButtons.push(
       <div>
         <label>{user.text}</label>
-        <RaisedButton label="Invite" />
+        <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
       </div>
       );
     });
@@ -197,6 +200,7 @@ export default connect(mapStateToProps,
     fetchHostPhoto,
     unattendEvent,
     eventWallInputChange,
-    createPostOnEventWall
+    createPostOnEventWall,
+    createInviteRequest
   }
 )(EventsFeed);
