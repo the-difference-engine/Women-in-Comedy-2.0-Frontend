@@ -29,14 +29,16 @@ class Messages extends Component {
     const userId = sessionStorage.getItem('userId');
     //callback
     //callback2
-    return (
-      <div>
-        <p id="connection-name">A New Event</p>
-        <br/>
-        <button type="button" /*onClick*/>accept</button>
-        <button type="button" /*onClick*/>decline</button>
-      </div>
-    );
+    return this.props.invites.map(invite => {
+      return (
+        <div key={invite.requestId}>
+          <p id="connection-name">{invite.event} from {invite.firstName} {invite.lastName}</p>
+          <br/>
+          <button type="button" /*onClick*/>accept</button>
+          <button type="button" /*onClick*/>decline</button>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -53,7 +55,7 @@ class Messages extends Component {
         </div>
         {this.renderPendingConnections()}
         <div>
-          <p id="connection"> Pending Event Invites <span id="connection-count">({this.props.connections.length})</span></p>
+          <p id="connection"> Pending Event Invites <span id="connection-count">({this.props.invites.length})</span></p>
         </div>
         {this.renderPendingInvites()}
       </div>

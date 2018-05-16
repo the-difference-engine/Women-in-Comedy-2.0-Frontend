@@ -51,10 +51,10 @@ class Feed extends Component {
         <Navbar history={this.props.history} />
 
         <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} />
+          <Messages connections={receivedConnectionRequest} invites={userInvites} />
         </RightGraySideBar>
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections} userInvites={userInvites} />
+          <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
         <PageContent>
           <div className="feed-post-bar">
