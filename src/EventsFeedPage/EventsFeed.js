@@ -66,12 +66,6 @@ class EventsFeed extends Component {
     this.setState({open: false});
   }
 
-  handleRequestClose(){
-    this.setState({
-      open:false
-    })
-  }
-
 
   render() {
     const actions = [
