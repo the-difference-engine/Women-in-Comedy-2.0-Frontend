@@ -72,7 +72,7 @@ class EventsFeed extends Component {
   render() {
     const actions = [
       <FlatButton
-        label="Close button"
+        label="Close Button"
         primary={true}
         onClick={this.handleClose.bind(this)}
       />
