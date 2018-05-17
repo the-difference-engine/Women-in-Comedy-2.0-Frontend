@@ -71,7 +71,7 @@ export const acceptInvite = (userId, sender_id, callback, callback2) => async di
 
 export const declineInvite = (userId, requestId, callback) => async dispatch => {
   const request = await axios({
-    method: 'post',
+    method: 'delete',
     url: process.env.REACT_APP_API_URL_DEV + `invites/${requestId}`
   });
   await callback(userId);

@@ -27,6 +27,7 @@ class EventsFeed extends Component {
     super(props);
     this.state = {
       open: false,
+      invited: false,
     };
     //this.props.createInviteRequest = this.createInviteRequest.bind(this);
   }
@@ -56,7 +57,8 @@ class EventsFeed extends Component {
   onCreateInvite(receiverId){
    const senderId = sessionStorage.getItem('userId');
    const eventId = this.props.match.params.id;
-   this.props.createInviteRequest(senderId, receiverId, eventId); 
+   this.props.createInviteRequest(senderId, receiverId, eventId);
+   this.setState({invited: true});
   }
 
   handleOpen(){
@@ -91,7 +93,7 @@ class EventsFeed extends Component {
         
         <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
         <Snackbar
-          open={this.state.open}
+          open={this.state.invited}
           message="Invite sent!" 
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
