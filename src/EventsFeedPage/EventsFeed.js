@@ -72,14 +72,8 @@ class EventsFeed extends Component {
   render() {
     const actions = [
       <FlatButton
-        label="Cancel"
+        label="Close"
         primary={true}
-        onClick={this.handleClose.bind(this)}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
         onClick={this.handleClose.bind(this)}
       />
     ];
