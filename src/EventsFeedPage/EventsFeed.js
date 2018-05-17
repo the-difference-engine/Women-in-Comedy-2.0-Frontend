@@ -19,7 +19,8 @@ import Navbar from '../common/Navbar';
 import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
-import { FlatButton, Checkbox, RaisedButton } from 'material-ui';
+import { FlatButton, Checkbox, RaisedButton, Snackbar } from 'material-ui';
+
 //Test
 class EventsFeed extends Component {
   constructor(props) {
@@ -58,25 +59,32 @@ class EventsFeed extends Component {
    this.props.createInviteRequest(senderId, receiverId, eventId); 
   }
 
-  handleOpen = () => {
+  handleOpen(){
     this.setState({open: true});
   }
-  handleClose = () => {
+  handleClose(){
     this.setState({open: false});
   }
+
+  handleRequestClose(){
+    this.setState({
+      open:false
+    })
+  }
+
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handleClose.bind(this)}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleClose.bind(this)}
       />
     ];
 
@@ -86,34 +94,19 @@ class EventsFeed extends Component {
       inviteButtons.push(
       <div>
         <label>{user.text}</label>
+        
         <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
+        <Snackbar
+          open={this.state.open}
+          message="Invite sent!" 
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
       );
     });
     
-    /*
-
-    const inviteButtons = (users) => {
-      return users.map(user => {
-        return (
-        <div>
-          <label>{user.firstName} {user.lastName}</label>
-          <RaisedButton label="Invite" />
-        </div>
-        );
-      });
-    }
-    */
-
-    /*
-    const inviteButtons = [
-      <div>
-        <label>DeMarcus Cousins</label>
-        <RaisedButton label="Invite" />
-      </div>
-    ];
-    */
-
+  
 
 
     return (
@@ -138,7 +131,7 @@ class EventsFeed extends Component {
 
           </LeftGraySideBar>
 
-          <PageContent className="event-feed"><button onClick={this.handleOpen}> Invite </button>
+          <PageContent className="event-feed"><button onClick={this.handleOpen.bind(this)}> Invite </button>
           <Dialog
             title="Invite Users to This Event"
             actions={actions}
