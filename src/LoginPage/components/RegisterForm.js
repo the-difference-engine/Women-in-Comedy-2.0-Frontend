@@ -323,7 +323,7 @@ class RegisterForm extends Component {
                 onClick={this.onClick.bind(this)}
               />
               <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
-              {this.renderImg()} */}
+              {this.renderImg()}
                 <RaisedButton
                   secondary
                   label="register"
