@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/messages.css';
-import { acceptConnection, fetchPendingUserConnections, fetchPendingUserInvites, fetchUserConnections, declineConnection, declineInvite } from '../../actions';
+import { acceptConnection, acceptInvite, fetchPendingUserConnections, fetchPendingUserInvites, fetchUserConnections, declineConnection, declineInvite } from '../../actions';
 class Messages extends Component {
-
-
 
   renderPendingConnections() {
     const userId = sessionStorage.getItem('userId');
@@ -27,15 +25,15 @@ class Messages extends Component {
 
   renderPendingInvites() {
     const userId = sessionStorage.getItem('userId');
-    const callback = this.props.fetchPendingUserInvites;
+    //const callback = this.props.fetchPendingUserInvites;
     //callback2
     return this.props.invites.map(invite => {
       return (
         <div key={invite.requestId}>
           <p id="connection-name">{invite.event} from {invite.firstName} {invite.lastName}</p>
           <br/>
-          <button type="button" /*onClick*/>accept</button>
-          <button type="button" onClick={() => this.props.declineInvite(userId, invite.requestId, callback)}>decline</button>
+          <button type="button" onClick={() => this.props.acceptInvite(userId, invite.senderId)}>accept</button>
+          <button type="button" onClick={() => this.props.declineInvite(userId, invite.requestId)}>decline</button>
         </div>
       );
     });
@@ -65,4 +63,4 @@ class Messages extends Component {
 
 
 
-export default connect(null, { acceptConnection, fetchPendingUserConnections, fetchPendingUserInvites, fetchUserConnections, declineConnection, declineInvite })(Messages);
+export default connect(null, { acceptConnection, acceptInvite, fetchPendingUserConnections, fetchPendingUserInvites, fetchUserConnections, declineConnection, declineInvite })(Messages);

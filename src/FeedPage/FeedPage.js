@@ -15,6 +15,7 @@ import { LeftGraySideBar, RightGraySideBar, PageContent  } from '../common';
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
+import renderPendingInvites from './components/Messages';
 
 
 class Feed extends Component {
@@ -34,6 +35,10 @@ class Feed extends Component {
     fetchUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserInvites(sessionStorage.getItem('userId'));
+  }
+
+  componentWillReceiveProps(newProps) {
+    newProps.fetchPendingUserInvites(sessionStorage.getItem('userId'));
   }
 
   onPost() {
