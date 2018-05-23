@@ -7,7 +7,7 @@ CREATE_INVITE_REQUEST,
 FETCH_INVITE_STATUS, 
  ACCEPT_INVITE, 
 } from './types'
-
+//test
 export const fetchUserInvites = (userId) => {
   const request = axios({
     method: 'get',
