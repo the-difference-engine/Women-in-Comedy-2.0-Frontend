@@ -25,7 +25,7 @@ class CreateEvents extends Component {
 
     fileReader.readAsDataURL(file[0]);
     fileReader.onload = () => {
-      this.props.eventInputChange({ prop: 'img', value: file[0] })
+      this.props.eventInputChange({ prop: 'photo', value: file[0] })
       this.setState({ imgURL: fileReader.result });
     };
   }
@@ -46,10 +46,10 @@ class CreateEvents extends Component {
   }
   
    async onCreateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
+    const { address, date, description, photo, location, ticket_link, time, title } = this.props.createEventForm;
 
    await this.props.createEvent(
-      { address, date, description, img, location, ticketLink, time, title },
+      { address, date, description, photo, location, ticket_link, time, title },
       userId,
       );
 
@@ -94,7 +94,7 @@ class CreateEvents extends Component {
             floatingLabelText="Enter Ticket Link"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticket_link', value })}
             disabled={loading}
           />
           <TextField

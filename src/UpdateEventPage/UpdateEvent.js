@@ -41,7 +41,7 @@ onUpload(event) {
 
   fileReader.readAsDataURL(file[0]);
   fileReader.onload = () => {
-    this.props.eventInputChange({ prop: 'img', value: file[0] })
+    this.props.eventInputChange({ prop: 'photo', value: file[0] })
     this.setState({ imgURL: fileReader.result });
   };
 }
@@ -60,10 +60,10 @@ renderSpinner() {
   }
 }
 async onUpdateEvent() {
-  const { address, date, description, img, location, ticketLink, time, title, id } = this.props.updateEventForm;
+  const { address, date, description, photo, location, ticket_link, time, title, id } = this.props.updateEventForm;
 
   await this.props.updateEvent(
-    { address, date, description, img, location, ticketLink, time, title, id },
+    { address, date, description, photo, location, ticket_link, time, title, id },
     userId
   );
 
@@ -115,7 +115,7 @@ render() {
             defaultValue={`${event.ticket_link || ""}`}
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticket_link', value })}
             disabled={loading}
           />
           <TextField
