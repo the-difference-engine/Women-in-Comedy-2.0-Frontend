@@ -5,12 +5,13 @@ import {
   CREATE_CONNECTION_REQUEST,
   FETCH_CONNECTION_STATUS,
   FETCH_PENDING_USER_CONNECTIONS,
-  ACCEPT_CONNECTION
+  ACCEPT_CONNECTION,
+  FETCH_BLOCKED_USERS,
+  FETCH_BLOCKED_BY
 } from './types';
 
 
 export const fetchUserConnections = (userId) => {
-
  const request = axios({
    method: 'get',
    url: process.env.REACT_APP_API_URL_DEV + 'users/connections',
@@ -21,10 +22,9 @@ export const fetchUserConnections = (userId) => {
      dispatch({ type: FETCH_USER_CONNECTIONS, payload: request })
    });
  };
-};
+}
 
-
-export const createConnectionRequest = ({sender_id, receiver_id}) => async dispatch =>{
+export const createConnectionRequest = ({sender_id, receiver_id}) => async dispatch => {
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'users/connections',
@@ -34,11 +34,9 @@ export const createConnectionRequest = ({sender_id, receiver_id}) => async dispa
     }
   });
   dispatch({ type: CREATE_CONNECTION_REQUEST, payload: request })
-
 }
 
 export const fetchConnectionStatus = ({ sender_id, receiver_id }) => async dispatch => {
-
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'users/connection/status',
@@ -49,7 +47,6 @@ export const fetchConnectionStatus = ({ sender_id, receiver_id }) => async dispa
 }
 
 export const fetchPendingUserConnections = (userId) => {
-
   const request = axios({
     method: 'get',
     url: process.env.REACT_APP_API_URL_DEV + 'users/pending_connections',
@@ -63,7 +60,6 @@ export const fetchPendingUserConnections = (userId) => {
 };
 
 export const acceptConnection = (userId, sender_id, callback, callback2) => async dispatch => {
-
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'users/accept_connections',
@@ -71,9 +67,7 @@ export const acceptConnection = (userId, sender_id, callback, callback2) => asyn
   });
   await callback(userId);
   await callback2(userId);
-};
-
-
+}
 
 export const declineConnection = (userId, requestId, callback) => async dispatch => {
   const request = await axios({
@@ -83,10 +77,17 @@ export const declineConnection = (userId, requestId, callback) => async dispatch
   await callback(userId)
 }
 
-export const blockConnectionRequests = (sender_id) => async dispatch =>{
+export const blockConnectionRequests = (sender_id) => async dispatch => {
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + `users/${sender_id}`,
     headers: { "id": sender_id }
   });
 }
+
+// export const blockUser = (sender_id, receiver_id) => async dispatch => {
+//   const request = await axios({
+//     method: 'post',
+//     url: process.env.REACT_APP_API_URL_DEV + ''
+//   })
+// }
