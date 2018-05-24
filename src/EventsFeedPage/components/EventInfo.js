@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/event-info.css';
 import UpdateEventButton from './UpdateEventButton.js'
 
+//working code by James :)
 const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo}) => {
   const renderButton = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo }) => {
     for(var i = 0; i < event.guests.length; i++) {
