@@ -46,6 +46,7 @@ onUpload(event) {
 }
 
 renderImg() {
+  console.log('the image what not', this.state)
   if (this.state.imgURL) {
     return <img id="img" src={this.state.imgURL} alt="" width="250" height="250" />
   }
