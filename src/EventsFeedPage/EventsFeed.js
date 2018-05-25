@@ -68,6 +68,14 @@ class EventsFeed extends Component {
     this.setState({open: false});
   }
 
+  renderInviteButton(){
+    if (this.props.selectedEvent != null) {
+      if (this.props.selectedEvent.info.user_id === this.props.userInfo.id) {
+        return <div><RaisedButton label="Invite" onClick={this.handleOpen.bind(this)} /></div>
+      }
+    }
+  }
+
 
   render() {
     const actions = [
@@ -79,23 +87,31 @@ class EventsFeed extends Component {
     ];
 
     const inviteButtons = [];
-
-    this.props.users.map(user => {
-      inviteButtons.push(
-      <div>
-        <label>{user.text}</label>
-        
-        <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
-        <Snackbar
-          open={this.state.invited}
-          message="Invite sent!" 
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
-      </div>
-      );
-    });
+    const invite = [];
     
+    if (this.props.selectedEvent != null) {
+      this.props.users.map(user => {
+        if (this.props.selectedEvent.info.user_id !== user.value) {
+          inviteButtons.push(
+          <div>
+            <label>{user.text}</label>
+            
+            <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
+            <Snackbar
+              open={this.state.invited}
+              message="Invite sent!" 
+              autoHideDuration={4000}
+              onRequestClose={this.handleRequestClose}
+            />
+          </div>
+          );
+        }
+      });
+
+      if (this.props.selectedEvent.info.user_id === this.props.userInfo.id) {
+        invite.push(<div><RaisedButton label="Invite" onClick={this.handleOpen.bind(this)} /></div>);
+      }
+    }
   
 
 
@@ -121,7 +137,8 @@ class EventsFeed extends Component {
 
           </LeftGraySideBar>
 
-          <PageContent className="event-feed"><button onClick={this.handleOpen.bind(this)}> Invite </button>
+          <PageContent className="event-feed">
+           {invite}
           <Dialog
             title="Invite Users to This Event"
             actions={actions}
@@ -155,7 +172,6 @@ class EventsFeed extends Component {
         
           <div id="container">
             <RightGraySideBar>
-              <Invites />
               <Guests
                 event={this.props.selectedEvent}
               />
