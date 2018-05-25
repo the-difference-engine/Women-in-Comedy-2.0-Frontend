@@ -46,10 +46,10 @@ class CreateEvents extends Component {
   }
   
    async onCreateEvent() {
-    const { address, date, description, photo, location, ticket_link, time, title } = this.props.createEventForm;
+    const { address, date, about, photo, location, ticket_link, time, title } = this.props.createEventForm;
 
    await this.props.createEvent(
-      { address, date, description, photo, location, ticket_link, time, title },
+      { address, date, about, photo, location, ticket_link, time, title },
       userId,
       );
 
@@ -104,7 +104,7 @@ class CreateEvents extends Component {
             rows={2}
             floatingLabelFocusStyle={{ color: 'red' }}
             underlineFocusStyle={{ display: 'none' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'about', value })}
             disabled={loading}
           />
           <RaisedButton

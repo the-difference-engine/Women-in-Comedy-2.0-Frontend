@@ -11,9 +11,7 @@ const userId = sessionStorage.getItem('userId');
 class UpdateEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imgURL: null
-    };
+    this.state = { imgURL: null };
   }
 
   componentDidMount() {
@@ -23,6 +21,7 @@ class UpdateEvent extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log(newProps)
     const event = newProps.updateEventForm;
     if (event.user_id && event.user_id.toString() !== userId) {
       this.props.history.push(`/eventsfeed/${event.id}`);
@@ -41,7 +40,7 @@ onUpload(event) {
 
   fileReader.readAsDataURL(file[0]);
   fileReader.onload = () => {
-    this.props.eventInputChange({ prop: 'photo', value: file[0] })
+    this.props.eventInputChange({ prop: 'photo', value: file[0]  })
     this.setState({ imgURL: fileReader.result });
   };
 }
@@ -51,6 +50,7 @@ renderImg() {
     return <img id="img" src={this.state.imgURL} alt="" width="250" height="250" />
   }
 }
+
 renderSpinner() {
   const { loading } = this.props.updateEventForm;
   if (loading) {
@@ -60,10 +60,10 @@ renderSpinner() {
   }
 }
 async onUpdateEvent() {
-  const { address, date, description, photo, location, ticket_link, time, title, id } = this.props.updateEventForm;
+  const { address, date, about, photo, location, ticket_link, time, title, id } = this.props.updateEventForm;
 
   await this.props.updateEvent(
-    { address, date, description, photo, location, ticket_link, time, title, id },
+    { address, date, about, photo, location, ticket_link, time, title, id },
     userId
   );
 
@@ -126,7 +126,7 @@ render() {
             rows={2}
             floatingLabelFocusStyle={{ color: 'red' }}
             underlineFocusStyle={{ display: 'none' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'about', value })}
             disabled={loading}
           />
           <RaisedButton
