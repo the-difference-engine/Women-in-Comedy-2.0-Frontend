@@ -23,12 +23,16 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     time,
     title
   } = eventInfo;
+
   if (validate(eventInfo)) {
     dispatch({ type: LOAD });
+    // set events to the photo name.
+    // this is an update to fix the update action
+    const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
     const ext = photo.name.slice(photo.name.lastIndexOf("."));
     const imageData = await firebase
       .storage()
-      .ref(`/events/${title}${ext}`)
+      .ref(`/events/${photoName}${ext}`)
       .put(photo);
 
     photo = imageData.metadata.downloadURLs[0];
@@ -66,11 +70,10 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
     title,
     id
   } = eventInfo;
-  // this will grab the title of the event as a RegExp
-  let currentEventTitle = new RegExp(eventInfo.title.toString());
-  // this will test the current title against the firebase link if users doesn't
-  // update it.
-  if (currentEventTitle.test(eventInfo.photo)) {
+  // saved photo information as string to run .includes below
+  let photoTitle = eventInfo.photo.toString();
+  // this will let user update changes with previous image uploaded. 
+  if (photoTitle.includes("firebase")) {
     const request = await axios({
       method: "put",
       url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
@@ -92,10 +95,13 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
   // otherwise make the changes to the new photo uploaded.
   else if (validate(eventInfo)) {
     dispatch({ type: LOAD });
+    // saving the photo name instead of the event name to fix updating error
+    // might be able to remove the ext completely
+    const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
     const ext = photo.name.slice(photo.name.lastIndexOf("."));
     const imageData = await firebase
       .storage()
-      .ref(`/events/${title}${ext}`)
+      .ref(`/events/${photoName}${ext}`)
       .put(photo);
 
     photo = imageData.metadata.downloadURLs[0];
