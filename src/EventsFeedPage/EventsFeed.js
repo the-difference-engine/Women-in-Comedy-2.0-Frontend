@@ -20,6 +20,7 @@ import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
 import { FlatButton, Checkbox, RaisedButton, Snackbar } from 'material-ui';
+import './css/events-feed.css';
 
 //Test
 class EventsFeed extends Component {
@@ -66,14 +67,6 @@ class EventsFeed extends Component {
   }
   handleClose(){
     this.setState({open: false});
-  }
-
-  renderInviteButton(){
-    if (this.props.selectedEvent != null) {
-      if (this.props.selectedEvent.info.user_id === this.props.userInfo.id) {
-        return <div><RaisedButton label="Invite" onClick={this.handleOpen.bind(this)} /></div>
-      }
-    }
   }
 
 
@@ -147,7 +140,9 @@ class EventsFeed extends Component {
             onRequestClose={this.handleClose}
             autoScrollBodyContent={true}
           >
+          <div>
             {inviteButtons}
+            </div>
           </Dialog>
           <h4>Event Feed</h4>
             <div className="feed-post-bar">
@@ -172,6 +167,7 @@ class EventsFeed extends Component {
         
           <div id="container">
             <RightGraySideBar>
+              <Invites />
               <Guests
                 event={this.props.selectedEvent}
               />
