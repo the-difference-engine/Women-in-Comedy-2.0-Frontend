@@ -87,7 +87,7 @@ class EventsFeed extends Component {
     ];
 
     const inviteButtons = [];
-    const invite = [];
+    const invite = []; //Opens the invite modal
     
     if (this.props.selectedEvent != null) {
       this.props.users.map(user => {
