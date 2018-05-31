@@ -86,10 +86,10 @@ class EventsFeed extends Component {
       this.props.users.map(user => {
         if (this.props.selectedEvent.info.user_id !== user.value) {
           inviteButtons.push(
-          <div>
-            <label>{user.text}</label>
+          <div id="invite">
+            <label className="user-name">{user.text}</label>
             
-            <RaisedButton label="Invite" onClick={this.onCreateInvite.bind(this, user.value)} />
+            <RaisedButton label="Invite" id="invite-buttons" onClick={this.onCreateInvite.bind(this, user.value)} />
             <Snackbar
               open={this.state.invited}
               message="Invite sent!" 
