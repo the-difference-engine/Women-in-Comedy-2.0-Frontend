@@ -59,17 +59,19 @@ export const fetchInviteStatus = ({sender_id, receiver_id}) => async dispatch =>
   dispatch({ type: FETCH_INVITE_STATUS, payload: request });
 }
 
-export const acceptInvite = (userId, sender_id) => async dispatch => {
+export const acceptInvite = (userId, sender_id, callback) => async dispatch => {
   const request = await axios({
     method: 'post',
     url: process.env.REACT_APP_API_URL_DEV + 'invites/accept_invites',
     data: {sender_id, receiver_id: userId}
   });
+  await callback(userId);
 }
 
-export const declineInvite = (userId, requestId) => async dispatch => {
+export const declineInvite = (userId, requestId, callback) => async dispatch => {
   const request = await axios({
     method: 'delete',
     url: process.env.REACT_APP_API_URL_DEV + `invites/${requestId}`
   });
+  await callback(userId);
 }

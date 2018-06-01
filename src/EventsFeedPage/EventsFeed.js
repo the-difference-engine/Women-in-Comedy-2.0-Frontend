@@ -167,7 +167,6 @@ class EventsFeed extends Component {
         
           <div id="container">
             <RightGraySideBar>
-              <Invites />
               <Guests
                 event={this.props.selectedEvent}
               />

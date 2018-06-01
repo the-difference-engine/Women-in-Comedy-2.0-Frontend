@@ -37,10 +37,6 @@ class Feed extends Component {
     fetchPendingUserInvites(sessionStorage.getItem('userId'));
   }
 
-  componentWillReceiveProps(newProps) {
-    newProps.fetchPendingUserInvites(sessionStorage.getItem('userId'));
-  }
-
   onPost() {
     const body = this.props.userWallPost;
 

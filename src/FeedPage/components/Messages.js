@@ -25,15 +25,15 @@ class Messages extends Component {
 
   renderPendingInvites() {
     const userId = sessionStorage.getItem('userId');
-    //const callback = this.props.fetchPendingUserInvites;
+    const callback = this.props.fetchPendingUserInvites;
     //callback2
     return this.props.invites.map(invite => {
       return (
         <div key={invite.requestId}>
           <p id="connection-name">{invite.event} from {invite.firstName} {invite.lastName}</p>
           <br/>
-          <button type="button" onClick={() => this.props.acceptInvite(userId, invite.senderId)}>accept</button>
-          <button type="button" onClick={() => this.props.declineInvite(userId, invite.requestId)}>decline</button>
+          <button type="button" onClick={() => this.props.acceptInvite(userId, invite.senderId, callback)}>accept</button>
+          <button type="button" onClick={() => this.props.declineInvite(userId, invite.requestId, callback)}>decline</button>
         </div>
       );
     });
