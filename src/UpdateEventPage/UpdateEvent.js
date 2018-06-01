@@ -27,6 +27,7 @@ class UpdateEvent extends Component {
   }
 
   componentDidMount() {
+
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem("userId"));
@@ -34,10 +35,14 @@ class UpdateEvent extends Component {
 
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
+
     if (event.user_id && event.user_id.toString() !== userId) {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
-    this.setState({ imgURL: event.photo });
+    // for initial action
+    if (this.state.imgURL == null) {
+      this.setState({ imgURL: event.photo });
+    }
   }
 
   onClick() {
@@ -71,7 +76,6 @@ class UpdateEvent extends Component {
     }
   }
   async onUpdateEvent() {
-
     const {
       address,
       date,
