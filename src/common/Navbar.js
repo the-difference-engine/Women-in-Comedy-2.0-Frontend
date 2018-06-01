@@ -11,7 +11,8 @@ import {
   fetchConnectionStatus,
   fetchUserConnections,
   filterUsers,
-  fetchBlockedBy
+  fetchBlockedBy,
+  fetchBlockedUsers
 } from '../actions'
 import axios from 'axios';
 
@@ -38,11 +39,39 @@ class Navbar extends Component {
       this.props.history.push('/')
     });
   };
+  
+  // static getDerivedStateFromProps(props, state) {
+  //   // Store prevId in state so we can compare when props change.
+  //   // Clear out previously-loaded data (so we don't render stale stuff).
+  //   if (props.id !== state.prevId) {
+  //     return {
+  //       externalData: null,
+  //       prevId: props.id,
+  //     };
+  //   }
+  //   console.log("gDSFP", this.props);
+  //   // No state update necessary
+  //   return null;
+  // }
 
-  componentWillMount() {
-    const {fetchAllUsers, fetchBlockedBy} = this.props;
+  // componentWillReceiveProps(nextProps) {
+  //   // console.log("===============in WillReceive=======================");
+  //   console.log("in CompWillReceiveProps : ", "this.props.users : ", this.props.users ,"nextProps.users : ", nextProps.users);
+  //   // console.log();
+    
+  //   if(nextProps.users !== this.props.users) {
+  //     console.log("new props");
+  //     // nextProps.myProp has a different value than our current prop
+  //     // so we can perform some calculations based on the new value
+  //   }
+  // }
+
+  componentDidMount() {
+    const {fetchAllUsers, fetchBlockedBy, fetchBlockedUsers} = this.props;
     fetchAllUsers();
+    fetchBlockedUsers(userId);
     fetchBlockedBy(userId);
+    console.log("in WillMount this.props: ", this.props);  
   }
 
   handleTouchTap(event) {
@@ -135,93 +164,95 @@ class Navbar extends Component {
         name: 'gender'
       }
     ];
-    return (<nav className="navbar navbar-default navbar-fixed-top">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
-        </div>
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <form className="navbar-form">
 
-              <div className="input-group" style={styles.container}>
-                <div>
-                  <FlatButton style={styles.filter} onClick={this.handleTouchTap} label="Filter"/>
-                  <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
-                      horizontal: 'left',
-                      vertical: 'bottom'
-                    }} targetOrigin={{
-                      horizontal: 'left',
-                      vertical: 'top'
-                    }} onRequestClose={this.handleRequestClose}>
-                    <Menu onChange={this.onMenuClicked}>
-                      <MenuItem primaryText="Reset" onClick={event => this.onMenuItemClicked(event, {props: 'none'})}/>
-                      <MenuItem primaryText="Location" rightIcon={<ArrowDropRight />} menuItems={locationMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Training" rightIcon={<ArrowDropRight />} menuItems={trainingMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Experience" rightIcon={<ArrowDropRight />} menuItems={experienceMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Gender" rightIcon={<ArrowDropRight />} menuItems={genderMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                    </Menu>
-                  </Popover>
+    return (
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
+          </div>
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              <form className="navbar-form">
+
+                <div className="input-group" style={styles.container}>
+                  <div>
+                    <FlatButton style={styles.filter} onClick={this.handleTouchTap} label="Filter"/>
+                    <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
+                        horizontal: 'left',
+                        vertical: 'bottom'
+                      }} targetOrigin={{
+                        horizontal: 'left',
+                        vertical: 'top'
+                      }} onRequestClose={this.handleRequestClose}>
+                      <Menu onChange={this.onMenuClicked}>
+                        <MenuItem primaryText="Reset" onClick={event => this.onMenuItemClicked(event, {props: 'none'})}/>
+                        <MenuItem primaryText="Location" rightIcon={<ArrowDropRight />} menuItems={locationMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
+                              props: {
+                                ...menuItem
+                              }
+                            })}/>))}/>
+                        <MenuItem primaryText="Training" rightIcon={<ArrowDropRight />} menuItems={trainingMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
+                              props: {
+                                ...menuItem
+                              }
+                            })}/>))}/>
+                        <MenuItem primaryText="Experience" rightIcon={<ArrowDropRight />} menuItems={experienceMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
+                              props: {
+                                ...menuItem
+                              }
+                            })}/>))}/>
+                        <MenuItem primaryText="Gender" rightIcon={<ArrowDropRight />} menuItems={genderMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
+                              props: {
+                                ...menuItem
+                              }
+                            })}/>))}/>
+                      </Menu>
+                    </Popover>
+                  </div>
                 </div>
-              </div>
 
-              <div className="input-group">
-                <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users} maxSearchResults={10} hintText="Search" underlineShow={false} hintStyle={styles.hint} inputStyle={styles.input} textareaStyle={styles.text} onNewRequest={(item) => this.onItemClicked(item)}/>
-                <i className="glyphicon glyphicon-search"></i>
-              </div>
-            </form>
-          </li>
+                <div className="input-group">
+                  <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users} maxSearchResults={10} hintText="Search" underlineShow={false} hintStyle={styles.hint} inputStyle={styles.input} textareaStyle={styles.text} onNewRequest={(item) => this.onItemClicked(item)}/>
+                  <i className="glyphicon glyphicon-search"></i>
+                </div>
+              </form>
+            </li>
 
-          <li>
-            <Link to="/feed">
-              <i className="fa fa-home">
-                <p>HOME</p>
-              </i>
-            </Link>
-          </li>
-          <li>
-            <Link to="/events">
-              <i className="fa fa-calendar-o">
-                <p>EVENTS</p>
-              </i>
-            </Link>
-          </li>
-          <li>
-            <a href="#" className="icon">
-              <i className="fa fa-bell-o">
-                <p>ALERTS</p>
-              </i>
-            </a>
-          </li>
-          <li>
-            <Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></Link>
-          </li>
-          <li>
-            <a href="#" className="icon" onClick={this.Logout.bind(this)}>
-              <i className="fa fa-sign-out">
-                <p>LOG OUT</p>
-              </i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>);
+            <li>
+              <Link to="/feed">
+                <i className="fa fa-home">
+                  <p>HOME</p>
+                </i>
+              </Link>
+            </li>
+            <li>
+              <Link to="/events">
+                <i className="fa fa-calendar-o">
+                  <p>EVENTS</p>
+                </i>
+              </Link>
+            </li>
+            <li>
+              <a href="#" className="icon">
+                <i className="fa fa-bell-o">
+                  <p>ALERTS</p>
+                </i>
+              </a>
+            </li>
+            <li>
+              <Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></Link>
+            </li>
+            <li>
+              <a href="#" className="icon" onClick={this.Logout.bind(this)}>
+                <i className="fa fa-sign-out">
+                  <p>LOG OUT</p>
+                </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>);
   }
 };
 
@@ -240,7 +271,6 @@ const styles = {
     height: '30px',
     backgroundColor: 'white',
     borderRadius: '20px'
-
   },
   hint: {
     zIndex: 1,
@@ -257,10 +287,22 @@ function mapStateToProps({allUsers, userBlocks}) {
   const {filterUserList} = allUsers;
   var users = filterUserList.map(user => {
     if (!blockedByIds.includes(user.id)){
-      return {text: `${user.firstName} ${user.lastName}`, value: user.id}
+       return {text: `${user.firstName} ${user.lastName}`, value: user.id}
     }
   });
-  users = users.filter(user => user);
+  
+  // if (!blockedByIds.includes(user.id)){
+  //   {text: `${user.firstName} ${user.lastName}`, value: user.id}
+  // }
+  // for(var i =0; i < blockedByIds.length; i++)
+  // {
+  //   users = users.splice(i);
+  // }
+
+
+  // users = filterUserList.filter(user => user.id !== userBlocks.id);
+  // var users = filterUserList;
+  
   return {users};
 }
 
@@ -271,5 +313,6 @@ export default connect(mapStateToProps, {
   fetchConnectionStatus,
   fetchUserConnections,
   filterUsers,
-  fetchBlockedBy
+  fetchBlockedBy,
+  fetchBlockedUsers
 })(Navbar);
