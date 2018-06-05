@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar } from '../common';
-import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
-import { connect } from 'react-redux';
-import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import {createEvent, eventInputChange, fetchNotifications, fetchUserInfo} from '../actions';
+import {connect} from 'react-redux';
+import {CircularProgress, DatePicker, RaisedButton, TextField, TimePicker} from 'material-ui';
 
 import './css/create-event.css'
+
 const userId = sessionStorage.getItem('userId')
 
 class CreateEvents extends Component {
@@ -13,11 +13,15 @@ class CreateEvents extends Component {
     super(props);
     this.state = { imgURL: null };
   }
+    componentDidMount() {
+        this.props.fetchNotifications(sessionStorage.getItem('userId'));
+    }
 
   onClick() {
     const input = document.getElementById('input');
     input.click();
   }
+
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -34,6 +38,7 @@ class CreateEvents extends Component {
       return <img id="img" src={this.state.imgURL} alt="" width="250" height="250"/>
     }
   }
+
   renderSpinner() {
     const { loading } = this.props.createEventForm;
     if (loading) {
@@ -42,6 +47,7 @@ class CreateEvents extends Component {
       );
     }
   }
+  
    async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
@@ -52,12 +58,16 @@ class CreateEvents extends Component {
 
       this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`) 
   }
+
+  
+
   render() {
     const { loading } = this.props.createEventForm;
+    const { notifications } = this.props;
 
     return (
       <div>
-        <Navbar history={this.props.history}/>
+        <Navbar history={this.props.history} notifications={notifications}/>
         <div id="create-event-wrapper">
           <TextField
             hintText="Event Title"
@@ -113,12 +123,13 @@ class CreateEvents extends Component {
             hintText="Date"
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            minDate={new Date()}
           />
           <TimePicker
             hintText="Time"
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            minutesStep={5}
           />
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
@@ -135,7 +146,7 @@ class CreateEvents extends Component {
   }
 }
 
-function mapStateToProps({ createEventForm }) {
-  return { createEventForm };
+function mapStateToProps({ createEventForm, notifications }) {
+  return { createEventForm, notifications };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);
+export default connect(mapStateToProps, { createEvent, fetchUserInfo, fetchNotifications, eventInputChange })(CreateEvents);

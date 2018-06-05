@@ -5,12 +5,13 @@
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
+  /*z-index: 1000; position:relative;*/
 }
 
 #nav-header {
-  color: white;
-  font-size: 50px;
-  font-weight: 100;
+  color:white ;
+  font-size: 0.05em;
+  font-weight: 0;
   margin-left: 150px;
   margin-top: 17px;
   font-family: 'alwaysforever', sans-serif;
@@ -25,8 +26,12 @@
     margin-bottom: 0;
 }
 
+#alert-button {
+  padding-top: 16px;
+}
 
 i.fa {
+  color: white;
   font-size: 20px;
   text-align: center;
 }
@@ -92,5 +97,16 @@ p {
 
 #navbar button:hover {
   background-color: #860A0A;
+}
+
+.badge {
+  background: rgba(0,0,0,0.5);
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 50%;
+  position:absolute;
+  top:-1px;
+  padding:5px;
 }
 

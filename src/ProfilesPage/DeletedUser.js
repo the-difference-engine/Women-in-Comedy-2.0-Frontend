@@ -6,7 +6,7 @@ class DeletedUser extends Component {
       <div id="message">
         You have deleted this user.
         <br />
-        <a href = {process.env.REACT_APP_API_URL_QA + 'feed'}> back </a> 
+        <a href = '/feed'> back </a> 
       </div>
     );
   }

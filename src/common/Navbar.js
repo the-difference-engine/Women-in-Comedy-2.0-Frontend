@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
-import {AutoComplete} from 'material-ui';
-import {FlatButton, Popover, Menu, MenuItem} from 'material-ui';
+import {AutoComplete, FlatButton, Menu, MenuItem, Popover} from 'material-ui';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {
   fetchAllUsers,
-  fetchUserInfo,
-  fetchUserFeeds,
   fetchConnectionStatus,
+  fetchNotifications,
   fetchUserConnections,
-  filterUsers,
-  fetchEventInfo
+  fetchUserFeeds,
+  fetchUserInfo,
+  filterUsers
 } from '../actions'
 import axios from 'axios';
 import {render} from 'react-router-dom'
 import './css/navbar.css';
+import NotificationButton from '../containers/notification_button';
 import '../images/Women_Logo_New.png';
 
 const userId = sessionStorage.getItem('userId');
@@ -40,7 +40,7 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    const {fetchAllUsers, fetchUserInfo, userInfo} = this.props;
+    const {fetchAllUsers, fetchUserInfo} = this.props;
     fetchAllUsers();
     fetchUserInfo(userId);
   }
@@ -63,8 +63,6 @@ class Navbar extends Component {
   };
 
   onItemClicked(item) {
-    const {fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus} = this.props;
-
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = item.value
     fetchUserInfo(item.value);
@@ -72,15 +70,12 @@ class Navbar extends Component {
     fetchUserConnections(item.value);
     fetchConnectionStatus({sender_id, receiver_id});
     this.props.history.push(`/profile/${item.value}`);
-
-    
   }
 
   componentWillReceiveProps(newProps){
     const {userInfo} = newProps;
     console.log(newProps);
   }
-
 
   renderAdminIcon(){
     const isAdmin = this.props.userInfo.admin;
@@ -91,16 +86,13 @@ class Navbar extends Component {
             <i className="fa fa-users">
               <p>ADMIN</p>
             </i>
-        </Link>
-      </li>
-    );
-   }
-}
-  
-
+          </Link>
+        </li>
+      );
+    }
+  }
 
   render() {
-
     const locationMenuItems = [
       {
         primaryText: 'San Francisco',
@@ -116,6 +108,7 @@ class Navbar extends Component {
         name: 'city'
       }
     ];
+
     const trainingMenuItems = [
       {
         primaryText: 'less than 1 year',
@@ -134,6 +127,7 @@ class Navbar extends Component {
         name: 'training'
       }
     ];
+
     const experienceMenuItems = [
       {
         primaryText: 'less than 1 year',
@@ -152,6 +146,7 @@ class Navbar extends Component {
         name: 'experience'
       }
     ];
+
     const genderMenuItems = [
       {
         primaryText: 'Male',
@@ -162,103 +157,108 @@ class Navbar extends Component {
       }
     ];
 
-
-
+    const {notifications} = this.props;
 
     return (
-
       <nav className="navbar navbar-default navbar-fixed-top">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
-        </div>
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <form className="navbar-form">
-
-              <div className="input-group" style={styles.container}>
-                <div>
-                  <FlatButton style={styles.filter} onClick={this.handleTouchTap} label="Filter"/>
-                  <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
-                      horizontal: 'left',
-                      vertical: 'bottom'
-                    }} targetOrigin={{
-                      horizontal: 'left',
-                      vertical: 'top'
-                    }} onRequestClose={this.handleRequestClose}>
-                    <Menu onChange={this.onMenuClicked}>
-                      <MenuItem primaryText="Reset" onClick={event => this.onMenuItemClicked(event, {props: 'none'})}/>
-                      <MenuItem primaryText="Location" rightIcon={<ArrowDropRight />} menuItems={locationMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Training" rightIcon={<ArrowDropRight />} menuItems={trainingMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Experience" rightIcon={<ArrowDropRight />} menuItems={experienceMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                      <MenuItem primaryText="Gender" rightIcon={<ArrowDropRight />} menuItems={genderMenuItems.map(menuItem => (<MenuItem {...menuItem} onClick={event => this.onMenuItemClicked(event, {
-                            props: {
-                              ...menuItem
-                            }
-                          })}/>))}/>
-                    </Menu>
-                  </Popover>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <Link id="nav-header" className="navbar-brand" to="/feed">Women in Comedy</Link>
+          </div>
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              <form className="navbar-form">
+                <div className="input-group" style={styles.container}>
+                  <div>
+                    <FlatButton style={styles.filter} onClick={this.handleTouchTap} label="Filter"/>
+                    <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
+                        horizontal: 'left',
+                        vertical: 'bottom'
+                      }}
+                      targetOrigin={{
+                        horizontal: 'left',
+                        vertical: 'top'
+                      }}
+                      onRequestClose={this.handleRequestClose}>
+                      <Menu onChange={this.onMenuClicked}>
+                        <MenuItem primaryText="Reset"
+                                  onClick={event => this.onMenuItemClicked(event, {props: 'none'})}/>
+                        <MenuItem primaryText="Location" rightIcon={<ArrowDropRight/>}
+                                  menuItems={locationMenuItems.map(menuItem => (
+                                    <MenuItem {...menuItem}
+                                      onClick={event => this.onMenuItemClicked(event, {props: {...menuItem}})}
+                                    />
+                                  ))}
+                        />
+                        <MenuItem primaryText="Training" rightIcon={<ArrowDropRight/>}
+                                  menuItems={trainingMenuItems.map(menuItem => (
+                                    <MenuItem {...menuItem}
+                                      onClick={event => this.onMenuItemClicked(event, {props: {...menuItem}})}
+                                    />
+                                  ))}
+                        />
+                        <MenuItem primaryText="Experience" rightIcon={<ArrowDropRight/>}
+                                  menuItems={experienceMenuItems.map(menuItem => (
+                                    <MenuItem {...menuItem}
+                                      onClick={event => this.onMenuItemClicked(event, {props: {...menuItem}})}
+                                    />
+                                  ))}
+                        />
+                        <MenuItem primaryText="Gender" rightIcon={<ArrowDropRight/>}
+                                  menuItems={genderMenuItems.map(menuItem => (
+                                    <MenuItem {...menuItem}
+                                      onClick={event => this.onMenuItemClicked(event, {props: {...menuItem}})}
+                                    />
+                                  ))}
+                        />
+                      </Menu>
+                    </Popover>
+                  </div>
                 </div>
-              </div>
+                <div className="input-group">
+                    <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users}
+                                  maxSearchResults={10} hintText="Search" underlineShow={false}
+                                  hintStyle={styles.hint} inputStyle={styles.input}
+                                  textareaStyle={styles.text}
+                                  onNewRequest={(item) => this.onItemClicked(item)}/>
+                    <i className="glyphicon glyphicon-search"></i>
+                </div>
+              </form>
+            </li>
+            <li>
+              <Link to="/feed">
+                <i className="fa fa-home">
+                  <p>HOME</p>
+                </i>
+              </Link>
+            </li>
+            <li>
+              <Link to="/events">
+                <i className="fa fa-calendar-o">
+                  <p>EVENTS</p>
+                </i>
+              </Link>
+            </li>
 
-              <div className="input-group">
-                <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users} maxSearchResults={10} hintText="Search" underlineShow={false} hintStyle={styles.hint} inputStyle={styles.input} textareaStyle={styles.text} onNewRequest={(item) => this.onItemClicked(item)}/>
-                <i className="glyphicon glyphicon-search"></i>
-              </div>
-            </form>
-          </li>
+            {this.renderAdminIcon()}
 
-          <li>
-            <Link to="/feed">
-              <i className="fa fa-home">
-                <p>HOME</p>
-              </i>
-            </Link>
-          </li>
-          <li>
-            <Link to="/events">
-              <i className="fa fa-calendar-o">
-                <p>EVENTS</p>
-              </i>
-            </Link>
-          </li>
-                          
-          {this.renderAdminIcon()}
-          
-                      
-        
-          <li>
-            <a href="#" className="icon">
-              <i className="fa fa-bell-o">
-                <p>ALERTS</p>
-              </i>
-            </a>
-          </li>
-          <li>
-            <Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></Link>
-          </li>
-          <li>
-            <a href="#" className="icon" onClick={this.Logout.bind(this)}>
-              <i className="fa fa-sign-out">
-                <p>LOG OUT</p>
-              </i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>);
+            <li>
+              <NotificationButton notifications={notifications}/>
+            </li>
+            <li>
+              <Link to={`/profile/${userId}`}><img className="img-responsive" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></Link>
+            </li>
+            <li>
+              <a href="#" className="icon" onClick={this.Logout.bind(this)}>
+                <i className="fa fa-sign-out">
+                  <p>LOG OUT</p>
+                </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
   }
 };
 
@@ -287,7 +287,8 @@ const styles = {
   text: {
     marginLeft: '10px'
   }
-}
+};
+
 function mapStateToProps({allUsers, userInfo}) {
   const {filterUserList} = allUsers;
   const users = filterUserList.map(user => {
@@ -296,11 +297,13 @@ function mapStateToProps({allUsers, userInfo}) {
 
   return {users, userInfo};
 }
+
 export default connect(mapStateToProps, {
   fetchAllUsers,
   fetchUserInfo,
   fetchUserFeeds,
   fetchConnectionStatus,
+  fetchNotifications,
   fetchUserConnections,
   filterUsers
 })(Navbar);
