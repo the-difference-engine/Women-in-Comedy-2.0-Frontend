@@ -9,8 +9,8 @@ export default (props) => {
 
     function findConnectionActions(props) {
         if (props.notifications !== null) {
-            const connectionAccepted = props.notifications.notifications.filter(notification => notification.action === "connection_accepted")
-                .filter(notification => notification.seen === null);
+            const connectionAccepted = props.notifications.notifications.filter(notification => notification.action === "connection_accepted"
+                || notification.action === "connection_request").filter(notification => notification.seen === null);
 
             if (connectionAccepted.length === 0) {
                 return null;
