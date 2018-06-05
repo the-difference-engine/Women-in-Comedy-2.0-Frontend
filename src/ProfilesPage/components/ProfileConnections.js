@@ -67,6 +67,7 @@ class ProfileConnections extends Component {
     const displayAll = renderConnections(users);
 
 
+
     if(this.state.term === 'ten') {
       displayNames.push(this.getUsers([], displayAll, 0));
 

@@ -1,9 +1,9 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import '../css/messages.css';
-import { acceptConnection, fetchPendingUserConnections, fetchUserConnections, declineConnection } from '../../actions';
+import {acceptConnection, declineConnection, fetchPendingUserConnections, fetchUserConnections} from '../../actions';
+
 class Messages extends Component {
 
 
@@ -30,7 +30,7 @@ class Messages extends Component {
       <div>
         <div>
           <p id="next-event">Next Event</p>
-          <Link to="/events" id="events-link">View Upcoming Events</Link>
+          <Link to="/events" className="events-link">View Upcoming Events</Link>
         </div>
         <br/>
         <div>
