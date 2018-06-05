@@ -7,6 +7,7 @@ import {acceptConnection, declineConnection, fetchPendingUserConnections, fetchU
 class Messages extends Component {
 
 
+
   renderPendingConnections() {
     const userId = sessionStorage.getItem('userId');
     const callback = this.props.fetchPendingUserConnections;
