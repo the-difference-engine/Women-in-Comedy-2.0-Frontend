@@ -13,8 +13,9 @@
 }
 
 #invite-buttons {
-  width: 25%;
   margin: 1px !important;
+  background-color: #9b1522 !important;
+  color: white !important;
 }
 
 .user-name {

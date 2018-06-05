@@ -89,7 +89,7 @@ class EventsFeed extends Component {
           <div id="invite">
             <label className="user-name">{user.text}</label>
             
-            <RaisedButton label="Invite" id="invite-buttons" onClick={this.onCreateInvite.bind(this, user.value)} />
+            <button className="btn btn-default" id="invite-buttons" onClick={this.onCreateInvite.bind(this, user.value)}>INVITE</button>
             <Snackbar
               open={this.state.invited}
               message="Invite sent!" 
@@ -102,7 +102,7 @@ class EventsFeed extends Component {
       });
 
       if (this.props.selectedEvent.info.user_id === this.props.userInfo.id) {
-        invite.push(<div><RaisedButton label="Invite" onClick={this.handleOpen.bind(this)} /></div>);
+        invite.push(<div><button className="btn btn-default" id="invite-buttons" onClick={this.handleOpen.bind(this)}>INVITE USERS</button></div>);
       }
     }
   
@@ -131,7 +131,6 @@ class EventsFeed extends Component {
           </LeftGraySideBar>
 
           <PageContent className="event-feed">
-           {invite}
           <Dialog
             title="Invite Users to This Event"
             actions={actions}
@@ -167,6 +166,7 @@ class EventsFeed extends Component {
         
           <div id="container">
             <RightGraySideBar>
+            {invite}
               <Guests
                 event={this.props.selectedEvent}
               />
