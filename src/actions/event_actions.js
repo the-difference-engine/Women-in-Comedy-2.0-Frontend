@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import axios from 'axios'
-import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS } from './types';
+import { CREATE_EVENT, EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, ATTEND_EVENT, CREATE_EVENT_SUCCESS, UPDATE_EVENT_SUCCESS, UPDATE_EVENT_FAIL } from './types';
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     let { address, date, description, img, location, ticketLink, time, title } = eventInfo;
@@ -15,12 +15,34 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         url: process.env.REACT_APP_API_URL_DEV + 'events',
         data: { userId, address, date, description, img, location, ticketLink, time, title }
       })
-      
+
       dispatch({ type: CREATE_EVENT_SUCCESS, eventId: request.data });
   } else {
     dispatch({ type: CREATE_EVENT_FAIL });
   }
 }
+
+export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
+    let { address, date, description, img, location, ticketLink, time, title, id } = eventInfo;
+    // if(validate(eventInfo)) {
+      dispatch({ type: LOAD })
+      if(img){
+        const ext = img.name.slice(img.name.lastIndexOf('.'));
+        const imageData = await firebase.storage().ref(`/events/${title}${ext}`).put(img);
+
+        img = imageData.metadata.downloadURLs[0];
+      }
+      const request = await axios({
+        method: 'put',
+        url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
+        data: { userId, address, date, description, img, location, ticketLink, time, title }
+      })
+
+      dispatch({ type: UPDATE_EVENT_SUCCESS, eventId: request.data });
+  // } else {
+  //   dispatch({ type: UPDATE_EVENT_FAIL });
+  // }
+};
 
 const validate = eventInfo => {
   for (let key in eventInfo) {
@@ -34,7 +56,7 @@ const validate = eventInfo => {
 export const eventInputChange = ({ prop, value }) => {
 
   if (prop === 'time') {
-    value = value.toLocaleTimeString();
+    value = value.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
   } else if (prop === 'date') {
     value = value.toLocaleDateString(['en-US'], {
       month: 'short',
@@ -57,11 +79,9 @@ export const attendEvent = (data, eventId, callback) => async dispatch => {
 }
 
 export const unattendEvent = (guestId, eventId, callback) => async dispatch => {
-  console.log(guestId);
-  console.log(eventId);
   await axios({
     method: 'delete',
-    url: `http://localhost:9000/api/v1/guests/${guestId}`
+    url: process.env.REACT_APP_API_URL_DEV + `guests/${guestId}`
   });
   callback(eventId);
 }

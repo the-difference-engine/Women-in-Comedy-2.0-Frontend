@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    createPostOnUserWall,
+  fetchUserInfo,
+  fetchUserFeeds,
     fetchNotifications,
-    fetchPendingUserConnections,
-    fetchUserConnections,
-    fetchUserFeeds,
-    fetchUserInfo,
-    userWallInputChange
+  fetchUserConnections,
+  fetchPendingUserConnections,
+  createPostOnUserWall,
+  userWallInputChange
 } from '../actions';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';

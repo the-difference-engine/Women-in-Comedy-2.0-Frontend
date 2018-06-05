@@ -10,10 +10,12 @@ import reducers from './reducers';
 import 'dotenv/config';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+
 const store = createStore(
   reducers,
   {},
-  composeWithDevTools(applyMiddleware(promise, thunk))
+  composeWithDevTools(applyMiddleware(promise, thunk)),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 ReactDOM.render(
   <Provider store={store}>

@@ -43,7 +43,7 @@ const renderUsers = (users) => {
   return _.map(users, user => {
     return (
       <div key={user.id}>
-      	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={"http://localhost:3000/profile/" + user.id}>{user.firstName} {user.lastName}</a>
+      	<div id="user-pic" class="col-md-1"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /><a href={'/profile/'+ user.id}>{user.firstName} {user.lastName}</a>
       	</div>
       </div>
     );

@@ -21,6 +21,7 @@ class CreateEvents extends Component {
     const input = document.getElementById('input');
     input.click();
   }
+
   onUpload(event) {
     const file = event.target.files;
     const fileReader = new FileReader();
@@ -37,6 +38,7 @@ class CreateEvents extends Component {
       return <img id="img" src={this.state.imgURL} alt="" width="250" height="250"/>
     }
   }
+
   renderSpinner() {
     const { loading } = this.props.createEventForm;
     if (loading) {
@@ -45,6 +47,7 @@ class CreateEvents extends Component {
       );
     }
   }
+  
    async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
 
@@ -55,6 +58,9 @@ class CreateEvents extends Component {
 
       this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`) 
   }
+
+  
+
   render() {
     const { loading } = this.props.createEventForm;
     const { notifications } = this.props;
@@ -117,12 +123,13 @@ class CreateEvents extends Component {
             hintText="Date"
             onChange={(event, value) => this.props.eventInputChange({ prop: 'date', value })}
             disabled={loading}
+            minDate={new Date()}
           />
           <TimePicker
             hintText="Time"
-            autoOk={true}
             onChange={(event, value) => this.props.eventInputChange({ prop: 'time', value })}
             disabled={loading}
+            minutesStep={5}
           />
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}

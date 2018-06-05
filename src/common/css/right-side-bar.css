@@ -15,3 +15,7 @@
   margin-right: 25px;
   height: 100%;
 }
+
+html, body {
+  font-family: 'Quicksand', sans-serif;
+}

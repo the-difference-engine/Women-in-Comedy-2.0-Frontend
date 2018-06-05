@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../css/messages.css';
-// import {acceptConnection, declineConnection, fetchPendingUserConnections, fetchUserConnections} from '../../actions';
 
 class Messages extends Component {
-
   render() {
     return (
       <div>
@@ -18,7 +16,5 @@ class Messages extends Component {
     )
   }
 }
-
-
 
 export default connect(null)(Messages);

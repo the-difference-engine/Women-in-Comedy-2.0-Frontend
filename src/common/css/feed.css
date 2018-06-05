@@ -9,9 +9,12 @@
 
 #feed-content {
   padding: 0 30px 10px 30px;
-  position: relative;
+  position: absolute;
   top: -20px;
+}
 
+#feed-content.event-comment {
+  position: relative;
 }
 
 #feed-icons a {

@@ -27,11 +27,17 @@ class EditForm extends Component {
       </div>
       {/* City */}
       <Field label="City" name="city" component={this.renderTitleField}/>
-
+      {/* Video/ Website Links */}
       <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
+      {/* ADMIN ONLY */}
+      {isAdminEdit ? <div>
+          <Field label="Assign Public Figure/ Mentor Status" name="superuser" component={this.renderCheckbox}/>
+          <Field label="Assign Admin Role" name="admin" component={this.renderCheckbox}/>
+        </div>
+        : null }
 
-      <div>
+      <div> 
         <label className="form-check-label">Years of comedy training</label>
         <div>
           <div>
@@ -136,6 +142,8 @@ class EditForm extends Component {
   }
 
   renderCheckbox(field) {
+
+  
     return (<div>
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
