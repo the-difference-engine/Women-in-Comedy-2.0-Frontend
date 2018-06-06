@@ -32,12 +32,16 @@
 
 #event-pic {
   position: fixed;
-  
+}
+
+#event-pic img {
+  width: 100%;
 }
 
 #pic-wrap {
   display: flex;
-  flex-wrap: wrap;
-  position: absolute;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   top: 100px;
 }

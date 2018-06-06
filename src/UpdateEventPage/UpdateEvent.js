@@ -27,7 +27,6 @@ class UpdateEvent extends Component {
   }
 
   componentDidMount() {
-
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem("userId"));
