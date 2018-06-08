@@ -2,17 +2,15 @@ import React from 'react';
 
 export default (props) => {
   const findConnectionActions = (props) => {
-    // if (props.notifications !== undefined && props.notifications !== null) {
-      const connectionAccepted = props.notifications.notifications.filter(notification => notification.action === "connection_accepted"
-        || notification.action === "connection_request").filter(notification => notification.seen === null);
+    const connectionAccepted = props.notifications.notifications.filter(notification => notification.action === "connection_accepted"
+      || notification.action === "connection_request").filter(notification => notification.seen === null);
 
-      if (connectionAccepted.length === 0) {
-        return false;
-      } else {
-        return connectionAccepted.length;
-      }
+    if (connectionAccepted.length === 0) {
+      return false;
+    } else {
+      return connectionAccepted.length;
+    }
   }
-    // }
   if (props.notifications === undefined || props.notifications === null) {
     return (
       <div>
