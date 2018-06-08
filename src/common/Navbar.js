@@ -40,7 +40,7 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    const {fetchAllUsers, fetchUserInfo} = this.props;
+    const {fetchAllUsers, fetchUserInfo, fetchNotifications} = this.props;
     fetchAllUsers();
     fetchUserInfo(userId);
   }
@@ -74,7 +74,6 @@ class Navbar extends Component {
 
   componentWillReceiveProps(newProps){
     const {userInfo} = newProps;
-    console.log(newProps);
   }
 
   renderAdminIcon(){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../common/Navbar';
 import { LeftGraySideBar, RightGraySideBar } from '../common';
-import { createEvent, fetchUserInfo, eventInputChange, updateEvent, fetchEventInfo } from '../actions';
+import { createEvent, fetchUserInfo, eventInputChange, updateEvent, fetchEventInfo, fetchNotifications } from '../actions';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
 
@@ -20,6 +20,7 @@ class UpdateEvent extends Component {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+    this.props.fetchNotifications(userId);
   }
 
   componentWillReceiveProps(newProps) {
@@ -75,6 +76,7 @@ class UpdateEvent extends Component {
   render() {
     const { loading } = this.props.updateEventForm;
     const event = this.props.updateEventForm;
+    const {notifications} = this.props
     var time = null;
     if (event.time && event.time != "Invalid Date") {
       time = new Date('1 Jan 2018 ' + event.time);
@@ -82,7 +84,7 @@ class UpdateEvent extends Component {
 
     return (
       <div>
-        <Navbar history={this.props.history} />
+        <Navbar history={this.props.history} notifications={notifications}/>
         {event.user_id && (event.user_id.toString() === userId || sessionStorage.adminUser === "true") &&
           <div id="create-event-wrapper">
             <TextField
@@ -170,7 +172,7 @@ class UpdateEvent extends Component {
   }
 };
 
-function mapStateToProps({ updateEventForm }) {
-  return { updateEventForm };
+function mapStateToProps({ updateEventForm, notifications }) {
+  return { updateEventForm, notifications };
 }
-export default connect(mapStateToProps, { updateEvent, fetchUserInfo, eventInputChange, fetchEventInfo })(UpdateEvent);
+export default connect(mapStateToProps, { updateEvent, fetchUserInfo, eventInputChange, fetchEventInfo, fetchNotifications })(UpdateEvent);

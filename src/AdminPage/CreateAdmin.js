@@ -5,27 +5,27 @@ import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
-import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent } from '../actions'; 
+import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, fetchNotifications } from '../actions';
 import './css/navbar.css';
 
 
 class CreateAdmin extends Component {
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, updateSettings } = this.props;   
+    const { fetchAllUsers, fetchUserInfo, updateSettings, fetchNotifications } = this.props;
     fetchAllUsers();
     updateSettings();
-
+    fetchNotifications(sessionStorage.getItem('userId'));
   };
 
 
 
   render(){
-
+    const {notifications} = this.props
 
     return(
       <div>
-        <Navbar history={this.props.history}/>
+        <Navbar history={this.props.history} notifications={notifications}/>
         <LeftGraySideBar>
         </LeftGraySideBar>
         <PageContent>
@@ -34,18 +34,18 @@ class CreateAdmin extends Component {
         <RightGraySideBar>
         </RightGraySideBar>
       </div>
-    ); 
+    );
   }
 
 }
 
 function mapStateToProps(state) {
-  const { userInfo } = state;
-  return { allUsersList: state.allUsers, userInfo}
+  const { userInfo, notifications } = state;
+  return { allUsersList: state.allUsers, userInfo, notifications}
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent }, dispatch)
+  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent, fetchNotifications: fetchNotifications }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAdmin);
