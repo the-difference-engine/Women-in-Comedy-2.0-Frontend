@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {
   fetchUserInfo,
   fetchUserFeeds,
-    fetchNotifications,
+  fetchNotifications,
   fetchUserConnections,
   fetchPendingUserConnections,
   createPostOnUserWall,
@@ -82,7 +82,7 @@ export default connect(mapStateToProps,
     fetchUserInfo,
     fetchUserFeeds,
     fetchUserConnections,
-      fetchNotifications,
+    fetchNotifications,
     fetchPendingUserConnections,
     createPostOnUserWall,
     userWallInputChange

@@ -10,12 +10,14 @@ class EventsPage extends Component {
 
   componentDidMount() {
     const userId = sessionStorage.getItem('userId');
-    console.log(this.props);this.props.fetchMyUpcomingEvents(userId);
+    this.props.fetchMyUpcomingEvents(userId);
     this.props.fetchUpcomingEvents();
-  this.props.fetchNotifications(userId);
-    }
+    this.props.fetchNotifications(userId);
+  }
+
 	render () {
-		const {notifications} = this.props;return (
+		const {notifications} = this.props;
+    return (
 			<div id="events-page">
         <Navbar history={this.props.history} notifications={notifications}/>
 				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />

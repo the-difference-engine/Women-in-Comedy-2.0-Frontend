@@ -3,7 +3,6 @@ import '../css/event-info.css';
 
 
 const EventImg = (props) => {
-  console.log('eventimgprop', props);
   if(props.event) {
     const { photo } = props.event.info;
     return (

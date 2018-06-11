@@ -4,7 +4,6 @@ import '../css/event-info.css';
 //THIS FILE NOT IN USE
 
 const EventImg = (props) => {
-  console.log('eventimgprop', props);
   if(props.event) {
     const { photo } = props.event.info;
     return (
