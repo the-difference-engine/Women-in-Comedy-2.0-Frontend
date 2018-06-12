@@ -99,9 +99,6 @@ class Profile extends Component {
     userFeeds.forEach(feed => {
       feed.postComments.forEach(comment => {
         commentArray.push(comment);
-        console.log('commentArray below');
-        console.log(commentArray);
-
       })
     })
     this.commentsTotal = commentArray.length;

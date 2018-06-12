@@ -23,6 +23,11 @@ class EventsFeed extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const {fetchNotifications} = this.props;
+    fetchNotifications(sessionStorage.getItem('userId'));
+  }
+
   async componentWillMount() {
     const currentUserId = await sessionStorage.getItem('userId');
     this.props.fetchUserInfo(currentUserId);
@@ -40,10 +45,11 @@ class EventsFeed extends Component {
   }
 
   render() {
+    const {notifications} = this.props;
     return (
       <div id="events-feed-container">
         <div>
-          <Navbar history={this.props.history}/>
+          <Navbar history={this.props.history} notifications={notifications}/>
         </div>
         <div id="pic-wrap">
           <EventImg event={this.props.selectedEvent}/>
@@ -95,8 +101,8 @@ class EventsFeed extends Component {
   }
 }
 
-function mapStateToProps({selectedEvent, userInfo, eventWallPost}) {
-  return {selectedEvent, userInfo, eventWallPost};
+function mapStateToProps({selectedEvent, userInfo, eventWallPost, notifications}) {
+  return {selectedEvent, userInfo, eventWallPost, notifications};
 }
 
 export default connect(mapStateToProps,

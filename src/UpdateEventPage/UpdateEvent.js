@@ -6,7 +6,8 @@ import {
   fetchUserInfo,
   eventInputChange,
   updateEvent,
-  fetchEventInfo
+  fetchEventInfo,
+  fetchNotifications
 } from "../actions";
 import { connect } from "react-redux";
 import {
@@ -29,7 +30,8 @@ class UpdateEvent extends Component {
   componentDidMount() {
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
-    this.props.fetchUserInfo(sessionStorage.getItem("userId"));
+    this.props.fetchUserInfo(sessionStorage.getItem('userId'));
+    this.props.fetchNotifications(userId);
   }
 
   componentWillReceiveProps(newProps) {
@@ -97,6 +99,7 @@ class UpdateEvent extends Component {
   render() {
     const { loading } = this.props.updateEventForm;
     const event = this.props.updateEventForm;
+    const {notifications} = this.props
     var time = null;
     if (event.time && event.time != "Invalid Date") {
       time = new Date("1 Jan 2018 " + event.time);
@@ -215,12 +218,7 @@ class UpdateEvent extends Component {
   }
 }
 
-function mapStateToProps({ updateEventForm }) {
-  return { updateEventForm };
+function mapStateToProps({ updateEventForm, notifications }) {
+  return { updateEventForm, notifications };
 }
-export default connect(mapStateToProps, {
-  updateEvent,
-  fetchUserInfo,
-  eventInputChange,
-  fetchEventInfo
-})(UpdateEvent);
+export default connect(mapStateToProps, { updateEvent, fetchUserInfo, eventInputChange, fetchEventInfo, fetchNotifications })(UpdateEvent);

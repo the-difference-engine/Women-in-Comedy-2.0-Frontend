@@ -16,8 +16,6 @@ class Notification extends Component {
         };
     }
 
-
-
     componentDidMount() {
         const valid = sessionStorage.getItem('confirmed');
         if (valid === 'null' || !valid) {
@@ -25,6 +23,7 @@ class Notification extends Component {
         }
         const {fetchUserInfo, fetchNotifications, fetchUserConnections, fetchPendingUserConnections} = this.props;
         fetchUserInfo(sessionStorage.getItem('userId'));
+        fetchPendingUserConnections(sessionStorage.getItem('userId'));
         fetchNotifications(sessionStorage.getItem('userId'));
         fetchUserConnections(sessionStorage.getItem('userId'));
 
@@ -35,7 +34,7 @@ class Notification extends Component {
         return (
             <div>
                 <Navbar history={this.props.history} notifications={notifications}/>
-                <UnreadNotifications notifications={notifications} userConnections={userConnections}/>
+                <UnreadNotifications notifications={notifications} userConnections={userConnections} connections={receivedConnectionRequest}/>
                 <RightGraySideBar>
                     <Messages connections={receivedConnectionRequest}/>
                 </RightGraySideBar>
