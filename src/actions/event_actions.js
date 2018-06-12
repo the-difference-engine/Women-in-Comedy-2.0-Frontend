@@ -70,9 +70,9 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
     title,
     id
   } = eventInfo;
-  // saved photo information as string to run .includes below
+
   let photoTitle = eventInfo.photo.toString();
-  // this will let user update changes with previous image uploaded. 
+
   if (photoTitle.includes("firebase")) {
     const request = await axios({
       method: "put",
