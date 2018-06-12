@@ -1,0 +1,10 @@
+2018-05-31 18:47:10.820 CDT [14824] LOG:  listening on IPv6 address "::1", port 5432
+2018-05-31 18:47:10.821 CDT [14824] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-05-31 18:47:10.843 CDT [14824] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-05-31 18:47:10.953 CDT [5188] LOG:  database system was interrupted; last known up at 2018-05-30 19:27:05 CDT
+2018-05-31 18:47:14.067 CDT [2776] FATAL:  the database system is starting up
+2018-05-31 18:47:16.492 CDT [5188] LOG:  database system was not properly shut down; automatic recovery in progress
+2018-05-31 18:47:16.500 CDT [5188] LOG:  redo starts at 0/1897090
+2018-05-31 18:47:16.500 CDT [5188] LOG:  invalid record length at 0/1897170: wanted 24, got 0
+2018-05-31 18:47:16.500 CDT [5188] LOG:  redo done at 0/1897138
+2018-05-31 18:47:16.636 CDT [14824] LOG:  database system is ready to accept connections
