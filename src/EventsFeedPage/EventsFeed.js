@@ -64,7 +64,6 @@ class EventsFeed extends Component {
             fetchEventInfo={this.props.fetchEventInfo}
             unattendEvent={this.props.unattendEvent}>
           </EventInfo>
-          <UpdateEvent id="edit_btn" history={this.props.history} eventId={this.props.match.params.id}/>
         </LeftGraySideBar>
 
         <PageContent pageTitle={"Event Feed"} className="event-feed"><h4>Event Feed</h4>
