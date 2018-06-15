@@ -15,9 +15,10 @@ class UserList extends Component {
       return (
         <li key={user.id}>
           {user.firstName} {user.lastName}
+          <p>{user.email}</p>
           <AdminForm
             isSuperUser={user.superuser}
-            adminStatus={this.props.userInfo.admin}
+            adminStatus={this.props.userInfo}
             userId={user.id}
             fetchUser={this.props.fetchUser}
             updateSettings={this.props.updateSettings}
