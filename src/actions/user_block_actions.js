@@ -7,11 +7,7 @@ export const fetchBlockedUsers = (userId) => async dispatch => {
     url: process.env.REACT_APP_API_URL_DEV + 'users/blocked',
     headers: {"id": userId},
   });
-  // return (dispatch) => {
-  //   request.then((data) => {
-      dispatch({ type: FETCH_BLOCKED_USERS, payload: request })
-  //   });
-  // };
+  dispatch({ type: FETCH_BLOCKED_USERS, payload: request })
 };
 
 export const fetchBlockedBy = (userId) => {
