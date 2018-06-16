@@ -11,8 +11,6 @@ import {
   fetchConnectionStatus,
   fetchUserConnections,
   filterUsers,
-  fetchBlockedBy,
-  fetchBlockedUsers
 } from '../actions'
 import axios from 'axios';
 
@@ -39,39 +37,10 @@ class Navbar extends Component {
       this.props.history.push('/')
     });
   };
-  
-  // static getDerivedStateFromProps(props, state) {
-  //   // Store prevId in state so we can compare when props change.
-  //   // Clear out previously-loaded data (so we don't render stale stuff).
-  //   if (props.id !== state.prevId) {
-  //     return {
-  //       externalData: null,
-  //       prevId: props.id,
-  //     };
-  //   }
-  //   console.log("gDSFP", this.props);
-  //   // No state update necessary
-  //   return null;
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   // console.log("===============in WillReceive=======================");
-  //   console.log("in CompWillReceiveProps : ", "this.props.users : ", this.props.users ,"nextProps.users : ", nextProps.users);
-  //   // console.log();
-    
-  //   if(nextProps.users !== this.props.users) {
-  //     console.log("new props");
-  //     // nextProps.myProp has a different value than our current prop
-  //     // so we can perform some calculations based on the new value
-  //   }
-  // }
 
   componentDidMount() {
-    const {fetchAllUsers, fetchBlockedBy, fetchBlockedUsers} = this.props;
+    const {fetchAllUsers} = this.props;
     fetchAllUsers();
-    fetchBlockedUsers(userId);
-    fetchBlockedBy(userId);
-    console.log("in WillMount this.props: ", this.props);  
   }
 
   handleTouchTap(event) {
@@ -282,27 +251,11 @@ const styles = {
   }
 }
 
-function mapStateToProps({allUsers, userBlocks}) {
-  var blockedByIds = Array.from(userBlocks, user => user.id);
+function mapStateToProps({allUsers}) {
   const {filterUserList} = allUsers;
-  var users = filterUserList.map(user => {
-    if (!blockedByIds.includes(user.id)){
-       return {text: `${user.firstName} ${user.lastName}`, value: user.id}
-    }
+  let users = filterUserList.map(user => { 
+    return {text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
-  
-  // if (!blockedByIds.includes(user.id)){
-  //   {text: `${user.firstName} ${user.lastName}`, value: user.id}
-  // }
-  // for(var i =0; i < blockedByIds.length; i++)
-  // {
-  //   users = users.splice(i);
-  // }
-
-
-  // users = filterUserList.filter(user => user.id !== userBlocks.id);
-  // var users = filterUserList;
-  
   return {users};
 }
 
@@ -313,6 +266,4 @@ export default connect(mapStateToProps, {
   fetchConnectionStatus,
   fetchUserConnections,
   filterUsers,
-  fetchBlockedBy,
-  fetchBlockedUsers
 })(Navbar);
