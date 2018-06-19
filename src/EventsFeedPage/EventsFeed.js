@@ -22,7 +22,6 @@ import Dialog from 'material-ui/Dialog';
 import { FlatButton, Checkbox, RaisedButton, Snackbar } from 'material-ui';
 import './css/events-feed.css';
 
-//Test
 class EventsFeed extends Component {
   constructor(props) {
     super(props);
@@ -30,19 +29,14 @@ class EventsFeed extends Component {
       open: false,
       invited: false,
     };
-    //this.props.createInviteRequest = this.createInviteRequest.bind(this);
   }
   componentDidMount() {
-  //  const {fetchAllUsers} = this.props;
-    //fetchAllUsers();
   }
 
   async componentWillMount() {
     const {fetchAllUsers} = this.props;
     fetchAllUsers();
     const currentUserId = await sessionStorage.getItem('userId');
-    //const users = await 
-    //this.props.fetchAllUsers();
     this.props.fetchUserInfo(currentUserId);
     const eventId = this.props.match.params.id;
     await this.props.fetchEventInfo(eventId);

@@ -57,19 +57,6 @@ class CreateEvents extends Component {
     }
   }
 
-   
- 
-  
-  
-  
-
-  // componentWillReceiveProps(newProps) {
-  //   const event = newProps.updateEventForm;
-  //   if (event.user_id && event.user_id.toString() !== userId) {
-  //     this.props.history.push(`/eventsfeed/${event.id}`);
-  //   }
-  //   this.setState({ imgURL: event.photo });
-  // }
    async onCreateEvent() {
     const { address, date, description, img, location, ticketLink, time, title, status } = this.props.createEventForm;
 
@@ -85,7 +72,6 @@ class CreateEvents extends Component {
 
   render() {
     const { loading } = this.props.createEventForm;
-    console.log(this.props.createEventForm)
 
     return (
       <div>

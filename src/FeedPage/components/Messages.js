@@ -26,7 +26,7 @@ class Messages extends Component {
   renderPendingInvites() {
     const userId = sessionStorage.getItem('userId');
     const callback = this.props.fetchPendingUserInvites;
-    //callback2
+
     return this.props.invites.map(invite => {
       return (
         <div key={invite.requestId}>
