@@ -32,10 +32,9 @@ export const markNotificationsAsRead = (user_id)  => {
 
 
 export const markOneAsRead = (user_id, id) => async dispatch => {
-
-    debugger;
+    
     const request = await axios({
-        method: 'post',
+        method: 'put',
         url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_one/${user_id}`,
         data: { user_id, id }
     });

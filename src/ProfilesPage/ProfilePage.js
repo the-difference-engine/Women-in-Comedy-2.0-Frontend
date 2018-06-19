@@ -114,7 +114,6 @@ class ProfilePage extends Component {
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem('userId');
     this.props.deleteUser(id);
-    console.log(id);
   }
 
   renderBlockConnection() {

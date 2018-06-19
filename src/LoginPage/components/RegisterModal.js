@@ -40,8 +40,6 @@ class RegisterModal extends Component {
           onRequestClose={this.handleClose}
         >
           <RegisterForm> </RegisterForm>
-
-          <button label="clickMe!"> </button>
         </Dialog>
       </div>
     );
