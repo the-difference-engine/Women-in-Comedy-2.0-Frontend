@@ -108,3 +108,9 @@ background-color: #860A0A;
   color: red;
   margin: 5px;
 }
+
+.email-modal {
+  width: 500px;
+  height: 250px;
+  resize: none;
+}

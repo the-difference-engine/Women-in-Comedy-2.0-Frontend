@@ -32,7 +32,7 @@ class EmailModal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <textarea />
+          <textarea className="email-modal" />
           <br />
           <button onClick={this.props.mailUsers}>Submit</button>
         </Dialog>
