@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {
   fetchUserInfo,
   fetchUserFeeds,
+  fetchNotifications,
   fetchUserConnections,
   fetchPendingUserConnections,
   fetchPendingUserInvites,
@@ -10,7 +11,7 @@ import {
   userWallInputChange
 } from '../actions';
 import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar, PageContent  } from '../common';
+import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';
 
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
@@ -29,12 +30,13 @@ class Feed extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites } = this.props;
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications } = this.props;
     fetchUserInfo(sessionStorage.getItem('userId'));
     fetchUserFeeds(sessionStorage.getItem('userId'));
     fetchUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserInvites(sessionStorage.getItem('userId'));
+    fetchNotifications(sessionStorage.getItem('userId'));
   }
 
   onPost() {
@@ -46,11 +48,10 @@ class Feed extends Component {
   }
 
   render() {
-    const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest } = this.props;
+    const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
     return (
       <div>
-        <Navbar history={this.props.history} />
-
+        <Navbar history={this.props.history} notifications={notifications}/>
         <RightGraySideBar>
           <Messages connections={receivedConnectionRequest} invites={userInvites} />
         </RightGraySideBar>
@@ -60,12 +61,10 @@ class Feed extends Component {
         <PageContent>
           <div className="feed-post-bar">
             <div className="wrap">
-
               <div className="search">
                 <input type="text" className="searchTerm" placeholder="What's New?"
                   onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}
-                />
+                  value={this.props.userWallPost}/>
                 <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
               </div>
             </div>
@@ -78,14 +77,15 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost } = state;
-  return { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost };
+  const { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications } = state;
+  return { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications };
 }
 export default connect(mapStateToProps,
   {
     fetchUserInfo,
     fetchUserFeeds,
     fetchUserConnections,
+    fetchNotifications,
     fetchPendingUserConnections,
     fetchPendingUserInvites,
     createPostOnUserWall,

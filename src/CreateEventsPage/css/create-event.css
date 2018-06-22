@@ -14,3 +14,11 @@
   align-items: center;
   margin-bottom: 100px;
 }
+/* Pushes event form down when search bar above
+  drops down.
+*/
+@media screen and (max-width: 1000px) {
+  #create-event-wrapper {
+    top: 175px;
+  }
+}

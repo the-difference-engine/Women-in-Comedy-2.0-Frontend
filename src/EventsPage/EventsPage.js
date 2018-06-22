@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMyUpcomingEvents, fetchUpcomingEvents, fetchPendingUserInvites } from '../actions';
+import { fetchMyUpcomingEvents, fetchUpcomingEvents, fetchPendingUserInvites, fetchNotifications } from '../actions';
 import AddEvent from './components/AddEvent';
 import AllUpcomingEvents from './components/AllUpcomingEvents';
 import MyUpcomingEvents from './components/MyUpcomingEvents';
-import Navbar  from '../common/Navbar';
+import Navbar from '../common/Navbar';
 
 class EventsPage extends Component {
-  
+
   componentDidMount() {
     const userId = sessionStorage.getItem('userId');
     this.props.fetchMyUpcomingEvents(userId);
 		this.props.fetchUpcomingEvents();
 		this.props.fetchPendingUserInvites(userId);
+		this.props.fetchNotifications(userId);
   }
+
 	render () {
-		return (
+		const {notifications} = this.props;
+    return (
 			<div id="events-page">
-        <Navbar history={this.props.history} />
+        <Navbar history={this.props.history} notifications={notifications}/>
 				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
 				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
 				<AddEvent history={this.props.history} invites={this.props.userInvites}/>
@@ -26,7 +29,7 @@ class EventsPage extends Component {
 	}
 }
 
-function mapStateToProps({ myUpcomingEvents, upcomingEvents, userInvites }) {
-  return { myUpcomingEvents, upcomingEvents, userInvites };
+function mapStateToProps({ myUpcomingEvents, upcomingEvents, userInvites, notifications }) {
+  return { myUpcomingEvents, upcomingEvents, userInvites, notifications };
 }
-export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents, fetchPendingUserInvites })(EventsPage);
+export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents, fetchPendingUserInvites, fetchNotifications })(EventsPage);

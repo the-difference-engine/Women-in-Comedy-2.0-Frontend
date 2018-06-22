@@ -8,6 +8,7 @@ import {
   createConnectionRequest,
   fetchConnectionStatus,
   userWallInputChange,
+    fetchNotifications,
   createPostOnUserWall,
   blockConnectionRequests,
   suspendUser,
@@ -15,7 +16,7 @@ import {
   deleteUser,
   editUser
 } from '../actions';
-import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
+import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';
 import Navbar from '../common/Navbar';
 import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
@@ -36,6 +37,7 @@ class ProfilePage extends Component {
       this.props.fetchUserFeeds(this.props.match.params.id);
       this.props.fetchUserConnections(this.props.match.params.id);
       this.props.fetchConnectionStatus({ sender_id, receiver_id });
+      this.props.fetchNotifications(sender_id);
       this.setState(() => {
         return {suspendedState: this.props.userInfo.suspended}
       });
@@ -112,7 +114,6 @@ class ProfilePage extends Component {
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem('userId');
     this.props.deleteUser(id);
-    console.log(id);
   }
 
   renderBlockConnection() {
@@ -141,7 +142,7 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem('isAdmin')
-    return <a href = {process.env.REACT_APP_API_URL_QA + 'message'}><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
+    return <a href = '/message'><button className="btn btn-danger"  onClick={this.onDelete.bind(this)}>Delete User</button></a>
 }
 
   renderConnection() {
@@ -183,9 +184,9 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const {userInfo, userConnections, userFeeds, status, match} = this.props;
+    const {userInfo, userConnections, userFeeds, status, match, notifications} = this.props;
     return (<div>
-      <Navbar history={this.props.history} />
+      <Navbar history={this.props.history}  notifications={notifications}/>
       <LeftGraySideBar>
         <UserInfo userInfo={userInfo} adminUser={adminUser} url={match.url} editButtonClicked={this.onUserEditButton}/> {this.renderBlockConnection()}
         {this.renderConnection()}
@@ -207,6 +208,7 @@ const mapStateToProps = (state) => {
   const {
     userInfo,
     userFeeds,
+      notifications,
     userConnections,
     status,
     userWallPost,
@@ -215,6 +217,7 @@ const mapStateToProps = (state) => {
 
   return {
     userInfo,
+      notifications,
     userFeeds,
     userConnections,
     status,
@@ -225,6 +228,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchUserInfo,
   fetchUserFeeds,
+    fetchNotifications,
   fetchUserConnections,
   createConnectionRequest,
   fetchConnectionStatus,

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchUserInfo, fetchUsers } from '../actions';
-// import { fetchUsers } from '../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {fetchUserInfo, fetchUsers} from '../actions';
 import Header from '../EventsPage/components/HeaderComponent';
 import Bio from './components/Bio';
 import Users from './components/Users';

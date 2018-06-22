@@ -1,7 +1,6 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import '../css/messages.css';
 import { acceptConnection, acceptInvite, fetchPendingUserConnections, fetchPendingUserInvites, fetchUserConnections, declineConnection, declineInvite } from '../../actions';
 class Messages extends Component {
@@ -40,12 +39,11 @@ class Messages extends Component {
   }
 
   render() {
-    const { pendingUserConnections } = this.props;
     return (
       <div>
         <div>
           <p id="next-event">Next Event</p>
-          <Link to="/events" id="events-link">View Upcoming Events</Link>
+          <Link to="/events" className="events-link">View Upcoming Events</Link>
         </div>
         <br/>
         <div>
