@@ -21,6 +21,13 @@ class EmailModal extends Component {
     this.setState({ open: false });
   }
 
+  grabText = () => {
+    const email = document.getElementsByClassName("email-modal")[0].value;
+    {
+      this.props.mailUsers(email);
+    }
+  };
+
   render() {
     return (
       <div>
@@ -34,7 +41,7 @@ class EmailModal extends Component {
         >
           <textarea className="email-modal" />
           <br />
-          <button onClick={this.props.mailUsers}>Submit</button>
+          <button onClick={this.grabText}>Submit</button>
         </Dialog>
       </div>
     );
