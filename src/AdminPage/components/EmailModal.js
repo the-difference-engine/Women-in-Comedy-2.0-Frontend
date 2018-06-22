@@ -26,6 +26,7 @@ class EmailModal extends Component {
     {
       this.props.mailUsers(email);
     }
+    this.setState({ open: false });
   };
 
   render() {
