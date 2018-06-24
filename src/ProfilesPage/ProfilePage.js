@@ -15,7 +15,8 @@ import {
   deleteUser,
   editUser,
   fetchBlockedUsers,
-  fetchBlockedBy
+  fetchBlockedBy,
+  createBlock
 } from '../actions';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import Navbar from '../common/Navbar';
@@ -84,7 +85,7 @@ class ProfilePage extends Component {
     // user is an admin or not. If it is the admin, render the Admin Edit form,
     // if it is a regular user, render user edit form.
     this.props.editUser(adminUser);
-    //Togle the editUser function enable or not enable
+    //Toggle the editUser function enable or not enable
     this.setState(prevState => ({
       editUserEnable: !prevState.editUserEnable
     }));
@@ -122,9 +123,10 @@ class ProfilePage extends Component {
   onBlockUser() {
     // save the id as sender_id of the user who blocks AND 
     // the id as receiver_id of the block to the user_blocks db table
-    const sender_id = userId
-    const receiver_id = this.props.userInfo.id
-    
+    const blocker_id = userId
+    const blocked_id = this.props.userInfo.id
+    console.log("block clicked");
+    this.props.createBlock( blocker_id, blocked_id);
   }
 
   onUnblockUser() {
@@ -135,7 +137,7 @@ class ProfilePage extends Component {
 
   blockUserButton() {
     if (this.props.userInfo.id !== parseInt(userId)) {
-      return <button className="btn btn-warning">Block</button>
+      return <button className="btn btn-warning" onClick={this.onBlockUser.bind(this)}>Block</button>
     }
   }
 
@@ -255,5 +257,6 @@ export default connect(mapStateToProps, {
   editUser, 
   suspendUser, 
   unsuspendUser, 
-  deleteUser
+  deleteUser,
+  createBlock
 })(ProfilePage);
