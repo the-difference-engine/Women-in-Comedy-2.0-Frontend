@@ -10,6 +10,7 @@ export const SET_USER_LOGGED_IN = 'set_user_logged_in';
 //User Blocks
 export const FETCH_BLOCKED_USERS = 'fetch_blocked_users';
 export const FETCH_BLOCKED_BY = 'fetch_blocked_by';
+export const CREATE_BLOCK = 'block_user';
 
 // navbar
 export const FILTER_USERS = 'filter_users';
