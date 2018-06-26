@@ -45,10 +45,11 @@ export const deleteUser = id => async dispatch => {
   };
 };
 
-export const mailUsers = email => async dispatch => {
+export const mailUsers = (email, subject) => async dispatch => {
   const request = await axios({
     method: "post",
-    url: process.env.REACT_APP_API_URL_DEV + `users/emails/mass_mail/${email}`
+    url: process.env.REACT_APP_API_URL_DEV + 'users/emails/mass_mail',
+    data: {email, subject}
   });
   return {
     type: EMAIL_USERS

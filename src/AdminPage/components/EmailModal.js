@@ -23,8 +23,10 @@ class EmailModal extends Component {
 
   grabText = () => {
     const email = document.getElementsByClassName("email-modal")[0].value;
+    const subject = document.getElementsByClassName("email-subject")[0].value;
+    console.log(subject);
     {
-      this.props.mailUsers(email);
+      this.props.mailUsers(email, subject);
     }
     this.setState({ open: false });
   };
@@ -40,6 +42,9 @@ class EmailModal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
+          Subject: <input className="email-subject" />
+          <br />
+          <br />
           <textarea className="email-modal" />
           <br />
           <button onClick={this.grabText}>Submit</button>
