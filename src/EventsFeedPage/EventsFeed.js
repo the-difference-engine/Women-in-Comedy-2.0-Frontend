@@ -18,7 +18,6 @@ import EventInfo from './components/EventInfo';
 import EventImg from './components/EventImg';
 import Navbar from '../common/Navbar';
 import UpdateEvent from './components/UpdateEvent';
-import Invites from './components/Invites'
 import { RightGraySideBar, LeftGraySideBar, PageContent, Feed } from '../common';
 import Dialog from 'material-ui/Dialog';
 import { FlatButton, Checkbox, RaisedButton, Snackbar } from 'material-ui';
