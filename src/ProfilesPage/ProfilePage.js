@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import {
   fetchUserInfo,
@@ -214,7 +215,9 @@ class ProfilePage extends Component {
         {this.renderEditUserButton()}
         {this.suspendUserButton()}
         {this.deleteUserButton()}
-        {this.blockUserButton()}
+        <Link to="/feed">
+          {this.blockUserButton()}
+        </Link>
       </LeftGraySideBar>
       <RightGraySideBar>
         <ProfileConnections connections={this.props.userConnections}/>
