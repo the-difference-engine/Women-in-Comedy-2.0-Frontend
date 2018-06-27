@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  fetchAllUsers,
+  fetchUserConnections,
   fetchEventInfo,
   fetchHostPhoto,
   attendEvent,
@@ -38,9 +38,8 @@ class EventsFeed extends Component {
   }
 
   async componentWillMount() {
-    const {fetchAllUsers} = this.props;
-    fetchAllUsers();
     const currentUserId = await sessionStorage.getItem('userId');
+    this.props.fetchUserConnections(currentUserId);
     this.props.fetchUserInfo(currentUserId);
     const eventId = this.props.match.params.id;
     await this.props.fetchEventInfo(eventId);
@@ -84,13 +83,13 @@ class EventsFeed extends Component {
     const invite = []; //Opens the invite modal
     
     if (this.props.selectedEvent != null) {
-      this.props.users.map(user => {
-        if (this.props.selectedEvent.info.user_id !== user.value) {
+      this.props.userConnections.map(user => {
+        if (this.props.selectedEvent.info.user_id !== user.id) {
           inviteButtons.push(
           <div id="invite">
-            <label className="user-name">{user.text}</label>
+            <label className="user-name">{user.firstName} {user.lastName}</label>
             
-            <button className="btn btn-default" id="invite-buttons" onClick={this.onCreateInvite.bind(this, user.value)}>INVITE</button>
+            <button className="btn btn-default" id="invite-buttons" onClick={this.onCreateInvite.bind(this, user.id)}>INVITE</button>
             <Snackbar
               open={this.state.invited}
               message="Invite sent!" 
@@ -174,18 +173,19 @@ class EventsFeed extends Component {
     );
   }
 }
-function mapStateToProps({ selectedEvent, userInfo, eventWallPost, allUsers, notifications }) {
+function mapStateToProps({ selectedEvent, userInfo, eventWallPost, userConnections, notifications }) {
+  /*
   const {filterUserList} = allUsers;
   const users = filterUserList.map(user => {
     return {text: `${user.firstName} ${user.lastName}`, value: user.id}
   });
-
-  return { selectedEvent, userInfo, eventWallPost, users, notifications };
+*/
+  return { selectedEvent, userInfo, eventWallPost, userConnections, notifications };
 }
 
 export default connect(mapStateToProps,
   {
-    fetchAllUsers,
+    fetchUserConnections,
     fetchEventInfo,
     attendEvent,
     fetchUserInfo,
