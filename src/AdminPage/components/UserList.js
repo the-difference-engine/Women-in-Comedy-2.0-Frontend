@@ -10,7 +10,7 @@ class UserList extends Component {
 
   renderSuperAdminList() {
     const users = this.props.users.userList;
-    console.log("render admin stuff", this.props);
+
     return users.map(user => {
       return (
         <li key={user.id}>
@@ -32,7 +32,6 @@ class UserList extends Component {
   }
 
   renderNonAdminList() {
-    console.log("the props", this.props);
     const users = this.props.users.userList;
     return users.map(user => {
       return (
@@ -71,7 +70,6 @@ class UserList extends Component {
   }
 }
 
-//return value will be props into userlist
 function mapStateToProps(state) {
   return {
     allUsersList: state.allUsers

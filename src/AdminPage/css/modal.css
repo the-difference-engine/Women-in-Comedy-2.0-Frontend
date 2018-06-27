@@ -1,0 +1,19 @@
+.modal-style {
+  text-align: center;
+}
+
+.buttonStyle {
+  display: block;
+  text-decoration: none;
+  width: 100px;
+  height: 25px;
+  text-align: center;
+  border: 2px solid #9b1522;
+  background-color: #9b1522;
+  color: white;
+}
+
+.buttonStyle:hover {
+  text-decoration: none;
+  color: white;
+}

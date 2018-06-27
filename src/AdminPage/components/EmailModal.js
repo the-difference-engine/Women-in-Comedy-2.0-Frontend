@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Dialog, TextField } from "material-ui";
 import { connect } from "react-redux";
 import { mailUsers } from "../../actions/index";
+import "../css/modal.css";
 
 class EmailModal extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class EmailModal extends Component {
 
   render() {
     return (
-      <div>
+      <div className="modal-style">
         <br />
         <button onClick={this.handleOpen}>Email Users</button>
         <Dialog
@@ -42,12 +43,15 @@ class EmailModal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          Subject: <input className="email-subject" />
+          <strong><p>Subject: </p></strong>
+          <input className="email-subject" />
+
           <br />
           <br />
+          <strong><p>Enter Your Message Below: </p></strong>
           <textarea className="email-modal" />
           <br />
-          <button onClick={this.grabText}>Submit</button>
+          <a className="buttonStyle" onClick={this.grabText}>Submit</a>
         </Dialog>
       </div>
     );

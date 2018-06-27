@@ -17,7 +17,6 @@ class AdminForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log("the admin forrrrrm props", this.props);
   }
 
   handleSubmit(event, userId = this.props.userId) {
@@ -35,7 +34,7 @@ class AdminForm extends Component {
 
     setTimeout(function() {
       window.location.reload();
-    }, 10); //re-render and clear field
+    }, 10); 
     this.setState({ status: "Updated" });
   }
 
@@ -43,7 +42,6 @@ class AdminForm extends Component {
     this.setState({ status: event.target.status });
   }
 
-  //function to show current status in window`
   renderAdminStatus(event) {
     let currentStatus;
     this.props.adminStatus == true
