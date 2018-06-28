@@ -15,9 +15,9 @@ class CreateEvents extends Component {
       imgURL: null
     };
   }
-    componentDidMount() {
-        this.props.fetchNotifications(sessionStorage.getItem('userId'));
-    }
+  componentDidMount() {
+    this.props.fetchNotifications(sessionStorage.getItem('userId'));
+  }
 
   onClick() {
     const input = document.getElementById('input');
@@ -60,19 +60,6 @@ class CreateEvents extends Component {
     }
   }
 
-   
- 
-  
-  
-  
-
-  // componentWillReceiveProps(newProps) {
-  //   const event = newProps.updateEventForm;
-  //   if (event.user_id && event.user_id.toString() !== userId) {
-  //     this.props.history.push(`/eventsfeed/${event.id}`);
-  //   }
-  //   this.setState({ imgURL: event.photo });
-  // }
    async onCreateEvent() {
     const { address, date, about, photo, location, ticket_link, time, title, status } = this.props.createEventForm;
 

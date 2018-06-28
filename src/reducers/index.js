@@ -18,6 +18,7 @@ import adminReducer from './admin_reducer';
 import notificationsReducer from './notifications_reducer';
 import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
+import InviteReducer from './invite_reducer';
 import updateSettingsReducer from './reducer_update_settings';
 
 
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   userInfo: UserInfoReducer,
   userFeeds: UserFeedReducer,
   userConnections: ConnectionsReducer,
+  userInvites: InviteReducer,
   usersInfo: UsersReducer,
   status: ConnectionStatusReducer,
   receivedConnectionRequest: ReceivedConnectionRequest,

@@ -15,7 +15,7 @@ export const fetchUserInfo = (userId) => {
 };
 
 export const fetchAllUsers = () => async dispatch => {
-  const request = await axios(process.env.REACT_APP_API_URL_DEV + 'users');
+  const request = await axios(process.env.REACT_APP_API_URL_DEV + '/users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
 
