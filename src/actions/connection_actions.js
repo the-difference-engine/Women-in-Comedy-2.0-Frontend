@@ -81,7 +81,7 @@ export const declineConnection = (userId, requestId, callback) => async dispatch
     url: process.env.REACT_APP_API_URL_DEV + `users/connections/${requestId}`
   });
   await callback(userId)
-}
+};
 
 export const blockConnectionRequests = (sender_id) => async dispatch =>{
   const request = await axios({

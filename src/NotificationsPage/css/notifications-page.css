@@ -1,0 +1,26 @@
+#mark-read-link {
+  color: #9b1522;
+  font-weight: 700;
+
+}
+
+.notifications-header {
+  color: #9b1522;
+  font-size: 25px;
+  font-weight: 200;
+}
+
+.notification-page-content {
+  margin-left: 20%;
+}
+
+.btn-danger {
+  float: right;
+  color: #fff;
+  background-color: #9b1522;
+  border-color: #9b1522;
+}
+
+.btn-accept-decline{
+  margin-left:10px;
+}

@@ -38,6 +38,11 @@ export const USER_WALL_INPUT_CHANGE = 'user_wall_input_change';
 export const POSTED = 'posted';
 export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
 
+//Notifications
+export const FETCH_NOTIFICATIONS = 'fetch_notifications';
+export const MARK_NOTIFICATIONS_AS_READ = 'mark_notifications_as_read';
+export const MARK_ONE_AS_READ = 'mark_one_as_read';
+
 //admin
 export const SUSPEND_USER = 'suspend_user';
 export const UNSUSPEND_USER = 'unsuspend_user';

@@ -13,20 +13,13 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
   };
 
   const renderUpdateEvent = ({ event, userInfo, eventId }) => {
-    if (event.hostInfo.id === userInfo.id){
+    if (event.hostInfo.id === userInfo.id || userInfo.admin === true){
       return(
         <UpdateEventButton id="edit_btn" eventId={eventId}/>
       )
     }
-    return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
+    //return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
-
-  const formatUrl = (url) => {
-    if (!/^https?:\/\//i.test(url)) {
-      url = 'http://' + url;
-    }
-    return url;
-  }
 
   if(event && event.hostInfo) {
     const { title, date, time, location, about, ticket_link, user_id } = event.info;
@@ -38,7 +31,7 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         <h2 id="event-details"> Host: {firstName} {lastName}</h2>
         <h2 id="event-date">{date} at {time}</h2>
         <h3 id="event-location">{location}</h3>
-        <a href={formatUrl(ticket_link)} target="_blank" id="event-ticket_link">{ticket_link}</a>
+        <a><p id="event-ticket_link">{ticket_link}</p></a>
         <p id="event-desc">{about}</p>
         
         {renderButton({ event, userInfo, unattendEvent, attendEvent, eventId, fetchEventInfo })}
