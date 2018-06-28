@@ -6,7 +6,14 @@
   align-items: center;
   margin-bottom: 100px;
 }
-
+#private-event-wrapper {
+  position: relative;
+  top: 100px;
+  display: flex;;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
 /* Pushes event form down when search bar above
   drops down.
 */

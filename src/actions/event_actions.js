@@ -21,7 +21,8 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     location,
     ticket_link,
     time,
-    title
+    title,
+    is_private
   } = eventInfo;
 
   if (validate(eventInfo)) {
@@ -48,7 +49,8 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         location,
         ticket_link,
         time,
-        title
+        title,
+        is_private
       }
     });
 
@@ -68,7 +70,8 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
     ticket_link,
     time,
     title,
-    id
+    id,
+    is_private
   } = eventInfo;
 
   let photoTitle = eventInfo.photo.toString();
@@ -86,7 +89,8 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
         location,
         ticket_link,
         time,
-        title
+        title,
+        is_private
       }
     });
 
@@ -117,7 +121,8 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
         location,
         ticket_link,
         time,
-        title
+        title,
+        is_private
       }
     });
 

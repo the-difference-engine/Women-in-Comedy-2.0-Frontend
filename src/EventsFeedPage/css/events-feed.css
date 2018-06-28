@@ -1,7 +1,23 @@
 #events-feed-container {
   font-family: 'Quicksand', sans-serif;
 }
+
 #lefty-container {
   font-family: 'Quicksand', sans-serif;
   padding-top: 50px
+}
+
+#invite {
+  display: flex;
+  justify-content: space-evenly !important;
+}
+
+#invite-buttons {
+  margin: 1px !important;
+  background-color: #9b1522 !important;
+  color: white !important;
+}
+
+.user-name {
+  width: 50%;
 }

@@ -11,7 +11,8 @@ const INITIAL_STATE = {
   loading: false,
   ticketLink: '',
   address: '',
-  id: null
+  id: null,
+  is_private: ''
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
