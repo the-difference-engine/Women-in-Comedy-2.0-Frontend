@@ -127,7 +127,7 @@ class RegisterForm extends Component {
    this.storeProfilePicture()
      .then(() => {
        let user = this.state.user
-       axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
+       axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
          this.setState({ userMade: true });
        }).catch(err => {
          alert(err)
@@ -137,7 +137,7 @@ class RegisterForm extends Component {
    else
    {
      let user = this.state.user
-     axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
+     axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
        this.setState({ userMade: true });
      }).catch(err => {
        alert(err)
