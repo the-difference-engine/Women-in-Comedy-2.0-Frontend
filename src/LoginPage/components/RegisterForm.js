@@ -20,6 +20,7 @@ import {
 import "../css/register.css";
 import createFragment from "react-addons-create-fragment";
 import { ValidatorComponent } from 'react-material-ui-form-validator';
+import holder from "../images/holder.jpg";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -111,7 +112,7 @@ class RegisterForm extends Component {
     };
   }
 
-  storeProfilePicture() {
+  storeProfilePicture () {
     const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf('.'));
     return firebase.storage()
       .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
@@ -119,19 +120,30 @@ class RegisterForm extends Component {
       .then(snapshot => {
         this.state.user.photo = snapshot.downloadURL;
       });
-  }
-
+    };   
+  
   onSubmit(e) {
-    this.storeProfilePicture()
-      .then(() => {
-        let user = this.state.user
-        axios.post("http://localhost:9000/api/v1/users", user).then(payload => {
-          this.setState({ userMade: true });
-        }).catch(err => {
-          alert(err)
-        });
-      });
-  }
+  if(this.state.imgURL.startsWith("data:image")){
+   this.storeProfilePicture()
+     .then(() => {
+       let user = this.state.user
+       axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
+         this.setState({ userMade: true });
+       }).catch(err => {
+         alert(err)
+       });
+     });
+   }
+   else
+   {
+     let user = this.state.user
+     axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
+       this.setState({ userMade: true });
+     }).catch(err => {
+       alert(err)
+     });
+   }
+ }
 
   render() {
     const { handleSubmit } = this.props;
@@ -323,7 +335,9 @@ class RegisterForm extends Component {
                 onClick={this.onClick.bind(this)}
               />
               <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br />
+
               {this.renderImg()}
+
                 <RaisedButton
                   secondary
                   label="register"
