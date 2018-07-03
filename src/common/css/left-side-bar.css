@@ -18,3 +18,10 @@
 #left-side-bar.event-info-bar {
   margin-top: 235px;
 }     
+
+
+@media screen and (max-width: 1010px){
+  #left-side-bar-content {
+    margin-top: 150px;
+  }
+}
