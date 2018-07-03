@@ -4,7 +4,7 @@ import axios from 'axios';
 export const fetchUserFeeds = (userId) => {
  const request = axios({
    method: 'get',
-   url: process.env.REACT_APP_API_URL_DEV + 'users/feed',
+   url: process.env.APP_API_URL + 'users/feed',
    headers: {"id": userId}
  });
  return (dispatch) => {

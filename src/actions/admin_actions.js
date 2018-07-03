@@ -5,7 +5,7 @@ export const suspendUser = ({ id, suspended }) => async dispatch => {
   // eslint-disable-next-line
   const request = await axios({
     method: 'post',
-    url: process.env.REACT_APP_API_URL_DEV + 'users/suspend',
+    url: process.env.APP_API_URL + 'users/suspend',
     headers: { "id": id }
     });
   dispatch({
@@ -18,7 +18,7 @@ export const unsuspendUser = ({ id, suspended }) => async dispatch => {
   // eslint-disable-next-line
   const request = await axios({
     method: 'post',
-    url: process.env.REACT_APP_API_URL_DEV + 'users/unsuspend',
+    url: process.env.APP_API_URL + 'users/unsuspend',
     headers: { "id": id }
     });
   dispatch({
@@ -31,7 +31,7 @@ export const deleteUser = (id) => async dispatch => {
   // eslint-disable-next-line
   const request = await axios({
     method: 'delete',
-    url: process.env.REACT_APP_API_URL_DEV + `users/${id}`,
+    url: process.env.APP_API_URL + `users/${id}`,
     headers: {"id": id}
     });
   return {

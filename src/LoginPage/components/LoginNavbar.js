@@ -23,7 +23,7 @@ class LoginNavbar extends Component {
     const password = document.getElementById("password").value;
     // this.props.createSession(email, password);
     axios
-      .post(process.env.REACT_APP_API_URL_DEV + "sessions", { email, password })
+      .post(process.env.APP_API_URL + "sessions", { email, password })
       .then(response => {
         sessionStorage.setItem("confirmed", response.data.confirmed_at);
         sessionStorage.setItem("userId", response.data.id);

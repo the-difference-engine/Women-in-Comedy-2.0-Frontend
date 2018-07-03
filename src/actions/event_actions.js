@@ -39,7 +39,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     photo = imageData.metadata.downloadURLs[0];
     const request = await axios({
       method: "post",
-      url: process.env.REACT_APP_API_URL_DEV + "events",
+      url: process.env.APP_API_URL + "events",
       data: {
         userId,
         address,
@@ -79,7 +79,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
   if (photoTitle.includes("firebase")) {
     const request = await axios({
       method: "put",
-      url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
+      url: `${process.env.APP_API_URL}events/${id}`,
       data: {
         userId,
         address,
@@ -111,7 +111,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
     photo = imageData.metadata.downloadURLs[0];
     const request = await axios({
       method: "put",
-      url: `${process.env.REACT_APP_API_URL_DEV}events/${id}`,
+      url: `${process.env.APP_API_URL}events/${id}`,
       data: {
         userId,
         address,
@@ -162,7 +162,7 @@ export const attendEvent = (data, eventId, callback) => async dispatch => {
 
   await axios({
     method: "post",
-    url: process.env.REACT_APP_API_URL_DEV + "guests",
+    url: process.env.APP_API_URL + "guests",
     data: { userId: id, eventId, firstName, lastName }
   });
   callback(eventId);
@@ -171,7 +171,7 @@ export const attendEvent = (data, eventId, callback) => async dispatch => {
 export const unattendEvent = (guestId, eventId, callback) => async dispatch => {
   await axios({
     method: "delete",
-    url: process.env.REACT_APP_API_URL_DEV + `guests/${guestId}`
+    url: process.env.APP_API_URL + `guests/${guestId}`
   });
   callback(eventId);
 };

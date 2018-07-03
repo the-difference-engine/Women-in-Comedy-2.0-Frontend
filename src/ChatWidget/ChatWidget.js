@@ -48,8 +48,7 @@ class ChatWidget extends Component {
 
   //Prepare the Action Cable socket for chat function
   createSocket() {
-    let cable = Cable.createConsumer('http://localhost:9000/'+ 'cable');
-//     let cable = Cable.createConsumer('https://qa-womenincomedy.herokuapp.com/' + 'cable');
+    let cable = Cable.createConsumer(process.env.APP_URL + 'cable');
     let userId = this.props.loggedIn.userId;
 
     //Create chat function
