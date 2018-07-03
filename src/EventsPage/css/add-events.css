@@ -1,7 +1,6 @@
 .add-event {
   position: fixed;
   left: 0;
-  top: 0;
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
@@ -29,8 +28,20 @@
 }
 
 .add-event-content {
-  top: 10%;
+  top: 100px;
   left: 2%;
+}
+
+@media (max-width: 1008px) and (min-width: 768px) {
+  .add-event {
+    width: 22%;
+  }
+
+  .add-event-content {
+    margin-top: 100px;
+    height: 100%;
+    background-color: #e6e6e6;
+  }
 }
 
 .new-event button:hover {
