@@ -16,6 +16,13 @@
   height: 100%;
 }
 
-html, body {
-  font-family: 'Quicksand', sans-serif;
+@media (max-width: 1008px) and (min-width: 768px) {
+  #right-side-bar-content {
+    margin-top: 165px;
+  }
+}
+
+html,
+body {
+  font-family: "Quicksand", sans-serif;
 }
