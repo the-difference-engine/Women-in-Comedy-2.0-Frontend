@@ -6,6 +6,13 @@
   top: 65px;
 }
 
+@media (max-width: 1008px) and (min-width: 768px) {
+  #page-content {
+    top: 200px;
+    width: 50%;
+  }
+}
+
 #page-content-margin {
   margin-top: 50px;
   margin-left: 40px;
