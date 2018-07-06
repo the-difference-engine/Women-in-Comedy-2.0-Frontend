@@ -6,3 +6,9 @@
   align-items: center;
   margin-bottom: 100px;
 }
+
+@media (max-width: 1008px) and (min-width: 768px) {
+  #create-event-wrapper {
+    top: 210px;
+  }
+}
