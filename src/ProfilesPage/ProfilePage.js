@@ -184,7 +184,7 @@ class ProfilePage extends Component {
       );
     } else if (_.isEmpty(this.props.status)) {
       return (
-        <button type="button" onClick={this.onPress.bind(this)}>
+        <button className="btn btn-primary" type="button" onClick={this.onPress.bind(this)}>
           Connect
         </button>
       );
