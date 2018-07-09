@@ -1,6 +1,6 @@
 #right-side {
   position: fixed;
-  right: 0;
+  right: -10px;
   top: 65px;
   width: 20%;
   height: 100%;
