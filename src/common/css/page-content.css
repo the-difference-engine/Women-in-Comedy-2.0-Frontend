@@ -1,15 +1,16 @@
 #page-content {
+  overflow-y: scroll;
   width: 61%;
   position: fixed;
   left: 20%;
   padding-bottom: 50px;
   top: 65px;
+  bottom: 0;
 }
 
 @media (max-width: 1008px) and (min-width: 768px) {
   #page-content {
     top: 200px;
-    width: 50%;
   }
 }
 
