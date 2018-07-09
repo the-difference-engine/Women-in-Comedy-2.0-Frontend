@@ -36,22 +36,30 @@ class EmailModal extends Component {
     return (
       <div className="modal-style">
         <br />
-        <button onClick={this.handleOpen}>Email Users</button>
+        <button className="btn adminButtonStyle" onClick={this.handleOpen}>
+          Email Users
+        </button>
         <Dialog
           autoScrollBodyContent={true}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <strong><p>Subject: </p></strong>
+          <strong>
+            <p>Subject: </p>
+          </strong>
           <input className="email-subject" />
 
           <br />
           <br />
-          <strong><p>Enter Your Message Below: </p></strong>
+          <strong>
+            <p>Enter Your Message Below: </p>
+          </strong>
           <textarea className="email-modal" />
           <br />
-          <a className="buttonStyle" onClick={this.grabText}>Submit</a>
+          <a className="buttonStyle" onClick={this.grabText}>
+            Submit
+          </a>
         </Dialog>
       </div>
     );
