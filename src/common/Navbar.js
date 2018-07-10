@@ -10,7 +10,7 @@ import {
   fetchUserFeeds,
   fetchConnectionStatus,
   fetchUserConnections,
-  filterUsers,
+  filterUsers
 } from '../actions'
 import axios from 'axios';
 
@@ -41,7 +41,21 @@ class Navbar extends Component {
   componentDidMount() {
     const {fetchAllUsers} = this.props;
     fetchAllUsers();
-  }
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.users !== prevProps.users) {
+      console.log(prevProps.users);
+      console.log(this.props.users);
+        this.renderSearch(this.props.users);
+        // this.fetchAllUsers(this.props.users); -- Inifinit loop
+        
+    }
+  };
+
+  renderSearch(users) {
+    return <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users} maxSearchResults={10} hintText="Search" underlineShow={false} hintStyle={styles.hint} inputStyle={styles.input} textareaStyle={styles.text} onNewRequest={(item) => this.onItemClicked(item)}/>
+  };
 
   handleTouchTap(event) {
     // This prevents ghost click.
@@ -180,9 +194,9 @@ class Navbar extends Component {
                     </Popover>
                   </div>
                 </div>
-
+                            
                 <div className="input-group">
-                  <AutoComplete filter={AutoComplete.fuzzyFilter} dataSource={this.props.users} maxSearchResults={10} hintText="Search" underlineShow={false} hintStyle={styles.hint} inputStyle={styles.input} textareaStyle={styles.text} onNewRequest={(item) => this.onItemClicked(item)}/>
+                  {this.renderSearch(this.props.users)}
                   <i className="glyphicon glyphicon-search"></i>
                 </div>
               </form>
