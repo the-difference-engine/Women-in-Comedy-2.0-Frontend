@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   width: 20%;
-  top: 65px;
+  top: 85px;
   height: 100%;
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
@@ -21,6 +21,6 @@
 
 @media screen and (max-width: 1008px) {
   #left-side-bar-content {
-    margin-top: 150px;
+    margin-top: 75px;
   }
 }

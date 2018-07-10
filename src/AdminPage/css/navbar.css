@@ -45,6 +45,12 @@ i.fa {
   margin: 0;
 }
 
+@media (max-width: 942px) and (min-width: 768px) {
+  .navbar-right {
+    margin: -33px;
+  }
+}
+
 /* user icon */
 .navbar-nav img {
   border-radius: 50%;

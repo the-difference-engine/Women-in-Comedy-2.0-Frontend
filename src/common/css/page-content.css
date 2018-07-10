@@ -10,14 +10,14 @@
 
 @media (max-width: 1008px) and (min-width: 768px) {
   #page-content {
-    top: 200px;
+    top: 110px;
   }
 }
 
 #page-content-margin {
   margin-top: 50px;
   margin-left: 40px;
-  margin-right: 40px;
+  margin-right: 60px;
   margin-bottom: 25px;
   height: 100%;
 }

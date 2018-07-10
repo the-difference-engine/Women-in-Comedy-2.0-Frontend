@@ -80,7 +80,10 @@ class ProfileConnections extends Component {
           </div>
 
           <div className="onclick" onClick={this.onClickContacts.bind(this)}>
-            <p style={{ marginLeft: "-15px" }} className="red">
+            <p
+              style={{ marginLeft: "-15px", fontSize: "15px" }}
+              className="red"
+            >
               {this.state.connections_string}
             </p>
           </div>
