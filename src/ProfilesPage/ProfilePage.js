@@ -24,7 +24,6 @@ import UserInfo from './components/UserInfo';
 import ProfileConnections from './components/ProfileConnections';
 import ProfileFeed from './components/ProfileFeed';
 import EditPage from '../EditPage/EditPage';
-import BlockedUsersList from './components/BlockedUsersList';
 
 const userId = parseInt(sessionStorage.getItem('userId'));
 const adminUser = sessionStorage.getItem('adminUser');
