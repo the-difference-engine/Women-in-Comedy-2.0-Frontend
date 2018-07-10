@@ -28,6 +28,10 @@ class UpdateEvent extends Component {
   }
 
   componentDidMount() {
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
     const eventId = this.props.match.params.id;
     this.props.fetchEventInfo(eventId);
     this.props.fetchUserInfo(sessionStorage.getItem('userId'));
