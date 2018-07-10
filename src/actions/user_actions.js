@@ -4,7 +4,7 @@ import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOG
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
-   url: process.env.REACT_APP_API_URL_DEV + '/users/info',
+   url: process.env.APP_API_URL + '/users/info',
    headers: {"id": userId},
  });
  return (dispatch) => {
@@ -15,7 +15,7 @@ export const fetchUserInfo = (userId) => {
 };
 
 export const fetchAllUsers = () => async dispatch => {
-  const request = await axios(process.env.REACT_APP_API_URL_DEV + 'users');
+  const request = await axios(process.env.APP_API_URL + '/users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
 
@@ -39,7 +39,7 @@ export const updateSettings = (userId, adminStatus) => {
 
   const request = axios({
     method: 'patch',
-    url: process.env.REACT_APP_API_URL_DEV + `users/${userId}`,
+    url: process.env.APP_API_URL + `users/${userId}`,
     headers: {"id": userId },
     data: { "admin":  switchAdmin } 
   });

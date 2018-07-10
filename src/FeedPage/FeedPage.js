@@ -6,6 +6,7 @@ import {
   fetchNotifications,
   fetchUserConnections,
   fetchPendingUserConnections,
+  fetchPendingUserInvites,
   createPostOnUserWall,
   userWallInputChange
 } from '../actions';
@@ -15,6 +16,7 @@ import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';
 import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
+import renderPendingInvites from './components/Messages';
 
 
 class Feed extends Component {
@@ -28,12 +30,13 @@ class Feed extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const userId = sessionStorage.getItem('userId');
-    this.props.fetchUserInfo(userId);
-    this.props.fetchUserFeeds(userId);
-    this.props.fetchUserConnections(userId);
-    this.props.fetchPendingUserConnections(userId);
-    this.props.fetchNotifications(userId);
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications } = this.props;
+    fetchUserInfo(sessionStorage.getItem('userId'));
+    fetchUserFeeds(sessionStorage.getItem('userId'));
+    fetchUserConnections(sessionStorage.getItem('userId'));
+    fetchPendingUserConnections(sessionStorage.getItem('userId'));
+    fetchPendingUserInvites(sessionStorage.getItem('userId'));
+    fetchNotifications(sessionStorage.getItem('userId'));
   }
 
   onPost() {
@@ -45,15 +48,15 @@ class Feed extends Component {
   }
 
   render() {
-    const { userInfo, userConnections, userFeeds, receivedConnectionRequest, notifications } = this.props;
+    const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
     return (
       <div>
         <Navbar history={this.props.history} notifications={notifications}/>
         <RightGraySideBar>
-          <Messages/>
+          <Messages connections={receivedConnectionRequest} invites={userInvites} />
         </RightGraySideBar>
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections}  />
+          <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
         <PageContent>
           <div className="feed-post-bar">
@@ -74,8 +77,8 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { userInfo, userFeeds, userConnections,  receivedConnectionRequest, userWallPost, notifications } = state;
-  return { userInfo, userFeeds, userConnections, receivedConnectionRequest, userWallPost, notifications };
+  const { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications } = state;
+  return { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications };
 }
 export default connect(mapStateToProps,
   {
@@ -84,6 +87,7 @@ export default connect(mapStateToProps,
     fetchUserConnections,
     fetchNotifications,
     fetchPendingUserConnections,
+    fetchPendingUserInvites,
     createPostOnUserWall,
     userWallInputChange
   }

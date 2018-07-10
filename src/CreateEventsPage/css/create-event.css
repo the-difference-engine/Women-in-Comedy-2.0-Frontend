@@ -6,3 +6,19 @@
   align-items: center;
   margin-bottom: 100px;
 }
+#private-event-wrapper {
+  position: relative;
+  top: 100px;
+  display: flex;;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+/* Pushes event form down when search bar above
+  drops down.
+*/
+@media screen and (max-width: 1000px) {
+  #create-event-wrapper {
+    top: 175px;
+  }
+}
