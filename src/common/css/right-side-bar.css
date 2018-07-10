@@ -1,6 +1,6 @@
 #right-side {
   position: fixed;
-  right: 0;
+  right: -10px;
   top: 65px;
   width: 20%;
   height: 100%;
@@ -16,6 +16,13 @@
   height: 100%;
 }
 
-html, body {
-  font-family: 'Quicksand', sans-serif;
+@media (max-width: 1008px) and (min-width: 768px) {
+  #right-side-bar-content {
+    margin-top: 100px;
+  }
+}
+
+html,
+body {
+  font-family: "Quicksand", sans-serif;
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 import UserList from "./UserList";
 import { bindActionCreators } from "redux";
 import "../css/navbar.css";
+import "../css/modal.css";
 import { fetchUserInfo } from "../../actions/index";
 
 class AdminForm extends Component {
@@ -34,7 +35,7 @@ class AdminForm extends Component {
 
     setTimeout(function() {
       window.location.reload();
-    }, 10); 
+    }, 10);
     this.setState({ status: "Updated" });
   }
 
@@ -54,7 +55,7 @@ class AdminForm extends Component {
     return (
       <div className="admin-status">
         <h6>Switch Status?</h6>
-        <input type="submit" value="Submit" />
+        <input className="btn adminButtonStyle" type="submit" value="Submit" />
         <br />
       </div>
     );

@@ -48,5 +48,11 @@
 
 #connection-info-wrapper {
   margin-top: 20px;
+}
 
+#profile-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-right: 100px;
 }
