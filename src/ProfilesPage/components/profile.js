@@ -75,7 +75,7 @@ class Profile extends Component {
 
     const request = axios({
         method: "post",
-        url: process.env.REACT_APP_API_URL_DEV + 'users/create_post',
+        url: process.env.APP_API_URL + 'users/create_post',
         headers: { "id": sender_id },
         body: { "post": values, "postable_id": new_query}
     });
