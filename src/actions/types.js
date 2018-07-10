@@ -54,3 +54,4 @@ export const MARK_ONE_AS_READ = 'mark_one_as_read';
 export const SUSPEND_USER = 'suspend_user';
 export const UNSUSPEND_USER = 'unsuspend_user';
 export const DELETE_USER = 'delete_user';
+export const EMAIL_USERS = 'email_users'
