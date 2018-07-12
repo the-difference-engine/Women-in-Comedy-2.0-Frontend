@@ -15,7 +15,7 @@ class EditPage extends Component {
 
         axios({
           method: 'patch',
-          url: process.env.APP_API_URL + `users/${id}`,
+          url: process.env.REACT_APP_API_ENDPOINT + `users/${id}`,
           data: values
         }).then(function(response) {});
 

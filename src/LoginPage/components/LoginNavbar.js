@@ -23,7 +23,7 @@ class LoginNavbar extends Component {
     const password = document.getElementById("password").value;
     // this.props.createSession(email, password);
     axios
-      .post(process.env.APP_API_URL + "sessions", { email, password })
+      .post(process.env.REACT_APP_API_ENDPOINT + "sessions", { email, password })
       .then(response => {
         sessionStorage.setItem("confirmed", response.data.confirmed_at);
         sessionStorage.setItem("userId", response.data.id);
@@ -45,7 +45,7 @@ class LoginNavbar extends Component {
     return (
       <div id="navbar">
         <div id="container">
-          <h1 id="login-nav-header">Women in Comedy</h1> 
+          <h1 id="login-nav-header">Women in Comedy</h1>
           <div id="form-cred">
           <form onSubmit={this.login.bind(this)}>
             <div id="login-cred">
@@ -69,7 +69,7 @@ class LoginNavbar extends Component {
         </div>
       </div>
 
-      
+
     );
   }
 

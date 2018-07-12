@@ -4,7 +4,7 @@ import { FETCH_USERS, FILTER_USERS } from "./types";
 export const fetchUsers = () => {
   const request = axios({
     method: 'get',
-    url: process.env.APP_API_URL + 'users/all_users'
+    url: process.env.REACT_APP_API_ENDPOINT + 'users/all_users'
   });
   return {
     type: FETCH_USERS,

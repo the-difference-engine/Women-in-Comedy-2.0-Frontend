@@ -48,7 +48,7 @@ class ChatWidget extends Component {
 
   //Prepare the Action Cable socket for chat function
   createSocket() {
-    let cable = Cable.createConsumer(process.env.APP_URL + 'cable');
+    let cable = Cable.createConsumer(process.env.REACT_APP_API_URL + 'cable');
     let userId = this.props.loggedIn.userId;
 
     //Create chat function
