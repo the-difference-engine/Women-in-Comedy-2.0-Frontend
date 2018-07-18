@@ -118,7 +118,13 @@ class ProfilePage extends Component {
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
+    /*Trying to setup a check for superuser status and giving an alert that if "user to be delete" is a superuser that the action cannot be completed. NOT YET FUNCTIONAL!*/
+    if (this.props.userInfo.superuser === true) {
+
+      alert('ACTION CANCELLED! The profile you are trying to delete belongs to a Super User! You cannot delete a Super User!');
+    } else {
     this.props.deleteUser(id);
+    }
   }
 
   renderBlockConnection() {
