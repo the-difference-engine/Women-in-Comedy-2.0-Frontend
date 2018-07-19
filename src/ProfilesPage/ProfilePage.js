@@ -26,6 +26,7 @@ import EditPage from "../EditPage/EditPage";
 const userId = sessionStorage.getItem("userId");
 const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
+const superuser = sessionStorage.getItem('superuser');
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
@@ -118,13 +119,15 @@ class ProfilePage extends Component {
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
-    /*Trying to setup a check for superuser status and giving an alert that if "user to be delete" is a superuser that the action cannot be completed. NOT YET FUNCTIONAL!*/
-    if (id.superuser === true) {
+    const superuser = this.props.match.params.superuser || sessionStorage.getItem('superuser');
+    {/*Trying to setup a check for superuser status and giving an alert that if "user to be delete" is a superuser that the action cannot be completed. NOT YET FUNCTIONAL!*/}
+    {/*if (userId.superuser == true) {
 
       alert('ACTION CANCELLED! The profile you are trying to delete belongs to a Super User! You cannot delete a Super User!');
     } else {
     this.props.deleteUser(id);
-    }
+    }*/}
+    alert(superuser());
   }
 
   renderBlockConnection() {
