@@ -8,6 +8,7 @@ import "../css/navbar.css";
 import "../css/modal.css";
 import { fetchUserInfo } from "../../actions/index";
 
+
 class AdminForm extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +53,7 @@ class AdminForm extends Component {
   }
 
   // render superUser status only if user viewing is a superUser
-  renderSuperUserStatus (e) {
+  renderSuperUserStatus () {
     let superUserStatus;
     this.props.isSuperUser === true ? (superUserStatus = "SUPER USER") : (superUserStatus= "NonSuperUser");
     return superUserStatus;

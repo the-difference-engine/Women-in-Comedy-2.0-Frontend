@@ -33,6 +33,23 @@ export const editUser = (boolean) => {
   }
 }
 
+// super User will be created 
+export const updateToSuperUser = (userId) => {
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "superuser":  true, "admin": true }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request})
+    });
+  };
+
+}
+
 export const updateSettings = (userId, adminStatus) => {
   let switchAdmin;
     adminStatus == true ? switchAdmin = false : switchAdmin = true;
