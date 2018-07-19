@@ -27,7 +27,7 @@ class AdminForm extends Component {
     this.props.updateSettings(userId, adminStatus);
 
     let displayAdmin;
-    adminStatus == true
+    adminStatus === true
       ? (displayAdmin = "Have Been Removed")
       : (displayAdmin = "Have Been Added");
 
@@ -45,10 +45,17 @@ class AdminForm extends Component {
 
   renderAdminStatus(event) {
     let currentStatus;
-    this.props.adminStatus == true
+    this.props.adminStatus === true
       ? (currentStatus = "Admin")
       : (currentStatus = "Non-Admin");
     return currentStatus;
+  }
+
+  // render superUser status only if user viewing is a superUser
+  renderSuperUserStatus (e) {
+    let superUserStatus;
+    this.props.isSuperUser === true ? (superUserStatus = "SUPER USER") : (superUserStatus= "NonSuperUser");
+    return superUserStatus;
   }
 
   superUserRender(props) {
@@ -68,7 +75,7 @@ class AdminForm extends Component {
           <p id="admin-status-display">
             Admin Status: {this.renderAdminStatus()}
           </p>
-
+        {this.props.isLoggedInUserSuper === true ? (<p> SuperUser Status: {this.renderSuperUserStatus()}</p>): (<p />)}
           <div>{this.superUserRender()}</div>
         </form>
       </div>

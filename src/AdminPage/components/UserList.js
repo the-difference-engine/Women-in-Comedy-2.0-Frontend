@@ -17,6 +17,7 @@ class UserList extends Component {
           {user.firstName} {user.lastName}
           <p>{user.email}</p>
           <AdminForm
+            isLoggedInUserSuper = {this.props.userInfo.superuser}
             isSuperUser={user.superuser}
             adminStatus={user.admin}
             userId={user.id}

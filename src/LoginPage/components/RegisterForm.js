@@ -28,7 +28,7 @@ class RegisterForm extends Component {
     this.state = {
       user: {},
       imgURL:
-        "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg"
+        "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg",
     };
     this.allMeetingOptions = [];
 
@@ -43,6 +43,7 @@ class RegisterForm extends Component {
       .then(payload => {
         this.allMeetingOptions = payload.data;
         this.forceUpdate();
+        console.log(this.allMeetingOptions)
       })
       .catch(err => {
         alert(err);
