@@ -137,7 +137,7 @@ class ProfilePage extends Component {
   onBlockUser() {
     // save the id as sender_id of the user who blocks AND
     // the id as receiver_id of the block to the user_blocks db table
-    const blocker_id = userId;
+    const blocker_id = parseInt(sessionStorage.getItem("userId"));
     const blocked_id = this.props.userInfo.id;
     console.log("block clicked");
     this.props.createBlock(blocker_id, blocked_id);

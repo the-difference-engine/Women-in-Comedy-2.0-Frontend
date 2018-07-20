@@ -29,6 +29,7 @@ class Navbar extends Component {
     };
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.makeUpdate = this.makeUpdate.bind(this);
   }
 
   Logout() {
@@ -52,9 +53,10 @@ class Navbar extends Component {
     }
   }
 
-  makeUpdate = () => {
+  makeUpdate() {
+    console.log("hi");
     this.props.fetchAllUsers();
-  };
+  }
 
   renderSearch(users) {
     return (

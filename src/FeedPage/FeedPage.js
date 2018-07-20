@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   fetchUserInfo,
   fetchUserFeeds,
@@ -7,14 +7,13 @@ import {
   fetchPendingUserConnections,
   createPostOnUserWall,
   userWallInputChange
-} from '../actions';
-import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar, PageContent  } from '../common';
+} from "../actions";
+import Navbar from "../common/Navbar";
+import { LeftGraySideBar, RightGraySideBar, PageContent } from "../common";
 
-import NewFeeds from './components/NewFeeds';
-import UserInfo from './components/UserInfo';
-import Messages from './components/Messages';
-
+import NewFeeds from "./components/NewFeeds";
+import UserInfo from "./components/UserInfo";
+import Messages from "./components/Messages";
 
 class Feed extends Component {
   constructor(props) {
@@ -23,27 +22,41 @@ class Feed extends Component {
   }
 
   componentDidMount() {
-    const valid = sessionStorage.getItem('confirmed');
-    if(valid === 'null' || !valid) {
-      this.props.history.push('/');
+    const valid = sessionStorage.getItem("confirmed");
+    if (valid === "null" || !valid) {
+      this.props.history.push("/");
     }
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections } = this.props;
-    fetchUserInfo(sessionStorage.getItem('userId'));
-    fetchUserFeeds(sessionStorage.getItem('userId'));
-    fetchUserConnections(sessionStorage.getItem('userId'));
-    fetchPendingUserConnections(sessionStorage.getItem('userId'));
+    const {
+      fetchUserInfo,
+      fetchUserFeeds,
+      fetchUserConnections,
+      fetchPendingUserConnections
+    } = this.props;
+    fetchUserInfo(sessionStorage.getItem("userId"));
+    fetchUserFeeds(sessionStorage.getItem("userId"));
+    fetchUserConnections(sessionStorage.getItem("userId"));
+    fetchPendingUserConnections(sessionStorage.getItem("userId"));
   }
 
   onPost() {
     const body = this.props.userWallPost;
 
-    const userId = this.props.match.params.id || sessionStorage.getItem('userId');
-    const authorId = sessionStorage.getItem('userId');
-    this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
+    const userId =
+      this.props.match.params.id || sessionStorage.getItem("userId");
+    const authorId = sessionStorage.getItem("userId");
+    this.props.createPostOnUserWall(
+      { body, userId, authorId },
+      this.props.fetchUserFeeds
+    );
   }
 
   render() {
-    const { userInfo, userConnections, userFeeds, receivedConnectionRequest } = this.props;
+    const {
+      userInfo,
+      userConnections,
+      userFeeds,
+      receivedConnectionRequest
+    } = this.props;
     return (
       <div>
         <Navbar history={this.props.history} />
@@ -52,18 +65,29 @@ class Feed extends Component {
           <Messages connections={receivedConnectionRequest} />
         </RightGraySideBar>
         <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections}  />
+          <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
         <PageContent>
           <div className="feed-post-bar">
             <div className="wrap">
-
               <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                <input
+                  type="text"
+                  className="searchTerm"
+                  placeholder="What's New?"
+                  onChange={event =>
+                    this.props.userWallInputChange(event.target.value)
+                  }
                   value={this.props.userWallPost}
                 />
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
+                <div className="post-button">
+                  <button
+                    className="btn btn-default"
+                    onClick={this.onPost.bind(this)}
+                  >
+                    POST
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -74,11 +98,24 @@ class Feed extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { userInfo, userFeeds, userConnections,  receivedConnectionRequest, userWallPost } = state;
-  return { userInfo, userFeeds, userConnections, receivedConnectionRequest, userWallPost };
-}
-export default connect(mapStateToProps,
+const mapStateToProps = state => {
+  const {
+    userInfo,
+    userFeeds,
+    userConnections,
+    receivedConnectionRequest,
+    userWallPost
+  } = state;
+  return {
+    userInfo,
+    userFeeds,
+    userConnections,
+    receivedConnectionRequest,
+    userWallPost
+  };
+};
+export default connect(
+  mapStateToProps,
   {
     fetchUserInfo,
     fetchUserFeeds,
