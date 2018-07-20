@@ -119,15 +119,9 @@ class ProfilePage extends Component {
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
-    const superuser = this.props.match.params.superuser || sessionStorage.getItem('superuser');
-    {/*Trying to setup a check for superuser status and giving an alert that if "user to be delete" is a superuser that the action cannot be completed. NOT YET FUNCTIONAL!*/}
-    {/*if (userId.superuser == true) {
-
-      alert('ACTION CANCELLED! The profile you are trying to delete belongs to a Super User! You cannot delete a Super User!');
-    } else {
+   
     this.props.deleteUser(id);
-    }*/}
-    alert(superuser());
+   
   }
 
   renderBlockConnection() {
@@ -169,15 +163,19 @@ class ProfilePage extends Component {
     );
   }
 
-  deleteUserButton() {
+  deleteUserButton(superuser) {
     const admin = sessionStorage.getItem("isAdmin");
-    return (
-      <a href="/message">
-        <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
-          Delete User
-        </button>
-      </a>
-    );
+    {/*if superuser's value is not null render deleleteUser button.*/}
+    console.log(superuser);
+    {/*if(superuser !== null) {*/}
+      return (
+        <a href="/message">
+          <button className="btn btn-danger" onClick={this.onDelete.bind(this, superuser)}>
+            Delete User
+          </button>
+        </a>
+      );
+    {/*}*/}
   }
 
   renderConnection() {
@@ -266,7 +264,11 @@ class ProfilePage extends Component {
           <div id="profile-buttons">
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
-            {this.deleteUserButton()}
+            { 
+              if (userInfo.superuser === false) {
+              this.deleteUserButton()
+            }}
+            
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
