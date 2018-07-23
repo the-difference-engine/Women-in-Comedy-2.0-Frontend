@@ -54,9 +54,21 @@ class AdminForm extends Component {
 
   // render superUser status only if user viewing is a superUser
   renderSuperUserStatus () {
-    let superUserStatus;
-    this.props.isSuperUser === true ? (superUserStatus = "SUPER USER") : (superUserStatus= "NonSuperUser");
-    return superUserStatus;
+    // let superUserStatus;
+    // this.props.isSuperUser === true ? (superUserStatus = "SUPER USER") : (superUserStatus= "NonSuperUser");
+    // return superUserStatus;
+    return(
+      this.props.isSuperUser === true ? 
+      (<div>
+        <p> SuperUser Status: Super User</p>
+        <button> Remove Super User Setting </button>
+      </div>) 
+      : (<div>
+          <p> SuperUser Status: NonSuperUser</p>
+          <button> Give Super User Status </button>
+        </div>)
+    )
+   
   }
 
   superUserRender(props) {
@@ -76,7 +88,9 @@ class AdminForm extends Component {
           <p id="admin-status-display">
             Admin Status: {this.renderAdminStatus()}
           </p>
-        {this.props.isLoggedInUserSuper === true ? (<p> SuperUser Status: {this.renderSuperUserStatus()}</p>): (<p />)}
+        {this.props.isLoggedInUserSuper === true ? 
+          (this.renderSuperUserStatus())
+          : (<p />)}
           <div>{this.superUserRender()}</div>
         </form>
       </div>

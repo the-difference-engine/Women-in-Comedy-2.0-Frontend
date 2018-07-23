@@ -47,7 +47,6 @@ export const updateToSuperUser = (userId) => {
       dispatch({ type: EDIT_USER, payload: request})
     });
   };
-
 }
 
 export const updateSettings = (userId, adminStatus) => {
