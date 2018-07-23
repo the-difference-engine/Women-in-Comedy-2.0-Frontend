@@ -6,7 +6,7 @@ import UserList from "./UserList";
 import { bindActionCreators } from "redux";
 import "../css/navbar.css";
 import "../css/modal.css";
-import { fetchUserInfo } from "../../actions/index";
+import { fetchUserInfo, updateToSuperUser, removeSuperUserStatus} from "../../actions/index";
 
 
 class AdminForm extends Component {
@@ -61,11 +61,11 @@ class AdminForm extends Component {
       this.props.isSuperUser === true ? 
       (<div>
         <p> SuperUser Status: Super User</p>
-        <button> Remove Super User Setting </button>
+        <button onClick={() => removeSuperUserStatus(this.props.userId)}> Remove Super User Setting </button>
       </div>) 
       : (<div>
           <p> SuperUser Status: NonSuperUser</p>
-          <button> Give Super User Status </button>
+          <button onClick={() => updateToSuperUser(this.props.userId)}> Give Super User Status </button>
         </div>)
     )
    

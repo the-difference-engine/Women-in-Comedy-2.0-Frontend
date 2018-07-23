@@ -49,6 +49,22 @@ export const updateToSuperUser = (userId) => {
   };
 }
 
+// super User Status will be removed by other super users 
+export const removeSuperUserStatus = (userId) => {
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "superuser":  false}
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request})
+    });
+  };
+}
+
 export const updateSettings = (userId, adminStatus) => {
   let switchAdmin;
     adminStatus == true ? switchAdmin = false : switchAdmin = true;
