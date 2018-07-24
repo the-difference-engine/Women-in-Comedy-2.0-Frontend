@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import axios from "axios";
 import UserList from "./UserList";
+import SuperUserForm from "./SuperUserForm.js";
 import { bindActionCreators } from "redux";
 import "../css/navbar.css";
 import "../css/modal.css";
@@ -32,8 +33,6 @@ class AdminForm extends Component {
       ? (displayAdmin = "Have Been Removed")
       : (displayAdmin = "Have Been Added");
 
-    alert("Admin Privlages " + displayAdmin);
-
     setTimeout(function() {
       window.location.reload();
     }, 10);
@@ -53,23 +52,19 @@ class AdminForm extends Component {
   }
 
   // render superUser status only if user viewing is a superUser
-  renderSuperUserStatus () {
-    // let superUserStatus;
-    // this.props.isSuperUser === true ? (superUserStatus = "SUPER USER") : (superUserStatus= "NonSuperUser");
-    // return superUserStatus;
-    return(
-      this.props.isSuperUser === true ? 
-      (<div>
-        <p> SuperUser Status: Super User</p>
-        <button onClick={() => removeSuperUserStatus(this.props.userId)}> Remove Super User Setting </button>
-      </div>) 
-      : (<div>
-          <p> SuperUser Status: NonSuperUser</p>
-          <button onClick={() => updateToSuperUser(this.props.userId)}> Give Super User Status </button>
-        </div>)
-    )
-   
-  }
+  // renderSuperUserStatus () {
+  //   return(
+  //     this.props.isSuperUser === true ? 
+  //     (<div>
+  //       <p> SuperUser Status: Super User</p>
+  //       <button type="button" onClick={() => this.props.removeSuperUserStatus(this.props.userId)}> Remove Super User Setting </button>
+  //     </div>) 
+  //     : (<div>
+  //         <p> SuperUser Status: NonSuperUser</p>
+  //         <button type="button" onClick={() =>this.props.updateToSuperUser(this.props.userId)}> Give Super User Status </button>
+  //       </div>)
+  //   )
+  // }
 
   superUserRender(props) {
     return (
@@ -89,7 +84,10 @@ class AdminForm extends Component {
             Admin Status: {this.renderAdminStatus()}
           </p>
         {this.props.isLoggedInUserSuper === true ? 
-          (this.renderSuperUserStatus())
+          (
+            // this.renderSuperUserStatus()
+            <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId}/> 
+          )
           : (<p />)}
           <div>{this.superUserRender()}</div>
         </form>
@@ -106,6 +104,8 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    fetchUserInfo
+    fetchUserInfo, 
+    removeSuperUserStatus,
+    updateToSuperUser
   }
 )(AdminForm);
