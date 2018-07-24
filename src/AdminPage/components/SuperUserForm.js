@@ -12,6 +12,20 @@ import { fetchUserInfo, updateToSuperUser, removeSuperUserStatus} from "../../ac
 class SuperUserForm extends Component {
     constructor(props) {
         super(props);
+        
+      }
+
+      
+      updateSuperUser = (event, id) => {
+        event.preventDefault();
+        if (this.props.isSuperUser === true){
+          this.props.removeSuperUserStatus(id);
+        } else {
+          this.props.updateToSuperUser(id);
+        }
+        setTimeout(function() {
+            window.location.reload();
+          }, 10);
       }
 
       render(){
@@ -19,11 +33,11 @@ class SuperUserForm extends Component {
             this.props.isSuperUser === true ? 
             (<div>
               <p> SuperUser Status: Super User</p>
-              <button type="button" onClick={() => this.props.removeSuperUserStatus(this.props.userId)}> Remove Super User Setting </button>
+              <button type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Remove Super User Setting </button>
             </div>) 
             : (<div>
                 <p> SuperUser Status: NonSuperUser</p>
-                <button type="button" onClick={() => this.props.updateToSuperUser(this.props.userId)}> Give Super User Status </button>
+                <button type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Give Super User Status </button>
               </div>)
           )
       }

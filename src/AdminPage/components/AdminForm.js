@@ -51,6 +51,7 @@ class AdminForm extends Component {
     return currentStatus;
   }
 
+
   // render superUser status only if user viewing is a superUser
   // renderSuperUserStatus () {
   //   return(
@@ -86,7 +87,7 @@ class AdminForm extends Component {
         {this.props.isLoggedInUserSuper === true ? 
           (
             // this.renderSuperUserStatus()
-            <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId}/> 
+            <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId} onClick={this.updateSuperUser}/> 
           )
           : (<p />)}
           <div>{this.superUserRender()}</div>
