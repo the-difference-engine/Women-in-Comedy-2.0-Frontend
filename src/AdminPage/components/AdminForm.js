@@ -22,17 +22,18 @@ class AdminForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event, userId = this.props.userId) {
+  handleSubmit(event, userId = this.props.userId, isSuperUser = this.props.isSuperUser) {
     event.preventDefault();
 
     let adminStatus = this.props.adminStatus;
-    this.props.updateSettings(userId, adminStatus);
 
-    let displayAdmin;
-    adminStatus === true
-      ? (displayAdmin = "Have Been Removed")
-      : (displayAdmin = "Have Been Added");
+    if (isSuperUser !== true){
+      this.props.updateSettings(userId, adminStatus);
+    } else {
+      alert("This user has Super User admin rights, cannot remove normal admin rights!");
+    }
 
+    
     setTimeout(function() {
       window.location.reload();
     }, 10);
@@ -51,27 +52,11 @@ class AdminForm extends Component {
     return currentStatus;
   }
 
-
-  // render superUser status only if user viewing is a superUser
-  // renderSuperUserStatus () {
-  //   return(
-  //     this.props.isSuperUser === true ? 
-  //     (<div>
-  //       <p> SuperUser Status: Super User</p>
-  //       <button type="button" onClick={() => this.props.removeSuperUserStatus(this.props.userId)}> Remove Super User Setting </button>
-  //     </div>) 
-  //     : (<div>
-  //         <p> SuperUser Status: NonSuperUser</p>
-  //         <button type="button" onClick={() =>this.props.updateToSuperUser(this.props.userId)}> Give Super User Status </button>
-  //       </div>)
-  //   )
-  // }
-
   superUserRender(props) {
     return (
       <div className="admin-status">
-        <h6>Switch Status?</h6>
-        <input className="btn adminButtonStyle" type="submit" value="Submit" />
+        <h6>Switch Admin Status?</h6>
+        <input className="btn adminButtonStyle" type="submit" value="Submit Admin Status Change" />
         <br />
       </div>
     );
@@ -86,7 +71,6 @@ class AdminForm extends Component {
           </p>
         {this.props.isLoggedInUserSuper === true ? 
           (
-            // this.renderSuperUserStatus()
             <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId} onClick={this.updateSuperUser}/> 
           )
           : (<p />)}
