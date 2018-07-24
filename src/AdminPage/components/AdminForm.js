@@ -37,11 +37,6 @@ class AdminForm extends Component {
       alert("This user has Super User admin rights, cannot remove normal admin rights!");
     }
 
-    
-    // setTimeout(function() {
-    //   window.location.reload();
-    // }, 10);
-    // this.setState({ status: "Updated" });
   }
 
   handleChange(event) {

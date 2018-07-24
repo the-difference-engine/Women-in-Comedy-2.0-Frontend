@@ -31,13 +31,13 @@ class SuperUserForm extends Component {
       render(){
         return(
             this.props.isSuperUser === true ? 
-            (<div>
-              <p> SuperUser Status: Super User</p>
-              <button type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Remove Super User Setting </button>
+            (<div className="admin-status">
+              <h6> SuperUser Status: Super User</h6>
+              <button className="btn superUserButtonStyle" type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Remove Super User Setting </button>
             </div>) 
-            : (<div>
-                <p> SuperUser Status: NonSuperUser</p>
-                <button type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Give Super User Status </button>
+            : (<div className="admin-status">
+                <h6> SuperUser Status: NonSuperUser</h6>
+                <button className="btn superUserButtonStyle" type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Give Super User Status </button>
               </div>)
           )
       }

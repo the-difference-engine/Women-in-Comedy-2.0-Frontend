@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.superUserButtonStyle:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: orangered;
+  color: white;
+}
+
+.superUserButtonStyle {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid black;
+}
+
+
+
 .adminButtonStyle {
   color: white;
   background-color: rgb(155, 21, 34);
