@@ -1,110 +1,142 @@
-
 .navbar-default {
   background-color: #9b1522;
 }
+
+/* div within nav */
 .navbar {
-padding-top: 10px;
-padding-bottom: 10px;
-margin-bottom: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
+/* Women in comedy left main text */
 #nav-header {
-color: white;
-font-weight: 100;
-margin-left: 100px;
-margin-top: 17px;
-font-family: 'alwaysforever', sans-serif;
+  color: white;
+  font-weight: 100;
+  margin-top: 17px;
+  font-family: "alwaysforever", sans-serif;
 }
 
-.navbar-default .navbar-nav>li>a {
+@media screen and (max-width: 1144px) {
+  #nav-header {
+    margin-left: -25px;
+    margin-right: 0;
+    font-size: 20px;
+  }
+}
+
+/* Anchor tags within */
+.navbar-default .navbar-nav > li > a {
   color: white;
 }
 
+/* text for icons in navbar*/
 .navbar-default .navbar-nav p {
   font-size: 12px;
   margin-bottom: 0;
 }
 
-
+/*  */
 i.fa {
-font-size: 20px;
-text-align: center;
+  font-size: 20px;
+  text-align: center;
 }
 
 .navbar-right {
-margin: 0;
+  margin: 0;
 }
+
+@media (max-width: 942px) and (min-width: 768px) {
+  .navbar-right {
+    margin: -33px;
+  }
+}
+
+/* user icon */
 .navbar-nav img {
-border-radius: 50%;
-width: 35px;
-border: 1px solid white;
+  border-radius: 50%;
+  width: 35px;
+  border: 1px solid white;
 }
 
+/* navbar search bar */
 .navbar-form {
-margin: 0px;
-padding-top: 15px;
-padding-bottom: 15px;
+  margin: 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.navbar-form .input-group >.form-control {
-width: 250px;
-height: 30px;
-border-radius: 20px;
-
+.navbar-form .input-group > .form-control {
+  width: 250px;
+  height: 30px;
+  border-radius: 20px;
 }
 
+/* search icon within input */
 .input-group i {
-position: absolute;
-float: right;
-top: 7px;
-right: 7px;
-color: gray;
-z-index: 2;
-cursor: pointer;
+  position: absolute;
+  float: right;
+  top: 7px;
+  right: 7px;
+  color: gray;
+  z-index: 2;
+  cursor: pointer;
 }
 
 p {
-font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 #auto {
-background-color: white;
+  background-color: white;
 }
 
 #list-of-users {
-position: absolute;
+  position: absolute;
 }
 
+/*  unknown */
 #navbar button {
-float: right;
-margin-top: 32px;
-background-color: #C82222;
-height: 25px;
-border: 1px solid #860A0A;
-border-radius: 2px;
+  float: right;
+  margin-top: 32px;
+  background-color: #c82222;
+  height: 25px;
+  border: 1px solid #860a0a;
+  border-radius: 2px;
 }
 
+/* unknown */
 #navbar button span {
-color: white;
-font-size: 12px;
-display: block;
+  color: white;
+  font-size: 12px;
+  display: block;
 }
 
+/* unknown */
 #navbar button:hover {
-background-color: #860A0A;
+  background-color: #860a0a;
 }
 
+/* font for 'admin status text' */
 #admin-status-display {
-  color:red;
+  color: red;
   font-size: 18px;
 }
 
+/* switch status area */
 .admin-status input {
   margin: 15px;
   padding: 5px;
 }
 
-.admin-show{
+/* possibly for true admin */
+.admin-show {
   color: red;
   margin: 5px;
+}
+
+/* email modal styling */
+.email-modal {
+  width: 500px;
+  height: 250px;
+  resize: none;
 }

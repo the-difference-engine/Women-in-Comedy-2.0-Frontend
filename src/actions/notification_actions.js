@@ -5,7 +5,7 @@ import {FETCH_NOTIFICATIONS, MARK_NOTIFICATIONS_AS_READ, MARK_ONE_AS_READ} from 
 export const fetchNotifications = (userId) => {
     const request = axios({
         method: 'get',
-        url: process.env.REACT_APP_API_URL_DEV + `notifications/${userId}`,
+        url: process.env.REACT_APP_API_ENDPOINT + `notifications/${userId}`,
         headers: {"id": userId}
     });
     return (dispatch) => {
@@ -18,7 +18,7 @@ export const fetchNotifications = (userId) => {
 export const markNotificationsAsRead = (user_id)  => {
     const request = axios({
         method: 'get',
-        url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_all_read/${user_id}`,
+        url: process.env.REACT_APP_API_ENDPOINT + `notifications/mark_all_read/${user_id}`,
         headers: {"id": user_id},
         data: {user_id}
     });
@@ -32,10 +32,10 @@ export const markNotificationsAsRead = (user_id)  => {
 
 
 export const markOneAsRead = (user_id, id) => async dispatch => {
-    
+
     const request = await axios({
         method: 'put',
-        url: process.env.REACT_APP_API_URL_DEV + `notifications/mark_one/${user_id}`,
+        url: process.env.REACT_APP_API_ENDPOINT + `notifications/mark_one/${user_id}`,
         data: { user_id, id }
     });
     dispatch({ type: MARK_ONE_AS_READ, payload: request });

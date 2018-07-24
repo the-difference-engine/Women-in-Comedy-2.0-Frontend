@@ -6,19 +6,15 @@
   align-items: center;
   margin-bottom: 100px;
 }
-#private-event-wrapper {
-  position: relative;
-  top: 100px;
-  display: flex;;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 100px;
-}
-/* Pushes event form down when search bar above
-  drops down.
-*/
-@media screen and (max-width: 1000px) {
+
+@media (max-width: 1007px) and (min-width: 942px) {
   #create-event-wrapper {
-    top: 175px;
+    top: 170px;
+  }
+}
+
+@media (max-width: 941px) and (min-width: 768px) {
+  #create-event-wrapper {
+    top: 90px;
   }
 }

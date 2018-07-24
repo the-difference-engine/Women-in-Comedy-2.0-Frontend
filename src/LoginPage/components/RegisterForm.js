@@ -39,7 +39,7 @@ class RegisterForm extends Component {
 
   componentWillMount() {
     axios
-      .get("http://localhost:9000/api/v1/meet_options")
+      .get( process.env.REACT_APP_API_ENDPOINT + 'meet_options')
       .then(payload => {
         this.allMeetingOptions = payload.data;
         this.forceUpdate();
@@ -120,14 +120,14 @@ class RegisterForm extends Component {
       .then(snapshot => {
         this.state.user.photo = snapshot.downloadURL;
       });
-    };   
-  
+    };
+
   onSubmit(e) {
   if(this.state.imgURL.startsWith("data:image")){
    this.storeProfilePicture()
      .then(() => {
        let user = this.state.user
-       axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
+       axios.post(process.env.REACT_APP_API_ENDPOINT + 'users').then(payload => {
          this.setState({ userMade: true });
        }).catch(err => {
          alert(err)
@@ -137,7 +137,7 @@ class RegisterForm extends Component {
    else
    {
      let user = this.state.user
-     axios.post(process.env.REACT_APP_API_URL_DEV + 'users').then(payload => {
+     axios.post(process.env.REACT_APP_API_ENDPOINT + 'users').then(payload => {
        this.setState({ userMade: true });
      }).catch(err => {
        alert(err)

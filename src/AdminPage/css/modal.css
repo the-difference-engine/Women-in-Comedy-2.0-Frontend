@@ -1,0 +1,26 @@
+.modal-style {
+  text-align: center;
+}
+
+.adminButtonStyle {
+  color: white;
+  background-color: rgb(155, 21, 34);
+  border: rgb(155, 21, 34);
+}
+
+.buttonStyle {
+  display: block;
+  text-decoration: none;
+  width: 100px;
+  height: 25px;
+  text-align: center;
+  border: 2px solid #9b1522;
+  background-color: #9b1522;
+  color: white;
+}
+
+.buttonStyle:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}

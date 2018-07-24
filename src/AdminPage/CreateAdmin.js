@@ -7,6 +7,7 @@ import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
 import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, fetchNotifications } from '../actions';
 import './css/navbar.css';
+import EmailModal from './components/EmailModal';
 
 
 class CreateAdmin extends Component {
@@ -31,6 +32,7 @@ class CreateAdmin extends Component {
       <div>
         <Navbar history={this.props.history} notifications={notifications}/>
         <LeftGraySideBar>
+          <EmailModal />
         </LeftGraySideBar>
         <PageContent>
          <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
