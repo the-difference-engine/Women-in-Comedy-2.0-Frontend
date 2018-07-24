@@ -29,15 +29,19 @@ class AdminForm extends Component {
 
     if (isSuperUser !== true){
       this.props.updateSettings(userId, adminStatus);
+      setTimeout(function() {
+        window.location.reload();
+      }, 10);
+      this.setState({ status: "Updated" });
     } else {
       alert("This user has Super User admin rights, cannot remove normal admin rights!");
     }
 
     
-    setTimeout(function() {
-      window.location.reload();
-    }, 10);
-    this.setState({ status: "Updated" });
+    // setTimeout(function() {
+    //   window.location.reload();
+    // }, 10);
+    // this.setState({ status: "Updated" });
   }
 
   handleChange(event) {
