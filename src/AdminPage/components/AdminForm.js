@@ -59,7 +59,6 @@ class AdminForm extends Component {
   superUserRender(props) {
     return (
       <div className="admin-status">
-        <h6>Switch Admin Status?</h6>
         <input className="btn adminButtonStyle" type="submit" value="Submit Admin Status Change" />
         <br />
       </div>
