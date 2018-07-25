@@ -54,7 +54,7 @@ class AdminForm extends Component {
   superUserRender(props) {
     return (
       <div className="admin-status">
-        <input className="btn adminButtonStyle" type="submit" value="Submit Admin Status Change" />
+        <input className="btn adminButtonStyle" type="submit" value="Change Admin Status" />
         <br />
       </div>
     );
