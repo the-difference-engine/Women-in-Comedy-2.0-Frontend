@@ -32,11 +32,11 @@ class SuperUserForm extends Component {
         return(
             this.props.isSuperUser === true ? 
             (<div className="admin-status">
-              <h6> SuperUser Status: Super User</h6>
+              <h6 className="super-user"> SuperUser Status: Super User</h6>
               <button className="btn superUserButtonStyle" type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Remove Super User Setting </button>
             </div>) 
             : (<div className="admin-status">
-                <h6> SuperUser Status: NonSuperUser</h6>
+                <h6 className="super-user"> SuperUser Status: NonSuperUser</h6>
                 <button className="btn superUserButtonStyle" type="button" onClick={(e) => this.updateSuperUser(e, this.props.userId)}> Give Super User Status </button>
               </div>)
           )

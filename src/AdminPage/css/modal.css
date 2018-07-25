@@ -48,3 +48,7 @@
   text-decoration: none;
   color: white;
 }
+
+.super-user {
+  color: tomato;
+}

@@ -140,3 +140,7 @@ p {
   height: 250px;
   resize: none;
 }
+
+.super-user {
+  color: firebrick;
+}
