@@ -36,7 +36,7 @@ class EmailModal extends Component {
     return (
       <div className="modal-style">
         <br />
-        <button className="btn adminButtonStyle" onClick={this.handleOpen}>
+        <button className="btn emailButtonStyle" onClick={this.handleOpen}>
           Email Users
         </button>
         <Dialog
