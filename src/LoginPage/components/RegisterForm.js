@@ -27,13 +27,6 @@ import { fetchMeetingOptions } from "../../actions";
 function mapStateToProps ({ allMeetingOptions }){
     return {allMeetingOptions}
 }
-  
-
-
-// const mapDispatchToProps = dispatch => {
-//     return bindActionCreators({fetchMeetingOptions:fetchMeetingOptions}, dispatch)
-// }
-
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +34,6 @@ class RegisterForm extends Component {
       user: {},
       imgURL:
         "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg",
-      // allMeetingOptions: []
     };
    
 
@@ -52,17 +44,6 @@ class RegisterForm extends Component {
 
   componentDidMount() {
      this.props.fetchMeetingOptions()
-    
-    
-    // axios
-    //   .get( process.env.REACT_APP_API_ENDPOINT + 'meet_options')
-    //   .then(payload => {
-    //     this.allMeetingOptions = payload.data;
-    //     this.forceUpdate();
-    //   })
-    //   .catch(err => {
-    //     alert(err);
-    //   });
   }
 
   renderMenuItems() {
