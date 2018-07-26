@@ -252,23 +252,7 @@ class RegisterForm extends Component {
                   value={this.state.user.website}
                 />
               </div>
-              {/* <div>
-                <SelectField
-                  floatingLabelText="Gender"
-                  onChange={(event, index, value) => {
-                    const { user } = this.state;
-                    user.gender = value;
-                    this.setState({ user });
-                  }}
-                  value={this.state.user.gender}
-                  name="gender"
-                  underlineFocusStyle={{ display: 'none' }}
-                  floatingLabelFocusStyle={{ color: 'red' }}
-                >
-                  <MenuItem primaryText="Female" value="Female" />
-                  <MenuItem primaryText="Male" value="Male" />
-                </SelectField>
-              </div> */}
+              
               <div>
                 <SelectField
                   floatingLabelText="Years of Experience"
