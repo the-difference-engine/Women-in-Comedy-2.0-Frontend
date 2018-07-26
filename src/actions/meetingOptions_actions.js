@@ -7,11 +7,10 @@ export const fetchMeetingOptions = () =>{
         url: process.env.REACT_APP_API_ENDPOINT + 'meet_options'
     });
     return (dispatch) => {
-        request.then((data) => {
-            dispatch({type: FETCH_MEETING_OPTIONS, payload: request })
+        request.then((response) => {
+            dispatch({type: FETCH_MEETING_OPTIONS, payload: response })
         });
     };
-
 };
 
 

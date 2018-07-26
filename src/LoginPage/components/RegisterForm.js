@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import firebase from "firebase";
 import axios from "axios";
+import { bindActionCreators } from "redux";
 import {
   TextField,
   RaisedButton,
@@ -21,6 +22,17 @@ import "../css/register.css";
 import createFragment from "react-addons-create-fragment";
 import { ValidatorComponent } from 'react-material-ui-form-validator';
 import holder from "../images/holder.jpg";
+import { fetchMeetingOptions } from "../../actions";
+
+function mapStateToProps ({ allMeetingOptions }){
+    return {allMeetingOptions}
+}
+  
+
+
+// const mapDispatchToProps = dispatch => {
+//     return bindActionCreators({fetchMeetingOptions:fetchMeetingOptions}, dispatch)
+// }
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -28,29 +40,34 @@ class RegisterForm extends Component {
     this.state = {
       user: {},
       imgURL:
-        "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg"
+        "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg",
+      // allMeetingOptions: []
     };
-    this.allMeetingOptions = [];
+   
 
     this.handleChange = this.handleChange.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillMount() {
-    axios
-      .get( process.env.REACT_APP_API_ENDPOINT + 'meet_options')
-      .then(payload => {
-        this.allMeetingOptions = payload.data;
-        this.forceUpdate();
-      })
-      .catch(err => {
-        alert(err);
-      });
+  componentDidMount() {
+     this.props.fetchMeetingOptions()
+    
+    
+    // axios
+    //   .get( process.env.REACT_APP_API_ENDPOINT + 'meet_options')
+    //   .then(payload => {
+    //     this.allMeetingOptions = payload.data;
+    //     this.forceUpdate();
+    //   })
+    //   .catch(err => {
+    //     alert(err);
+    //   });
   }
 
   renderMenuItems() {
-    return this.allMeetingOptions.map(item => (
+    return this.props.allMeetingOptions.map(item => (
+      
       <MenuItem
         key={item.id}
         primaryText={item.name}
@@ -64,12 +81,12 @@ class RegisterForm extends Component {
     ));
   }
 
-  selectionRenderer(values){
+  selectionRenderer = (values) => {
     switch (values.length) {
       case 0:
         return "";
       case 1:
-        return this.allMeetingOptions[values[0] - 1].name;
+        return this.props.allMeetingOptions[values[0] - 1].name;
       default:
         return `${values.length} options selected`;
     }
@@ -254,7 +271,7 @@ class RegisterForm extends Component {
                   value={this.state.user.website}
                 />
               </div>
-              <div>
+              {/* <div>
                 <SelectField
                   floatingLabelText="Gender"
                   onChange={(event, index, value) => {
@@ -270,7 +287,7 @@ class RegisterForm extends Component {
                   <MenuItem primaryText="Female" value="Female" />
                   <MenuItem primaryText="Male" value="Male" />
                 </SelectField>
-              </div>
+              </div> */}
               <div>
                 <SelectField
                   floatingLabelText="Years of Experience"
@@ -353,6 +370,5 @@ class RegisterForm extends Component {
   }
 }
 
-export default reduxForm({ form: "newAccountForm" })(
-  connect(null)(RegisterForm)
-);
+export default connect(mapStateToProps, {fetchMeetingOptions})(RegisterForm);
+
