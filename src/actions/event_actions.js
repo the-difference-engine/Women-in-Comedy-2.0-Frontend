@@ -49,8 +49,8 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
         location,
         ticket_link,
         time,
-        title,
-        is_private
+        title, 
+        is_private 
       }
     });
 
