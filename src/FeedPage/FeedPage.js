@@ -45,6 +45,7 @@ class Feed extends Component {
     const userId = this.props.match.params.id || sessionStorage.getItem('userId');
     const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnUserWall({ body, userId, authorId }, this.props.fetchUserFeeds);
+    debugger;
   }
 
   render() {

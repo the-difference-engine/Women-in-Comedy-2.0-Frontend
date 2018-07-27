@@ -41,7 +41,7 @@
 }
 
 #feed-news {
-  font-size: 22px;
+  font-size: 14px;
   font-weight: 400;
 }
 #feed-news span {
@@ -49,7 +49,7 @@
 }
 
 #feed-detail {
-  font-size: 14px;
+  font-size: 22px;
   
   overflow: hidden;
 }
