@@ -13,6 +13,7 @@ import {
 } from "./types";
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
+
   let {
     address,
     date,
@@ -136,7 +137,7 @@ const validate = eventInfo => {
   for (let key in eventInfo) {
     if (!eventInfo[key]) {
       return false;
-    }
+    } 
   }
   return true;
 };
@@ -153,6 +154,8 @@ export const eventInputChange = ({ prop, value }) => {
       day: "numeric",
       year: "numeric"
     });
+  } else if (prop ==="is_private" && value === ""){
+    value = false
   }
   return { type: EVENT_INPUT_CHANGE, payload: { prop, value } };
 };

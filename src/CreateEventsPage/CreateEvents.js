@@ -77,7 +77,8 @@ class CreateEvents extends Component {
   }
 
   async onCreateEvent() {
-    // removed status field in order to save event. 
+    // removed status field in order to save event.
+    
     const {
       address,
       date,
@@ -86,7 +87,8 @@ class CreateEvents extends Component {
       location,
       ticket_link,
       time,
-      title
+      title,
+      is_private
     } = this.props.createEventForm;
 
     await this.props.createEvent(
@@ -98,7 +100,8 @@ class CreateEvents extends Component {
         location,
         ticket_link,
         time,
-        title
+        title,
+        is_private
       },
       userId
     );
