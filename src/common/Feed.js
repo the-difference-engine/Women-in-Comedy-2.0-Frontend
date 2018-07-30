@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './css/feed.css';
+import { Comment } from "../common/Comment";
 
 class Feed extends Component {
   constructor(props) {
@@ -29,6 +30,9 @@ class Feed extends Component {
           <div id="feed-input">
             <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
             <input placeholder="comment" />
+            <Comment />
+            <Comment />
+            <Comment />
           </div>
         </div>
       </div>
