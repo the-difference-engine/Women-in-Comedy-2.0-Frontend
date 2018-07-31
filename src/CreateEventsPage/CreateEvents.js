@@ -77,8 +77,8 @@ class CreateEvents extends Component {
   }
 
   async onCreateEvent() {
-    // removed status field in order to save event.
-    
+   
+    let newUserId = sessionStorage.getItem("userId");
     const {
       address,
       date,
@@ -103,7 +103,7 @@ class CreateEvents extends Component {
         title,
         is_private
       },
-      userId
+      newUserId
     );
 
     this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`);

@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   ticket_link: "",
   address: "",
   id: null,
-  is_private: 'false'
+  is_private: false || "false"
 };
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOAD:
       return { ...state, loading: true, error: "" };
     case CREATE_EVENT_SUCCESS:
-      return { ...state, id: action.eventId };
+      return { ...state, id: action.eventId, loading: false };
     case CREATE_EVENT_FAIL:
       return { ...state, error: "All Fields Must Be Filled Out" };
     default:

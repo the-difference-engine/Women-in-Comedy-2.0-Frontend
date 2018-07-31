@@ -13,7 +13,7 @@ import {
 } from "./types";
 
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
-
+  
   let {
     address,
     date,
