@@ -28,7 +28,11 @@ class CreateEvents extends Component {
     };
   }
   componentDidMount() {
-    this.props.fetchNotifications(sessionStorage.getItem("userId"));
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
+    this.props.fetchNotifications(sessionStorage.getItem('userId'));
   }
 
   onClick() {
