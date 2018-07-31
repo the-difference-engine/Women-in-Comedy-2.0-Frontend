@@ -72,9 +72,10 @@ class Navbar extends Component {
     this.props.history.push(`/profile/${item.value}`);
   }
 
-  componentWillReceiveProps(newProps) {
-    const { userInfo } = newProps;
-  }
+  //Not sure what this line is supposed to be doing?
+  //componentWillReceiveProps(newProps) {
+    //const { userInfo } = newProps;
+  //}
 
   renderAdminIcon() {
     const isAdmin = this.props.userInfo.admin;

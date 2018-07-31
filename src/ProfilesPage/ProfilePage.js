@@ -22,27 +22,35 @@ import UserInfo from "./components/UserInfo";
 import ProfileConnections from "./components/ProfileConnections";
 import ProfileFeed from "./components/ProfileFeed";
 import EditPage from "../EditPage/EditPage";
+import { resolve } from "url";
 
 const userId = sessionStorage.getItem("userId");
 const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
-const superuser = sessionStorage.getItem('superuser');
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editUserEnable: false,
+      suspendedState: null
+    };
+  };
+
+  componentDidMount() {
     const sender_id = sessionStorage.getItem("userId");
     const receiver_id = this.props.match.params.id;
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-    this.props.fetchUserInfo(this.props.match.params.id);
-    this.props.fetchUserFeeds(this.props.match.params.id);
-    this.props.fetchUserConnections(this.props.match.params.id);
-    this.props.fetchConnectionStatus({ sender_id, receiver_id });
-    this.props.fetchNotifications(sender_id);
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+    fetchUserInfo(this.props.match.params.id);
+    fetchUserFeeds(this.props.match.params.id);
+    fetchUserConnections(this.props.match.params.id);
+    fetchConnectionStatus({ sender_id, receiver_id });
+    fetchNotifications(sender_id);
     this.setState(() => {
       return { suspendedState: this.props.userInfo.suspended };
     });
-    this.setState({ editUserEnable: false });
+    /*this.setState({ editUserEnable: false });*/
   }
 
   onPress() {
@@ -76,8 +84,10 @@ class ProfilePage extends Component {
   }
 
   renderEditUserButton() {
+    console.log(this.state.editUserEnable);
     return (
       <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
+        {/*if this.state.editUserEnable === false render "back" else render "Edit"*/}
         {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
@@ -119,8 +129,9 @@ class ProfilePage extends Component {
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
-   
-    this.props.deleteUser(id);
+    alert(id);
+    alert('Button Clicked!')
+    {/*this.props.deleteUser(id);*/}
    
   }
 
@@ -163,14 +174,17 @@ class ProfilePage extends Component {
     );
   }
 
-  deleteUserButton(superuser) {
+  deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    {/*if superuser's value is not null render deleleteUser button.*/}
+    const superuser = this.props.userInfo.superuser;
+    
     console.log(superuser);
-    {/*if(superuser !== null) {*/}
+    {/*if superuser's value is false render deleleteUser button.*/}
+      
+    {/*if(superuser !== true) {*/}
       return (
         <a href="/message">
-          <button className="btn btn-danger" onClick={this.onDelete.bind(this, superuser)}>
+          <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
             Delete User
           </button>
         </a>
@@ -247,11 +261,12 @@ class ProfilePage extends Component {
       userFeeds,
       status,
       match,
+      history,
       notifications
     } = this.props;
     return (
       <div>
-        <Navbar history={this.props.history} notifications={notifications} />
+        <Navbar history={history} notifications={notifications} />
         <LeftGraySideBar>
           <UserInfo
             userInfo={userInfo}
@@ -264,17 +279,15 @@ class ProfilePage extends Component {
           <div id="profile-buttons">
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
-            { 
-              if (userInfo.superuser === false) {
-              this.deleteUserButton()
-            }}
+            {this.deleteUserButton()}
+            
             
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
-          <ProfileConnections connections={this.props.userConnections} />
+          <ProfileConnections connections={userConnections} />
         </RightGraySideBar>
-        <PageContent history={this.props.history}>
+        <PageContent history={history}>
           {this.renderPageContent()}
         </PageContent>
       </div>

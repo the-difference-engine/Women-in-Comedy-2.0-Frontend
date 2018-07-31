@@ -23,7 +23,7 @@ const UserInfo = (props) => {
   if (props.userInfo) {
 
 
-    const { id, suspended, firstName, lastName, bio, block_connection_requests, admin } = props.userInfo;
+    const { id, suspended, firstName, lastName, bio, block_connection_requests, admin, superuser } = props.userInfo;
     return (
 
       <div>
