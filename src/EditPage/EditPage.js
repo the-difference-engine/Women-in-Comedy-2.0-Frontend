@@ -15,7 +15,7 @@ class EditPage extends Component {
 
         axios({
           method: 'patch',
-          url: process.env.REACT_APP_API_URL_DEV + `users/${id}`,
+          url: process.env.REACT_APP_API_ENDPOINT + `users/${id}`,
           data: values
         }).then(function(response) {});
 
@@ -31,15 +31,22 @@ class EditPage extends Component {
 
   render() {
     const {userInfo, adminEdit} = this.props;
-      return <div>
-        <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
-      </div>
+
+
+      return (
+        <div>
+          <div>
+            <EditForm adminEdit={adminEdit} initialValues={userInfo} onSubmit={this.submit.bind(this)}/>
+          </div>
+        </div>
+      );
     }
 
 }
 
+
 function mapStateToProps(state) {
-  return {adminEdit: state.adminEdit.isAdminEdit}
+  return {adminEdit: state.adminEdit.isAdminEdit, allUsersList: state.allUsers }
 }
 
 export default connect(mapStateToProps)(EditPage);

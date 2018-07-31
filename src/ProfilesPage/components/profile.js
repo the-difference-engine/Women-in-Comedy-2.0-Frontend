@@ -75,7 +75,7 @@ class Profile extends Component {
 
     const request = axios({
         method: "post",
-        url: process.env.REACT_APP_API_URL_DEV + 'users/create_post',
+        url: process.env.REACT_APP_API_ENDPOINT + 'users/create_post',
         headers: { "id": sender_id },
         body: { "post": values, "postable_id": new_query}
     });
@@ -99,9 +99,6 @@ class Profile extends Component {
     userFeeds.forEach(feed => {
       feed.postComments.forEach(comment => {
         commentArray.push(comment);
-        console.log('commentArray below');
-        console.log(commentArray);
-
       })
     })
     this.commentsTotal = commentArray.length;

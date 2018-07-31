@@ -1,17 +1,26 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navbar from '../common/Navbar';
-import { LeftGraySideBar, RightGraySideBar } from '../common';
-import {  createEvent, fetchUserInfo, eventInputChange } from '../actions';
-import { connect } from 'react-redux';
-import { TextField, RaisedButton, DatePicker, TimePicker, CircularProgress } from 'material-ui';
+import {createEvent, eventInputChange, fetchNotifications, fetchUserInfo} from '../actions';
+import {connect} from 'react-redux';
+import {CircularProgress, DatePicker, RaisedButton, TextField, TimePicker, Checkbox} from 'material-ui';
 
 import './css/create-event.css'
+
 const userId = sessionStorage.getItem('userId')
 
 class CreateEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = { imgURL: null };
+    this.state = { 
+      imgURL: null
+    };
+  }
+  componentDidMount() {
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
+    this.props.fetchNotifications(sessionStorage.getItem('userId'));
   }
 
   onClick() {
@@ -25,7 +34,7 @@ class CreateEvents extends Component {
 
     fileReader.readAsDataURL(file[0]);
     fileReader.onload = () => {
-      this.props.eventInputChange({ prop: 'img', value: file[0] })
+      this.props.eventInputChange({ prop: 'photo', value: file[0] })
       this.setState({ imgURL: fileReader.result });
     };
   }
@@ -44,12 +53,22 @@ class CreateEvents extends Component {
       );
     }
   }
-  
+  privateRender(props){
+    if(sessionStorage.adminUser === "true"){
+      return   <Checkbox
+      id="private-event-wrapper"
+      label="Private Event"
+      labelStyle={{ display: 'contents' }}
+       onCheck={(event, value) => this.props.eventInputChange({ prop: 'is_private', value })}
+      />; 
+    }
+  }
+
    async onCreateEvent() {
-    const { address, date, description, img, location, ticketLink, time, title } = this.props.createEventForm;
+    const { address, date, about, photo, location, ticket_link, time, title, status } = this.props.createEventForm;
 
    await this.props.createEvent(
-      { address, date, description, img, location, ticketLink, time, title },
+      { address, date, about, photo, location, ticket_link, time, title, status },
       userId,
       );
 
@@ -60,10 +79,11 @@ class CreateEvents extends Component {
 
   render() {
     const { loading } = this.props.createEventForm;
+    const { notifications } = this.props;
 
     return (
       <div>
-        <Navbar history={this.props.history}/>
+        <Navbar history={this.props.history} notifications={notifications}/>
         <div id="create-event-wrapper">
           <TextField
             hintText="Event Title"
@@ -94,7 +114,7 @@ class CreateEvents extends Component {
             floatingLabelText="Enter Ticket Link"
             underlineFocusStyle={{ display: 'none' }}
             floatingLabelFocusStyle={{ color: 'red' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticketLink', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'ticket_link', value })}
             disabled={loading}
           />
           <TextField
@@ -104,7 +124,7 @@ class CreateEvents extends Component {
             rows={2}
             floatingLabelFocusStyle={{ color: 'red' }}
             underlineFocusStyle={{ display: 'none' }}
-            onChange={(event, value) => this.props.eventInputChange({ prop: 'description', value })}
+            onChange={(event, value) => this.props.eventInputChange({ prop: 'about', value })}
             disabled={loading}
           />
           <RaisedButton
@@ -127,6 +147,10 @@ class CreateEvents extends Component {
             disabled={loading}
             minutesStep={5}
           />
+          <div>
+         {this.privateRender()}
+         </div>
+
            <span style={{ marginTop: '15px', color: 'red' }}>{this.props.createEventForm.error}</span>
            {this.renderSpinner()}
           <RaisedButton
@@ -142,7 +166,7 @@ class CreateEvents extends Component {
   }
 }
 
-function mapStateToProps({ createEventForm }) {
-  return { createEventForm };
+function mapStateToProps({ createEventForm, notifications }) {
+  return { createEventForm, notifications };
 }
-export default connect(mapStateToProps, { createEvent, fetchUserInfo, eventInputChange })(CreateEvents);
+export default connect(mapStateToProps, { createEvent, fetchUserInfo, fetchNotifications, eventInputChange })(CreateEvents);

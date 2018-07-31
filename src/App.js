@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import firebase from "firebase";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import HomePage from "./HomePage/HomePage";
-import EventsPage from "./EventsPage/EventsPage";
-import ActivityPage from "./ActivityPage/ActivityPage";
-import EventsFeed from "./EventsFeedPage/EventsFeed";
-import Form from "./LoginPage/Form";
-import Feed from "./FeedPage/FeedPage";
-import ProfilePage from "./ProfilesPage/ProfilePage";
-import CreateEvents from "./CreateEventsPage/CreateEvents";
-import UpdateEvent from "./UpdateEventPage/UpdateEvent";
-import EditPage from "./EditPage/EditPage";
-
-import DeletedUser from "./ProfilesPage/DeletedUser";
-import ChatWidget from "./ChatWidget/ChatWidget";
+import React, {Component} from 'react';
+import firebase from 'firebase';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import HomePage from './HomePage/HomePage';
+import EventsPage from './EventsPage/EventsPage';
+import ActivityPage from './ActivityPage/ActivityPage';
+import EventsFeed from './EventsFeedPage/EventsFeed';
+import Form from './LoginPage/Form';
+import Feed from './FeedPage/FeedPage';
+import ProfilePage from './ProfilesPage/ProfilePage';
+import CreateEvents from './CreateEventsPage/CreateEvents';
+import CreateAdmin from './AdminPage/CreateAdmin';
+import UpdateEvent from './UpdateEventPage/UpdateEvent';
+import EditPage from './EditPage/EditPage';
+import DeletedUser from './ProfilesPage/DeletedUser';
+import ChatWidget from './ChatWidget/ChatWidget';
+import Notification from "./NotificationsPage/NotificationsPage";
 
 class App extends Component {
   componentWillMount() {
@@ -45,10 +46,10 @@ class App extends Component {
               <Route path="/activities" component={ActivityPage} />
               <Route path="/eventsfeed/:id" component={EventsFeed} />
               <Route path="/updateevent/:id" component={UpdateEvent} />
-              <Route exact path="/profile/:id" component={ProfilePage} />
               <Route path="/profile/:id/edit" component={EditPage} />
               <Route path="/message" component={DeletedUser} />
               <Route path="/profile/:id" component={ProfilePage} />
+              <Route path='/notifications' component={Notification}></Route>
             </Switch>
             <ChatWidget />
           </div>

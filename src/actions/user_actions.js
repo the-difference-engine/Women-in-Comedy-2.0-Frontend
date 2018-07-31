@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_ADMIN_STATUS} from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
-   url: process.env.REACT_APP_API_URL_DEV + '/users/info',
+   url: process.env.REACT_APP_API_ENDPOINT + '/users/info',
    headers: {"id": userId},
  });
  return (dispatch) => {
    request.then((data) => {
-     dispatch({ type: FETCH_USER_INFO, payload: request })
+     dispatch({ type: FETCH_USER_INFO, payload: request})
    });
  };
 };
 
 export const fetchAllUsers = () => async dispatch => {
-  const request = await axios(process.env.REACT_APP_API_URL_DEV + 'users');
+  const request = await axios(process.env.REACT_APP_API_ENDPOINT + '/users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
 
@@ -33,10 +33,29 @@ export const editUser = (boolean) => {
   }
 }
 
-export const setUserLoggedIn = (boolean, userId) => {
+export const updateSettings = (userId, adminStatus) => {
+  let switchAdmin;
+    adminStatus == true ? switchAdmin = false : switchAdmin = true;
+
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "admin":  switchAdmin }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: UPDATE_ADMIN_STATUS, payload: request})
+    });
+  };
+ };
+
+export const setUserLoggedIn = (boolean, userId) => { ``
   return {
     type: SET_USER_LOGGED_IN,
     loggedIn: boolean,
     userId: userId
   }
 }
+

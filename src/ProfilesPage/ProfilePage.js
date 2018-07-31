@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 import {
   fetchUserInfo,
@@ -9,6 +9,7 @@ import {
   createConnectionRequest,
   fetchConnectionStatus,
   userWallInputChange,
+  fetchNotifications,
   createPostOnUserWall,
   blockConnectionRequests,
   suspendUser,
@@ -42,6 +43,7 @@ class ProfilePage extends Component {
       fetchUserConnections,
       fetchBlockedUsers
     } = this.props;
+
     this.props.fetchUserInfo(this.props.match.params.id);
     this.props.fetchBlockedUsers(userId).then(() => {
       this.setState({ blockedUsersReceived: true });
@@ -49,11 +51,18 @@ class ProfilePage extends Component {
     this.props.fetchUserFeeds(this.props.match.params.id);
     this.props.fetchUserConnections(this.props.match.params.id);
     this.props.fetchConnectionStatus({ sender_id, receiver_id });
-    this.setState(() => {
-      return { suspendedState: this.props.userInfo.suspended };
-    });
-    this.setState({ editUserEnable: false });
+    this.props.fetchNotifications(sender_id);
+    
     this.forceUpdate();
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
+        
+    this.setState(() => {
+      return {suspendedState: this.props.userInfo.suspended}
+    });
+    this.setState({editUserEnable: false});
   }
 
   onPress() {
@@ -88,7 +97,7 @@ class ProfilePage extends Component {
 
   renderEditUserButton() {
     return (
-      <button onClick={this.handleEditButtonClick.bind(this)}>
+      <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
         {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
@@ -131,7 +140,6 @@ class ProfilePage extends Component {
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
-    console.log(id);
   }
 
   onBlockUser() {
@@ -291,11 +299,12 @@ class ProfilePage extends Component {
       userFeeds,
       status,
       match,
-      userBlocksIds
+      userBlocksIds,
+      notifications
     } = this.props;
     return (
       <div>
-        <Navbar history={this.props.history} />
+        <Navbar history={this.props.history} notifications={notifications} />
         <LeftGraySideBar>
           <UserInfo
             userInfo={userInfo}
@@ -309,7 +318,6 @@ class ProfilePage extends Component {
           {this.suspendUserButton()}
           {this.deleteUserButton()}
           <Link to="/feed">{this.blockUserButton()}</Link>
-          {/* <BlockedUsersList/> */}
         </LeftGraySideBar>
         <RightGraySideBar>
           <ProfileConnections connections={this.props.userConnections} />
@@ -326,6 +334,7 @@ const mapStateToProps = state => {
   const {
     userInfo,
     userFeeds,
+    notifications,
     userConnections,
     status,
     userWallPost,
@@ -336,6 +345,7 @@ const mapStateToProps = state => {
 
   return {
     userInfo,
+    notifications,
     userFeeds,
     userConnections,
     status,
@@ -350,6 +360,7 @@ export default connect(
   {
     fetchUserInfo,
     fetchUserFeeds,
+    fetchNotifications,
     fetchUserConnections,
     createConnectionRequest,
     fetchConnectionStatus,

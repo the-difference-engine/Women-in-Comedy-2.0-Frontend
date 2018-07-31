@@ -2,16 +2,17 @@ import { EVENT_INPUT_CHANGE, CLEAR, LOAD, CREATE_EVENT_FAIL, CREATE_EVENT_SUCCES
 
 const INITIAL_STATE = {
   title: '',
-  description: '',
+  about: '',
   location: '',
-  img: null,
+  photo: null,
   time: '',
   date: '',
   error: '',
   loading: false,
   ticketLink: '',
   address: '',
-  id: null
+  id: null,
+  is_private: ''
 };
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {

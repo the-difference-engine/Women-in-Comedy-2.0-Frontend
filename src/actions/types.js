@@ -37,13 +37,27 @@ export const FETCH_USERS = 'fetch_user';
 export const CREATE_POST = 'create_post';
 export const ACCEPT_CONNECTION = 'accept_connection';
 
+//Invite request
+export const FETCH_USER_INVITES = 'fetch_user_invites'
+export const FETCH_PENDING_USER_INVITES = 'fetch_pending_user_invites'
+export const CREATE_INVITE_REQUEST = 'create_invite_request'
+export const FETCH_INVITE_STATUS = 'fetch_invite_status'
+export const ACCEPT_INVITE = 'accept_invite'
+
 //posts
 export const POST_USER_WALL = 'post_user_wall';
 export const USER_WALL_INPUT_CHANGE = 'user_wall_input_change';
 export const POSTED = 'posted';
 export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
 
+//Notifications
+export const FETCH_NOTIFICATIONS = 'fetch_notifications';
+export const MARK_NOTIFICATIONS_AS_READ = 'mark_notifications_as_read';
+export const MARK_ONE_AS_READ = 'mark_one_as_read';
+
 //admin
 export const SUSPEND_USER = 'suspend_user';
 export const UNSUSPEND_USER = 'unsuspend_user';
 export const DELETE_USER = 'delete_user';
+export const EMAIL_USERS = 'email_users';
+export const UPDATE_ADMIN_STATUS = 'update_admin_status';

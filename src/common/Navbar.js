@@ -1,24 +1,25 @@
 import React, { Component } from "react";
-import { AutoComplete } from "material-ui";
-import { FlatButton, Popover, Menu, MenuItem } from "material-ui";
+import { AutoComplete, FlatButton, Menu, MenuItem, Popover } from "material-ui";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   fetchAllUsers,
-  fetchUserInfo,
-  fetchUserFeeds,
   fetchConnectionStatus,
   fetchBlockedUsers,
+  fetchNotifications,
   fetchUserConnections,
+  fetchUserFeeds,
+  fetchUserInfo,
   filterUsers
 } from "../actions";
 import axios from "axios";
-
+import { render } from "react-router-dom";
 import "./css/navbar.css";
+import NotificationButton from "../containers/notification_button";
 import "../images/Women_Logo_New.png";
 
-const userId = sessionStorage.getItem("userId");
+const userId = parseInt(sessionStorage.getItem("userId"));
 
 class Navbar extends Component {
   constructor(props) {
@@ -43,8 +44,9 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    const { fetchAllUsers, fetchBlockedUsers } = this.props;
+    const { fetchAllUsers, fetchBlockedUsers, fetchUserInfo, fetchNotifications } = this.props;
     fetchAllUsers();
+    fetchUserInfo(userId);
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -54,7 +56,7 @@ class Navbar extends Component {
   }
 
   makeUpdate() {
-    console.log("hi");
+    console.log("you're in makeUpdate");
     this.props.fetchAllUsers();
   }
 
@@ -99,17 +101,34 @@ class Navbar extends Component {
       fetchUserConnections,
       fetchConnectionStatus,
       fetchBlockedUsers
-    } = this.props;
-    {
-      fetchBlockedUsers();
-    }
+    } = this.props;    
     const sender_id = sessionStorage.getItem("userId");
     const receiver_id = item.value;
+    fetchBlockedUsers(sender_id);
     fetchUserInfo(item.value);
     fetchUserFeeds(item.value);
     fetchUserConnections(item.value);
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { userInfo } = newProps;
+  }
+
+  renderAdminIcon() {
+    const isAdmin = this.props.userInfo.admin;
+    if (isAdmin) {
+      return (
+        <li>
+          <Link to="/admins">
+            <i className="fa fa-users">
+              <p>ADMIN</p>
+            </i>
+          </Link>
+        </li>
+      );
+    }
   }
 
   render() {
@@ -131,6 +150,7 @@ class Navbar extends Component {
         name: "city"
       }
     ];
+
     const trainingMenuItems = [
       {
         primaryText: "less than 1 year",
@@ -153,6 +173,7 @@ class Navbar extends Component {
         name: "training"
       }
     ];
+
     const experienceMenuItems = [
       {
         primaryText: "less than 1 year",
@@ -175,6 +196,7 @@ class Navbar extends Component {
         name: "experience"
       }
     ];
+
     const genderMenuItems = [
       {
         primaryText: "Male",
@@ -185,6 +207,8 @@ class Navbar extends Component {
         name: "gender"
       }
     ];
+
+    const { notifications } = this.props;
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -232,9 +256,7 @@ class Navbar extends Component {
                               {...menuItem}
                               onClick={event =>
                                 this.onMenuItemClicked(event, {
-                                  props: {
-                                    ...menuItem
-                                  }
+                                  props: { ...menuItem }
                                 })
                               }
                             />
@@ -248,9 +270,7 @@ class Navbar extends Component {
                               {...menuItem}
                               onClick={event =>
                                 this.onMenuItemClicked(event, {
-                                  props: {
-                                    ...menuItem
-                                  }
+                                  props: { ...menuItem }
                                 })
                               }
                             />
@@ -264,9 +284,7 @@ class Navbar extends Component {
                               {...menuItem}
                               onClick={event =>
                                 this.onMenuItemClicked(event, {
-                                  props: {
-                                    ...menuItem
-                                  }
+                                  props: { ...menuItem }
                                 })
                               }
                             />
@@ -280,9 +298,7 @@ class Navbar extends Component {
                               {...menuItem}
                               onClick={event =>
                                 this.onMenuItemClicked(event, {
-                                  props: {
-                                    ...menuItem
-                                  }
+                                  props: { ...menuItem }
                                 })
                               }
                             />
@@ -292,14 +308,15 @@ class Navbar extends Component {
                     </Popover>
                   </div>
                 </div>
-
                 <div className="input-group">
-                  {this.renderSearch(this.props.users)}
-                  <i className="glyphicon glyphicon-search" />
+                {this.renderSearch(this.props.users)}
+                  <i
+                    className="glyphicon glyphicon-search"
+                    style={{ right: "50px" }}
+                  />
                 </div>
               </form>
             </li>
-
             <li>
               <Link to="/feed">
                 <i className="fa fa-home">
@@ -314,12 +331,11 @@ class Navbar extends Component {
                 </i>
               </Link>
             </li>
+
+            {this.renderAdminIcon()}
+
             <li>
-              <a href="#" className="icon">
-                <i className="fa fa-bell-o">
-                  <p>ALERTS</p>
-                </i>
-              </a>
+              <NotificationButton notifications={notifications} />
             </li>
             <li>
               <Link to={`/profile/${userId}`}>
@@ -357,6 +373,7 @@ const styles = {
   },
   input: {
     height: "30px",
+    width: "225px",
     backgroundColor: "white",
     borderRadius: "20px"
   },
@@ -370,12 +387,13 @@ const styles = {
   }
 };
 
-function mapStateToProps({ allUsers }) {
+function mapStateToProps({ allUsers, userInfo }) {
   const { filterUserList } = allUsers;
-  let users = filterUserList.map(user => {
+  const users = filterUserList.map(user => {
     return { text: `${user.firstName} ${user.lastName}`, value: user.id };
   });
-  return { users };
+
+  return { users, userInfo };
 }
 
 export default connect(
@@ -386,6 +404,7 @@ export default connect(
     fetchUserFeeds,
     fetchBlockedUsers,
     fetchConnectionStatus,
+    fetchNotifications,
     fetchUserConnections,
     filterUsers
   }

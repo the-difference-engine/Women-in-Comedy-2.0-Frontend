@@ -6,3 +6,15 @@
   align-items: center;
   margin-bottom: 100px;
 }
+
+@media (max-width: 1007px) and (min-width: 942px) {
+  #create-event-wrapper {
+    top: 170px;
+  }
+}
+
+@media (max-width: 941px) and (min-width: 768px) {
+  #create-event-wrapper {
+    top: 90px;
+  }
+}
