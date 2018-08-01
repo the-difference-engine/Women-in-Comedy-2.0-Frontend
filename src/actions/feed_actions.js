@@ -1,4 +1,4 @@
-import { FETCH_USER_FEEDS } from './types';
+import { FETCH_USER_FEEDS, FETCH_POST_COMMENTS } from './types';
 import axios from 'axios';
 
 export const fetchUserFeeds = (userId) => {
@@ -12,4 +12,17 @@ export const fetchUserFeeds = (userId) => {
      dispatch({ type: FETCH_USER_FEEDS, payload: request })
    });
  };
+};
+
+export const fetchPostComments = (postId) => {
+  const request = axios({
+    method: 'get',
+    url: process.env.REACT_APP_API_ENDPOINT + 'users/feed/comments',
+    headers: {"id": postId}
+  });
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: FETCH_POST_COMMENTS, payload: request })
+    });
+  };
 };

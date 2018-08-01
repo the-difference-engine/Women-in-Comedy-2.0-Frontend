@@ -45,6 +45,10 @@ export const USER_WALL_INPUT_CHANGE = 'user_wall_input_change';
 export const POSTED = 'posted';
 export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
 
+//Comments
+export const COMMENT_POSTED = 'comment_posted';
+export const FETCH_POST_COMMENTS = 'fetch_post_comments';
+
 //Notifications
 export const FETCH_NOTIFICATIONS = 'fetch_notifications';
 export const MARK_NOTIFICATIONS_AS_READ = 'mark_notifications_as_read';

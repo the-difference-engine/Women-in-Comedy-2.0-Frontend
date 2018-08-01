@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE } from './types';
+import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, COMMENT_POSTED } from './types';
 
 export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => async dispatch => {
   await axios({
@@ -28,4 +28,14 @@ export const createPostOnEventWall = ({ body, eventId, authorId }, callback) => 
   });
   callback(eventId);
   dispatch({ type: POSTED });
+}
+
+export const createCommentOnPost = ({ body, postId, authorId }, callback) => async dispatch => {
+  await axios({
+    method: 'post',
+    url: process.env.REACT_APP_API_ENDPOINT + 'posts/comments',
+    data: { body, postId, authorId }
+  });
+  callback(postId);
+  dispatch({ type: COMMENT_POSTED });
 }
