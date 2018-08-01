@@ -57,17 +57,19 @@
 #feed-input {
   margin-top: 20px;
 }
-#feed-input img {
+img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
 
 }
+#commentContainer {
+  margin-top: 1em;
+}
 
 #feed-input input {
-
-  width: 85%;
+  width: 70%;
   padding-left: 15px;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -87,4 +89,29 @@
   top: -20px;
   left: -20px;
   cursor: pointer;
+}
+
+.commentInput {
+  width: 20%;
+  background-color: blue;
+}
+
+#post-button {
+  position: relative;
+  left: 25px;
+  width: 80px;
+  height: 36px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: .375rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#post-button {
+  background-color: #9b1522;
+  color: white;
+
 }

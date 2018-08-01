@@ -29,7 +29,11 @@ class Feed extends Component {
           </div>
           <div id="feed-input">
             <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
-            <input placeholder="comment" />
+            <input id="commentInput" placeholder="Write a Comment..." />
+            <button id="post-button" className="btn btn-default post-button" type="submit">POST</button>
+           
+          </div>
+          <div id="commentContainer">
             <Comment />
             <Comment />
             <Comment />
