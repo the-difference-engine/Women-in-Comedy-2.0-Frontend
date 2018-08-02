@@ -1,13 +1,11 @@
-.search {
+/* .search {
   width: 90%;
   position: relative;
-
-
-}
+} */
 
 .searchTerm {
   float: left;
-  width: 100%;
+  width: 85%;
   border: 2px solid #D3D3D3;
   padding: 5px;
   height: 35px;

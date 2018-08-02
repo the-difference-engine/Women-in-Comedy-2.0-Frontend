@@ -57,13 +57,14 @@
 #feed-input {
   margin-top: 20px;
 }
-img {
+
+#feed img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-
 }
+
 #commentContainer {
   margin-top: 1em;
 }

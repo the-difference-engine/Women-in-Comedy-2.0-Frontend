@@ -8,7 +8,7 @@ import {
   fetchPendingUserConnections,
   fetchPendingUserInvites,
   createPostOnUserWall,
-  userWallInputChange
+  userWallInputChange,
 } from '../actions';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, PageContent, RightGraySideBar} from '../common';
@@ -17,6 +17,7 @@ import NewFeeds from './components/NewFeeds';
 import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
 import renderPendingInvites from './components/Messages';
+import FeedPostBar from "../common/FeedPostBar.js"
 
 
 class Feed extends Component {
@@ -58,8 +59,10 @@ class Feed extends Component {
         <LeftGraySideBar>
           <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
+        <FeedPostBar/>
         <PageContent>
-          <div className="feed-post-bar">
+          <FeedPostBar/>
+           {/* <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
                 <input type="text" className="searchTerm" placeholder="What's New?"
@@ -68,8 +71,8 @@ class Feed extends Component {
                 <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
               </div>
             </div>
-          </div>
-          <NewFeeds userFeeds={userFeeds} />
+          </div>  */}
+          <NewFeeds userFeeds={userFeeds}/>
         </PageContent>
       </div>
     );
