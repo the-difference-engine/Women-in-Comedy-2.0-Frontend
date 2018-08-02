@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, COMMENT_POSTED } from './types';
+import { POST_USER_WALL, USER_WALL_INPUT_CHANGE, POSTED, EVENT_WALL_INPUT_CHANGE, COMMENT_POSTED, COMMENT_INPUT_CHANGE } from './types';
 
 export const createPostOnUserWall =  ({ body, userId, authorId }, callback) => async dispatch => {
   await axios({
@@ -38,4 +38,8 @@ export const createCommentOnPost = ({ body, postId, authorId }, callback) => asy
   });
   callback(postId);
   dispatch({ type: COMMENT_POSTED });
+}
+
+export const commentInputChange = value => dispatch => {
+  dispatch({ type: COMMENT_INPUT_CHANGE, payload: value })
 }

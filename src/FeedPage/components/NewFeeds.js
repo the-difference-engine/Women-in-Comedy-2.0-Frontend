@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Feed } from '../../common';
+import Feed from '../../common/Feed';
 import '../css/new-feeds.css';
 
 class NewFeeds extends Component {

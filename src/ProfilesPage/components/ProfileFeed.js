@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feed } from '../../common';
+import Feed from '../../common/Feed';
 const ProfileFeed = (props) => {
   if (props.feeds) {
     return (

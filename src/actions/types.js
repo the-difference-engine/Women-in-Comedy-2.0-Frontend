@@ -46,6 +46,7 @@ export const POSTED = 'posted';
 export const EVENT_WALL_INPUT_CHANGE = 'event_wall_input_change';
 
 //Comments
+export const COMMENT_INPUT_CHANGE = 'comment_input_change';
 export const COMMENT_POSTED = 'comment_posted';
 export const FETCH_POST_COMMENTS = 'fetch_post_comments';
 

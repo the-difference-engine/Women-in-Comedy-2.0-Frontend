@@ -20,6 +20,8 @@ import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
 import InviteReducer from './invite_reducer';
 import updateSettingsReducer from './reducer_update_settings';
+import createCommentsReducer from './create_comments_reducer';
+import commentsReducer from './comments_reducer';
 
 
 
@@ -44,7 +46,9 @@ const rootReducer = combineReducers({
   notifications: notificationsReducer,
   adminEdit: editUserReducer,
   isUserLoggedIn: setUserLoggedInReducer,
-  updateAdmin: updateSettingsReducer
+  updateAdmin: updateSettingsReducer,
+  commentBody: createCommentsReducer,
+  comments: commentsReducer
 });
 
 export default rootReducer;

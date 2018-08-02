@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './css/feed.css';
+import {connect} from 'react-redux';
+import {commentInputChange} from '../actions';
 import { Comment } from "../common/Comment";
 
 class Feed extends Component {
@@ -11,6 +13,10 @@ class Feed extends Component {
   //   const detail = document.getElementById('feed-detail');
   //   detail.style.maxHeight = 'none';
   // }
+
+  onPost() {
+    alert(this.props.commentBody);
+  }
 
   render() {
     const { authorFirstName, authorId, body, postId } = this.props.feed;
@@ -29,8 +35,11 @@ class Feed extends Component {
           </div>
           <div id="feed-input">
             <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
-            <input id="commentInput" placeholder="Write a Comment..." />
-            <button id="post-button" className="btn btn-default post-button" type="submit">POST</button>
+            <input id="commentInput" placeholder="Write a Comment..." 
+            onChange={(event) => this.props.commentInputChange(event.target.value)}
+            value={this.props.commentBody}/>
+            <button id="post-button" className="btn btn-default post-button" type="submit" 
+            onClick={this.onPost.bind(this)}>POST</button>
            
           </div>
           <div id="commentContainer">
@@ -44,6 +53,15 @@ class Feed extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const {commentBody} = state;
+  return {commentBody};
+}
 
+//export { Feed };
 
-export { Feed };
+export default connect(mapStateToProps,
+  {
+    commentInputChange
+  }
+)(Feed);
