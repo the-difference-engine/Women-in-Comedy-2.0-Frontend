@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './css/feed.css';
 import {connect} from 'react-redux';
-import {commentInputChange} from '../actions';
+import {commentInputChange, fetchPostComments} from '../actions';
 import { Comment } from "../common/Comment";
+import NewComments from './NewComments';
 
 class Feed extends Component {
   constructor(props) {
@@ -13,6 +14,10 @@ class Feed extends Component {
   //   const detail = document.getElementById('feed-detail');
   //   detail.style.maxHeight = 'none';
   // }
+
+  componentDidMount() {
+    this.props.fetchPostComments(1);
+  }
 
   onPost() {
     alert(this.props.commentBody);
@@ -43,9 +48,7 @@ class Feed extends Component {
            
           </div>
           <div id="commentContainer">
-            <Comment />
-            <Comment />
-            <Comment />
+            <NewComments comments={this.props.comments} />
           </div>
         </div>
       </div>
@@ -54,14 +57,13 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {commentBody} = state;
-  return {commentBody};
+  const {commentBody, comments} = state;
+  return {commentBody, comments};
 }
-
-//export { Feed };
 
 export default connect(mapStateToProps,
   {
-    commentInputChange
+    commentInputChange,
+    fetchPostComments
   }
 )(Feed);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Comment from '../../common';
-import '../css/new-feeds.css';
+import {Comment} from '../common/Comment';
 
 class NewComments extends Component {
     renderComments () {
@@ -8,9 +7,11 @@ class NewComments extends Component {
     }
     
     render() {
-        <div id="new-feed-container">
-            {this.renderComments()}
-        </div>
+        return (
+            <div>
+                {this.renderComments()}
+            </div>
+        );
     }
 }
 export default NewComments

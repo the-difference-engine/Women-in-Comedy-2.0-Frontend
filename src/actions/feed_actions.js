@@ -17,7 +17,7 @@ export const fetchUserFeeds = (userId) => {
 export const fetchPostComments = (postId) => {
   const request = axios({
     method: 'get',
-    url: process.env.REACT_APP_API_ENDPOINT + 'users/feed/comments',
+    url: process.env.REACT_APP_API_ENDPOINT + 'feed/comments',
     headers: {"id": postId}
   });
   return (dispatch) => {
