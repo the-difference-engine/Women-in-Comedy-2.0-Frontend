@@ -16,7 +16,7 @@ class Feed extends Component {
   // }
 
   componentDidMount() {
-    this.props.fetchPostComments(1);
+    this.props.fetchPostComments(this.props.feed.postId);
   }
 
   onPost() {
