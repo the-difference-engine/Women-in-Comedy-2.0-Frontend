@@ -285,7 +285,7 @@ class ProfilePage extends Component {
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
-          <ProfileConnections connections={userConnections} />
+          <ProfileConnections connections={userConnections}/>
         </RightGraySideBar>
         <PageContent history={history}>
           {this.renderPageContent()}
