@@ -180,8 +180,7 @@ class ProfilePage extends Component {
     
     console.log(superuser);
     {/*if superuser's value is false render deleleteUser button.*/}
-      
-    {/*if(superuser !== true) {*/}
+    if(superuser === false) {
       return (
         <a href="/message">
           <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
@@ -189,7 +188,7 @@ class ProfilePage extends Component {
           </button>
         </a>
       );
-    {/*}*/}
+    }
   }
 
   renderConnection() {
