@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './css/feed.css';
 import {connect} from 'react-redux';
-import {commentInputChange, fetchPostComments} from '../actions';
+import {commentInputChange, fetchPostComments, createCommentOnPost} from '../actions';
 import { Comment } from "../common/Comment";
 import NewComments from './NewComments';
 
@@ -20,7 +20,11 @@ class Feed extends Component {
   }
 
   onPost() {
-    alert(this.props.commentBody);
+    //alert(this.props.commentBody);
+    const body = this.props.commentBody;
+    const postId = this.props.feed.postId;
+    const authorId = sessionStorage.getItem('userId');
+    this.props.createCommentOnPost({body, postId, authorId}, this.props.fetchPostComments);
   }
 
   render() {
@@ -64,6 +68,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
   {
     commentInputChange,
-    fetchPostComments
+    fetchPostComments,
+    createCommentOnPost
   }
 )(Feed);
