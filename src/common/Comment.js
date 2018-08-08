@@ -8,12 +8,13 @@ class Comment extends Component {
         const {postId, body, authorFirstName, authorLastName} = this.props.comment;
         
         return (
-            <div id="comment">
-                <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
-                <div>
-                   {postId} {body} {authorFirstName} {authorLastName}
+            <div className="comment">
+                <div className="commenterImg" >
+                    <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
                 </div>
-                   
+                <div className="commentContent">
+                   {postId} {authorFirstName} {authorLastName} {body}
+                </div>
             </div>
         );
     }

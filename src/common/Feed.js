@@ -30,7 +30,7 @@ class Feed extends Component {
   render() {
     const { authorFirstName, authorId, body, postId } = this.props.feed;
     return (
-      <div id='feed'>
+      <div className='feed'>
         <img id="post-pro-img" src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
         <div id='feed-content' className="event-comment">
            <p id="feed-news"><span>{authorFirstName}</span> created a <span>post</span></p> 
@@ -42,9 +42,9 @@ class Feed extends Component {
             <a href="#"><span className="glyphicon glyphicon-comment"></span> <span className="icon-stats">1</span></a>
             <a href="#"><i className="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> <span className="icon-stats">2</span></a>
           </div>
-          <div id="feed-input">
-            <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
-            <input id="commentInput" placeholder="Write a Comment..." 
+          <div className="feed-input">
+            <img className="postImg" src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
+            <input id={`commentInput ${postId}`} placeholder="Write a Comment..." 
             onChange={(event) => this.props.commentInputChange(event.target.value)}
             value={this.props.commentBody}/>
             <button id="post-button" className="btn btn-default post-button" type="submit" 

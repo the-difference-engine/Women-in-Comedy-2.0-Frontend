@@ -54,11 +54,13 @@
   overflow: hidden;
 }
 
-#feed-input {
+.feed-input {
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-#feed img {
+.postImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -69,7 +71,7 @@
   margin-top: 1em;
 }
 
-#feed-input input {
+.feed-input input {
   width: 70%;
   padding-left: 15px;
   padding-top: 3px;
@@ -92,23 +94,19 @@
   cursor: pointer;
 }
 
-.commentInput {
-  width: 20%;
-  background-color: blue;
-}
 
-#post-button {
+.feed-input .post-button {
   position: relative;
-  left: 25px;
   width: 80px;
   height: 36px;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
-  padding: .375rem 1rem;
+ 
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+
 }
 
 #post-button {
@@ -116,3 +114,4 @@
   color: white;
 
 }
+

@@ -5,3 +5,12 @@
   top: 86px;
   margin-bottom: 60px;
 }
+
+.feed-post-bar{
+  margin: 2em;
+
+
+}
+.search .post-button {
+  float: right;
+}
