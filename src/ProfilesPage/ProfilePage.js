@@ -29,15 +29,15 @@ const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const sender_id = sessionStorage.getItem("userId");
     const receiver_id = this.props.match.params.id;
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-    this.props.fetchUserInfo(this.props.match.params.id);
-    this.props.fetchUserFeeds(this.props.match.params.id);
-    this.props.fetchUserConnections(this.props.match.params.id);
-    this.props.fetchConnectionStatus({ sender_id, receiver_id });
-    this.props.fetchNotifications(sender_id);
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+    fetchUserInfo(this.props.match.params.id);
+    fetchUserFeeds(this.props.match.params.id);
+    fetchUserConnections(this.props.match.params.id);
+    fetchConnectionStatus({ sender_id, receiver_id });
+    fetchNotifications(sender_id);
     this.setState(() => {
       return { suspendedState: this.props.userInfo.suspended };
     });

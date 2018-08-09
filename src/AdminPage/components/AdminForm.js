@@ -44,6 +44,7 @@ class AdminForm extends Component {
   }
 
   renderAdminStatus(event) {
+    console.log(fetchUserInfo.public_figure)
     let currentStatus;
     this.props.adminStatus == true
       ? (currentStatus = "Admin")
