@@ -24,7 +24,8 @@ class AdminForm extends Component {
     event.preventDefault();
 
     let adminStatus = this.props.adminStatus;
-    this.props.updateSettings(userId, adminStatus);
+    let public_figure = this.props.fetchUserInfo.public_figure;
+    this.props.updateSettings(userId, adminStatus, public_figure);
 
     let displayAdmin;
     adminStatus == true
