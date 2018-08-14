@@ -29,8 +29,6 @@ import EditPage from "../EditPage/EditPage";
 const userId = parseInt(sessionStorage.getItem("userId"));
 const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
-// var editButtonClicked = false;
-
 class ProfilePage extends Component {
   componentWillMount() {
     this.setState({ blockedUsersReceived: false });
@@ -147,13 +145,7 @@ class ProfilePage extends Component {
     // the id as receiver_id of the block to the user_blocks db table
     const blocker_id = parseInt(sessionStorage.getItem("userId"));
     const blocked_id = this.props.userInfo.id;
-    console.log("block clicked");
     this.props.createBlock(blocker_id, blocked_id);
-  }
-
-  onUnblockUser() {
-    // delete from user_blocks db table the row with
-    // corresponding sender_id and receiver_id
   }
 
   blockUserButton() {
@@ -184,8 +176,6 @@ class ProfilePage extends Component {
     }
   }
 
-  //UNSUSPEND
-
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended;
     const admin = sessionStorage.getItem("isAdmin");
@@ -193,17 +183,14 @@ class ProfilePage extends Component {
       return (
         <button
           className="btn btn-warning"
-          onClick={this.onUnsuspend.bind(this)}
-        >
-          {" "}
-          Unsuspend{" "}
+          onClick={this.onUnsuspend.bind(this)}>
+          {" "}Unsuspend{" "}
         </button>
       );
     }
     return (
       <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
-        {" "}
-        Suspend{" "}
+        {" "}Suspend{" "}
       </button>
     );
   }
@@ -211,7 +198,7 @@ class ProfilePage extends Component {
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
     return (
-      <a href={process.env.REACT_APP_API_URL_QA + "message"}>
+      <a href="/message">
         <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
           Delete User
         </button>
@@ -220,8 +207,10 @@ class ProfilePage extends Component {
   }
 
   renderConnection() {
+    const userBlocksIds = this.props.userBlocks.map(a => a.id)
+
     if (this.state.blockedUsersReceived) {
-      if (this.props.userInfo.id == userId) {
+      if ( (this.props.userInfo.id == userId) || (userBlocksIds.includes(this.props.userInfo.id)) ) {
         return <div />;
       } else if (this.props.status.status === true) {
         return (
@@ -235,12 +224,11 @@ class ProfilePage extends Component {
         return (
           <div>This user is currently not accepting connection requests</div>
         );
-      } else if (this.props.userBlocksIds.includes(this.props.userInfo.id)) {
-        return <div />;
-      }
-    } else if (
+      } 
+    } 
+    else if (
       _.isEmpty(this.props.status) &&
-      this.props.userBlocksIds !== undefined
+      userBlocksIds !== undefined
     ) {
       return (
         <button type="button" onClick={this.onPress.bind(this)}>
@@ -299,7 +287,6 @@ class ProfilePage extends Component {
       userFeeds,
       status,
       match,
-      userBlocksIds,
       notifications
     } = this.props;
     return (
@@ -340,7 +327,6 @@ const mapStateToProps = state => {
     userWallPost,
     editUser,
     userBlocks,
-    userBlocksIds = userBlocks.map(a => a.id)
   } = state;
 
   return {
@@ -352,7 +338,6 @@ const mapStateToProps = state => {
     userWallPost,
     editUser,
     userBlocks,
-    userBlocksIds
   };
 };
 export default connect(
