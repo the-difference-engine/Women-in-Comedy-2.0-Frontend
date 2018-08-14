@@ -56,7 +56,7 @@ class AdminForm extends Component {
     {/*if public_figure is true/false render according status*/}
     let public_figure = this.props.userInfo.public_figure;
     let currentStatus;
-    this.props.public_figure == true
+    public_figure == true
       ? (currentStatus = "Public Figure")
       : (currentStatus = "Not Public Figure");
     return currentStatus;
