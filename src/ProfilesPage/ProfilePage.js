@@ -77,9 +77,19 @@ class ProfilePage extends Component {
   renderEditUserButton() {
     return (
       <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
-        {this.state.editUserEnable ? "Back" : "Edit"}
+        {/*{this.state.editUserEnable ? "Back" : "Edit"}*/}
       </button>
     );
+  }
+
+  renderPublicFigureStatus(userInfo = this.props.userInfo) {
+    let public_figure = userInfo.public_figure;
+    console.log(public_figure)
+    if (public_figure == true) {
+      return(
+        <h6>Public Figure</h6>
+      );
+    }
   }
 
   handleEditButtonClick() {
@@ -141,7 +151,7 @@ class ProfilePage extends Component {
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended;
     const admin = sessionStorage.getItem("isAdmin");
-    if (this.state.suspendedState) {
+    /*if (this.state.suspendedState) {
       return (
         <button
           className="btn btn-warning"
@@ -151,7 +161,7 @@ class ProfilePage extends Component {
           Unsuspend{" "}
         </button>
       );
-    }
+    }*/
     return (
       <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
         {" "}
@@ -193,7 +203,7 @@ class ProfilePage extends Component {
 
   renderPageContent() {
     const { userInfo, history } = this.props;
-    if (this.state.editUserEnable) {
+    /*if (this.state.editUserEnable) {
       return (
         <EditPage
           editable={this.handleEditUserEnable.bind(this)}
@@ -201,7 +211,7 @@ class ProfilePage extends Component {
           userInfo={userInfo}
         />
       );
-    }
+    }*/
 
     return (
       <div>
@@ -246,6 +256,7 @@ class ProfilePage extends Component {
       <div>
         <Navbar history={this.props.history} notifications={notifications} />
         <LeftGraySideBar>
+          {this.renderPublicFigureStatus()}
           <UserInfo
             userInfo={userInfo}
             adminUser={adminUser}

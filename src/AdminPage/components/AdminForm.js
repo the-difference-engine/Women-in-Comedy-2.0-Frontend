@@ -54,7 +54,7 @@ class AdminForm extends Component {
 
   renderPublicFigure(event, userInfo = this.props.userInfo) {
     {/*if public_figure is true/false render according status*/}
-    let public_figure = this.props.userInfo.public_figure;
+    let public_figure = userInfo.public_figure;
     let currentStatus;
     public_figure == true
       ? (currentStatus = "Public Figure")
