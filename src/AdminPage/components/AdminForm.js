@@ -22,11 +22,10 @@ class AdminForm extends Component {
 
   handleSubmit(event, userId = this.props.userId) {
     event.preventDefault();
-
+    
     let adminStatus = this.props.adminStatus;
-    let public_figure = this.props.fetchUserInfo.public_figure;
-    this.props.updateSettings(userId, adminStatus, public_figure);
-
+    this.props.updateSettings(userId, adminStatus);
+    
     let displayAdmin;
     adminStatus == true
       ? (displayAdmin = "Have Been Removed")
@@ -44,12 +43,22 @@ class AdminForm extends Component {
     this.setState({ status: event.target.status });
   }
 
+
   renderAdminStatus(event) {
-    console.log(fetchUserInfo.public_figure)
     let currentStatus;
     this.props.adminStatus == true
       ? (currentStatus = "Admin")
       : (currentStatus = "Non-Admin");
+    return currentStatus;
+  }
+
+  renderPublicFigure(event, userInfo = this.props.userInfo) {
+    {/*if public_figure is true/false render according status*/}
+    let public_figure = this.props.userInfo.public_figure;
+    let currentStatus;
+    this.props.public_figure == true
+      ? (currentStatus = "Public Figure")
+      : (currentStatus = "Not Public Figure");
     return currentStatus;
   }
 
@@ -68,7 +77,11 @@ class AdminForm extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <p id="admin-status-display">
-            Admin Status: {this.renderAdminStatus()}
+            Admin Status: {this.renderAdminStatus()}<br/><br/>
+          </p>
+          <br/>
+          <p>
+            Public Figure Status: {this.renderPublicFigure()}
           </p>
 
           <div>{this.superUserRender()}</div>
