@@ -84,10 +84,3 @@ export const blockConnectionRequests = (sender_id) => async dispatch => {
     headers: { "id": sender_id }
   });
 }
-
-// export const blockUser = (sender_id, receiver_id) => async dispatch => {
-//   const request = await axios({
-//     method: 'post',
-//     url: process.env.REACT_APP_API_URL_DEV + ''
-//   })
-// }
