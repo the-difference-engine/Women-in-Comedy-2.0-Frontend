@@ -13,11 +13,13 @@ class AdminForm extends Component {
     super(props);
 
     this.state = {
-      status: "Current"
+      status: "Current",
+      public_figure: this.props.userInfo.public_figure
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   handleSubmit(event, userId = this.props.userId) {
@@ -43,6 +45,12 @@ class AdminForm extends Component {
     this.setState({ status: event.target.status });
   }
 
+  onClick(e) {
+    console.log(this.state.public_figure)
+    this.setState(prevState => ({
+      public_figure: !prevState.public_figure
+    }));
+  }
 
   renderAdminStatus(event) {
     let currentStatus;
@@ -52,11 +60,25 @@ class AdminForm extends Component {
     return currentStatus;
   }
 
+  changePublicFigureButton(userInfo = this.props.userInfo) {
+    {/*if public_figure is true/false render according status*/}
+    let public_figure = userInfo.public_figure;
+    if (public_figure == true){
+      return(
+        <button onClick={this.onClick}>Demote</button>
+      )
+    } else {
+      return(
+        <button onClick={this.onClick}>Promote</button>
+      )
+    }
+  }
+
   renderPublicFigure(event, userInfo = this.props.userInfo) {
     {/*if public_figure is true/false render according status*/}
     let public_figure = userInfo.public_figure;
     let currentStatus;
-    public_figure == true
+    public_figure === true
       ? (currentStatus = "Public Figure")
       : (currentStatus = "Not Public Figure");
     return currentStatus;
@@ -79,13 +101,13 @@ class AdminForm extends Component {
           <p id="admin-status-display">
             Admin Status: {this.renderAdminStatus()}<br/><br/>
           </p>
-          <br/>
+          <div>{this.superUserRender()}</div>
+        </form>
+        <br/>
           <p>
             Public Figure Status: {this.renderPublicFigure()}
           </p>
-
-          <div>{this.superUserRender()}</div>
-        </form>
+          {this.changePublicFigureButton()}
       </div>
     );
   }
