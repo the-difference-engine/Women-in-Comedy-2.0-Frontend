@@ -7,7 +7,7 @@ import SuperUserForm from "./SuperUserForm.js";
 import { bindActionCreators } from "redux";
 import "../css/navbar.css";
 import "../css/modal.css";
-import { fetchUserInfo, updateToSuperUser, removeSuperUserStatus} from "../../actions/index";
+import { fetchUserInfo, fetchAllUsers, updateToSuperUser, removeSuperUserStatus} from "../../actions/index";
 
 
 class AdminForm extends Component {
@@ -28,10 +28,7 @@ class AdminForm extends Component {
     let adminStatus = this.props.adminStatus;
 
     if (isSuperUser !== true){
-      this.props.updateSettings(userId, adminStatus);
-      setTimeout(function() {
-        window.location.reload();
-      }, 10);
+      this.props.updateSettings(userId, adminStatus, this.props.fetchAllUsers);
       this.setState({ status: "Updated" });
     } else {
       alert("This user has Super User admin rights, cannot remove normal admin rights!");
@@ -45,7 +42,7 @@ class AdminForm extends Component {
 
   renderAdminStatus(event) {
     let currentStatus;
-    this.props.adminStatus === true
+    this.props.adminStatus == true
       ? (currentStatus = "Admin")
       : (currentStatus = "Non-Admin");
     return currentStatus;
@@ -69,7 +66,7 @@ class AdminForm extends Component {
           </p>
         {this.props.isLoggedInUserSuper === true ? 
           (
-            <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId} onClick={this.updateSuperUser}/> 
+            <SuperUserForm isSuperUser={this.props.isSuperUser} userId={this.props.userId} onClick={this.updateSuperUser} fetchAllUsers={this.props.fetchAllUsers}/> 
           )
           : (<p />)}
           <div>{this.superUserRender()}</div>
@@ -80,14 +77,15 @@ class AdminForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { userInfo } = state;
-  return { userInfo };
+  const { userInfo, allUsers } = state;
+  return { userInfo, allUsers };
 }
 
 export default connect(
   mapStateToProps,
   {
-    fetchUserInfo, 
+    fetchUserInfo,
+    fetchAllUsers,
     removeSuperUserStatus,
     updateToSuperUser
   }

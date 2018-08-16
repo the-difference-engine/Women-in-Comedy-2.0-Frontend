@@ -19,13 +19,10 @@ class SuperUserForm extends Component {
       updateSuperUser = (event, id) => {
         event.preventDefault();
         if (this.props.isSuperUser === true){
-          this.props.removeSuperUserStatus(id);
+          this.props.removeSuperUserStatus(id, this.props.fetchAllUsers);
         } else {
-          this.props.updateToSuperUser(id);
+          this.props.updateToSuperUser(id, this.props.fetchAllUsers);
         }
-        setTimeout(function() {
-            window.location.reload();
-          }, 10);
       }
 
       render(){

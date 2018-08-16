@@ -34,7 +34,8 @@ export const editUser = (boolean) => {
 }
 
 // super User will be created 
-export const updateToSuperUser = (userId) => {
+export const updateToSuperUser = (userId, callback) => {
+  
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
@@ -44,13 +45,15 @@ export const updateToSuperUser = (userId) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
     });
   };
 }
 
 // super User Status will be removed by other super users 
-export const removeSuperUserStatus = (userId) => {
+export const removeSuperUserStatus = (userId, callback) => {
+  
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
@@ -60,12 +63,13 @@ export const removeSuperUserStatus = (userId) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
     });
   };
 }
 
-export const updateSettings = (userId, adminStatus) => {
+export const updateSettings = (userId, adminStatus, callback) => {
   let switchAdmin;
     adminStatus == true ? switchAdmin = false : switchAdmin = true;
 
@@ -78,7 +82,8 @@ export const updateSettings = (userId, adminStatus) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
     });
   };
  };
