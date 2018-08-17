@@ -33,6 +33,10 @@ class EventsFeed extends Component {
   }
 
   componentDidMount() {
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
     const {fetchNotifications} = this.props;
     fetchNotifications(sessionStorage.getItem('userId'));
   }

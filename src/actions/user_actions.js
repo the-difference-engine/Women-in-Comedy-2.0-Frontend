@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_ADMIN_STATUS} from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -82,8 +82,7 @@ export const updateSettings = (userId, adminStatus, callback) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request});
-      callback();
+      dispatch({ type: UPDATE_ADMIN_STATUS, payload: request})
     });
   };
  };
