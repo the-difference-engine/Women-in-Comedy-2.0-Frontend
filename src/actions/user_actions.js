@@ -83,6 +83,7 @@ export const updateSettings = (userId, adminStatus, callback) => {
   return (dispatch) => {
     request.then((data) => {
       dispatch({ type: UPDATE_ADMIN_STATUS, payload: request})
+      callback();
     });
   };
  };
