@@ -45,11 +45,28 @@ class AdminForm extends Component {
     this.setState({ status: event.target.status });
   }
 
-  onClick(e) {
+  onClick(e, public_figure=this.state.public_figure) {
+    e.preventDefault();
+    /*let public_figure = userInfo.public_figure;*/
     console.log(this.state.public_figure)
     this.setState(prevState => ({
       public_figure: !prevState.public_figure
     }));
+
+    /*axios({
+      method: 'patch',
+      url: process.env.REACT_APP_API_ENDPOINT + `users/public_figure`,
+      data: {
+        public_figure: this.state.public_figure,
+      }
+    });*/
+
+    axios.patch(process.env.REACT_APP_API_ENDPOINT + `users/:id/public_figure`, {
+        'public_figure': this.state.public_figure,
+    })
+    .then((response) => {
+        console.log(response);
+    });
   }
 
   renderAdminStatus(event) {
