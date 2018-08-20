@@ -33,7 +33,43 @@ export const editUser = (boolean) => {
   }
 }
 
-export const updateSettings = (userId, adminStatus) => {
+// super User will be created 
+export const updateToSuperUser = (userId, callback) => {
+  
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "superuser":  true, "admin": true }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
+    });
+  };
+}
+
+// super User Status will be removed by other super users 
+export const removeSuperUserStatus = (userId, callback) => {
+  
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "superuser":  false}
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
+    });
+  };
+}
+
+export const updateSettings = (userId, adminStatus, callback) => {
   let switchAdmin;
     adminStatus == true ? switchAdmin = false : switchAdmin = true;
 
@@ -47,6 +83,7 @@ export const updateSettings = (userId, adminStatus) => {
   return (dispatch) => {
     request.then((data) => {
       dispatch({ type: UPDATE_ADMIN_STATUS, payload: request})
+      callback();
     });
   };
  };

@@ -2,7 +2,31 @@
   text-align: center;
 }
 
+.superUserButtonStyle:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: orangered;
+  color: white;
+}
+
+.superUserButtonStyle {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid indianred;
+  margin: 15px;
+  padding: 5px;
+  width: 100%;
+}
+
 .adminButtonStyle {
+  color: white;
+  background-color: rgb(155, 21, 34);
+  border: rgb(155, 21, 34);
+  width: 100%;
+}
+
+.emailButtonStyle {
   color: white;
   background-color: rgb(155, 21, 34);
   border: rgb(155, 21, 34);
@@ -23,4 +47,8 @@
   cursor: pointer;
   text-decoration: none;
   color: white;
+}
+
+.super-user {
+  color: tomato;
 }
