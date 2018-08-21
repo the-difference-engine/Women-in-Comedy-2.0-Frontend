@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
   FETCH_BLOCKED_USERS,
-  FETCH_BLOCKED_BY,
   CREATE_BLOCK,
   FETCH_USER_CONNECTIONS
 } from "./types";
@@ -13,19 +12,6 @@ export const fetchBlockedUsers = userId => async dispatch => {
     headers: { id: userId }
   });
   dispatch({ type: FETCH_BLOCKED_USERS, payload: request });
-};
-
-export const fetchBlockedBy = userId => {
-  const request = axios({
-    method: "get",
-    url: process.env.REACT_APP_API_ENDPOINT + "users/blocked_by",
-    headers: { id: userId }
-  });
-  return dispatch => {
-    request.then(data => {
-      dispatch({ type: FETCH_BLOCKED_BY, payload: request });
-    });
-  };
 };
 
 export const createBlock = (blocker_id, blocked_id) => async dispatch => {
