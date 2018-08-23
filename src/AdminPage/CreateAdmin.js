@@ -13,9 +13,9 @@ import EmailModal from './components/EmailModal';
 class CreateAdmin extends Component {
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, updateSettings, fetchNotifications } = this.props;
+    const { fetchAllUsers, fetchUserInfo, /*updateSettings,*/ fetchNotifications } = this.props;
     fetchAllUsers();
-    updateSettings();
+    /*updateSettings();*/
     fetchNotifications(sessionStorage.getItem('userId'));
   };
 
@@ -31,7 +31,7 @@ class CreateAdmin extends Component {
           <EmailModal />
         </LeftGraySideBar>
         <PageContent>
-         <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
+         <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser}/>
         </PageContent>
         <RightGraySideBar>
         </RightGraySideBar>

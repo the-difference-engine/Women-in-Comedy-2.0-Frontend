@@ -45,7 +45,7 @@ class AdminForm extends Component {
     this.setState({ status: event.target.status });
   }
 
-  onClick(e, public_figure=this.state.public_figure) {
+  onClick(e, userId = this.props.userId) {
     e.preventDefault();
     /*let public_figure = userInfo.public_figure;*/
     console.log(this.state.public_figure)
@@ -53,16 +53,24 @@ class AdminForm extends Component {
       public_figure: !prevState.public_figure
     }));
 
-    /*axios({
+    /*const request = axios({
       method: 'patch',
-      url: process.env.REACT_APP_API_ENDPOINT + `users/public_figure`,
+      url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+      headers: {'id': userId},
       data: {
         public_figure: this.state.public_figure,
       }
-    });*/
-
-    axios.patch(process.env.REACT_APP_API_ENDPOINT + `users/:id/public_figure`, {
-        'public_figure': this.state.public_figure,
+    })
+    return (dispatch) => {
+      request.then((data) => {
+        dispatch({type: this.EDIT_USER, payload: request});
+        callback();
+        console.log(data);
+      })
+    };*/
+    console.log(userId);
+    axios.patch(process.env.REACT_APP_API_ENDPOINT + `users/${userId}`, {
+        'public_figure': this.props.userInfo.public_figure
     })
     .then((response) => {
         console.log(response);
@@ -80,13 +88,13 @@ class AdminForm extends Component {
   changePublicFigureButton(userInfo = this.props.userInfo) {
     {/*if public_figure is true/false render according status*/}
     let public_figure = userInfo.public_figure;
-    if (public_figure == true){
+    if (public_figure === true){
       return(
-        <button onClick={this.onClick}>Demote</button>
+        <button className="btn adminButtonStyle" onClick={this.onClick}>Demote</button>
       )
     } else {
       return(
-        <button onClick={this.onClick}>Promote</button>
+        <button className="btn adminButtonStyle" onClick={this.onClick}>Promote</button>
       )
     }
   }
@@ -121,10 +129,12 @@ class AdminForm extends Component {
           <div>{this.superUserRender()}</div>
         </form>
         <br/>
-          <p>
-            Public Figure Status: {this.renderPublicFigure()}
-          </p>
-          {this.changePublicFigureButton()}
+        <p>
+          Public Figure Status: {this.renderPublicFigure()}
+        </p>
+        {this.changePublicFigureButton()}
+        <br/>
+        <br/>
       </div>
     );
   }
