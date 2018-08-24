@@ -5,7 +5,7 @@ import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
-import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, fetchNotifications } from '../actions';
+import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, updatePublicFigure, fetchNotifications } from '../actions';
 import './css/navbar.css';
 import EmailModal from './components/EmailModal';
 
@@ -13,7 +13,7 @@ import EmailModal from './components/EmailModal';
 class CreateAdmin extends Component {
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, /*updateSettings,*/ fetchNotifications } = this.props;
+    const { fetchAllUsers, fetchUserInfo, fetchNotifications } = this.props;
     fetchAllUsers();
     /*updateSettings();*/
     fetchNotifications(sessionStorage.getItem('userId'));
@@ -31,9 +31,9 @@ class CreateAdmin extends Component {
           <EmailModal />
         </LeftGraySideBar>
         <PageContent>
-         <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser}/>
+         <UserList userInfo={this.props.userInfo} updatePublicFigure={this.props.updatePublicFigure} updateSettings={this.props.updateSettings} users={this.props.allUsersList} fetchUser={this.props.fetchUser}/>
         </PageContent>
-        <RightGraySideBar>
+        <RightGraySideBar>}
         </RightGraySideBar>
       </div>
     );
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent, fetchNotifications: fetchNotifications }, dispatch)
+  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent, fetchNotifications: fetchNotifications, updatePublicFigure: updatePublicFigure }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAdmin);

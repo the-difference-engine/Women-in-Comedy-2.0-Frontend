@@ -14,7 +14,6 @@ class AdminForm extends Component {
 
     this.state = {
       status: "Current",
-      public_figure: this.props.userInfo.public_figure
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,34 +46,8 @@ class AdminForm extends Component {
 
   onClick(e, userId = this.props.userId) {
     e.preventDefault();
-    /*let public_figure = userInfo.public_figure;*/
-    console.log(this.state.public_figure)
-    this.setState(prevState => ({
-      public_figure: !prevState.public_figure
-    }));
-
-    /*const request = axios({
-      method: 'patch',
-      url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
-      headers: {'id': userId},
-      data: {
-        public_figure: this.state.public_figure,
-      }
-    })
-    return (dispatch) => {
-      request.then((data) => {
-        dispatch({type: this.EDIT_USER, payload: request});
-        callback();
-        console.log(data);
-      })
-    };*/
-    console.log(userId);
-    axios.patch(process.env.REACT_APP_API_ENDPOINT + `users/${userId}`, {
-        'public_figure': this.props.userInfo.public_figure
-    })
-    .then((response) => {
-        console.log(response);
-    });
+    let publicFigureStatus = this.props.publicFigureStatus;
+    this.props.updatePublicFigure(userId, publicFigureStatus);
   }
 
   renderAdminStatus(event) {
@@ -86,9 +59,9 @@ class AdminForm extends Component {
   }
 
   changePublicFigureButton(userInfo = this.props.userInfo) {
-    {/*if public_figure is true/false render according status*/}
-    let public_figure = userInfo.public_figure;
-    if (public_figure === true){
+    {/*if publicFigure is true/false render according status*/}
+    let publicFigure = this.props.publicFigureStatus;
+    if (publicFigure == true){
       return(
         <button className="btn adminButtonStyle" onClick={this.onClick}>Demote</button>
       )
@@ -100,10 +73,11 @@ class AdminForm extends Component {
   }
 
   renderPublicFigure(event, userInfo = this.props.userInfo) {
-    {/*if public_figure is true/false render according status*/}
-    let public_figure = userInfo.public_figure;
+    {/*if publicFigure is true/false render according status*/}
+    let publicFigure = this.props.publicFigureStatus;
     let currentStatus;
-    public_figure === true
+
+    publicFigure == true
       ? (currentStatus = "Public Figure")
       : (currentStatus = "Not Public Figure");
     return currentStatus;

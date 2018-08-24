@@ -51,6 +51,22 @@ export const updateSettings = (userId, adminStatus) => {
   };
  };
 
+ export const updatePublicFigure = (userId, publicFigure) => {
+ 
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "public_figure":  !publicFigure }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request})
+    });
+  };
+ };
+
 export const setUserLoggedIn = (boolean, userId) => { ``
   return {
     type: SET_USER_LOGGED_IN,

@@ -84,7 +84,6 @@ class ProfilePage extends Component {
 
   renderPublicFigureStatus(userInfo = this.props.userInfo) {
     let public_figure = userInfo.public_figure;
-    console.log(public_figure)
     if (public_figure == true) {
       return(
         <h6>Public Figure</h6>

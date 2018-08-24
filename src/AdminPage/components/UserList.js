@@ -19,9 +19,11 @@ class UserList extends Component {
           <AdminForm
             isSuperUser={user.superuser}
             adminStatus={user.admin}
+            publicFigureStatus={user.public_figure}
             userId={user.id}
             fetchUser={this.props.fetchUser}
             updateSettings={this.props.updateSettings}
+            updatePublicFigure={this.props.updatePublicFigure}
           />
         </li>
       );
