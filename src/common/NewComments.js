@@ -9,9 +9,9 @@ class NewComments extends Component {
     render() {
         return (
             <div>
-                {this.renderComments()}
+                { this.renderComments() }
             </div>
         );
     }
 }
-export default NewComments
+export default NewComments;

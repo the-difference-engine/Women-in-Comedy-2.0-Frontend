@@ -1,9 +1,8 @@
 .comment{
-    /* margin-top:1em; */
     display: grid;
-    grid-template-columns: 5% 10% 80% 5%;
+    grid-template-columns: 2% 10% 84% 2%;
     grid-template-rows: 100%;
-    padding: 0.5em;
+    padding: 0.4em; 
 }
 
 .commenterImg{
@@ -19,4 +18,9 @@
 
 .commentContent{
    grid-column: 3/4;
+    align-self: center;
+}
+.commentContent span {
+    color: #9b1522;
+    margin-right:
 }

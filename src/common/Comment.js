@@ -13,7 +13,7 @@ class Comment extends Component {
                     <img src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat-happy-cat-e1329931204797.jpg" alt="" />
                 </div>
                 <div className="commentContent">
-                   {postId} {authorFirstName} {authorLastName} {body}
+                   <span> {authorFirstName} {authorLastName} </span> {body}
                 </div>
             </div>
         );

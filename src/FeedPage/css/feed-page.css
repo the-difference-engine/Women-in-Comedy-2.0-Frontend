@@ -1,4 +1,4 @@
-#feed-page-img {
+/* #feed-page-img {
   width: 100%;
   height: 300px;
   position: relative;
@@ -13,4 +13,46 @@
 }
 .search .post-button {
   float: right;
+} */
+.searchTerm {
+  border-radius: 1em;
+  border: 1px solid #e6e6e6;
+  padding-left: 1em;
 }
+
+.feed-post-bar{
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 100% auto;
+}
+
+.search{
+  grid-column: 1/2;
+  grid-row: 2/2;
+  display: grid;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.search input{
+  justify-content: start;
+}
+
+.post-button {
+  grid-column: 2/2;
+  grid-row: 2/2;
+  justify-content: end;
+  margin-left: 1em;
+}
+
+.post-button button {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: #9b1522;
+  color: white;
+}
+
+
+

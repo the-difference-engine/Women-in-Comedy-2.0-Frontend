@@ -18,6 +18,7 @@ import UserInfo from './components/UserInfo';
 import Messages from './components/Messages';
 import renderPendingInvites from './components/Messages';
 import FeedPostBar from "../common/FeedPostBar.js"
+import './css/feed-page.css';
 
 
 class Feed extends Component {
@@ -63,16 +64,15 @@ class Feed extends Component {
         <PageContent>
           {/* <FeedPostBar/> */}
           <div className="feed-post-bar">
-            <div className="wrap">
               <div className="search">
                 <input type="text" className="searchTerm" placeholder="What's New?"
                   onChange={(event) => this.props.userWallInputChange(event.target.value)}
                   value={this.props.userWallPost}/>
-                <div className="post-button">
-                  <button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button>
-                </div>
               </div>
-            </div>
+              <div className="post-button">
+                <button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button>
+              </div>
+              
           </div>  
           <NewFeeds userFeeds={userFeeds}/>
         </PageContent>
