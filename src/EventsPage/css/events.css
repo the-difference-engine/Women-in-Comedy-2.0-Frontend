@@ -26,7 +26,8 @@ body {
 @media (max-width: 1008px) and (min-width: 768px) {
   .event-page-content {
     margin-top: 160px;
-    margin-left: 22%;
+    margin-left: 25%;
+    margin-right: 15%;
   }
 }
 
