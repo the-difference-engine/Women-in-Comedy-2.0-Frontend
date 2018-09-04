@@ -1,7 +1,8 @@
 
-.navbar-default {
+ .navbar-default {
     background-color: #9b1522;
-}
+} 
+
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -15,7 +16,10 @@
   margin-top: 17px;
   font-family: 'alwaysforever', sans-serif;
 }
+.input-group{
+  margin-left: 1em;
 
+}
 .navbar-default .navbar-nav>li>a {
     color: white;
 }
