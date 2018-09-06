@@ -117,10 +117,9 @@ class EventsFeed extends Component {
         <div>
           <Navbar history={this.props.history} notifications={notifications}/>
         </div>
-        <div id="pic-wrap">
+        {/*<div id="pic-wrap">
           <EventImg event={this.props.selectedEvent}/>
-        </div>
-
+        </div>*/}
         <LeftGraySideBar className="event-info-bar">
           <EventInfo
             event={this.props.selectedEvent}

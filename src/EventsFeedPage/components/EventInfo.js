@@ -18,12 +18,11 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         <UpdateEventButton id="edit_btn" eventId={eventId}/>
       )
     }
-    //return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
 
   if(event && event.hostInfo) {
-    const { title, date, time, location, about, ticket_link, user_id } = event.info;
-    const { photo, firstName, lastName } = event.hostInfo;
+    const { title, date, time, location, about, ticket_link, user_id, photo } = event.info;
+    const { firstName, lastName } = event.hostInfo;
     return (
       <div>
         <h2 id="event-title">{title}</h2>
