@@ -180,7 +180,7 @@ class Navbar extends Component {
           <ul className="nav navbar-nav navbar-right">
             <li>
               <form className="navbar-form">
-                <div className="input-group" style={styles.container}>
+                {/*<div className="input-group" style={styles.container}>
                   <div>
                     <FlatButton
                       style={styles.filter}
@@ -266,18 +266,19 @@ class Navbar extends Component {
                       </Menu>
                     </Popover>
                   </div>
-                </div>
+                </div>*/}
                 <div className="input-group">
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.users}
                     maxSearchResults={10}
-                    hintText="Search"
+                    // hintText="Search"
                     underlineShow={false}
-                    hintStyle={styles.hint}
+                    // hintStyle={styles.hint}
                     inputStyle={styles.input}
-                    textareaStyle={styles.text}
+                    // textareaStyle={styles.text}
                     onNewRequest={item => this.onItemClicked(item)}
+                    id='user-search'
                   />
                   <i
                     className="glyphicon glyphicon-search"
@@ -344,7 +345,8 @@ const styles = {
     height: "30px",
     width: "225px",
     backgroundColor: "white",
-    borderRadius: "20px"
+    borderRadius: "15px",
+    padding: '15px'
   },
   hint: {
     zIndex: 1,
