@@ -25,10 +25,7 @@ class EmailModal extends Component {
   grabText = () => {
     const email = document.getElementsByClassName("email-modal")[0].value;
     const subject = document.getElementsByClassName("email-subject")[0].value;
-    console.log(subject);
-    {
-      this.props.mailUsers(email, subject);
-    }
+    this.props.mailUsers(email, subject);
     this.setState({ open: false });
   };
 
@@ -45,6 +42,7 @@ class EmailModal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
+          <h3 id="email-modal-header">Email All Users</h3>
           <strong>
             <p>Subject: </p>
           </strong>

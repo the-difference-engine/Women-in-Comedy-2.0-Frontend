@@ -52,3 +52,7 @@
 .super-user {
   color: tomato;
 }
+
+#email-modal-header {
+  text-align: center;
+}
