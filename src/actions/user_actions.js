@@ -29,7 +29,9 @@ export const filterUsers = (item, nestedItem) => {
 export const editUser = (boolean) => {
   return {
     type: EDIT_USER,
-    isAdminEdit: boolean
+    isAdminEdit: boolean,
+    publicFigure: boolean,
+    isMentor: boolean
   }
 }
 
@@ -49,9 +51,9 @@ export const updateSettings = (userId, adminStatus) => {
       dispatch({ type: EDIT_USER, payload: request})
     });
   };
- };
+};
 
- export const updatePublicFigure = (userId, publicFigure) => {
+export const updatePublicFigure = (userId, publicFigure) => {
  
   const request = axios({
     method: 'patch',
@@ -65,7 +67,23 @@ export const updateSettings = (userId, adminStatus) => {
       dispatch({ type: EDIT_USER, payload: request})
     });
   };
- };
+};
+
+export const updateIsMentor = (userId, isMentor) => {
+ 
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "is_mentor":  !isMentor }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request})
+    });
+  };
+};
 
 export const setUserLoggedIn = (boolean, userId) => { ``
   return {

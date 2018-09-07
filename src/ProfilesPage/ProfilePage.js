@@ -91,6 +91,15 @@ class ProfilePage extends Component {
     }
   }
 
+  renderIsMentorStatus(userInfo = this.props.userInfo) {
+    let is_mentor = userInfo.is_mentor;
+    if (is_mentor == true) {
+      return(
+        <h6>Mentor</h6>
+      );
+    }
+  }
+
   handleEditButtonClick() {
     // Edit User accepts a boolean value, that is the current logged in
     // user is an admin or not. If it is the admin, render the Admin Edit form,
@@ -256,6 +265,7 @@ class ProfilePage extends Component {
         <Navbar history={this.props.history} notifications={notifications} />
         <LeftGraySideBar>
           {this.renderPublicFigureStatus()}
+          {this.renderIsMentorStatus()}
           <UserInfo
             userInfo={userInfo}
             adminUser={adminUser}

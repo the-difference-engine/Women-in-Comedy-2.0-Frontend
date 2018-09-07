@@ -20,10 +20,12 @@ class UserList extends Component {
             isSuperUser={user.superuser}
             adminStatus={user.admin}
             publicFigureStatus={user.public_figure}
+            isMentorStatus={user.is_mentor}
             userId={user.id}
             fetchUser={this.props.fetchUser}
             updateSettings={this.props.updateSettings}
             updatePublicFigure={this.props.updatePublicFigure}
+            updateIsMentor={this.props.updateIsMentor}
           />
         </li>
       );

@@ -13,12 +13,13 @@ class AdminForm extends Component {
     super(props);
 
     this.state = {
-      status: "Current",
+      status: "Current"
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSubmit(event, userId = this.props.userId) {
@@ -46,22 +47,38 @@ class AdminForm extends Component {
 
   onClick(e, userId = this.props.userId) {
     e.preventDefault();
+    console.log('Button Clicked')
     let publicFigureStatus = this.props.publicFigureStatus;
     this.props.updatePublicFigure(userId, publicFigureStatus);
+    
+    /*setTimeout(function() {
+      window.location.reload();
+    }, 10);*/
+  }
+
+  handleClick(e, userId = this.props.userId) {
+    e.preventDefault();
+    let isMentorStatus = this.props.isMentorStatus;
+    this.props.updateIsMentor(userId, isMentorStatus);
+  
+    /*setTimeout(function() {
+      window.location.reload();
+    }, 10);*/
   }
 
   renderAdminStatus(event) {
     let currentStatus;
-    this.props.adminStatus == true
+    this.props.adminStatus === true
       ? (currentStatus = "Admin")
       : (currentStatus = "Non-Admin");
     return currentStatus;
   }
 
   changePublicFigureButton(userInfo = this.props.userInfo) {
-    {/*if publicFigure is true/false render according status*/}
+    /*if publicFigure is true/false render according status*/
     let publicFigure = this.props.publicFigureStatus;
-    if (publicFigure == true){
+    
+    if (publicFigure === true){
       return(
         <button className="btn adminButtonStyle" onClick={this.onClick}>Demote</button>
       )
@@ -72,14 +89,39 @@ class AdminForm extends Component {
     }
   }
 
+  changeIsMentorButton(userInfo = this.props.userInfo) {
+    /*if publicFigure is true/false render according status*/
+    let isMentor = this.props.isMentorStatus;
+    if (isMentor === true){
+      return(
+        <button className="btn adminButtonStyle" onClick={this.handleClick}>Demote</button>
+      )
+    } else {
+      return(
+        <button className="btn adminButtonStyle" onClick={this.handleClick}>Promote</button>
+      )
+    }
+  }
+
   renderPublicFigure(event, userInfo = this.props.userInfo) {
-    {/*if publicFigure is true/false render according status*/}
+    /*if publicFigure is true/false render according status*/
     let publicFigure = this.props.publicFigureStatus;
     let currentStatus;
 
-    publicFigure == true
+    publicFigure === true
       ? (currentStatus = "Public Figure")
       : (currentStatus = "Not Public Figure");
+    return currentStatus;
+  }
+
+  renderIsMentor(event, userInfo = this.props.userInfo) {
+    /*if isMentor is true/false render according status*/
+    let isMentor = this.props.isMentorStatus;
+    let currentStatus;
+
+    isMentor === true
+      ? (currentStatus = "Mentor")
+      : (currentStatus = "Not a Mentor");
     return currentStatus;
   }
 
@@ -105,8 +147,15 @@ class AdminForm extends Component {
         <br/>
         <p>
           Public Figure Status: {this.renderPublicFigure()}
+          <br/>
+          {this.changePublicFigureButton()}
+          <br/>
+          <br/>
+          Mentor Status: {this.renderIsMentor()} 
+          <br/>
+          {this.changeIsMentorButton()}
         </p>
-        {this.changePublicFigureButton()}
+        
         <br/>
         <br/>
       </div>
@@ -118,6 +167,8 @@ function mapStateToProps(state) {
   const { userInfo } = state;
   return { userInfo };
 }
+
+export {AdminForm};
 
 export default connect(
   mapStateToProps,
