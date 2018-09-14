@@ -74,7 +74,7 @@ class UnreadNotification extends Component {
     }
   };
 
-  render() {
+render() {
     return (
 	    <div className="event-page-content">
         <div className="container">
@@ -92,19 +92,17 @@ class UnreadNotification extends Component {
             {this.renderNotifications()}
             <br/>
           </div>
-          <div className="container">
-            <div id="my-events">
-              <button type="button" className="btn btn-danger"
-                      onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
-                All As Read
-              </button>
-            </div>
-          </div>
         </div>
 	    </div>
 	  );
   };
 };
+
+var BackgroundImage = React.createClass({
+  render:function(){
+    return (<div className="img"></div>)
+  }  
+});
 
 export default connect(null, {
   acceptConnection,
