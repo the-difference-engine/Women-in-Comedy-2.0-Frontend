@@ -49,11 +49,7 @@ class AdminForm extends Component {
     e.preventDefault();
     console.log('Button Clicked')
     let publicFigureStatus = this.props.publicFigureStatus;
-    this.props.updatePublicFigure(userId, publicFigureStatus);
-    
-    /*setTimeout(function() {
-      window.location.reload();
-    }, 10);*/
+    this.props.updatePublicFigure(userId, publicFigureStatus, this.props.fetchAllUsers);
   }
 
   handleClick(e, userId = this.props.userId) {
@@ -164,8 +160,8 @@ class AdminForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { userInfo } = state;
-  return { userInfo };
+  const { userInfo, publicFigureStatus, isMentorStatus } = state;
+  return { userInfo, publicFigureStatus, isMentorStatus };
 }
 
 export {AdminForm};

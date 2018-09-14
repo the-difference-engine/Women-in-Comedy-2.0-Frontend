@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_PUBLIC_FIGURE_STATUS, UPDATE_IS_MENTOR_STATUS } from './types';
+import { callbackify } from 'util';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -29,13 +30,11 @@ export const filterUsers = (item, nestedItem) => {
 export const editUser = (boolean) => {
   return {
     type: EDIT_USER,
-    isAdminEdit: boolean,
-    publicFigure: boolean,
-    isMentor: boolean
+    isAdminEdit: boolean
   }
 }
 
-export const updateSettings = (userId, adminStatus) => {
+export const updateSettings = (userId, adminStatus, callback) => {
   let switchAdmin;
     switchAdmin =  adminStatus == true ? false : true;
 
@@ -48,12 +47,13 @@ export const updateSettings = (userId, adminStatus) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
     });
   };
 };
 
-export const updatePublicFigure = (userId, publicFigure) => {
+export const updatePublicFigure = (userId, publicFigure, callback) => {
  
   const request = axios({
     method: 'patch',
@@ -64,12 +64,13 @@ export const updatePublicFigure = (userId, publicFigure) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: UPDATE_PUBLIC_FIGURE_STATUS, payload: request});
+      callback();
     });
   };
 };
 
-export const updateIsMentor = (userId, isMentor) => {
+export const updateIsMentor = (userId, isMentor, callback) => {
  
   const request = axios({
     method: 'patch',
@@ -80,7 +81,8 @@ export const updateIsMentor = (userId, isMentor) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: UPDATE_IS_MENTOR_STATUS, payload: request});
+      callback();
     });
   };
 };
