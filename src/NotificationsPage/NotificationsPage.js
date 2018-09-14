@@ -65,6 +65,7 @@ class Notification extends Component {
           <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
       </div>
+      
     );
   }
 }
