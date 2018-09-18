@@ -34,13 +34,13 @@ export const editUser = (boolean) => {
 }
 
 // super User will be created 
-export const updateToSuperUser = (userId, callback) => {
+export const updateToSuperAdmin = (userId, callback) => {
   
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
     headers: {"id": userId },
-    data: { "superuser":  true, "admin": true }
+    data: { "SuperAdmin":  true, "admin": true }
   });
 
   return (dispatch) => {
@@ -52,13 +52,13 @@ export const updateToSuperUser = (userId, callback) => {
 }
 
 // super User Status will be removed by other super users 
-export const removeSuperUserStatus = (userId, callback) => {
+export const removeSuperAdminStatus = (userId, callback) => {
   
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
     headers: {"id": userId },
-    data: { "superuser":  false}
+    data: { "superadmin":  false}
   });
 
   return (dispatch) => {
