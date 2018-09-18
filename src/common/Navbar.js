@@ -171,143 +171,142 @@ class Navbar extends Component {
     const { notifications } = this.props;
 
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container-fluid">
+      <nav className="navbar">
+       
           <div className="navbar-header">
-            <Link id="nav-header" className="navbar-brand" to="/feed">
+            <Link  to="/feed">
               Women in Comedy
             </Link>
           </div>
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <form className="navbar-form">
-                <div className="input-group" style={styles.container}>
-                  <div>
-                    <FlatButton
-                      style={styles.filter}
-                      onClick={this.handleTouchTap}
-                      label="Filter"
+          
+            <form className="navbar-form">
+              <div className="input-group" style={styles.container}>
+                <FlatButton
+                  style={styles.filter}
+                  onClick={this.handleTouchTap}
+                  label="Filter"
+                />
+                <Popover
+                  open={this.state.open}
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{
+                    horizontal: "left",
+                    vertical: "bottom"
+                  }}
+                  targetOrigin={{
+                    horizontal: "left",
+                    vertical: "top"
+                  }}
+                  onRequestClose={this.handleRequestClose}
+                >
+                  <Menu onChange={this.onMenuClicked}>
+                    <MenuItem
+                      primaryText="Reset"
+                      onClick={event =>
+                        this.onMenuItemClicked(event, { props: "none" })
+                      }
                     />
-                    <Popover
-                      open={this.state.open}
-                      anchorEl={this.state.anchorEl}
-                      anchorOrigin={{
-                        horizontal: "left",
-                        vertical: "bottom"
-                      }}
-                      targetOrigin={{
-                        horizontal: "left",
-                        vertical: "top"
-                      }}
-                      onRequestClose={this.handleRequestClose}
-                    >
-                      <Menu onChange={this.onMenuClicked}>
+                    <MenuItem
+                      primaryText="Location"
+                      rightIcon={<ArrowDropRight />}
+                      menuItems={locationMenuItems.map(menuItem => (
                         <MenuItem
-                          primaryText="Reset"
+                          {...menuItem}
                           onClick={event =>
-                            this.onMenuItemClicked(event, { props: "none" })
+                            this.onMenuItemClicked(event, {
+                              props: { ...menuItem }
+                            })
                           }
                         />
+                      ))}
+                    />
+                    <MenuItem
+                      primaryText="Training"
+                      rightIcon={<ArrowDropRight />}
+                      menuItems={trainingMenuItems.map(menuItem => (
                         <MenuItem
-                          primaryText="Location"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={locationMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
+                          {...menuItem}
+                          onClick={event =>
+                            this.onMenuItemClicked(event, {
+                              props: { ...menuItem }
+                            })
+                          }
                         />
+                      ))}
+                    />
+                    <MenuItem
+                      primaryText="Experience"
+                      rightIcon={<ArrowDropRight />}
+                      menuItems={experienceMenuItems.map(menuItem => (
                         <MenuItem
-                          primaryText="Training"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={trainingMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
+                          {...menuItem}
+                          onClick={event =>
+                            this.onMenuItemClicked(event, {
+                              props: { ...menuItem }
+                            })
+                          }
                         />
+                      ))}
+                    />
+                    <MenuItem
+                      primaryText="Gender"
+                      rightIcon={<ArrowDropRight />}
+                      menuItems={genderMenuItems.map(menuItem => (
                         <MenuItem
-                          primaryText="Experience"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={experienceMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
+                          {...menuItem}
+                          onClick={event =>
+                            this.onMenuItemClicked(event, {
+                              props: { ...menuItem }
+                            })
+                          }
                         />
-                        <MenuItem
-                          primaryText="Gender"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={genderMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
-                        />
-                      </Menu>
-                    </Popover>
-                  </div>
-                </div>
-                <div className="input-group">
-                  <AutoComplete
-                    filter={AutoComplete.fuzzyFilter}
-                    dataSource={this.props.users}
-                    maxSearchResults={10}
-                    hintText="Search"
-                    underlineShow={false}
-                    hintStyle={styles.hint}
-                    inputStyle={styles.input}
-                    textareaStyle={styles.text}
-                    onNewRequest={item => this.onItemClicked(item)}
-                  />
-                  <i
-                    className="glyphicon glyphicon-search"
-                    style={{ right: "50px" }}
-                  />
-                </div>
-              </form>
-            </li>
-            <li>
+                      ))}
+                    />
+                  </Menu>
+                </Popover>
+              </div>
+              
+              <div className="input-group nav-search">
+                <AutoComplete
+                  filter={AutoComplete.fuzzyFilter}
+                  dataSource={this.props.users}
+                  maxSearchResults={10}
+                  hintText="Search"
+                  underlineShow={false}
+                  hintStyle={styles.hint}
+                  inputStyle={styles.input}
+                  textareaStyle={styles.text}
+                  onNewRequest={item => this.onItemClicked(item)}
+                />
+                <i
+                  className="glyphicon glyphicon-search"
+                  // style={{ right: "50px" }}
+                />
+              </div>
+            </form>
+          
+          <div className="nav-options">
+            <div className="nav-home">
               <Link to="/feed">
                 <i className="fa fa-home">
                   <p>HOME</p>
                 </i>
               </Link>
-            </li>
-            <li>
+            </div>
+            <div className="nav-events">
               <Link to="/events">
                 <i className="fa fa-calendar-o">
                   <p>EVENTS</p>
                 </i>
               </Link>
-            </li>
+            </div>
 
             {this.renderAdminIcon()}
 
-            <li>
+            <div className="nav-notif">
               <NotificationButton notifications={notifications} />
-            </li>
-            <li>
+            </div>
+            <div className="nav-profile">
               <Link to={`/profile/${userId}`}>
                 <img
                   className="img-responsive"
@@ -315,16 +314,16 @@ class Navbar extends Component {
                   alt=""
                 />
               </Link>
-            </li>
-            <li>
+            </div>
+            <div className="nav-logout">
               <a href="#" className="icon" onClick={this.Logout.bind(this)}>
                 <i className="fa fa-sign-out">
                   <p>LOG OUT</p>
                 </i>
               </a>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </div>
+       
       </nav>
     );
   }

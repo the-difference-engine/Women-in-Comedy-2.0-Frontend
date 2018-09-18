@@ -4,8 +4,8 @@ import './css/page-content.css';
 
 const PageContent = ({children, ...props}) => {
   return (
-    <div id="page-content" {...props}>
-      <div id="page-content-margin">
+    <div className="page-content" {...props}>
+      <div className="page-content-main">
         {children}
       </div>
     </div>

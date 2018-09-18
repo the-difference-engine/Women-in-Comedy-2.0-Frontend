@@ -52,30 +52,37 @@ class Feed extends Component {
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
     return (
-      <div>
-        <Navbar history={this.props.history} notifications={notifications}/>
-        <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} invites={userInvites} />
-        </RightGraySideBar>
-        <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections} />
-        </LeftGraySideBar>
-       
-        <PageContent>
-          {/* <FeedPostBar/> */}
-          <div className="feed-post-bar">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}/>
-              </div>
-              <div className="post-button">
-                <button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button>
-              </div>
-              
-          </div>  
-          <NewFeeds userFeeds={userFeeds}/>
-        </PageContent>
+      <div className="feedContainer">
+        <div className="header">
+          <Navbar history={this.props.history} notifications={notifications}/>
+        </div>
+        <div className="rightBar">
+          <RightGraySideBar>
+            <Messages connections={receivedConnectionRequest} invites={userInvites} />
+          </RightGraySideBar>
+        </div>
+        <div className="leftBar">
+          <LeftGraySideBar>
+            <UserInfo userInfo={userInfo} userConnections={userConnections} />
+          </LeftGraySideBar>
+        </div>
+        <div className="mainContent">
+          <PageContent>
+            {/* <FeedPostBar/> */}
+            <div className="feed-post-bar">
+                <div className="search">
+                  <input type="text" className="searchTerm" placeholder="What's New?"
+                    onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                    value={this.props.userWallPost}/>
+                </div>
+                <div className="post-button">
+                  <button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button>
+                </div>
+                
+            </div>  
+            <NewFeeds userFeeds={userFeeds}/>
+          </PageContent>
+        </div>
       </div>
     );
   }

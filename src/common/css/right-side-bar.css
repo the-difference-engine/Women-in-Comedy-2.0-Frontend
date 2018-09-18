@@ -1,7 +1,7 @@
-#right-side {
+/* #right-side {
   position: fixed;
   right: -10px;
-  top: 65px;
+  top: 87px;
   width: 20%;
   height: 100%;
   background-color: #e6e6e6;
@@ -14,7 +14,20 @@
   margin-left: 25px;
   margin-right: 25px;
   height: 100%;
-}
+} */
+
+ .right-side{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  padding: 1em;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #e6e6e6;
+  font-family: "Quicksand", sans-serif;
+} 
+
 
 @media (max-width: 1008px) and (min-width: 768px) {
   #right-side-bar-content {

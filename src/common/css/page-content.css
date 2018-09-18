@@ -1,20 +1,19 @@
-#page-content {
+ .page-content {
   overflow-y: scroll;
   width: 61%;
   position: fixed;
   left: 20%;
-  padding-bottom: 50px;
-  top: 65px;
-  bottom: 0;
+  padding: 1em;
+  
 }
 
 @media (max-width: 1008px) and (min-width: 768px) {
-  #page-content {
+  .page-content {
     top: 110px;
   }
 }
 
-#page-content-margin {
+.page-content-margin {
   margin-top: 50px;
   margin-left: 40px;
   margin-right: 60px;
@@ -22,11 +21,11 @@
   height: 100%;
 }
 
-#page-content.event-feed {
+.page-content.event-feed {
   position: relative;
   top: 300px;
   left: 300px;
   right: 850px;
   overflow-y: scroll;
   max-height: 450px;
-}
+} 
