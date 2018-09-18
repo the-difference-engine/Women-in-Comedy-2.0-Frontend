@@ -47,7 +47,7 @@ class AdminForm extends Component {
 
   onClick(e, userId = this.props.userId) {
     e.preventDefault();
-    console.log('Button Clicked')
+    console.log('Button Clicked');
     let publicFigureStatus = this.props.publicFigureStatus;
     this.props.updatePublicFigure(userId, publicFigureStatus, this.props.fetchAllUsers);
   }
@@ -55,11 +55,8 @@ class AdminForm extends Component {
   handleClick(e, userId = this.props.userId) {
     e.preventDefault();
     let isMentorStatus = this.props.isMentorStatus;
-    this.props.updateIsMentor(userId, isMentorStatus);
-  
-    /*setTimeout(function() {
-      window.location.reload();
-    }, 10);*/
+    this.props.updateIsMentor(userId, isMentorStatus, this.props.fetchAllUsers);
+
   }
 
   renderAdminStatus(event) {
@@ -160,8 +157,8 @@ class AdminForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { userInfo, publicFigureStatus, isMentorStatus } = state;
-  return { userInfo, publicFigureStatus, isMentorStatus };
+  const { userInfo } = state;
+  return { userInfo };
 }
 
 export {AdminForm};

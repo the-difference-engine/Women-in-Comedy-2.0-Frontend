@@ -31,7 +31,14 @@ class CreateAdmin extends Component {
           <EmailModal />
         </LeftGraySideBar>
         <PageContent>
-         <UserList userInfo={this.props.userInfo} fetchAllUsers={this.props.fetchAllUsers} updatePublicFigure={this.props.updatePublicFigure} updateIsMentor={this.props.updateIsMentor} updateSettings={this.props.updateSettings} users={this.props.allUsersList} fetchUser={this.props.fetchUser}/>
+         <UserList 
+          userInfo={this.props.userInfo} 
+          fetchAllUsers={this.props.fetchAllUsers} 
+          updatePublicFigure={this.props.updatePublicFigure} 
+          updateIsMentor={this.props.updateIsMentor} 
+          updateSettings={this.props.updateSettings} 
+          users={this.props.allUsersList} 
+          fetchUser={this.props.fetchUser}/>
         </PageContent>
         <RightGraySideBar>}
         </RightGraySideBar>

@@ -61,7 +61,7 @@ export const updatePublicFigure = (userId, publicFigure, callback) => {
     headers: {"id": userId },
     data: { "public_figure":  !publicFigure }
   });
-
+  console.log(publicFigure);
   return (dispatch) => {
     request.then((data) => {
       dispatch({ type: UPDATE_PUBLIC_FIGURE_STATUS, payload: request});
