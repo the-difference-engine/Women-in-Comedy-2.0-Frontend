@@ -14,9 +14,12 @@ class HomePage extends Component {
         <div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
         <img src={logo}className="splash" alt="splash" />
 			</div>
+			
 		);
 	}
 }
+
+
 
 
 export default HomePage;
