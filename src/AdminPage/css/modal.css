@@ -2,14 +2,14 @@
   text-align: center;
 }
 
-.superUserButtonStyle:hover {
+.superAdminButtonStyle:hover {
   cursor: pointer;
   text-decoration: none;
   background-color: orangered;
   color: white;
 }
 
-.superUserButtonStyle {
+.superAdminButtonStyle {
   display: block;
   text-decoration: none;
   text-align: center;
