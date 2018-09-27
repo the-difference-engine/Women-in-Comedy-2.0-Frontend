@@ -8,7 +8,7 @@ class NewFeeds extends Component {
   }
   render() {
     return (
-      <div id="new-feed-container">
+      <div className="new-feed-container">
         {this.renderFeeds()}
       </div>
     )

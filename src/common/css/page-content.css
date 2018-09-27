@@ -1,9 +1,7 @@
  .page-content {
   overflow-y: scroll;
-  width: 61%;
-  position: fixed;
-  left: 20%;
-  padding: 1em;
+  
+  display: grid;
   
 }
 
