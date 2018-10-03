@@ -6,7 +6,7 @@ import Bio from './components/Bio';
 import Users from './components/Users';
 
 class ActivityPage extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		const userId = sessionStorage.getItem('userId');
 		const { fetchUserInfo, fetchUsers } = this.props;
 		if (userId !== null) {

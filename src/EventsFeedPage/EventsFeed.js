@@ -41,7 +41,7 @@ class EventsFeed extends Component {
     fetchNotifications(sessionStorage.getItem('userId'));
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const currentUserId = await sessionStorage.getItem('userId');
     this.props.fetchUserConnections(currentUserId);
     this.props.fetchUserInfo(currentUserId);
