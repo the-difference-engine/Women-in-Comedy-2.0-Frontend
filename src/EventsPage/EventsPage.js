@@ -27,6 +27,7 @@ class EventsPage extends Component {
         <Navbar history={this.props.history} notifications={notifications}/>
 				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
 				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
+				{console.log(this.props.upcomingEvents)}
 				<AddEvent history={this.props.history} invites={this.props.userInvites}/>
 			</div>
 		);

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/events.css';
+import Moment from 'react-moment';
+import import 'moment-timezone';
+
+const sortByDate = (events = []) => events.sort()
 
 export default (props) => {
 	if (props.upcomingEvents.length === 0) {
