@@ -29,6 +29,14 @@ const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
+  state = {
+    deleteModalVisible: false
+  }
+
+  /**
+   * @TODO componentWillMount is a deprecated lifecycle method and will be removed.
+   * @TODO Please refactor this to use componentDidMount
+   */
   componentWillMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
@@ -48,6 +56,7 @@ class ProfilePage extends Component {
     this.setState({editUserEnable: false});
   }
 
+  // @TODO onPress what? Be more specific naming functions
   onPress() {
     const sender_id = sessionStorage.getItem("userId");
     const receiver_id = this.props.match.params.id;
@@ -103,6 +112,7 @@ class ProfilePage extends Component {
     this.setState({ editUserEnable: editable });
   }
 
+  // @TODO onSuspend what? Please be more specific naming functions
   onSuspend() {
     const id = this.props.userInfo.id;
     var suspended = this.props.userInfo.suspended;
@@ -111,6 +121,7 @@ class ProfilePage extends Component {
     this.setState({ suspendedState: true });
   }
 
+  // @TODO onUnsuspend what? Please be more specific naming functions
   onUnsuspend() {
     const id = this.props.userInfo.id;
     const admin = sessionStorage.getItem("isAdmin");
@@ -120,9 +131,14 @@ class ProfilePage extends Component {
     this.setState({ suspendedState: false });
   }
 
+  // @TODO What are we deleting? Please be more specific naming functions
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
+  }
+
+  openModal () {
+    this.setState({ deleteModalVisible: true })
   }
 
   renderBlockConnection() {
@@ -165,13 +181,12 @@ class ProfilePage extends Component {
   }
 
   deleteUserButton() {
+    console.log(this.state)
     const admin = sessionStorage.getItem("isAdmin");
     return (
-      <a href="/message">
-        <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
+        <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
           Delete User
         </button>
-      </a>
     );
   }
 
@@ -246,6 +261,7 @@ class ProfilePage extends Component {
       match,
       notifications
     } = this.props;
+    const { deleteModalVisible } = this.state
     return (
       <div>
         <Navbar history={this.props.history} notifications={notifications} />
@@ -262,6 +278,7 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
+            {deleteModalVisible && <h1>SHOW THE DELETE MODAL!!!</h1>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
