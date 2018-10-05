@@ -1,12 +1,4 @@
-/* 
-#left-side-bar-content {
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-right: 25px;
-  height: 100%;
-}   */
-
- .left-side-bar{
+.left-side-bar{
   display: grid;
   grid-template-columns: 100%;
   padding: 1em;
@@ -14,12 +6,8 @@
 
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
-   overflow: auto;  
+  overflow: auto;  
 } 
-
-/* .left-side-bar.event-info-bar {
-  margin-top: 235px;
-} */
 
 @media screen and (max-width: 1008px) {
   .left-side-bar-content {

@@ -1,22 +1,4 @@
-/* #right-side {
-  position: fixed;
-  right: -10px;
-  top: 87px;
-  width: 20%;
-  height: 100%;
-  background-color: #e6e6e6;
-  z-index: 0;
-  overflow-y: auto;
-}
-
-#right-side-bar-content {
-  margin-top: 65px;
-  margin-left: 25px;
-  margin-right: 25px;
-  height: 100%;
-} */
-
- .right-side{
+.right-side{
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto;
