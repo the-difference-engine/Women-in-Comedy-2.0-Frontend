@@ -14,7 +14,7 @@ class Profile extends Component {
     this.state = { commentList: false }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { userFeeds } = this.props;
     const count = this.props.length;
     const sender_id = sessionStorage.getItem('userId');

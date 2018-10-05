@@ -35,15 +35,13 @@ const modStyle = {
 };
 
 class ProfilePage extends Component {
+
   state = {
     deleteModalVisible: false
   }
 
-  /**
-   * @TODO componentWillMount is a deprecated lifecycle method and will be removed.
-   * @TODO Please refactor this to use componentDidMount
-   */
-  componentWillMount() {
+  componentDidlMount() {
+
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');

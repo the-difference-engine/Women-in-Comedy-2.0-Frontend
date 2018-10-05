@@ -11,7 +11,7 @@ class ProfileConnections extends Component {
       connections_string: "See All Connections"
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     const { connections } = this.props;
     const users = connections;
     const displayAll = renderConnections(connections);
