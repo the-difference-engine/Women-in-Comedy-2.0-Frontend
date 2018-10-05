@@ -19,11 +19,19 @@ class EventsPage extends Component {
 	render () {
 		const {notifications} = this.props;
     return (
-			<div id="events-page">
-        <Navbar history={this.props.history} notifications={notifications}/>
-				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
-				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
-				<AddEvent history={this.props.history} invites={this.props.userInvites}/>
+			<div className="events-page">
+				<div className="header">
+        	<Navbar history={this.props.history} notifications={notifications}/>
+				</div>
+				<div className="myUpcoming">
+					<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
+				</div>
+				<div className="allUpcoming"> 
+					<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
+				</div>
+				<div className="addEvent">
+					 <AddEvent history={this.props.history} invites={this.props.userInvites}/> 
+				</div>
 			</div>
 		);
 	}
@@ -33,3 +41,9 @@ function mapStateToProps({ myUpcomingEvents, upcomingEvents, userInvites, notifi
   return { myUpcomingEvents, upcomingEvents, userInvites, notifications };
 }
 export default connect(mapStateToProps, { fetchMyUpcomingEvents, fetchUpcomingEvents, fetchPendingUserInvites, fetchNotifications })(EventsPage);
+
+
+
+
+
+

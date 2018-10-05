@@ -34,7 +34,7 @@ class App extends Component {
 
   render() {
     return (<BrowserRouter>
-      <MuiThemeProvider>
+        <MuiThemeProvider>  
         <div>
           <Switch>
             <Route exact path='/' component={Form}></Route>
@@ -55,7 +55,7 @@ class App extends Component {
           <ChatWidget />
 
         </div>
-      </MuiThemeProvider>
+        </MuiThemeProvider> 
     </BrowserRouter>)
   }
 }

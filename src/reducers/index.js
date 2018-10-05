@@ -24,7 +24,6 @@ import createCommentsReducer from './create_comments_reducer';
 import commentsReducer from './comments_reducer';
 
 
-
 const rootReducer = combineReducers({
   form: formReducer,
   userInfo: UserInfoReducer,

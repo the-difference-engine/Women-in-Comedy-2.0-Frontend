@@ -1,4 +1,14 @@
-.add-event {
+/* .add-event{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+
+
+} */
+ 
+
+
+/* .add-event {
   position: fixed;
   left: 0;
   width: 20%;
@@ -47,4 +57,4 @@
 .new-event button:hover {
   background-color: #9b1522;
   color: white;
-}
+} */
