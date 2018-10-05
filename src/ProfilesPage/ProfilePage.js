@@ -22,11 +22,17 @@ import UserInfo from "./components/UserInfo";
 import ProfileConnections from "./components/ProfileConnections";
 import ProfileFeed from "./components/ProfileFeed";
 import EditPage from "../EditPage/EditPage";
+import Modal from 'react-responsive-modal';
+
 
 const userId = sessionStorage.getItem("userId");
 const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
+
+const modStyle = {
+  borderRadius: '25px',
+};
 
 class ProfilePage extends Component {
   state = {
@@ -132,9 +138,11 @@ class ProfilePage extends Component {
   }
 
   // @TODO What are we deleting? Please be more specific naming functions
-  onDelete() {
+  onDelete = () => {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
+    window.location.href='/message';
+
   }
 
   openModal () {
@@ -179,6 +187,11 @@ class ProfilePage extends Component {
       </button>
     );
   }
+
+  onCloseModal = () => {
+    this.setState({ deleteModalVisible: false });
+  };
+
 
   deleteUserButton() {
     console.log(this.state)
@@ -252,6 +265,8 @@ class ProfilePage extends Component {
     );
   }
 
+
+
   render() {
     const {
       userInfo,
@@ -278,7 +293,21 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
-            {deleteModalVisible && <h1>SHOW THE DELETE MODAL!!!</h1>}
+            {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.onCloseModal} center>
+          <h2 className='text-center'>Are You Sure?</h2>
+          <hr/>
+          <div className='container'>
+          <div className='row'>
+          <div className='col-md-6'>
+          <button className="btn btn-danger" onClick={this.onDelete}>Yup</button>
+          </div>
+          <div className='col-md-6'>
+          <button className="btn btn-danger" onClick={this.onCloseModal}>Nope</button>
+          </div>
+
+          </div>
+          </div>
+        </Modal>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>

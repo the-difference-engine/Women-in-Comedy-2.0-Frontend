@@ -23,6 +23,7 @@
     "react-image-preview": "^0.1.0",
     "react-material-ui-form-validator": "^1.1.0",
     "react-redux": "^5.0.7",
+    "react-responsive-modal": "^3.4.0",
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
