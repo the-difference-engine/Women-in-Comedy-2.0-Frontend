@@ -12,14 +12,13 @@ import EmailModal from './components/EmailModal';
 
 class CreateAdmin extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     const { fetchAllUsers, fetchUserInfo, updateSettings, fetchNotifications } = this.props;
     fetchAllUsers();
-    updateSettings();
     fetchNotifications(sessionStorage.getItem('userId'));
   };
 
