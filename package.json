@@ -17,6 +17,7 @@
     "react-addons-create-fragment": "^15.6.2",
     "react-bootstrap": "^0.31.5",
     "react-chat-widget": "^2.1.2",
+    "react-csv": "^1.0.15-RC2",
     "react-day-picker": "^6.1.0",
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",
