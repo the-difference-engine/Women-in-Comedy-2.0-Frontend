@@ -1,4 +1,15 @@
-.add-event {
+ .add-event{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  padding: 1em;
+  background-color: #e6e6e6;
+  overflow: auto;
+} 
+ 
+
+
+/* .add-event {
   position: fixed;
   left: 0;
   width: 20%;
