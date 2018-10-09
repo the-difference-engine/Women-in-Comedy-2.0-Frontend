@@ -20,7 +20,7 @@ import Notification from "./NotificationsPage/NotificationsPage";
 
 class App extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     var config = {
       apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
       authDomain: "womenincomedy-cd5b5.firebaseapp.com",

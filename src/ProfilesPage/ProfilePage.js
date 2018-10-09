@@ -29,7 +29,7 @@ const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
-  componentDidlMount() {
+  componentWillMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
