@@ -4,7 +4,7 @@ import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOG
 export const fetchUserInfo = (userId) => {
  const request = axios({
    method: 'get',
-   url: process.env.REACT_APP_API_ENDPOINT + '/users/info',
+   url: process.env.REACT_APP_API_ENDPOINT + 'users/info',
    headers: {"id": userId},
  });
  return (dispatch) => {
@@ -15,7 +15,7 @@ export const fetchUserInfo = (userId) => {
 };
 
 export const fetchAllUsers = () => async dispatch => {
-  const request = await axios(process.env.REACT_APP_API_ENDPOINT + '/users');
+  const request = await axios(process.env.REACT_APP_API_ENDPOINT + 'users');
   dispatch({ type: FETCH_ALL_USERS, payload: request });
 }
 
