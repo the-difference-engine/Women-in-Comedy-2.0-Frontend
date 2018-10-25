@@ -7,7 +7,7 @@ import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
-import LandingPage from './LandingPage/LandingPage.js';
+import LandingPage from './LandingPage/LandingPage';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
