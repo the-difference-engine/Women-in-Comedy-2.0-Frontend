@@ -194,7 +194,6 @@ class ProfilePage extends Component {
 
 
   deleteUserButton() {
-    console.log(this.state)
     const admin = sessionStorage.getItem("isAdmin");
     return (
         <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
