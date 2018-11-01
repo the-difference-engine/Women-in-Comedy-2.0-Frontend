@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
+import RegisterModal from '../LoginPage/components/RegisterModal';
 
 
 class LandingPage extends Component {
@@ -59,10 +59,10 @@ class LandingPage extends Component {
                             <input type='email' name="username" id='email' placeholder='Username' /><br /><br />
                             <label>Password:</label><br />
                             <input type="password" id='password' name="password" placeholder='Password' /><br /><br />
-                            <button className='btn'>Enter</button>
+                            <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <Link to="#"><h3>Create Account</h3></Link>
+                        <span id='registerButton'><RegisterModal/></span>
 
                     </div>
                 </div>

@@ -33,13 +33,6 @@ a {
   margin: 20% 30%;
 }
 
-.btn {
-  font-size: 20px;
-  width: 55%;
-  border-radius: 20px;
-  background-color: rgba(254, 8, 101, 1);
-}
-
 .col-lg-12 {
   background-color: rgba(0,0,0,.6);
   padding: 10px;
@@ -61,4 +54,16 @@ a {
   width: 60%;
   height: auto;
   padding: 10px;
+}
+
+#enterBtn {
+  font-size: 20px;
+  width: 55%;
+  border-radius: 20px;
+  background-color: rgba(254, 8, 101, 1);
+}
+
+#registerButton {
+  padding: 10px;
+  
 }

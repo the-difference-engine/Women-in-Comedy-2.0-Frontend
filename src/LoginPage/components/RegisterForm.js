@@ -122,12 +122,12 @@ class RegisterForm extends Component {
   storeProfilePicture () {
     const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf('.'));
     return firebase.storage()
-      .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
-      .put(this.state.img)
-      .then(snapshot => {
-        this.state.user.photo = snapshot.downloadURL;
-      });
-    };
+    .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
+    .put(this.state.img)
+    .then(snapshot => {
+      this.state.user.photo = snapshot.downloadURL;
+    });
+  };
 
   onSubmit(e) {
     let user = this.state.user

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import RegisterFrom from "../components/RegisterForm";
 import Dialog from "material-ui/Dialog";
 import RegisterForm from "./RegisterForm";
@@ -32,7 +33,7 @@ class RegisterModal extends Component {
         <div>
           {" "}
         </div>
-        <button id="navbar-button" label="Scrollable Dialog" onClick={this.handleOpen} > Register </button>
+        <h2><Link id="registerBtn" to='#' label="Scrollable Dialog" onClick={this.handleOpen}>Register</Link></h2>
         <Dialog
           autoScrollBodyContent={true}
           modal={false}
