@@ -4,6 +4,7 @@ import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
 import RegisterModal from '../LoginPage/components/RegisterModal';
+import CreateUserLink from './CreateUserLink';
 
 
 class LandingPage extends Component {
@@ -62,7 +63,7 @@ class LandingPage extends Component {
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <span id='registerButton'><RegisterModal/></span>
+                        <span id='registerButton'>{/*<RegisterModal/>*/}<CreateUserLink/></span>
 
                     </div>
                 </div>
