@@ -38,6 +38,11 @@ a {
   padding: 10px;
 }
 
+.modal {
+  background-color: white;
+  z-index: 10;
+}
+
 #background {
   background-image: url('../images/womengroupsedited.jpg');
   background-size: cover;

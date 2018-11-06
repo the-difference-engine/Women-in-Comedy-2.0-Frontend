@@ -13,27 +13,22 @@ class CreateUserLink extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isHidden: true
-        };
-        //this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+            open: false
+        }
     }; 
     
-    handleOpen() {
-        this.setState({ isHidden: false });
+    onOpenModal = () => {
+        this.setState({ open: true });
     };
-    
-    handleClose() {
-        this.setState({ isHidden: true });
+     
+    onCloseModal = () => {
+        this.setState({ open: false });
     };
-
-
 
     render() {
         return (
             <div>
-                <h2><Link id="registerBtn" to='#' onClick={this.handleOpen.bind(this)}>Create New Account</Link></h2>
-                {!this.state.isHidden && <CreateUserModal/>}
+                <h2><Link id="registerBtn" to='#' onClick={this.onOpenModal}>Create New Account</Link></h2>
             </div>
         )
     };
