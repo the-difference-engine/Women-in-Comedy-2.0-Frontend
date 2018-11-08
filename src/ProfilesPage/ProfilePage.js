@@ -293,7 +293,7 @@ class ProfilePage extends Component {
             {this.suspendUserButton()}
             {this.deleteUserButton()}
             {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.onCloseModal} center>
-          <h1 className='text-center font-weight-bold'>This user will be delted.</h1>
+          <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
           <h2 className='text-center'>Are you sure?</h2>
           <hr/>
           <div className='container'>
