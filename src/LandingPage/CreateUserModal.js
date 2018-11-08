@@ -23,7 +23,6 @@ class CreateUserModal extends Component {
         const { open } = this.state;
         return (
             <div>
-                <button onClick={this.onOpenModal}>Open modal</button>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <h2>Simple centered modal</h2>
                 </Modal>

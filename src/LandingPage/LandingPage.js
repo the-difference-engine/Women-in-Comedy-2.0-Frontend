@@ -63,7 +63,7 @@ class LandingPage extends Component {
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <span id='registerButton'>{/*<RegisterModal/>*/}<CreateUserLink/></span>
+                        <CreateUserLink/>
 
                     </div>
                 </div>

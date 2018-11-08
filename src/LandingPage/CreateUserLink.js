@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
-import axios from "axios";
-import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import CreateUserModal from './CreateUserModal';
+import Modal from 'react-responsive-modal';
 
 
 
@@ -15,20 +13,28 @@ class CreateUserLink extends Component {
         this.state = {
             open: false
         }
-    }; 
-    
+
+        this.onOpenModal = this.onOpenModal.bind(this);
+        this.onCloseModal = this.onCloseModal.bind(this);
+    };
+
     onOpenModal = () => {
         this.setState({ open: true });
+        console.log(this.state);
     };
-     
+
     onCloseModal = () => {
         this.setState({ open: false });
     };
 
     render() {
+        const { open } = this.state;
         return (
-            <div>
-                <h2><Link id="registerBtn" to='#' onClick={this.onOpenModal}>Create New Account</Link></h2>
+            <div id='registerButton'>
+                <Link to='#' onClick={this.onOpenModal}><h2>Create New Account</h2></Link>
+                {open && <Modal open={open} onClose={this.onCloseModal} center>
+                    <h2>Simple centered modal</h2>
+                </Modal>}
             </div>
         )
     };
