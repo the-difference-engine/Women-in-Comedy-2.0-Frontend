@@ -8,6 +8,7 @@ import RegisterForm from "./RegisterForm";
 import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+import '../css/register.css'
 
 class RegisterModal extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class RegisterModal extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
   };
-  
+
   handleOpen() {
     this.setState({ open: true });
   };
@@ -33,7 +34,7 @@ class RegisterModal extends Component {
         <div>
           {" "}
         </div>
-        <h2><Link id="registerBtn" to='#' label="Scrollable Dialog" onClick={this.handleOpen}>Create New Account</Link></h2>
+        <Link id="registerBtn" to='#' label="Scrollable Dialog" onClick={this.handleOpen}><h2>create new account</h2></Link>
         <Dialog
           autoScrollBodyContent={true}
           modal={false}

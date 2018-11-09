@@ -3,8 +3,7 @@ import './LandingPage.css';
 import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
-//import RegisterModal from '../LoginPage/components/RegisterModal';
-import CreateUserLink from './CreateUserLink';
+import RegisterModal from '../LoginPage/components/RegisterModal';
 
 
 class LandingPage extends Component {
@@ -63,7 +62,7 @@ class LandingPage extends Component {
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <CreateUserLink/>
+                        <RegisterModal/>
 
                     </div>
                 </div>
@@ -73,10 +72,11 @@ class LandingPage extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
     const { setUserLoggedIn } = state;
     return { setUserLoggedIn };
-};
+};*/
+const mapStateToProps = ({ setUserLoggedIn }) => ({ setUserLoggedIn });
 
 //export default connect(mapStateToProps, { setUserLoggedIn })(LandingPage);
 export default connect(null, { setUserLoggedIn })(LandingPage);
