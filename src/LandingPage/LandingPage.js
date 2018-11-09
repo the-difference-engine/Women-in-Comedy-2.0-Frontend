@@ -3,7 +3,7 @@ import './LandingPage.css';
 import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
-import RegisterModal from '../LoginPage/components/RegisterModal';
+//import RegisterModal from '../LoginPage/components/RegisterModal';
 import CreateUserLink from './CreateUserLink';
 
 
@@ -78,4 +78,5 @@ const mapStateToProps = (state) => {
     return { setUserLoggedIn };
 };
 
-export default connect(mapStateToProps, { setUserLoggedIn })(LandingPage);
+//export default connect(mapStateToProps, { setUserLoggedIn })(LandingPage);
+export default connect(null, { setUserLoggedIn })(LandingPage);
