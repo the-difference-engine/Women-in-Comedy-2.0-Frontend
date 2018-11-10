@@ -12,7 +12,6 @@ class UserList extends Component {
     const users = this.props.users.userList;
 
     return users.map(user => {
-      console.log(user);
       return (
         <li key={user.id}>
           {user.firstName} {user.lastName}

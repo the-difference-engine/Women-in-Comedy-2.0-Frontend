@@ -77,14 +77,13 @@ class ProfilePage extends Component {
   renderEditUserButton() {
     return (
       <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
-        {/*{this.state.editUserEnable ? "Back" : "Edit"}*/}
+        {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
   }
 
   renderPublicFigureStatus(userInfo = this.props.userInfo) {
-    let public_figure = userInfo.public_figure;
-    if (public_figure == true) {
+    if (userInfo.public_figure) {
       return(
         <h6>Public Figure</h6>
       );
@@ -92,8 +91,7 @@ class ProfilePage extends Component {
   }
 
   renderIsMentorStatus(userInfo = this.props.userInfo) {
-    let is_mentor = userInfo.is_mentor;
-    if (is_mentor == true) {
+    if (userInfo.is_mentor) {
       return(
         <h6>Mentor</h6>
       );
@@ -159,7 +157,7 @@ class ProfilePage extends Component {
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended;
     const admin = sessionStorage.getItem("isAdmin");
-    /*if (this.state.suspendedState) {
+    if (this.state.suspendedState) {
       return (
         <button
           className="btn btn-warning"
@@ -169,13 +167,14 @@ class ProfilePage extends Component {
           Unsuspend{" "}
         </button>
       );
-    }*/
-    return (
-      <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
-        {" "}
-        Suspend{" "}
-      </button>
-    );
+    } else {
+      return (
+        <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
+          {" "}
+          Suspend{" "}
+        </button>
+      );
+    }
   }
 
   deleteUserButton() {
@@ -211,7 +210,7 @@ class ProfilePage extends Component {
 
   renderPageContent() {
     const { userInfo, history } = this.props;
-    /*if (this.state.editUserEnable) {
+    if (this.state.editUserEnable) {
       return (
         <EditPage
           editable={this.handleEditUserEnable.bind(this)}
@@ -219,36 +218,37 @@ class ProfilePage extends Component {
           userInfo={userInfo}
         />
       );
-    }*/
+    } else {
 
-    return (
-      <div>
-        <div className="feed-post-bar">
-          <div className="wrap">
-            <div className="search">
-              <input
-                type="text"
-                className="searchTerm"
-                placeholder="What's New?"
-                onChange={event =>
-                  this.props.userWallInputChange(event.target.value)
-                }
-                value={this.props.userWallPost}
-              />
-              <div className="post-button">
-                <button
-                  className="btn btn-default"
-                  onClick={this.onPost.bind(this)}
-                >
-                  POST
-                </button>
+      return (
+        <div>
+          <div className="feed-post-bar">
+            <div className="wrap">
+              <div className="search">
+                <input
+                  type="text"
+                  className="searchTerm"
+                  placeholder="What's New?"
+                  onChange={event =>
+                    this.props.userWallInputChange(event.target.value)
+                  }
+                  value={this.props.userWallPost}
+                />
+                <div className="post-button">
+                  <button
+                    className="btn btn-default"
+                    onClick={this.onPost.bind(this)}
+                  >
+                    POST
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <ProfileFeed feeds={this.props.userFeeds} />
         </div>
-        <ProfileFeed feeds={this.props.userFeeds} />
-      </div>
-    );
+      );
+    }
   }
 
   render() {

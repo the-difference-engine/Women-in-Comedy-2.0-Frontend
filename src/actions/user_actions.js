@@ -35,14 +35,12 @@ export const editUser = (boolean) => {
 }
 
 export const updateSettings = (userId, adminStatus, callback) => {
-  let switchAdmin;
-    switchAdmin =  adminStatus == true ? false : true;
 
   const request = axios({
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
     headers: {"id": userId },
-    data: { "admin":  switchAdmin }
+    data: { "admin": !adminStatus }
   });
 
   return (dispatch) => {
@@ -61,7 +59,7 @@ export const updatePublicFigure = (userId, publicFigure, callback) => {
     headers: {"id": userId },
     data: { "public_figure":  !publicFigure }
   });
-  console.log(publicFigure);
+
   return (dispatch) => {
     request.then((data) => {
       dispatch({ type: UPDATE_PUBLIC_FIGURE_STATUS, payload: request});
