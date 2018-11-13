@@ -73,3 +73,7 @@ a {
 #registerButton {
   padding: 10px;
 }
+
+#registerButton:hover {
+  color: white;
+}

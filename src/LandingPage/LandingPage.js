@@ -3,7 +3,7 @@ import './LandingPage.css';
 import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
-import RegisterModal from '../LoginPage/components/RegisterModal';
+import CreateUserLink from './CreateUserLink';
 
 
 class LandingPage extends Component {
@@ -25,13 +25,11 @@ class LandingPage extends Component {
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        // this.props.createSession(email, password);
         axios
             .post(process.env.REACT_APP_API_ENDPOINT + "sessions", { email, password })
             .then(response => {
                 sessionStorage.setItem("confirmed", response.data.confirmed_at);
                 sessionStorage.setItem("userId", response.data.id);
-                // sessionStorage.setItem('isAdmin', response.data.admin);
                 sessionStorage.setItem("adminUser", response.data.admin);
 
                 this.props.setUserLoggedIn(true, response.data.id);
@@ -62,7 +60,7 @@ class LandingPage extends Component {
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <RegisterModal/>
+                        <CreateUserLink/>
 
                     </div>
                 </div>
@@ -71,12 +69,6 @@ class LandingPage extends Component {
     };
 }
 
-
-/*const mapStateToProps = (state) => {
-    const { setUserLoggedIn } = state;
-    return { setUserLoggedIn };
-};*/
 const mapStateToProps = ({ setUserLoggedIn }) => ({ setUserLoggedIn });
 
-//export default connect(mapStateToProps, { setUserLoggedIn })(LandingPage);
 export default connect(null, { setUserLoggedIn })(LandingPage);

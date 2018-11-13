@@ -9,6 +9,7 @@ import EventsFeed from './EventsFeedPage/EventsFeed';
 import Form from './LoginPage/Form';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
+import LandingPage from './LandingPage/LandingPage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
@@ -33,11 +34,12 @@ class App extends Component {
   }
 
   render() {
-    return (<BrowserRouter>
-      <MuiThemeProvider>
+    return (
+    <BrowserRouter>
+     <MuiThemeProvider>
         <div>
           <Switch>
-            <Route exact path='/' component={Form}></Route>
+            <Route exact path='/' component={LandingPage}></Route>
             <Route path='/feed' component={Feed}></Route>
             <Route path='/newevent' component={CreateEvents}></Route>
             <Route path='/events' component={EventsPage}></Route>
