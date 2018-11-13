@@ -85,7 +85,7 @@ export const updateIsMentor = (userId, isMentor, callback) => {
   };
 };
 
-export const setUserLoggedIn = (boolean, userId) => { ``
+export const setUserLoggedIn = (boolean, userId) => {
   return {
     type: SET_USER_LOGGED_IN,
     loggedIn: boolean,

@@ -103,6 +103,7 @@ class ProfilePage extends Component {
     // user is an admin or not. If it is the admin, render the Admin Edit form,
     // if it is a regular user, render user edit form.
     this.props.editUser(adminUser);
+    console.log(this.state.editUserEnable);
     //Togle the editUser function enable or not enable
     this.setState(prevState => ({
       editUserEnable: !prevState.editUserEnable

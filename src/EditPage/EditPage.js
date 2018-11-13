@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import EditForm from './components/EditForm';
-import axios from 'axios';
-import {Link, Route} from 'react-router-dom';
+
 
 class EditPage extends Component {
 
