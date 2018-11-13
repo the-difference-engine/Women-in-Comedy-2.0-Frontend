@@ -1,7 +1,8 @@
-.left-side-bar{
-  display: grid;
-  grid-template-columns: 100%;
+#left-side-bar{
+  width: 20%;
+  float: left;
   padding: 1em;
+  padding-top: 8%;
   height: 100vh; 
 
   background-color: #e6e6e6;
