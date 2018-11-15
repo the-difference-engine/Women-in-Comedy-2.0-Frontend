@@ -30,7 +30,7 @@ class CreateUserLink extends Component {
         return (
             <div>
                 <a id='registerButton' href='#' onClick={this.onOpenModal}><h2>create new account</h2></a>
-                <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                <Modal id='registrationModal' open={this.state.open} onClose={this.onCloseModal} center>
                     <h2>Simple centered modal</h2>
                 </Modal>
             </div>

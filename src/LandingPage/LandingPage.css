@@ -38,12 +38,6 @@ a {
   padding: 10px;
 }
 
-.modal {
-  background-color: black;
-  /*color: black;*/
-  z-index: 10;
-}
-
 #background {
   background-image: url('../images/womengroupsedited.jpg');
   background-size: cover;
@@ -76,4 +70,8 @@ a {
 
 #registerButton:hover {
   color: white;
+}
+
+#registrationModal  {
+  color: black;
 }
