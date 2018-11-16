@@ -6,7 +6,7 @@
     "actioncable": "^5.1.5",
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
-    "firebase": "^4.10.1",
+    "firebase": "^4.13.1",
     "jsesc": "^2.5.1",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.1",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "eslint": "^4.18.1",
     "eslint-plugin-import": "^2.9.0",
-    "react-scripts": "1.0.10"
+    "react-scripts": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

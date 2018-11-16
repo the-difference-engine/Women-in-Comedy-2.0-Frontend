@@ -1,3 +1,14 @@
+ .add-event {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  padding: 1em;
+  background-color: #e6e6e6;
+  overflow: auto;
+} 
+ 
+
+/* 
 .add-event {
   position: fixed;
   left: 0;
@@ -11,6 +22,18 @@
   color: #9b1522;
   font-size: 18px;
   font-weight: 500;
+}
+
+@media (max-width: 1150px) and (min-width: 943px) {
+  .upcoming-events p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 942px) and (min-width: 768px) {
+  .upcoming-events p {
+    font-size: 13.5px;
+  }
 }
 
 .past-events p {
@@ -38,7 +61,8 @@
   }
 
   .add-event-content {
-    margin-top: 30px;
+    padding-top: 10px;
+    padding-right: 10px;
     height: 100%;
     background-color: #e6e6e6;
   }
@@ -47,4 +71,4 @@
 .new-event button:hover {
   background-color: #9b1522;
   color: white;
-}
+} */

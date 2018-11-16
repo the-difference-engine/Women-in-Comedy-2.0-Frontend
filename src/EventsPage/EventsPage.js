@@ -9,6 +9,10 @@ import Navbar from '../common/Navbar';
 class EventsPage extends Component {
 
   componentDidMount() {
+		const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
     const userId = sessionStorage.getItem('userId');
     this.props.fetchMyUpcomingEvents(userId);
 		this.props.fetchUpcomingEvents();

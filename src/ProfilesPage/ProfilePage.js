@@ -30,7 +30,11 @@ const admin = sessionStorage.getItem("isAdmin");
 
 class ProfilePage extends Component {
   componentDidMount() {
-    const sender_id = sessionStorage.getItem("userId");
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
+    const sender_id = sessionStorage.getItem('userId');
     const receiver_id = this.props.match.params.id;
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
     fetchUserInfo(this.props.match.params.id);
@@ -39,9 +43,9 @@ class ProfilePage extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     fetchNotifications(sender_id);
     this.setState(() => {
-      return { suspendedState: this.props.userInfo.suspended };
+      return {suspendedState: this.props.userInfo.suspended}
     });
-    this.setState({ editUserEnable: false });
+    this.setState({editUserEnable: false});
   }
 
   onPress() {

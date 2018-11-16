@@ -1,11 +1,11 @@
-import { EDIT_USER } from '../actions/types'; 
+import { UPDATE_ADMIN_STATUS } from '../actions/types'; 
 
 export default function(state = {}, action ) {
   switch (action.type) {
-    case EDIT_USER:
-      return action.payload.data;
 
+    case UPDATE_ADMIN_STATUS:
+      return {...state, ...action.payload.data};
     default:
-      return state;
+      return state
   }
 }

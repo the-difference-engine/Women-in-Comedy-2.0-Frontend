@@ -1,4 +1,5 @@
 export const CREATE_SESSION = 'create_session';
+
 //User DATA
 export const FETCH_USER_INFO = 'fetch_user_info';
 export const FETCH_USER_FEEDS = 'fetch_user_feeds';
@@ -9,6 +10,7 @@ export const SET_USER_LOGGED_IN = 'set_user_logged_in';
 
 // navbar
 export const FILTER_USERS = 'filter_users';
+
 //Events
 export const CREATE_EVENT = 'create_event';
 export const EVENT_INPUT_CHANGE = 'event_input_change';
@@ -57,3 +59,7 @@ export const DELETE_USER = 'delete_user';
 export const EMAIL_USERS = 'email_users';
 export const UPDATE_PUBLIC_FIGURE_STATUS = 'public_figure';
 export const UPDATE_IS_MENTOR_STATUS = 'is_mentor';
+export const UPDATE_ADMIN_STATUS = 'update_admin_status';
+
+//registration 
+export const FETCH_MEETING_OPTIONS = 'fetch_meeting_options';

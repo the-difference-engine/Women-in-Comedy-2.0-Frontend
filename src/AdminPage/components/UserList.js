@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import AdminForm from "./AdminForm";
 
 class UserList extends Component {
-  componentDidMount() {
-    // setTimeout(function(){
-    //   window.location.reload();},10);
-  }
 
   renderSuperAdminList() {
     const users = this.props.users.userList;
@@ -17,7 +13,8 @@ class UserList extends Component {
           {user.firstName} {user.lastName}
           <p>{user.email}</p>
           <AdminForm
-            isSuperUser={user.superuser}
+            isLoggedInUserSuper = {this.props.userInfo.superadmin}
+            isSuperAdmin={user.superadmin}
             adminStatus={user.admin}
             publicFigureStatus={user.public_figure}
             fetchAllUsers={this.props.fetchAllUsers}
@@ -31,31 +28,6 @@ class UserList extends Component {
         </li>
       );
     });
-    setTimeout(function() {
-      window.location.reload();
-    }, 10);
-  }
-
-  renderNonAdminList() {
-    const users = this.props.users.userList;
-    return users.map(user => {
-      return (
-        <li key={user.id}>
-          <h4>
-            {user.firstName} {user.lastName}
-          </h4>
-          <h5>Admin Status:</h5>
-          {user.admin == true ? (
-            <h5 className="admin-show">Admin</h5>
-          ) : (
-            <h5 className="admin-show">Non Admin</h5>
-          )}
-        </li>
-      );
-      setTimeout(function() {
-        window.location.reload();
-      }, 10);
-    });
   }
 
   render() {
@@ -68,7 +40,7 @@ class UserList extends Component {
     return (
       <ol className="list-group col-sm-4">
         <p>
-          {user.admin ? this.renderSuperAdminList() : this.renderNonAdminList()}
+          {this.renderSuperAdminList()}
         </p>
       </ol>
     );
