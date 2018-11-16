@@ -27,6 +27,7 @@
     "react-material-ui-form-validator": "^1.1.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.1.2",
+    "react-scripts": "^2.0.4",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-file-upload": "0.0.19",
@@ -37,8 +38,7 @@
     "spdy": "^3.4.7"
   },
   "devDependencies": {
-    "eslint-plugin-import": "^2.9.0",
-    "react-scripts": "^2.0.4"
+    "eslint-plugin-import": "^2.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
