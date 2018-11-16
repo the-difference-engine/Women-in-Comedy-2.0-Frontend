@@ -2,6 +2,9 @@
   "name": "women_in_comedy_client",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "actioncable": "^5.1.5",
     "axios": "^0.16.2",
