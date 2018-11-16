@@ -12,7 +12,7 @@ import EmailModal from './components/EmailModal';
 
 class CreateAdmin extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
