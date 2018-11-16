@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/events.css';
+import _ from 'lodash';
 
 
-
-var moment = require('moment');
-const sortByDate = (events = []) => events.sort((event1, event2) => moment(event1.date).format('YYYYMMDD') - moment(event2.date).format('YYYYMMDD'));
-
+const sortByDate = (events = []) => _.reverse(_.sortBy(events, 'date'))
 
 export default (props) => {
 	if (props.upcomingEvents.length === 0) {
