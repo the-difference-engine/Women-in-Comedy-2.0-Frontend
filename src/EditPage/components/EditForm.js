@@ -32,7 +32,7 @@ class EditForm extends Component {
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
       {/* ADMIN ONLY */}
       {isAdminEdit ? <div>
-          <Field label="Assign Public Figure/ Mentor Status" name="superuser" component={this.renderCheckbox}/>
+          <Field label="Assign Public Figure/ Mentor Status" name="superadmin" component={this.renderCheckbox}/>
           <Field label="Assign Admin Role" name="admin" component={this.renderCheckbox}/>
         </div>
         : null }

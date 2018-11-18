@@ -32,9 +32,8 @@ class Navbar extends Component {
   }
 
   Logout() {
-    axios.get(process.env.REACT_APP_API_ENDPOINT + 'sessions/sign_out').then(response => {
-      sessionStorage.setItem('confirmed', null);
-      sessionStorage.setItem('userId', null);
+    axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out').then(response => {
+      sessionStorage.clear();
       this.props.history.push('/')
     });
   };
@@ -71,11 +70,6 @@ class Navbar extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
   }
-
-  //Not sure what this line is supposed to be doing?
-  //componentWillReceiveProps(newProps) {
-    //const { userInfo } = newProps;
-  //}
 
   renderAdminIcon() {
     const isAdmin = this.props.userInfo.admin;

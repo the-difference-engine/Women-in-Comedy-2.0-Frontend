@@ -30,16 +30,13 @@ const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editUserEnable: false,
-      suspendedState: null
-    };
-  };
 
-  componentDidMount() {
-    const sender_id = sessionStorage.getItem("userId");
+  componentWillMount() {
+    const valid = sessionStorage.getItem('confirmed');
+    if(valid === 'null' || !valid) {
+      this.props.history.push('/');
+    }
+    const sender_id = sessionStorage.getItem('userId');
     const receiver_id = this.props.match.params.id;
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
     fetchUserInfo(this.props.match.params.id);
@@ -48,9 +45,9 @@ class ProfilePage extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     fetchNotifications(sender_id);
     this.setState(() => {
-      return { suspendedState: this.props.userInfo.suspended };
+      return {suspendedState: this.props.userInfo.suspended}
     });
-    /*this.setState({ editUserEnable: false });*/
+    this.setState({editUserEnable: false});
   }
 
   onPress() {
@@ -84,7 +81,6 @@ class ProfilePage extends Component {
   }
 
   renderEditUserButton() {
-    console.log(this.state.editUserEnable);
     return (
       <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
         {/*if this.state.editUserEnable === false render "back" else render "Edit"*/}
@@ -129,9 +125,7 @@ class ProfilePage extends Component {
 
   onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
-    alert(id);
-    alert('Button Clicked!')
-    {/*this.props.deleteUser(id);*/}
+    this.props.deleteUser(id);
    
   }
 
@@ -176,17 +170,13 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    const superuser = this.props.userInfo.superuser;
     
-    console.log(superuser);
     {/*if superuser's value is false render deleleteUser button.*/}
-    if(superuser === false) {
+    if(!this.props.userInfo.superuser) {
       return (
-        <a href="/message">
-          <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
+          <button href='/message' className="btn btn-danger" onClick={this.onDelete.bind(this)}>
             Delete User
           </button>
-        </a>
       );
     }
   }

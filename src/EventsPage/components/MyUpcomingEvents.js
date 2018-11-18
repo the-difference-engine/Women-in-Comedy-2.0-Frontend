@@ -8,7 +8,7 @@ export default (props) => {
 	}
 	return (
 		<div className="event-page-content" >
-			<div className="container">
+			<div>
 				<div className="row events-grid" id="my-events">
 					<div className="col-xs-offset-1 col-xs-3">
 						<h1 className="events-header">My Upcoming Events </h1>

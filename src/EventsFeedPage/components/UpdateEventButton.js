@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import '../css/add-events.css';
-
 class UpdateEventButton extends Component {
   constructor(props) {
     super(props);

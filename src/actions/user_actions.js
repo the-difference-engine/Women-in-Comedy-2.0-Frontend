@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_ADMIN_STATUS} from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -33,7 +33,43 @@ export const editUser = (boolean) => {
   }
 }
 
-export const updateSettings = (userId, adminStatus) => {
+// super User will be created 
+export const updateToSuperAdmin = (userId, callback) => {
+  
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "SuperAdmin":  true, "admin": true }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
+    });
+  };
+}
+
+// super User Status will be removed by other super users 
+export const removeSuperAdminStatus = (userId, callback) => {
+  
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "superadmin":  false}
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: EDIT_USER, payload: request});
+      callback();
+    });
+  };
+}
+
+export const updateSettings = (userId, adminStatus, callback) => {
   let switchAdmin;
     adminStatus == true ? switchAdmin = false : switchAdmin = true;
 
@@ -46,12 +82,13 @@ export const updateSettings = (userId, adminStatus) => {
 
   return (dispatch) => {
     request.then((data) => {
-      dispatch({ type: EDIT_USER, payload: request})
+      dispatch({ type: UPDATE_ADMIN_STATUS, payload: request})
+      callback();
     });
   };
  };
 
-export const setUserLoggedIn = (boolean, userId) => { ``
+export const setUserLoggedIn = (boolean, userId) => {
   return {
     type: SET_USER_LOGGED_IN,
     loggedIn: boolean,

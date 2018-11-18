@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import axios from "axios";
 import UserList from "./UserList";
+import SuperAdminForm from "./SuperAdminForm.js";
 import { bindActionCreators } from "redux";
 import "../css/navbar.css";
 import "../css/modal.css";
-import { fetchUserInfo } from "../../actions/index";
+import { fetchUserInfo, fetchAllUsers, updateToSuperAdmin, removeSuperAdminStatus} from "../../actions/index";
+
 
 class AdminForm extends Component {
   constructor(props) {
@@ -20,23 +22,18 @@ class AdminForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event, userId = this.props.userId) {
+  handleSubmit(event, userId = this.props.userId, isSuperAdmin = this.props.isSuperAdmin) {
     event.preventDefault();
 
     let adminStatus = this.props.adminStatus;
-    this.props.updateSettings(userId, adminStatus);
 
-    let displayAdmin;
-    adminStatus == true
-      ? (displayAdmin = "Have Been Removed")
-      : (displayAdmin = "Have Been Added");
+    if (isSuperAdmin !== true){
+      this.props.updateSettings(userId, adminStatus, this.props.fetchAllUsers);
+      this.setState({ status: "Updated" });
+    } else {
+      alert("This user has Super User admin rights, cannot remove normal admin rights!");
+    }
 
-    alert("Admin Privlages " + displayAdmin);
-
-    setTimeout(function() {
-      window.location.reload();
-    }, 10);
-    this.setState({ status: "Updated" });
   }
 
   handleChange(event) {
@@ -51,11 +48,10 @@ class AdminForm extends Component {
     return currentStatus;
   }
 
-  superUserRender(props) {
+  SuperAdminRender(props) {
     return (
       <div className="admin-status">
-        <h6>Switch Status?</h6>
-        <input className="btn adminButtonStyle" type="submit" value="Submit" />
+        <input className="btn adminButtonStyle" type="submit" value="Change Admin Status" />
         <br />
       </div>
     );
@@ -68,8 +64,12 @@ class AdminForm extends Component {
           <p id="admin-status-display">
             Admin Status: {this.renderAdminStatus()}
           </p>
-
-          <div>{this.superUserRender()}</div>
+        {this.props.isLoggedInUserSuper === true ? 
+          (
+            <SuperAdminForm isSuperAdmin={this.props.isSuperAdmin} userId={this.props.userId} onClick={this.updateSuperAdmin} fetchAllUsers={this.props.fetchAllUsers}/> 
+          )
+          : (<p />)}
+          <div>{this.SuperAdminRender()}</div>
         </form>
       </div>
     );
@@ -77,13 +77,16 @@ class AdminForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { userInfo } = state;
-  return { userInfo };
+  const { userInfo, allUsers } = state;
+  return { userInfo, allUsers };
 }
 
 export default connect(
   mapStateToProps,
   {
-    fetchUserInfo
+    fetchUserInfo,
+    fetchAllUsers,
+    removeSuperAdminStatus,
+    updateToSuperAdmin
   }
 )(AdminForm);
