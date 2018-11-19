@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
-//import { connect } from "react-redux";
-//import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 
 
@@ -15,13 +13,8 @@ class CreateUserLink extends Component {
         };
     };
 
-    // state = {
-    //     open: false,
-    // };
-
     onOpenModal = (e, err) => {
         this.setState({ open: true });
-        console.log(err);
     };
 
     onCloseModal = () => {

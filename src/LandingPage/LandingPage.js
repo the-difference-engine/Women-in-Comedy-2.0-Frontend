@@ -31,14 +31,16 @@ class LandingPage extends Component {
             .then(response => {
                 sessionStorage.setItem("confirmed", response.data.confirmed_at);
                 sessionStorage.setItem("userId", response.data.id);
-                // sessionStorage.setItem('isAdmin', response.data.admin);
                 sessionStorage.setItem("adminUser", response.data.admin);
 
                 this.props.setUserLoggedIn(true, response.data.id);
 
-                response.data.confirmed_at
-                    ? this.goToFeedPage()
-                    : this.setState({ notVerified: true });
+                if(response.data.confirmed_at) {
+                    this.goToFeedPage();
+                } else{
+                    this.setState({notVerified: true});
+                }
+
             })
             .catch(err => {
                 alert(err);
@@ -71,12 +73,6 @@ class LandingPage extends Component {
     };
 }
 
-
-/*const mapStateToProps = (state) => {
-    const { setUserLoggedIn } = state;
-    return { setUserLoggedIn };
-};*/
 const mapStateToProps = ({ setUserLoggedIn }) => ({ setUserLoggedIn });
 
-//export default connect(mapStateToProps, { setUserLoggedIn })(LandingPage);
 export default connect(null, { setUserLoggedIn })(LandingPage);

@@ -47,5 +47,6 @@ class RegisterModal extends Component {
     );
   }
 }
+
 const mapStateToProps = state => state;
 export default RegisterModal;

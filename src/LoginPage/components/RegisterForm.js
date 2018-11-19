@@ -31,7 +31,7 @@ class RegisterForm extends Component {
       user: {},
       // imgURL: "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg",
       imgURL: null
-    };  
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
@@ -43,8 +43,8 @@ class RegisterForm extends Component {
   }
 
   renderMenuItems() {
-    return this.props.allMeetingOptions.map(item => 
-      (    
+    return this.props.allMeetingOptions.map(item =>
+      (
         <MenuItem
           key={item.id}
           primaryText={item.name}
@@ -119,33 +119,33 @@ class RegisterForm extends Component {
     };
   }
 
-  storeProfilePicture () {
+  storeProfilePicture() {
     const ext = this.state.img.name.slice(this.state.img.name.lastIndexOf('.'));
     return firebase.storage()
-    .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
-    .put(this.state.img)
-    .then(snapshot => {
-      this.state.user.photo = snapshot.downloadURL;
-    });
+      .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
+      .put(this.state.img)
+      .then(snapshot => {
+        this.state.user.photo = snapshot.downloadURL;
+      });
   };
 
   onSubmit(e) {
     let user = this.state.user
     let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
-    if(this.state.imgURL.startsWith("data:image")) {
+    if (this.state.imgURL.startsWith("data:image")) {
       this.storeProfilePicture()
-      .then(() => {
-        axios({
-          method: 'post',
-          url: process.env.REACT_APP_API_ENDPOINT + 'users',
-          data: { first_name, last_name, email, password, city, experience, training, video_link, website }
-        })
-      }).then(payload => {
-        this.setState({ userMade: true });
-      }).catch(err => {
-        alert(err)
-      });
+        .then(() => {
+          axios({
+            method: 'post',
+            url: process.env.REACT_APP_API_ENDPOINT + 'users',
+            data: { first_name, last_name, email, password, city, experience, training, video_link, website }
+          })
+        }).then(payload => {
+          this.setState({ userMade: true });
+        }).catch(err => {
+          alert(err)
+        });
     }
     else {
       axios({
@@ -269,7 +269,7 @@ class RegisterForm extends Component {
                     value={this.state.user.website}
                   />
                 </div>
-                
+
                 <div>
                   <SelectField
                     floatingLabelText="Years of Experience"
@@ -352,9 +352,9 @@ class RegisterForm extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const { allMeetingOptions } = state;
-  return { allMeetingOptions }; 
+  return { allMeetingOptions };
 }
 
 export default connect(mapStateToProps, { fetchMeetingOptions })(RegisterForm);

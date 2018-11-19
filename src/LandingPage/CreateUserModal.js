@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Modal from 'react-responsive-modal';
 
 
-
 class CreateUserModal extends Component {
 
     constructor(props) {
@@ -14,10 +13,6 @@ class CreateUserModal extends Component {
             open: false
         }
     };
-
-
-
-
 
     render() {
         const { open } = this.state;
