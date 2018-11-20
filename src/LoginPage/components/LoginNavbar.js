@@ -86,8 +86,9 @@ class LoginNavbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { setUserLoggedIn } = state;
   return { setUserLoggedIn };
 };
+
 export default connect(mapStateToProps, { setUserLoggedIn })(LoginNavbar);

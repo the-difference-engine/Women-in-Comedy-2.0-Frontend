@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import RegisterFrom from "../components/RegisterForm";
 import Dialog from "material-ui/Dialog";
 import RegisterForm from "./RegisterForm";
 import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+import '../css/register.css'
 
 class RegisterModal extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class RegisterModal extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
   };
-  
+
   handleOpen() {
     this.setState({ open: true });
   };
@@ -32,7 +34,7 @@ class RegisterModal extends Component {
         <div>
           {" "}
         </div>
-        <button id="navbar-button" label="Scrollable Dialog" onClick={this.handleOpen} > Register </button>
+        <Link id="registerBtn" to='#' label="Scrollable Dialog" onClick={this.handleOpen}><h2>create new account</h2></Link>
         <Dialog
           autoScrollBodyContent={true}
           modal={false}
@@ -45,5 +47,6 @@ class RegisterModal extends Component {
     );
   }
 }
+
 const mapStateToProps = state => state;
 export default RegisterModal;

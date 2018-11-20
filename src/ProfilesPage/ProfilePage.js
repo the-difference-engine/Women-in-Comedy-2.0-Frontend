@@ -35,28 +35,26 @@ const modStyle = {
 };
 
 class ProfilePage extends Component {
-
-
+  
   componentWillMount() {
 
   state = {
     deleteModalVisible: false
   }
 
-  componentDidlMount() {
-
+  componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     const sender_id = sessionStorage.getItem('userId');
     const receiver_id = this.props.match.params.id;
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections } = this.props;
-    this.props.fetchUserInfo(this.props.match.params.id);
-    this.props.fetchUserFeeds(this.props.match.params.id);
-    this.props.fetchUserConnections(this.props.match.params.id);
-    this.props.fetchConnectionStatus({ sender_id, receiver_id });
-    this.props.fetchNotifications(sender_id);
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+    fetchUserInfo(this.props.match.params.id);
+    fetchUserFeeds(this.props.match.params.id);
+    fetchUserConnections(this.props.match.params.id);
+    fetchConnectionStatus({ sender_id, receiver_id });
+    fetchNotifications(sender_id);
     this.setState(() => {
       return {suspendedState: this.props.userInfo.suspended}
     });
@@ -102,11 +100,28 @@ class ProfilePage extends Component {
     );
   }
 
+  renderPublicFigureStatus(userInfo = this.props.userInfo) {
+    if (userInfo.public_figure) {
+      return(
+        <h6>Public Figure</h6>
+      );
+    }
+  }
+
+  renderIsMentorStatus(userInfo = this.props.userInfo) {
+    if (userInfo.is_mentor) {
+      return(
+        <h6>Mentor</h6>
+      );
+    }
+  }
+
   handleEditButtonClick() {
     // Edit User accepts a boolean value, that is the current logged in
     // user is an admin or not. If it is the admin, render the Admin Edit form,
     // if it is a regular user, render user edit form.
     this.props.editUser(adminUser);
+    console.log(this.state.editUserEnable);
     //Togle the editUser function enable or not enable
     this.setState(prevState => ({
       editUserEnable: !prevState.editUserEnable
@@ -180,13 +195,14 @@ class ProfilePage extends Component {
           Unsuspend{" "}
         </button>
       );
+    } else {
+      return (
+        <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
+          {" "}
+          Suspend{" "}
+        </button>
+      );
     }
-    return (
-      <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
-        {" "}
-        Suspend{" "}
-      </button>
-    );
   }
 
   onCloseModal = () => {
@@ -233,36 +249,37 @@ class ProfilePage extends Component {
           userInfo={userInfo}
         />
       );
-    }
+    } else {
 
-    return (
-      <div>
-        <div className="feed-post-bar">
-          <div className="wrap">
-            <div className="search">
-              <input
-                type="text"
-                className="searchTerm"
-                placeholder="What's New?"
-                onChange={event =>
-                  this.props.userWallInputChange(event.target.value)
-                }
-                value={this.props.userWallPost}
-              />
-              <div className="post-button">
-                <button
-                  className="btn btn-default"
-                  onClick={this.onPost.bind(this)}
-                >
-                  POST
-                </button>
+      return (
+        <div>
+          <div className="feed-post-bar">
+            <div className="wrap">
+              <div className="search">
+                <input
+                  type="text"
+                  className="searchTerm"
+                  placeholder="What's New?"
+                  onChange={event =>
+                    this.props.userWallInputChange(event.target.value)
+                  }
+                  value={this.props.userWallPost}
+                />
+                <div className="post-button">
+                  <button
+                    className="btn btn-default"
+                    onClick={this.onPost.bind(this)}
+                  >
+                    POST
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <ProfileFeed feeds={this.props.userFeeds} />
         </div>
-        <ProfileFeed feeds={this.props.userFeeds} />
-      </div>
-    );
+      );
+    }
   }
 
 
@@ -281,6 +298,8 @@ class ProfilePage extends Component {
       <div>
         <Navbar history={this.props.history} notifications={notifications} />
         <LeftGraySideBar>
+          {this.renderPublicFigureStatus()}
+          {this.renderIsMentorStatus()}
           <UserInfo
             userInfo={userInfo}
             adminUser={adminUser}
