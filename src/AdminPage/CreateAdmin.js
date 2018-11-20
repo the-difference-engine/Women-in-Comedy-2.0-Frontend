@@ -5,14 +5,14 @@ import AdminForm from './components/AdminForm';
 import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
-import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, fetchNotifications } from '../actions';
+import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, updatePublicFigure, updateIsMentor, fetchNotifications } from '../actions';
 import './css/navbar.css';
 import EmailModal from './components/EmailModal';
 
 
 class CreateAdmin extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
@@ -34,7 +34,14 @@ class CreateAdmin extends Component {
           <EmailModal />
         </LeftGraySideBar>
         <PageContent>
-         <UserList userInfo={this.props.userInfo} users={this.props.allUsersList} fetchUser={this.props.fetchUser} updateSettings={this.props.updateSettings} />
+         <UserList 
+          userInfo={this.props.userInfo} 
+          fetchAllUsers={this.props.fetchAllUsers} 
+          updatePublicFigure={this.props.updatePublicFigure} 
+          updateIsMentor={this.props.updateIsMentor} 
+          updateSettings={this.props.updateSettings} 
+          users={this.props.allUsersList} 
+          fetchUser={this.props.fetchUser}/>
         </PageContent>
         <RightGraySideBar>
         </RightGraySideBar>
@@ -50,7 +57,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent, fetchNotifications: fetchNotifications }, dispatch)
+  return bindActionCreators({ fetchAllUsers: fetchAllUsers, fetchUser: fetchUserInfo, updateSettings: updateSettings, updateUser: updateEvent, fetchNotifications: fetchNotifications, updatePublicFigure: updatePublicFigure, updateIsMentor: updateIsMentor }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAdmin);
