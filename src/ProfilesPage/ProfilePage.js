@@ -35,11 +35,12 @@ const modStyle = {
 };
 
 class ProfilePage extends Component {
-  
-  componentWillMount() {
+  constructor(props) {
+    super(props);
 
-  state = {
-    deleteModalVisible: false
+    this.state = {
+      deleteModalVisible: false
+    };
   }
 
   componentDidMount() {
