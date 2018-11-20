@@ -11,7 +11,7 @@ class ChatWidget extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.createSocket();
     this.setState({currentMessage: ''});
   }
