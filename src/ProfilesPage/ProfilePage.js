@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { resolve } from "url";
 import _ from "lodash";
 import {
   fetchUserInfo,
@@ -28,15 +29,18 @@ import Modal from 'react-responsive-modal';
 const userId = sessionStorage.getItem("userId");
 const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
-// var editButtonClicked = false;
+
 
 class ProfilePage extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      deleteModalVisible: false
-    };
+  componentWillMount() {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        deleteModalVisible: false
+      };
+    }
   }
 
   componentDidMount() {
@@ -150,7 +154,7 @@ class ProfilePage extends Component {
   }
 
   // @TODO What are we deleting? Please be more specific naming functions
-  onDelete = () => {
+  onDelete() => {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
     this.props.history.push('/message');
@@ -208,11 +212,13 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    return (
-        <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
-          Delete User
-        </button>
-    );
+    if(!this.props.userInfo.superuser) {
+      return (
+          <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
+            Delete User
+          </button>
+      );
+    }
   }
 
   renderConnection() {
@@ -287,12 +293,13 @@ class ProfilePage extends Component {
       userFeeds,
       status,
       match,
+      history,
       notifications
     } = this.props;
     const { deleteModalVisible } = this.state
     return (
       <div>
-        <Navbar history={this.props.history} notifications={notifications} />
+        <Navbar history={history} notifications={notifications} />
         <LeftGraySideBar>
           {this.renderPublicFigureStatus()}
           {this.renderIsMentorStatus()}
@@ -308,28 +315,28 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
-            {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
-          <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
-          <h2 className='text-center'>Are you sure?</h2>
-          <hr/>
-          <div className='container'>
-          <div className='row'>
-          <div className='col-md-6'>
-          <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
-          </div>
-          <div className='col-md-6'>
-          <button className="btn btn-danger" onClick={this.closeModal}>No</button>
-          </div>
-
-          </div>
-          </div>
-        </Modal>}
+            {deleteModalVisible && 
+            <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
+              <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
+              <h2 className='text-center'>Are you sure?</h2>
+              <hr/>
+              <div className='container'>
+              <div className='row'>
+              <div className='col-md-6'>
+              <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
+              </div>
+              <div className='col-md-6'>
+              <button className="btn btn-danger" onClick={this.closeModal}>No</button>
+              </div>
+              </div>
+              </div>
+            </Modal>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
-          <ProfileConnections connections={this.props.userConnections} />
+          <ProfileConnections connections={userConnections}/>
         </RightGraySideBar>
-        <PageContent history={this.props.history}>
+        <PageContent history={history}>
           {this.renderPageContent()}
         </PageContent>
       </div>
