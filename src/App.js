@@ -38,7 +38,7 @@ class App extends Component {
         <MuiThemeProvider>
           <div>
             <Switch>
-              <Route exact path='/' component={Form}></Route>
+              <Route exact path='/' component={LandingPage}></Route>
               <Route path='/feed' component={Feed}></Route>
               <Route path='/newevent' component={CreateEvents}></Route>
               <Route path='/events' component={EventsPage}></Route>
