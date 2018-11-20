@@ -83,7 +83,6 @@ class ProfilePage extends Component {
   renderEditUserButton() {
     return (
       <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
-        {/*if this.state.editUserEnable === false render "back" else render "Edit"*/}
         {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
@@ -170,8 +169,7 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    
-    {/*if superuser's value is false render deleleteUser button.*/}
+  
     if(!this.props.userInfo.superuser) {
       return (
           <button href='/message' className="btn btn-danger" onClick={this.onDelete.bind(this)}>
