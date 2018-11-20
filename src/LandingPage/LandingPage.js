@@ -34,9 +34,12 @@ class LandingPage extends Component {
 
                 this.props.setUserLoggedIn(true, response.data.id);
 
-                response.data.confirmed_at
-                    ? this.goToFeedPage()
-                    : this.setState({ notVerified: true });
+                if(response.data.confirmed_at) {
+                    this.goToFeedPage();
+                } else{
+                    this.setState({notVerified: true});
+                }
+
             })
             .catch(err => {
                 alert(err);

@@ -6,10 +6,9 @@ import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
-import Form from './LoginPage/Form';
+import LandingPage from './LandingPage/LandingPage';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
-import LandingPage from './LandingPage/LandingPage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
 import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
@@ -35,30 +34,30 @@ class App extends Component {
 
   render() {
     return (
-    <BrowserRouter>
-     <MuiThemeProvider>
-        <div>
-          <Switch>
-            <Route exact path='/' component={LandingPage}></Route>
-            <Route path='/feed' component={Feed}></Route>
-            <Route path='/newevent' component={CreateEvents}></Route>
-            <Route path='/events' component={EventsPage}></Route>
-            <Route path='/admins' component={CreateAdmin}></Route>   
-            <Route path="/home" component={HomePage}></Route>
-            <Route path='/activities' component={ActivityPage}></Route>
-            <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
-            <Route path='/updateevent/:id' component={UpdateEvent}></Route>
-            <Route exact path='/profile/:id' component={ProfilePage}></Route>
-            <Route path='/profile/:id/edit' component={EditPage}></Route>
-            <Route path='/message' component={DeletedUser}></Route>
-            <Route path='/profile/:id' component={ProfilePage}></Route>
-            <Route path='/notifications' component={Notification}></Route>
-          </Switch>
-          <ChatWidget />
-
-        </div>
-      </MuiThemeProvider>
-    </BrowserRouter>)
+      <BrowserRouter>
+        <MuiThemeProvider>
+          <div>
+            <Switch>
+              <Route exact path='/' component={LandingPage}></Route>
+              <Route path='/feed' component={Feed}></Route>
+              <Route path='/newevent' component={CreateEvents}></Route>
+              <Route path='/events' component={EventsPage}></Route>
+              <Route path='/admins' component={CreateAdmin}></Route>   
+              <Route path="/home" component={HomePage}></Route>
+              <Route path='/activities' component={ActivityPage}></Route>
+              <Route path='/eventsfeed/:id' component={EventsFeed}></Route>
+              <Route path='/updateevent/:id' component={UpdateEvent}></Route>
+              <Route exact path='/profile/:id' component={ProfilePage}></Route>
+              <Route path='/profile/:id/edit' component={EditPage}></Route>
+              <Route path='/message' component={DeletedUser}></Route>
+              <Route path='/profile/:id' component={ProfilePage}></Route>
+              <Route path='/notifications' component={Notification}></Route>
+            </Switch>
+            <ChatWidget />
+          </div>
+        </MuiThemeProvider>
+      </BrowserRouter>
+    )
   }
 }
 

@@ -18,3 +18,7 @@ input[type=checkbox] {
 .btn-success {
   margin-top: 15px;
 }
+
+#registerBtn:hover {
+  color: white;
+}

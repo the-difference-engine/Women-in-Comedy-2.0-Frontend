@@ -16,7 +16,6 @@ class CreateUserLink extends Component {
 
     onOpenModal = (e, err) => {
         this.setState({ open: true });
-        console.log(err);
     };
 
     onCloseModal = () => {
