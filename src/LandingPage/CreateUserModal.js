@@ -18,7 +18,7 @@ class CreateUserModal extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        //this.renderMenuItems = this.renderMenuItems.bind(this);
+        this.renderOptionItems = this.renderOptionItems.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
 
@@ -26,22 +26,22 @@ class CreateUserModal extends Component {
         this.props.fetchMeetingOptions();
     }
 
-    /*renderMenuItems() {
+    renderOptionItems() {
         return this.props.allMeetingOptions.map(item =>
             (
-                <MenuItem
+                <option
                     key={item.id}
-                    primaryText={item.name}
                     value={item.id}
-                    insetChildren={true}
                     checked={
                         this.state.user.meet_options &&
                         this.state.user.meet_options.indexOf(item.id) > -1
                     }
-                />
+                >
+                {item.name}
+                </option>
             )
         );
-    }*/
+    }
 
     selectionRenderer(values) {
         switch (values.length) {
@@ -157,17 +157,154 @@ class CreateUserModal extends Component {
         } else {
             return (
                 <form onSubmit={this.onSubmit}>
-                    <label name='firstname'>First Name:</label>
+                    <h2>Registration Form</h2>
+                    <br/>
+                    <label name='first_name'>First Name:</label>
                     <br />
                     <input 
                         name="first_name" 
-                        placeholder='First Name' 
+                        placeholder='Jane' 
                         type="text" 
                         required='required'
                         onChange={this.handleChange}
                         value={this.state.user.first_name}
                     />
+                    <br/>
 
+                    <br/>
+                    <label name='last_name'>Last Name:</label>
+                    <br />
+                    <input 
+                        name="last_name" 
+                        placeholder='Doe' 
+                        type="text" 
+                        required='required'
+                        onChange={this.handleChange}
+                        value={this.state.user.last_name}
+                    />
+                    <br/>
+
+                    <br/>
+                    <label name='email'>Email Address:</label>
+                    <br />
+                    <input 
+                        name="email" 
+                        placeholder='janedoe@email.com' 
+                        type="email" 
+                        required='required'
+                        onChange={this.handleChange}
+                        value={this.state.user.email}
+                    />
+                    <br/>
+
+                    <br/>
+                    <label name='password'>Password:</label>
+                    <br />
+                    <input 
+                        name="password" 
+                        placeholder='Password' 
+                        type="password" 
+                        required='required'
+                        onChange={this.handleChange}
+                        value={this.state.user.password}
+                    />
+                    <br/>
+
+                    <br/>
+                    <label name='city'>City:</label>
+                    <br />
+                    <input 
+                        name="city" 
+                        placeholder='City' 
+                        type="city" 
+                        required='required'
+                        onChange={this.handleChange}
+                        value={this.state.user.city}
+                    />
+                    <br/>
+
+                    <br/>
+                    <label name='website'>Website:</label>
+                    <br />
+                    <input 
+                        name="website" 
+                        placeholder='www.*******.com' 
+                        type="text" 
+                        required='required'
+                        onChange={this.handleChange}
+                        value={this.state.user.website}
+                    />
+                    <br/>
+
+                    <br/>
+                    <label name='experience'>Years of Experience:</label>
+                    <br />
+                    <select 
+                        name="experience" 
+                        required='required'
+                        onChange={(event, index, value) => {
+                            const { user } = this.state;
+                            user.experience = value;
+                            this.setState({ user });
+                        }}
+                        value={this.state.user.experience}
+                    >
+                        <option value="Less than 1 year">Less than 1 year</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="4-7 years">4-7 years</option>
+                        <option value="7-10 years">7-10 years</option>
+                        <option value="11+ years">11+ years</option>
+                    </select>
+                    <br/>
+
+                    <br/>
+                    <label name='training'>Years of Training:</label>
+                    <br />
+                    <select 
+                        name="training" 
+                        required='required'
+                        onChange={(event, index, value) => {
+                            const { user } = this.state;
+                            user.training = value;
+                            this.setState({ user });
+                          }}
+                        value={this.state.user.training}
+                    >
+                        <option value="Less than 1 year">Less than 1 year</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="4-7 years">4-7 years</option>
+                        <option value="7-10 years">7-10 years</option>
+                        <option value="11+ years">11+ years</option>
+                    </select>
+                    <br/>
+
+                    <br/>
+                    <label name="meet_option_users_attributes">Available to meet for...</label>
+                    <br />
+                    <select 
+                        name="meet_option_users_attributes" 
+                        required='required'
+                        onChange={(event, index, values) => {
+                            const { user } = this.state;
+                            user.meet_option_users_attributes = values;
+                            this.setState({ user });
+                          }}
+                        value={this.state.user.meet_option_users_attributes}
+                    >
+                        {this.renderOptionItems()}
+                    </select>
+                    <br/>
+                    
+                    <br/>
+                    <label name='uploadphoto'>Upload Photo</label>
+                    <br/>
+                    <button className='btn btn-info'>Upload Photo</button>
+                    <br/>
+                    <input type="file" id="input" onChange={this.onUpload.bind(this)} />
+                    <br />
+                    {this.renderImg()}
+                    <br/>
+                    <button className='btn btn-primary' type="submit">Submit</button>
                 </form>
             );
 
