@@ -299,10 +299,10 @@ class ProfilePage extends Component {
           <div className='container'>
           <div className='row'>
           <div className='col-md-6'>
-          <button className="btn btn-danger" onClick={this.onDelete}>Yup</button>
+          <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
           </div>
           <div className='col-md-6'>
-          <button className="btn btn-danger" onClick={this.onCloseModal}>Nope</button>
+          <button className="btn btn-danger" onClick={this.onCloseModal}>No</button>
           </div>
 
           </div>

@@ -31,7 +31,6 @@ class CreateAdmin extends Component {
     }
     const { fetchAllUsers, fetchUserInfo, updateSettings, fetchNotifications } = this.props;
     fetchAllUsers();
-    updateSettings();
     fetchNotifications(sessionStorage.getItem('userId'));
   };
 
