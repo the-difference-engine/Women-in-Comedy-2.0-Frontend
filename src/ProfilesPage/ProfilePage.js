@@ -202,7 +202,7 @@ class ProfilePage extends Component {
     }
   }
 
-  onCloseModal = () => {
+  closeModal = () => {
     this.setState({ deleteModalVisible: false });
   };
 
@@ -309,7 +309,7 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
-            {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.onCloseModal} center>
+            {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
           <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
           <h2 className='text-center'>Are you sure?</h2>
           <hr/>
@@ -319,7 +319,7 @@ class ProfilePage extends Component {
           <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
           </div>
           <div className='col-md-6'>
-          <button className="btn btn-danger" onClick={this.onCloseModal}>No</button>
+          <button className="btn btn-danger" onClick={this.closeModal}>No</button>
           </div>
 
           </div>
