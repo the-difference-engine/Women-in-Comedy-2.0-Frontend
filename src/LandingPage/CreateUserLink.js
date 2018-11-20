@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
 import Modal from 'react-responsive-modal';
+import CreateUserModal from './CreateUserModal';
 
 
 
@@ -12,10 +13,6 @@ class CreateUserLink extends Component {
             open: false
         };
     };
-
-    // state = {
-    //     open: false,
-    // };
 
     onOpenModal = (e, err) => {
         this.setState({ open: true });
@@ -31,7 +28,7 @@ class CreateUserLink extends Component {
             <div>
                 <a id='registerButton' href='#' onClick={this.onOpenModal}><h2>create new account</h2></a>
                 <Modal id='registrationModal' open={this.state.open} onClose={this.onCloseModal} center>
-                    <h2>Simple centered modal</h2>
+                    <CreateUserModal/>
                 </Modal>
             </div>
         )

@@ -1,16 +1,16 @@
-.right-side{
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: auto;
+#right-side{
+  float: right;
+  width: 20%;
   padding: 1em;
-  width: 100vw;
+  padding-top: 10%;
   height: 100vh;
 
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
-  overflow: auto;
 } 
-
+#right-side-bar-content{
+  overflow: auto;
+}
 
 @media (max-width: 1008px) and (min-width: 768px) {
   #right-side-bar-content {

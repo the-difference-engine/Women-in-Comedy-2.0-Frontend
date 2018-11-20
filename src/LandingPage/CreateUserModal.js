@@ -10,23 +10,16 @@ class CreateUserModal extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        }
+        
     };
 
-
-
-
-
     render() {
-        const { open } = this.state;
         return (
-            <div>
-                <Modal open={open} onClose={this.onCloseModal} center>
-                    <h2>Simple centered modal</h2>
-                </Modal>
-            </div>
+            <form>
+                <label name='firstname'>First Name:</label>
+                <input name="firstname" placeholder='First Name' type="text"/>
+
+            </form>
         );
     }
 }

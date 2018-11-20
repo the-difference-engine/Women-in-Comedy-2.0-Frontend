@@ -2,6 +2,9 @@
   "name": "women_in_comedy_client",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "actioncable": "^5.1.5",
     "axios": "^0.16.2",
@@ -25,6 +28,7 @@
     "react-redux": "^5.0.7",
     "react-responsive-modal": "^3.5.1",
     "react-router-dom": "^4.1.2",
+    "react-scripts": "^2.0.4",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-file-upload": "0.0.19",
@@ -35,8 +39,7 @@
     "spdy": "^3.4.7"
   },
   "devDependencies": {
-    "eslint-plugin-import": "^2.9.0",
-    "react-scripts": "^2.0.4"
+    "eslint-plugin-import": "^2.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
