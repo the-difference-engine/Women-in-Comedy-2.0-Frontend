@@ -30,10 +30,6 @@ const adminUser = sessionStorage.getItem("adminUser");
 const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
-const modStyle = {
-  borderRadius: '25px',
-};
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
