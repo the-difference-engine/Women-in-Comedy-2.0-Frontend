@@ -22,6 +22,8 @@ import UserInfo from "./components/UserInfo";
 import ProfileConnections from "./components/ProfileConnections";
 import ProfileFeed from "./components/ProfileFeed";
 import EditPage from "../EditPage/EditPage";
+import Modal from 'react-responsive-modal';
+
 
 const userId = sessionStorage.getItem("userId");
 const adminUser = sessionStorage.getItem("adminUser");
@@ -29,6 +31,14 @@ const admin = sessionStorage.getItem("isAdmin");
 // var editButtonClicked = false;
 
 class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      deleteModalVisible: false
+    };
+  }
+
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
@@ -48,6 +58,7 @@ class ProfilePage extends Component {
     this.setState({editUserEnable: false});
   }
 
+  // @TODO onPress what? Be more specific naming functions
   onPress() {
     const sender_id = sessionStorage.getItem("userId");
     const receiver_id = this.props.match.params.id;
@@ -107,7 +118,6 @@ class ProfilePage extends Component {
     // user is an admin or not. If it is the admin, render the Admin Edit form,
     // if it is a regular user, render user edit form.
     this.props.editUser(adminUser);
-    console.log(this.state.editUserEnable);
     //Togle the editUser function enable or not enable
     this.setState(prevState => ({
       editUserEnable: !prevState.editUserEnable
@@ -120,6 +130,7 @@ class ProfilePage extends Component {
     this.setState({ editUserEnable: editable });
   }
 
+  // @TODO onSuspend what? Please be more specific naming functions
   onSuspend() {
     const id = this.props.userInfo.id;
     var suspended = this.props.userInfo.suspended;
@@ -128,6 +139,7 @@ class ProfilePage extends Component {
     this.setState({ suspendedState: true });
   }
 
+  // @TODO onUnsuspend what? Please be more specific naming functions
   onUnsuspend() {
     const id = this.props.userInfo.id;
     const admin = sessionStorage.getItem("isAdmin");
@@ -137,9 +149,16 @@ class ProfilePage extends Component {
     this.setState({ suspendedState: false });
   }
 
-  onDelete() {
+  // @TODO What are we deleting? Please be more specific naming functions
+  onDelete = () => {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
+    this.props.history.push('/message');
+
+  }
+
+  openModal () {
+    this.setState({ deleteModalVisible: true })
   }
 
   renderBlockConnection() {
@@ -182,14 +201,17 @@ class ProfilePage extends Component {
     }
   }
 
+  closeModal = () => {
+    this.setState({ deleteModalVisible: false });
+  };
+
+
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
     return (
-      <a href="/message">
-        <button className="btn btn-danger" onClick={this.onDelete.bind(this)}>
+        <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
           Delete User
         </button>
-      </a>
     );
   }
 
@@ -256,6 +278,8 @@ class ProfilePage extends Component {
     }
   }
 
+
+
   render() {
     const {
       userInfo,
@@ -265,6 +289,7 @@ class ProfilePage extends Component {
       match,
       notifications
     } = this.props;
+    const { deleteModalVisible } = this.state
     return (
       <div>
         <Navbar history={this.props.history} notifications={notifications} />
@@ -283,6 +308,22 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
+            {deleteModalVisible && <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
+          <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
+          <h2 className='text-center'>Are you sure?</h2>
+          <hr/>
+          <div className='container'>
+          <div className='row'>
+          <div className='col-md-6'>
+          <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
+          </div>
+          <div className='col-md-6'>
+          <button className="btn btn-danger" onClick={this.closeModal}>No</button>
+          </div>
+
+          </div>
+          </div>
+        </Modal>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
