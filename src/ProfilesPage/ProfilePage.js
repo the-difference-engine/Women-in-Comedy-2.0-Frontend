@@ -118,7 +118,6 @@ class ProfilePage extends Component {
     // user is an admin or not. If it is the admin, render the Admin Edit form,
     // if it is a regular user, render user edit form.
     this.props.editUser(adminUser);
-    console.log(this.state.editUserEnable);
     //Togle the editUser function enable or not enable
     this.setState(prevState => ({
       editUserEnable: !prevState.editUserEnable
@@ -154,7 +153,7 @@ class ProfilePage extends Component {
   onDelete = () => {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
-    window.location.href='/message';
+    this.props.history.push('/message');
 
   }
 
