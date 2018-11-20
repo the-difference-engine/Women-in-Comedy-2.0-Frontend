@@ -6,12 +6,6 @@ margin: auto;
 max-width: 100%;
 
 }
-#ImgBlock{
-
-
-  
- 
-}
 
 #field-form .form-control {
   width: 200px;
@@ -23,4 +17,8 @@ input[type=checkbox] {
 
 .btn-success {
   margin-top: 15px;
+}
+
+#registerBtn:hover {
+  color: white;
 }

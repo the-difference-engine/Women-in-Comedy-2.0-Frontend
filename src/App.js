@@ -6,7 +6,7 @@ import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
 import ActivityPage from './ActivityPage/ActivityPage';
 import EventsFeed from './EventsFeedPage/EventsFeed';
-import Form from './LoginPage/Form';
+import LandingPage from './LandingPage/LandingPage';
 import Feed from './FeedPage/FeedPage';
 import ProfilePage from './ProfilesPage/ProfilePage';
 import CreateEvents from './CreateEventsPage/CreateEvents';
@@ -33,11 +33,12 @@ class App extends Component {
   }
 
   render() {
-    return (<BrowserRouter>
+    return (
+    <BrowserRouter>
       <MuiThemeProvider>
         <div>
           <Switch>
-            <Route exact path='/' component={Form}></Route>
+            <Route exact path='/' component={LandingPage}></Route>
             <Route path='/feed' component={Feed}></Route>
             <Route path='/newevent' component={CreateEvents}></Route>
             <Route path='/events' component={EventsPage}></Route>
