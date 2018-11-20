@@ -16,9 +16,14 @@ class UserList extends Component {
             isLoggedInUserSuper = {this.props.userInfo.superadmin}
             isSuperAdmin={user.superadmin}
             adminStatus={user.admin}
+            publicFigureStatus={user.public_figure}
+            fetchAllUsers={this.props.fetchAllUsers}
+            isMentorStatus={user.is_mentor}
             userId={user.id}
             fetchUser={this.props.fetchUser}
             updateSettings={this.props.updateSettings}
+            updatePublicFigure={this.props.updatePublicFigure}
+            updateIsMentor={this.props.updateIsMentor}
           />
         </li>
       );

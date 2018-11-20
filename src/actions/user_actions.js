@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_ADMIN_STATUS} from './types';
+import { FETCH_USER_INFO, FETCH_ALL_USERS, FILTER_USERS, EDIT_USER, SET_USER_LOGGED_IN, UPDATE_ADMIN_STATUS, UPDATE_PUBLIC_FIGURE_STATUS, UPDATE_IS_MENTOR_STATUS } from './types';
 
 export const fetchUserInfo = (userId) => {
  const request = axios({
@@ -77,7 +77,7 @@ export const updateSettings = (userId, adminStatus, callback) => {
     method: 'patch',
     url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
     headers: {"id": userId },
-    data: { "admin":  switchAdmin }
+    data: { "admin": !adminStatus }
   });
 
   return (dispatch) => {
@@ -86,7 +86,41 @@ export const updateSettings = (userId, adminStatus, callback) => {
       callback();
     });
   };
- };
+};
+
+export const updatePublicFigure = (userId, publicFigure, callback) => {
+ 
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "public_figure":  !publicFigure }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: UPDATE_PUBLIC_FIGURE_STATUS, payload: request});
+      callback();
+    });
+  };
+};
+
+export const updateIsMentor = (userId, isMentor, callback) => {
+ 
+  const request = axios({
+    method: 'patch',
+    url: process.env.REACT_APP_API_ENDPOINT + `users/${userId}`,
+    headers: {"id": userId },
+    data: { "is_mentor":  !isMentor }
+  });
+
+  return (dispatch) => {
+    request.then((data) => {
+      dispatch({ type: UPDATE_IS_MENTOR_STATUS, payload: request});
+      callback();
+    });
+  };
+};
 
 export const setUserLoggedIn = (boolean, userId) => {
   return {
