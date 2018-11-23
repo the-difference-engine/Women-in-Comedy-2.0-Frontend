@@ -4,7 +4,7 @@ import '../css/events.css';
 import _ from 'lodash';
 
 
-const sortByDate = (events = []) => _.reverse(_.sortBy(events, 'date'))
+const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
 export default (props) => {
 	if (props.upcomingEvents.length === 0) {
