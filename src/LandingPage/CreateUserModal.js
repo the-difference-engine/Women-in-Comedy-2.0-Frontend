@@ -70,7 +70,7 @@ class CreateUserModal extends Component {
             return (
                 <div>
                     <img
-                        id="img"
+                        className="img img-thumbnail"
                         src={this.state.imgURL}
                         alt=""
                         width="250"
@@ -82,8 +82,8 @@ class CreateUserModal extends Component {
             return (
                 <div>
                     <img
-                        id="img"
-                        src='{holder}'
+                        className="img img-thumbnail"
+                        src='../images/holder.jpg'
                         alt=""
                         width="250"
                         height="250"
