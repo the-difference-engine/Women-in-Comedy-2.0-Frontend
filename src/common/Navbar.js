@@ -32,7 +32,7 @@ class Navbar extends Component {
   }
 
   Logout() {
-    axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out').then(response => {
+    axios.get(process.env.REACT_APP_API_ENDPOINT + 'sessions/sign_out').then(response => {
       sessionStorage.clear();
       this.props.history.push('/')
     });

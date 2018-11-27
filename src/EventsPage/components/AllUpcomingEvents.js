@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/events.css';
+import _ from 'lodash';
+
+
+const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
 export default (props) => {
 	if (props.upcomingEvents.length === 0) {
@@ -15,7 +19,7 @@ export default (props) => {
 					</div>
 				</div>
 				<div className="row">
-					{renderEventList(props.upcomingEvents)}
+					{renderEventList(sortByDate(props.upcomingEvents))}
 				</div>
 			</div>
 		</div>
