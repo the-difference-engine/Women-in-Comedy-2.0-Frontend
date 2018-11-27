@@ -32,7 +32,7 @@ class Navbar extends Component {
   }
 
   Logout() {
-    axios.get(process.env.REACT_APP_API_URL_DEV + 'sessions/sign_out').then(response => {
+    axios.get(process.env.REACT_APP_API_ENDPOINT + 'sessions/sign_out').then(response => {
       sessionStorage.clear();
       this.props.history.push('/')
     });
@@ -69,10 +69,6 @@ class Navbar extends Component {
     fetchUserConnections(item.value);
     fetchConnectionStatus({ sender_id, receiver_id });
     this.props.history.push(`/profile/${item.value}`);
-  }
-
-  componentWillReceiveProps(newProps) {
-    const { userInfo } = newProps;
   }
 
   renderAdminIcon() {

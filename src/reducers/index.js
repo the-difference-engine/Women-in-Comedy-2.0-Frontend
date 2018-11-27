@@ -20,6 +20,7 @@ import editUserReducer from './edit_user_reducer';
 import setUserLoggedInReducer from './set_user_logged_in_reducer';
 import InviteReducer from './invite_reducer';
 import updateSettingsReducer from './reducer_update_settings';
+import updateAdminFormReducer from './update_adminForm_reducer';
 import meetingOptionsReducer from './meeting_options_reducer'
 
 
@@ -45,7 +46,9 @@ const rootReducer = combineReducers({
   adminEdit: editUserReducer,
   isUserLoggedIn: setUserLoggedInReducer,
   updateAdmin: updateSettingsReducer,
-  allMeetingOptions: meetingOptionsReducer,
+  updatePublicFigure: updateAdminFormReducer,
+  updateIsMentor: updateAdminFormReducer,
+  allMeetingOptions: meetingOptionsReducer
 });
 
 export default rootReducer;

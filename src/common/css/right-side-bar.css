@@ -1,14 +1,13 @@
 #right-side{
+  float: right;
   width: 20%;
-  float:right;
   padding: 1em;
-  padding-top: 8%;
+  padding-top: 10%;
   height: 100vh;
-
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
+}
 
-} 
 #right-side-bar-content{
   overflow: auto;
 }
