@@ -24,7 +24,7 @@ class AddEvent extends Component {
       );
     });
   }
-
+  
   render() {
     return(
       <div className="add-event">

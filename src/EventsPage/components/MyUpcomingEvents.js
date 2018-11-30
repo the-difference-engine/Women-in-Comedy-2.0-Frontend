@@ -23,7 +23,7 @@ export default (props) => {
 					</div>
 				</div>
 				<div className="row">
-					{renderEventList(props.myUpcomingEvents)}
+					{renderEventList(props.myUpcomingEvents.data)}
 				</div>
 			</div>
 		</div>

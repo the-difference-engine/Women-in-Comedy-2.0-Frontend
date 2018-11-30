@@ -33,14 +33,16 @@ const admin = sessionStorage.getItem("isAdmin");
 
 class ProfilePage extends Component {
 
-  componentWillMount() {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props)
 
-      this.state = {
-        deleteModalVisible: false
-      };
+    this.state = {
+      deleteModalVisible: false
     }
+  }
+  
+  componentWillMount() {
+    
   }
 
   componentDidMount() {
@@ -154,14 +156,14 @@ class ProfilePage extends Component {
   }
 
   // @TODO What are we deleting? Please be more specific naming functions
-  onDelete() => {
+  onDelete() {
     const id = this.props.match.params.id || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
     this.props.history.push('/message');
 
   }
 
-  openModal () {
+  openModal() {
     this.setState({ deleteModalVisible: true })
   }
 

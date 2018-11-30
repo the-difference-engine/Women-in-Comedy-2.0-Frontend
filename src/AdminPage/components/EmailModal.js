@@ -21,17 +21,20 @@ class EmailModal extends Component {
   handleClose() {
     this.setState({ open: false });
   }
-
+  
   grabText = () => {
-    const email = document.getElementsByClassName("email-modal")[0].value;
     const subject = document.getElementsByClassName("email-subject")[0].value;
+    const email = document.getElementsByClassName("email-modal")[0].value;
+    
     console.log(subject);
+    console.log(email);
+    
     {
       this.props.mailUsers(email, subject);
     }
     this.setState({ open: false });
   };
-
+  
   render() {
     return (
       <div className="modal-style">

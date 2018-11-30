@@ -10,3 +10,5 @@ export default (state = INITIAL_STATE, action) => {
 			return state;
 	}
 }
+
+//should we delete?
