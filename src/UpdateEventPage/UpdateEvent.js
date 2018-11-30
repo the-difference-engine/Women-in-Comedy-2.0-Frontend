@@ -20,6 +20,7 @@ import {
 
 import "../CreateEventsPage/css/create-event.css";
 import { userInfo } from "os";
+import { throws } from "assert";
 const userId = sessionStorage.getItem("userId");
 
 class UpdateEvent extends Component {
@@ -42,10 +43,10 @@ class UpdateEvent extends Component {
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
 
-    if (event.user_id && event.user_id.toString() == userId || userInfo.admin) {
-
+    if (event.user_id && event.user_id.toString() == userId || sessionStorage.adminUser === "true") {
+      // this.props.updateEventForm
+      // here we want to render update event form
     }
-
     else {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
