@@ -19,6 +19,7 @@ import {
 } from "material-ui";
 
 import "../CreateEventsPage/css/create-event.css";
+import { userInfo } from "os";
 const userId = sessionStorage.getItem("userId");
 
 class UpdateEvent extends Component {
@@ -41,7 +42,11 @@ class UpdateEvent extends Component {
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
 
-    if (event.user_id && event.user_id.toString() !== userId) {
+    if (event.user_id && event.user_id.toString() == userId || userInfo.admin) {
+
+    }
+
+    else {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
     // for initial action
