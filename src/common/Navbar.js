@@ -17,6 +17,7 @@ import { render } from "react-router-dom";
 import "./css/navbar.css";
 import NotificationButton from "../containers/notification_button";
 import "../images/Women_Logo_New.png";
+import {SearchBar} from "./SearchBar.js";
 
 const userId = sessionStorage.getItem("userId");
 
@@ -264,6 +265,7 @@ class Navbar extends Component {
                   </div>
                 </div>
                 <div className="input-group">
+                <SearchBar/>
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.users}
