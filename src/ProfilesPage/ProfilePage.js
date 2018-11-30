@@ -32,7 +32,6 @@ const admin = sessionStorage.getItem("isAdmin");
 
 
 class ProfilePage extends Component {
-
   constructor(props) {
     super(props);
 
@@ -159,7 +158,7 @@ class ProfilePage extends Component {
 
   }
 
-  openModal () {
+  openModal() {
     this.setState({ deleteModalVisible: true })
   }
 
