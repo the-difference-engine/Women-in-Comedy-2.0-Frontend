@@ -32,7 +32,6 @@ const admin = sessionStorage.getItem("isAdmin");
 
 
 class ProfilePage extends Component {
-
   constructor(props) {
     super(props);
 
