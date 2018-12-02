@@ -27,6 +27,7 @@ class CreateUserModal extends Component {
     }
 
     renderOptionItems() {
+        console.log(this.props.allMeetingOptions);
         return this.props.allMeetingOptions.map(item =>
             (
                 <option

@@ -9,6 +9,7 @@ export const fetchMeetingOptions = () => {
 
   return (dispatch) => {
     request.then((response) => {
+      console.log(response);
       dispatch({ type: FETCH_MEETING_OPTIONS, payload: response })
     });
   };
