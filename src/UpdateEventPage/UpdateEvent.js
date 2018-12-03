@@ -42,14 +42,9 @@ class UpdateEvent extends Component {
 
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
-    if (event.user_id && event.user_id.toString() == userId || sessionStorage.adminUser === "true") {
-      // this.props.updateEventForm
-      // here we want to render update event form
-    }
-    else {
+    if (event.user_id && event.user_id.toString() !== userId && sessionStorage.adminUser === "false") {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
-    // for initial action
     if (this.state.imgURL == null) {
       this.setState({ imgURL: event.photo });
     }
