@@ -18,7 +18,6 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         <UpdateEventButton id="edit_btn" eventId={eventId}/>
       )
     }
-    //return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
 
   if(event && event.hostInfo) {

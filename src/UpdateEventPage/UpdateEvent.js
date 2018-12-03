@@ -42,7 +42,6 @@ class UpdateEvent extends Component {
 
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
-
     if (event.user_id && event.user_id.toString() == userId || sessionStorage.adminUser === "true") {
       // this.props.updateEventForm
       // here we want to render update event form
