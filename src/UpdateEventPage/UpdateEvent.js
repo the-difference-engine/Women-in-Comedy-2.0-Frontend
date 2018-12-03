@@ -112,8 +112,7 @@ class UpdateEvent extends Component {
     return (
       <div>
         <Navbar history={this.props.history} />
-        {event.user_id &&
-          event.user_id.toString() === userId && (
+        {event.user_id && (
             <div id="create-event-wrapper">
               <TextField
                 id="Title"
