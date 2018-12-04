@@ -53,7 +53,7 @@ class App extends Component {
               <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/notifications' component={Notification}></Route>
             </Switch>
-            <ChatWidget />
+            {/*<ChatWidget />*/}
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

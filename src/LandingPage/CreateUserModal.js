@@ -14,7 +14,8 @@ class CreateUserModal extends Component {
         this.state = {
             user: {},
             // imgURL: "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg",
-            imgURL: null
+            imgURL: null,
+            email:''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,7 +28,6 @@ class CreateUserModal extends Component {
     }
 
     renderOptionItems() {
-        console.log(this.props.allMeetingOptions);
         return this.props.allMeetingOptions.map(item =>
             (
                 <option
@@ -116,6 +116,7 @@ class CreateUserModal extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        console.log(this.state.user.email);
         let user = this.state.user
         let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
@@ -151,8 +152,9 @@ class CreateUserModal extends Component {
         if (this.state.userMade) {
             return (
                 <div>
-                    Thank You For Signing Up for Women In Comedy! A confirmation email has
-                    been sent.
+                    <br/>
+                    <h2>Thank You For Signing Up for Women In Comedy! A confirmation email has
+                    been sent.</h2>
                 </div>
             );
         } else {
