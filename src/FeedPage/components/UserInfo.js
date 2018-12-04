@@ -6,6 +6,7 @@ const UserInfo = (props) => {
   const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
   const { userConnections } = props;
   const userId = sessionStorage.getItem('userId');
+  
   return (
     <div>
       <div id="user-info">

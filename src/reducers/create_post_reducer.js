@@ -11,4 +11,4 @@ export default (state = INITIAL_STATE, action) => {
 	}
 }
 
-//should we delete?
+//should we delete this?
