@@ -20,7 +20,7 @@ import {
 
 import "../CreateEventsPage/css/create-event.css";
 import { userInfo } from "os";
-import { throws } from "assert";
+
 const userId = sessionStorage.getItem("userId");
 
 class UpdateEvent extends Component {
