@@ -12,5 +12,3 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
-
-//Good for now via bryan 
