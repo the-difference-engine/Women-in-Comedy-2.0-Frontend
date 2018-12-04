@@ -7,16 +7,6 @@ class UpdateEvent extends Component {
     super(props);
   }
 
-  // const renderUpdateEvent = ({ event, userInfo, eventId }) => {
-  //   if (event.hostInfo.id === userInfo.id || userInfo.admin === true){ 
-  //     return(
-  //       <div className="edit_btn"><a className="btn btn-default" href={`/updateevent/${this.props.eventId}`}>EDIT THIS EVENT</a>
-  //       </div>
-  //     )
-  //   }
-  // };
-
-
   render() {
       const event = this.props.eventId;
       if (event.hostInfo.id === userInfo.id || userInfo.admin === true) {
