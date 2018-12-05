@@ -19,6 +19,8 @@ import {
 } from "material-ui";
 
 import "../CreateEventsPage/css/create-event.css";
+import { userInfo } from "os";
+
 const userId = sessionStorage.getItem("userId");
 
 class UpdateEvent extends Component {
@@ -40,11 +42,9 @@ class UpdateEvent extends Component {
 
   componentWillReceiveProps(newProps) {
     const event = newProps.updateEventForm;
-
-    if (event.user_id && event.user_id.toString() !== userId) {
+    if (event.user_id && event.user_id.toString() !== userId && sessionStorage.adminUser === "false") {
       this.props.history.push(`/eventsfeed/${event.id}`);
     }
-    // for initial action
     if (this.state.imgURL == null) {
       this.setState({ imgURL: event.photo });
     }
@@ -112,8 +112,7 @@ class UpdateEvent extends Component {
     return (
       <div>
         <Navbar history={this.props.history} />
-        {event.user_id &&
-          event.user_id.toString() === userId && (
+        {event.user_id && (
             <div id="create-event-wrapper">
               <TextField
                 id="Title"
