@@ -12,7 +12,6 @@ export default (props) => {
 		return <div></div>
 	}
 	return (
-
 		<div className="event-page-content">
 			<div>
 				<div className="row events-grid" id="all-events">

@@ -37,6 +37,7 @@ export default (props) => {
 	);
 };
 
+
 const renderEventList = (events) => {
 	return events.map(event => {
 		return (
