@@ -75,20 +75,21 @@ class ProfilePage extends Component {
     this.props.blockConnectionRequests(sender_id);
   }
 
-  onPost() {
-    const body = this.props.userWallPost;
-    const userId =
-      this.props.match.params.id || sessionStorage.getItem("userId");
-    const authorId = sessionStorage.getItem("userId");
-    this.props.createPostOnUserWall(
-      {
-        body,
-        userId,
-        authorId
-      },
-      this.props.fetchUserFeeds
-    );
-  }
+  
+  // onPost() {
+  //   const body = this.props.userWallPost;
+  //   const userId =
+  //     this.props.match.params.id || sessionStorage.getItem("userId");
+  //   const authorId = sessionStorage.getItem("userId");
+  //   this.props.createPostOnUserWall(
+  //     {
+  //       body,
+  //       userId,
+  //       authorId
+  //     },
+  //     this.props.fetchUserFeeds
+  //   );
+  // }
 
   renderEditUserButton() {
     return (

@@ -59,7 +59,7 @@ class Feed extends Component {
           <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
         <PageContent>
-          <div className="feed-post-bar">
+          {/* <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
                 <input type="text" className="searchTerm" placeholder="What's New?"
@@ -69,7 +69,7 @@ class Feed extends Component {
               </div>
             </div>
           </div>
-          <NewFeeds userFeeds={userFeeds} />
+          <NewFeeds userFeeds={userFeeds} /> */}
         </PageContent>
       </div>
     );
