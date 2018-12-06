@@ -7,10 +7,12 @@ import _ from 'lodash';
 const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
 export default (props) => {
+	console.log(props)
 	if (props.upcomingEvents.length === 0) {
 		return <div></div>
 	}
 	return (
+
 		<div className="event-page-content">
 			<div>
 				<div className="row events-grid" id="all-events">

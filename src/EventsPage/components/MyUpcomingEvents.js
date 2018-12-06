@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/events.css';
-import dateformat from 'dateformat';
+import _ from 'lodash';
 
+// var todaysDate = new Date();
+// dateformat(todaysDate, "mm/dd/yy")
+// console.log(todaysDate)
 
-var todaysDate = new Date();
-dateformat(todaysDate, "mm/dd/yy")
-console.log(todaysDate)
-
+const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
 export default (props) => {
 	if (props.myUpcomingEvents.length === 0) {
@@ -30,7 +30,7 @@ export default (props) => {
 					</div>
 				</div>
 				<div className="row">
-					{renderEventList(props.myUpcomingEvents)}
+					{sortByDate(renderEventList(props.myUpcomingEvents))}
 				</div>
 			</div>
 		</div>
