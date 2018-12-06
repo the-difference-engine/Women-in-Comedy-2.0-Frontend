@@ -6,8 +6,23 @@ import _ from 'lodash';
 
 const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '/' + dd + '/' + yyyy;
+console.log(today.toString())
+
 export default (props) => {
-	console.log(props)
 	if (props.upcomingEvents.length === 0) {
 		return <div></div>
 	}
@@ -29,6 +44,7 @@ export default (props) => {
 
 const renderEventList = (events) => {
 	return events.map(event => {
+		if (event.date < today) {
 		return (
 			<div key={event.id} className="col-xs-offset-1 col-xs-3">
 				<Link to={`/eventsfeed/${event.id}`}>
@@ -39,6 +55,6 @@ const renderEventList = (events) => {
 					</div>
 				</Link>
 	 		</div>
-		);
+		)};
 	});
 };
