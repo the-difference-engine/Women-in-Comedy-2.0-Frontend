@@ -265,7 +265,8 @@ class Navbar extends Component {
                   </div>
                 </div>
                 <div className="input-group">
-                <SearchBar/>
+                <SearchBar
+                />
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.users}
