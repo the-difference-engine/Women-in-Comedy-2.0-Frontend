@@ -1,6 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/events.css';
+import dateformat from 'dateformat';
+
+
+var todaysDate = new Date();
+dateformat(todaysDate, "mm/dd/yy")
+console.log(todaysDate)
+
 
 export default (props) => {
 	if (props.myUpcomingEvents.length === 0) {

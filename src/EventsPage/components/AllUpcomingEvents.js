@@ -15,7 +15,7 @@ export default (props) => {
 			<div>
 				<div className="row events-grid" id="all-events">
 					<div className="col-xs-offset-1 col-xs-3">
-						<h1 className="events-header">All Up Coming Events</h1>
+						<h1 className="events-header">All Upcoming Events</h1>
 					</div>
 				</div>
 				<div className="row">
