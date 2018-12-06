@@ -109,12 +109,7 @@ class CreateEvents extends Component {
       },
       newUserId
     );
-  if (this.props.createEventForm.error) {
-    console.log('error')
-  }
-  else {
-    this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`)
-  };
+    this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`);
 }
 
   render() {
