@@ -1,4 +1,4 @@
-* {
+/* * {
 	box-sizing: border-box;
 }
 
@@ -40,9 +40,9 @@ a {
 
 .modal {
   background-color: black;
-  /*color: black;*/
+  color: black;
   z-index: 10;
-}
+} */
 
 #background {
   background-image: url('../images/womengroupsedited.jpg');

@@ -48,22 +48,52 @@ class Notification extends Component {
       userInvites
     } = this.props;
     return (
-      <div>
-        <Navbar history={this.props.history} notifications={notifications} />
-        <UnreadNotifications
-          notifications={notifications}
-          userConnections={userConnections}
-          connections={receivedConnectionRequest}
-        />
-        <RightGraySideBar>
-          <Messages
-            connections={receivedConnectionRequest}
-            invites={userInvites}
-          />
-        </RightGraySideBar>
-        <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections} />
-        </LeftGraySideBar>
+      <div className="container">
+        <div className="row">
+          <div className='col-lg-12'>
+            <div className="row">
+              <Navbar history={this.props.history} notifications={notifications} />
+              <h1> row 1</h1>
+            </div>
+
+            <div className="row">
+              <div className='col-lg-3'>
+                {/* <LeftGraySideBar>
+                  <UserInfo userInfo={userInfo} userConnections={userConnections} />
+                </LeftGraySideBar> */}
+
+                <h1> Left Side bar </h1>
+
+              </div>
+              <div className='col-lg-6'>
+                {/* <UnreadNotifications
+                  notifications={notifications}
+                  userConnections={userConnections}
+                  connections={receivedConnectionRequest}
+                /> */}
+                <h1>  Middle </h1>
+              </div>
+              <div className='col-lg-3'>
+                {/* <RightGraySideBar>
+                  <Messages
+                    connections={receivedConnectionRequest}
+                    invites={userInvites}
+                  />
+                </RightGraySideBar> */}
+                <h1> Right Side bar </h1>
+              </div>
+            </div>
+
+
+
+
+
+
+            
+            
+            
+          </div> 
+        </div>
       </div>
       
     );

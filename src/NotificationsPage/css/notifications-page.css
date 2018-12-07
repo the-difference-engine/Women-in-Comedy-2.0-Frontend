@@ -1,4 +1,21 @@
-#mark-read-link {
+.container{
+  width: 100%;
+  padding:0;
+  margin:0;
+}
+.row{
+  width:100%;
+  padding:0;
+  margin:0;
+}
+.col-lg-3, .col-lg-9, .col-lg-12{
+
+  padding:0;
+  margin:0;
+}
+
+
+/* #mark-read-link {
   color: #9b1522;
   font-weight: 700;
 
@@ -25,7 +42,7 @@
   margin-left:10px;
 }
 
-/* Notifications Pop Up */
+Notifications Pop Up
 
 .notify-container {
   display: flex;
@@ -71,4 +88,4 @@
 
 .notify-title {
   font-weight: 700;
-}
+} */
