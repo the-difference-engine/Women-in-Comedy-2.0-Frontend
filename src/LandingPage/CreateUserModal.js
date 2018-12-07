@@ -301,8 +301,6 @@ class CreateUserModal extends Component {
                     <br/>
                     <label name='uploadphoto'>Upload Photo</label>
                     <br/>
-                    <button className='btn btn-info'>Upload Photo</button>
-                    <br/>
                     <input type="file" id="input" onChange={this.onUpload.bind(this)} />
                     <br />
                     {this.renderImg()}
