@@ -14,7 +14,7 @@ import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
 import DeletedUser from './ProfilesPage/DeletedUser';
-import ChatWidget from './ChatWidget/ChatWidget';
+// import ChatWidget from './ChatWidget/ChatWidget';
 import Notification from "./NotificationsPage/NotificationsPage";
 
 
