@@ -12,6 +12,7 @@ import { LeftGraySideBar, RightGraySideBar } from "../common";
 import UnreadNotifications from "./components/UnreadNotifications";
 import UserInfo from "../FeedPage/components/UserInfo";
 import Messages from "../FeedPage/components/Messages";
+import "./css/notifications-page.css";
 
 class Notification extends Component {
   constructor(props) {
@@ -63,12 +64,11 @@ class Notification extends Component {
 
               </div>
               <div className='col-sm-8 col-lg-6'>
-                {/* <UnreadNotifications
+                <UnreadNotifications
                   notifications={notifications}
                   userConnections={userConnections}
                   connections={receivedConnectionRequest}
                 />
-                <h1>  Middle </h1> */}
               </div>
               <div className='col-sm-2 col-lg-3'>
                 <RightGraySideBar>

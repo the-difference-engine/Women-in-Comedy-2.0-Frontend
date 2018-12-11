@@ -4,7 +4,7 @@ const RightGraySideBar = ({children, ...props}) => {
   return (
 
     <div className="container">
-      <div className="row">
+      <div className="row ">
         <div className="col">
           
           <div id="right-side" {...props}>

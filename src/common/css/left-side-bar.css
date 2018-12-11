@@ -1,10 +1,12 @@
 #left-side-bar{
   width: 100%;
   padding: 2em;
-
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
   /* overflow: auto;   */
+
+  display: flex;
+  flex-direction: column;
 } 
 
 #left-side-bar-content{
