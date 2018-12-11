@@ -59,17 +59,6 @@ class Feed extends Component {
           <UserInfo userInfo={userInfo} userConnections={userConnections} />
         </LeftGraySideBar>
         <PageContent>
-          {/* <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}/>
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
-              </div>
-            </div>
-          </div>
-          <NewFeeds userFeeds={userFeeds} /> */}
         </PageContent>
       </div>
     );
