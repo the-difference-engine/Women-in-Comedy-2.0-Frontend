@@ -10,6 +10,7 @@ class HomePage extends Component {
 		return (
 			<div id="events-page">
        <FBLogin />
+
 				<HeaderComponent />
         <div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
         <img src={logo}className="splash" alt="splash" />

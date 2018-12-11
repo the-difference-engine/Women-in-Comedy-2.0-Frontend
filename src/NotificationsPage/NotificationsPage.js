@@ -53,45 +53,33 @@ class Notification extends Component {
           <div className='col-lg-12'>
             <div className="row">
               <Navbar history={this.props.history} notifications={notifications} />
-              <h1> row 1</h1>
             </div>
 
             <div className="row">
-              <div className='col-lg-3'>
-                {/* <LeftGraySideBar>
+              <div className='col-sm-2 col-lg-3'>
+                <LeftGraySideBar>
                   <UserInfo userInfo={userInfo} userConnections={userConnections} />
-                </LeftGraySideBar> */}
-
-                <h1> Left Side bar </h1>
+                </LeftGraySideBar>
 
               </div>
-              <div className='col-lg-6'>
+              <div className='col-sm-8 col-lg-6'>
                 {/* <UnreadNotifications
                   notifications={notifications}
                   userConnections={userConnections}
                   connections={receivedConnectionRequest}
-                /> */}
-                <h1>  Middle </h1>
+                />
+                <h1>  Middle </h1> */}
               </div>
-              <div className='col-lg-3'>
-                {/* <RightGraySideBar>
+              <div className='col-sm-2 col-lg-3'>
+                <RightGraySideBar>
                   <Messages
                     connections={receivedConnectionRequest}
                     invites={userInvites}
                   />
-                </RightGraySideBar> */}
-                <h1> Right Side bar </h1>
+                </RightGraySideBar>
               </div>
             </div>
 
-
-
-
-
-
-            
-            
-            
           </div> 
         </div>
       </div>

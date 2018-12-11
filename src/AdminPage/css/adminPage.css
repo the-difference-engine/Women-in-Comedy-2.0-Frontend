@@ -1,0 +1,56 @@
+/* 
+
+@media screen and (max-width: 1144px) {
+  #nav-header {
+    margin-left: -25px;
+    margin-right: 0;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 909px) and (min-width: 768px) {
+  .navbar-right {
+    margin: -15px;
+  }
+}
+
+@media (max-width: 934px) and (min-width: 910px) {
+  .navbar-right {
+    margin-top: -65px;
+    margin-right: -5px;
+  }
+}
+
+@media (min-width: 935px) {
+  .navbar-right {
+    margin-right: -5px;
+  }
+} */
+
+
+
+/* font for 'admin status text' */
+#admin-status-display {
+  color: red;
+  font-size: 18px;
+}
+
+/* switch status area */
+.admin-status input {
+  margin: 15px;
+  padding: 5px;
+}
+
+/* possibly for true admin */
+.admin-show {
+  color: red;
+  margin: 5px;
+}
+
+/* email modal styling */
+.email-modal {
+  width: 500px;
+  height: 250px;
+  resize: none;
+}
+

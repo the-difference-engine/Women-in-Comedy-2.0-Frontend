@@ -1,22 +1,25 @@
-/* 
+
 .navbar-default {
-    background-color: #9b1522;
+  background-color: #9b1522;
 }
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
+  margin: 0;
+  height: 100%;
+  position: relative;
 }
 
 #nav-header {
   color:white ;
   font-size: 30px;
   font-weight: 0;
-
   font-family: 'alwaysforever', sans-serif;
 }
 
 .navbar-default .navbar-nav>li>a {
     color: white;
+
 }
 
 .navbar-default .navbar-nav p {
@@ -37,6 +40,7 @@ i.fa {
 .navbar-right {
   margin: 0;
 }
+
 .navbar-nav img {
   border-radius: 50%;
   width: 35px;
@@ -53,7 +57,6 @@ i.fa {
   width: 250px;
   height: 30px;
   border-radius: 20px;
-
 }
 
 .input-group i {
@@ -106,5 +109,5 @@ p {
   position:absolute;
   top:-1px;
   padding:5px;
-} */
+}
 
