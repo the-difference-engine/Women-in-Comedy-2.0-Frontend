@@ -51,19 +51,19 @@ export default (props) => {
 
 
 const renderEventList = (events) => {
-	return events.map(event => {
-		if (event.date < today)
-		{
-		return (
-			<div key={event.id} className="col-xs-offset-1 col-xs-3">
-				<Link to={`/eventsfeed/${event.id}`}>
-					<div className="event">
-						<div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
-						<div className="event-title"><p>{event.title}</p></div>
-						<div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
-					</div>
-				</Link>
-			</div>
-		)};
+	let today = new Date();
+	today = today.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'})
+		return events.map(event => { if (event.date < today) {
+			return (
+				<div key={event.id} className="col-xs-offset-1 col-xs-3">
+					<Link to={`/eventsfeed/${event.id}`}>
+						<div className="event">
+							<div className="event-pic"> <img className="img-responsive" src={event.photo} /></div>
+							<div className="event-title"><p>{event.title}</p></div>
+							<div className="event-time"><p>{event.date} <br/> {event.time}</p></div>
+						</div>
+					</Link>
+				</div>
+			)};
 	});
 };

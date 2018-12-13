@@ -6,21 +6,9 @@ import _ from 'lodash';
 
 const sortByDate = (events = []) => (_.orderBy(events, 'date', 'desc'))
 
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
+let today = new Date();
+today = today.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'})
 
-if(dd<10) {
-    dd = '0'+dd
-} 
-
-if(mm<10) {
-    mm = '0'+mm
-} 
-
-today = mm + '/' + dd + '/' + yyyy;
-console.log(today.toString())
 
 export default (props) => {
 	if (props.upcomingEvents.length === 0) {
