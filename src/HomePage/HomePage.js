@@ -12,8 +12,8 @@ class HomePage extends Component {
        <FBLogin />
 
 				<HeaderComponent />
-        <div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
-        <img src={logo}className="splash" alt="splash" />
+				<div> <img src={logo}className="splash" alt="splash" /><FBLogin /></div>
+				<img src={logo}className="splash" alt="splash" />
 			</div>
 			
 		);
