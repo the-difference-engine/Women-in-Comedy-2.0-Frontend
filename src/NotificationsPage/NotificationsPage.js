@@ -56,7 +56,7 @@ class Notification extends Component {
               <Navbar history={this.props.history} notifications={notifications} />
             </div>
 
-            <div className="row">
+            <div className="row notif-col-container">
               <div className='col-sm-2 col-lg-3'>
                 <LeftGraySideBar>
                   <UserInfo userInfo={userInfo} userConnections={userConnections} />
@@ -79,7 +79,6 @@ class Notification extends Component {
                 </RightGraySideBar>
               </div>
             </div>
-
           </div> 
         </div>
       </div>

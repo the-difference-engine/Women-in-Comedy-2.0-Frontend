@@ -16,6 +16,7 @@ import EditPage from './EditPage/EditPage';
 import DeletedUser from './ProfilesPage/DeletedUser';
 // import ChatWidget from './ChatWidget/ChatWidget';
 import Notification from "./NotificationsPage/NotificationsPage";
+import "./app.css";
 
 
 class App extends Component {

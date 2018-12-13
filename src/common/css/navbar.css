@@ -9,12 +9,18 @@
   height: 100%;
   position: relative;
 }
-
+.nav-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 #nav-header {
   color:white ;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 0;
   font-family: 'alwaysforever', sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -51,6 +57,8 @@ i.fa {
   margin: 0px;
   padding-top: 15px;
   padding-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-form .input-group >.form-control {
