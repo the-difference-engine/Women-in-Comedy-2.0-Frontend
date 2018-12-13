@@ -109,9 +109,8 @@ class CreateEvents extends Component {
       },
       newUserId
     );
-
     this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`);
-  }
+}
 
   render() {
     const { loading } = this.props.createEventForm;
