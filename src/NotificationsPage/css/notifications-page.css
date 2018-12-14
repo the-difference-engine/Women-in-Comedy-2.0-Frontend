@@ -1,8 +1,51 @@
+/* unreadNotifications  */
+.notif-grid{
+  display: flex;
+  flex-direction: column;
+
+  padding: 2em;
+} 
+
+.notif-header{
+  color: #9b1522;
+  font-size: 40px;
+  font-weight: 340;
+}
+
+#my-notif{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  padding:0;
+}
+
+.btn-accept-decline{
+  margin: auto;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.notif-col-container{
+  height: 100%;
+  display: flex;
+}
+
+#unreadNot{
+  padding: 2em;
+}
+/* 
 #mark-read-link {
   color: #9b1522;
   font-weight: 700;
 
 }
+
 
 .notifications-header {
   color: #9b1522;
@@ -13,7 +56,7 @@
 .notification-page-content {
   margin-left: 20%;
 }
-
+*/
 .btn-danger {
   float: right;
   color: #fff;
@@ -21,11 +64,12 @@
   border-color: #9b1522;
 }
 
+/*
 .btn-accept-decline{
   margin-left:10px;
 }
 
-/* Notifications Pop Up */
+Notifications Pop Up
 
 .notify-container {
   display: flex;
@@ -38,6 +82,7 @@
   top: 0;
   right: 0;
 }
+
 
 .notify-item {
   width: 250px;
@@ -71,4 +116,4 @@
 
 .notify-title {
   font-weight: 700;
-}
+} */

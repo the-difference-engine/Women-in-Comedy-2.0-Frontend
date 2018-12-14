@@ -167,7 +167,7 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container-fluid">
+        <div className="container-fluid nav-container">
           <div className="navbar-header">
             <Link id="nav-header" className="navbar-brand" to="/feed">
               Women in Comedy
@@ -176,7 +176,7 @@ class Navbar extends Component {
           <ul className="nav navbar-nav navbar-right">
             <li>
               <form className="navbar-form">
-                <div className="input-group" style={styles.container}>
+                {/* <div className="input-group" style={styles.container}>
                   <div>
                     <FlatButton
                       style={styles.filter}
@@ -262,7 +262,7 @@ class Navbar extends Component {
                       </Menu>
                     </Popover>
                   </div>
-                </div>
+                </div> */}
                 <div className="input-group">
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}

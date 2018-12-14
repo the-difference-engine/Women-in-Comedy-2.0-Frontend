@@ -6,7 +6,7 @@ import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
 import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, updatePublicFigure, updateIsMentor, fetchNotifications } from '../actions';
-import './css/navbar.css';
+import './css/adminPage.css';
 import EmailModal from './components/EmailModal';
 
 
