@@ -120,21 +120,20 @@ class CreateUserModal extends Component {
         let user = this.state.user
         let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
-        if (this.state.imgURL.startsWith("data:image")) {
+        if (this.state.imgURL && this.state.imgURL.startsWith("data:image")) {
             this.storeProfilePicture()
-                .then(() => {
-                    axios({
-                        method: 'post',
-                        url: process.env.REACT_APP_API_ENDPOINT + 'users',
-                        data: { first_name, last_name, email, password, city, experience, training, video_link, website }
-                    })
-                }).then(payload => {
-                    this.setState({ userMade: true });
-                }).catch(err => {
-                    alert(err)
-                });
-        }
-        else {
+            .then(() => {
+                axios({
+                    method: 'post',
+                    url: process.env.REACT_APP_API_ENDPOINT + 'users',
+                    data: { first_name, last_name, email, password, city, experience, training, video_link, website }
+                })
+            }).then(payload => {
+                this.setState({ userMade: true });
+            }).catch(err => {
+                alert(err)
+            });
+        } else {
             axios({
                 method: 'post',
                 url: process.env.REACT_APP_API_ENDPOINT + 'users',
