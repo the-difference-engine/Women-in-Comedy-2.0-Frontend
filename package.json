@@ -16,7 +16,7 @@
     "query-string": "^5.0.0",
     "rc-time-picker": "^2.4.1",
     "react": "^15.6.1",
-    "react-addons-create-fragment": "^15.6.1",
+    "react-addons-create-fragment": "^15.6.2",
     "react-bootstrap": "^0.31.5",
     "react-chat-widget": "^2.1.2",
     "react-csv": "^1.0.15-RC2",
