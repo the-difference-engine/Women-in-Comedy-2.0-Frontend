@@ -40,6 +40,7 @@ class ProfilePage extends Component {
     };
   }
 
+
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {

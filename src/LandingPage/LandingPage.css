@@ -1,4 +1,4 @@
-* {
+/* * {
 	box-sizing: border-box;
 }
 
@@ -29,18 +29,18 @@ a {
 }
 
 .row {
-  width: 45%;
-  margin: 20% 30%;
+  width: 100%;
+
 }
 
 .col-lg-12 {
   background-color: rgba(0,0,0,.6);
   padding: 10px;
-}
-
+} */
+/* 
 .modal {
   background-color: black;
-  /*color: black;*/
+  color: black;
   z-index: 10;
 }
 
@@ -72,4 +72,4 @@ a {
 
 #registerButton {
   padding: 10px;
-}
+} */

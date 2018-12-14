@@ -28,11 +28,24 @@ class CreateAdmin extends Component {
     const {notifications} = this.props
 
     return(
-      <div>
+      <div className="container">
+        <div className="row">
+          <div className='col-lg-12'>
+
         <Navbar history={this.props.history} notifications={notifications}/>
+          <h3>row1</h3>
+          </div>
+
+       <div className="row">
+        <div className='col-lg-3'>
         <LeftGraySideBar>
+
           <EmailModal />
         </LeftGraySideBar>
+        <h3>left side bar</h3>
+        </div>
+
+        <div className='col-lg-6'>
         <PageContent>
          <UserList 
           userInfo={this.props.userInfo} 
@@ -43,8 +56,16 @@ class CreateAdmin extends Component {
           users={this.props.allUsersList} 
           fetchUser={this.props.fetchUser}/>
         </PageContent>
+        <h3> middle </h3>
+        </div>
+        <div className='col-lg-3'>
         <RightGraySideBar>
         </RightGraySideBar>
+        <h3>right bar</h3>
+        
+        </div>
+        </div>
+        </div>
       </div>
     );
   }
