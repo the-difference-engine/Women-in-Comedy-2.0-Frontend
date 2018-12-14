@@ -13,12 +13,12 @@ h1 {
   font-family: 'Quicksand', sans-serif;
 }
 
-input {
+.landingPageInput {
   width: 60%;
   color: black;
 }
 
-label {
+.landingPageLabel {
   text-align: left;
   width: 60%;
 }
@@ -37,7 +37,7 @@ a {
   margin: 20% 30%;
 }
 
-.col-lg-12 {
+.colBackground {
   background-color: rgba(0,0,0,.6);
   padding: 10px;
 }
