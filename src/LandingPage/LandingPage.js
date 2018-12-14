@@ -3,7 +3,7 @@ import './LandingPage.css';
 import axios from "axios";
 import { setUserLoggedIn } from "../actions";
 import { connect } from "react-redux";
-import RegisterModal from '../LoginPage/components/RegisterModal';
+import CreateUserLink from './CreateUserLink';
 
 
 class LandingPage extends Component {
@@ -25,7 +25,6 @@ class LandingPage extends Component {
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        // this.props.createSession(email, password);
         axios
             .post(process.env.REACT_APP_API_ENDPOINT + "sessions", { email, password })
             .then(response => {
@@ -64,7 +63,7 @@ class LandingPage extends Component {
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
 
-                        <RegisterModal/>
+                        <CreateUserLink/>
 
                     </div>
                 </div>

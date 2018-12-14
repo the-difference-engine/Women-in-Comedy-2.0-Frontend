@@ -40,9 +40,10 @@ class ProfilePage extends Component {
     };
   }
 
+
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
-    if(valid === 'null' || !valid) {
+    if (valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     const sender_id = sessionStorage.getItem('userId');
@@ -54,9 +55,9 @@ class ProfilePage extends Component {
     fetchConnectionStatus({ sender_id, receiver_id });
     fetchNotifications(sender_id);
     this.setState(() => {
-      return {suspendedState: this.props.userInfo.suspended}
+      return { suspendedState: this.props.userInfo.suspended }
     });
-    this.setState({editUserEnable: false});
+    this.setState({ editUserEnable: false });
   }
 
   // @TODO onPress what? Be more specific naming functions
@@ -85,7 +86,7 @@ class ProfilePage extends Component {
 
   renderPublicFigureStatus(userInfo = this.props.userInfo) {
     if (userInfo.public_figure) {
-      return(
+      return (
         <h6>Public Figure</h6>
       );
     }
@@ -93,7 +94,7 @@ class ProfilePage extends Component {
 
   renderIsMentorStatus(userInfo = this.props.userInfo) {
     if (userInfo.is_mentor) {
-      return(
+      return (
         <h6>Mentor</h6>
       );
     }
@@ -194,10 +195,10 @@ class ProfilePage extends Component {
 
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    if(!this.props.userInfo.superuser) {
+    if (!this.props.userInfo.superuser) {
       return (
-          <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
-            Delete User
+        <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
+          Delete User
           </button>
       );
     }
@@ -297,26 +298,26 @@ class ProfilePage extends Component {
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
-            {deleteModalVisible && 
-            <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
-              <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
-              <h2 className='text-center'>Are you sure?</h2>
-              <hr/>
-              <div className='container'>
-              <div className='row'>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
-              </div>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.closeModal}>No</button>
-              </div>
-              </div>
-              </div>
-            </Modal>}
+            {deleteModalVisible &&
+              <Modal style={{ borderRadius: "50px" }} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
+                <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
+                <h2 className='text-center'>Are you sure?</h2>
+                <hr />
+                <div className='container'>
+                  <div className='row'>
+                    <div className='col-md-6'>
+                      <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
+                    </div>
+                    <div className='col-md-6'>
+                      <button className="btn btn-danger" onClick={this.closeModal}>No</button>
+                    </div>
+                  </div>
+                </div>
+              </Modal>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
-          <ProfileConnections connections={userConnections}/>
+          <ProfileConnections connections={userConnections} />
         </RightGraySideBar>
         <PageContent history={history}>
           {this.renderPageContent()}
