@@ -37,7 +37,8 @@ export default (props) => {
 const renderEventList = (events) => {
 	let today = new Date();
 	today = today.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'})
-		return events.map(event => { if (event.date < today) {
+	return events.map(event => { 
+		if (event.date < today) {
 			return (
 				<div key={event.id} className="col-xs-offset-1 col-xs-3">
 					<Link to={`/eventsfeed/${event.id}`}>
@@ -49,6 +50,6 @@ const renderEventList = (events) => {
 					</Link>
 				</div>
 			)
-		};
+		}
 	});
 };
