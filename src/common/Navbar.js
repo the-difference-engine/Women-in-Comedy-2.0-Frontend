@@ -167,7 +167,7 @@ class Navbar extends Component {
     const { notifications } = this.props;
 
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-fixed-top" style={{height: 90}}>
         <div className="container-fluid">
           <div className="navbar-header">
             <Link id="nav-header" className="navbar-brand" to="/feed">
@@ -265,13 +265,13 @@ class Navbar extends Component {
                   </div>
                 </div>
                 <div className="input-group">
-                <SearchBar
-                />
+                 {/* <SearchBar
+                />  */}
                   <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.users}
                     maxSearchResults={10}
-                    hintText="Search"
+                    placeholder="Search..."
                     underlineShow={false}
                     hintStyle={styles.hint}
                     inputStyle={styles.input}
@@ -280,7 +280,7 @@ class Navbar extends Component {
                   />
                   <i
                     className="glyphicon glyphicon-search"
-                    style={{ right: "50px" }}
+                    style={{ right: "20px" }}
                   />
                 </div>
               </form>
@@ -343,12 +343,12 @@ const styles = {
     height: "30px",
     width: "225px",
     backgroundColor: "white",
-    borderRadius: "20px"
+    borderRadius: "0px"
   },
   hint: {
     zIndex: 1,
     marginBottom: "7px",
-    marginLeft: "10px"
+    marginLeft: "20px"
   },
   text: {
     marginLeft: "10px"

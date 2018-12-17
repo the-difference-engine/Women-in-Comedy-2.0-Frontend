@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
+import { Link, Route } from 'react-router-dom';
 
 class SearchBar extends Component {
 
@@ -11,19 +12,16 @@ class SearchBar extends Component {
       term: '',
       autoCompleteResults: [],
       itemSelected: {},
-      loading: false,
-      rsultts: []
-    };
-    axios.get('/search?q=' + this.state.term)
-      .then(response => this.setState({ autoCompleteResults: response.data }))
+      showItemSelected: false
+    } 
   }
-
-  getAutoCompleteResults(e){
-    if (e.target.value === '') {
+    getAutoCompleteResults(e) {
+      if (e.target.value === "") { 
       this.setState({
-        term: '',
+        term: '',    
         autoCompleteResults: []
       });
+      return;
     } else {
       this.setState({
         term: e.target.value
@@ -33,26 +31,27 @@ class SearchBar extends Component {
       });
     }
   }
+  render(){
+    let autoCompleteList = this.state.autoCompleteResults.map((response, index) => {
+      return <div className='searchbox'><div className="navsearch" key={index}>
+      <div className="navul" >
+       <div className="navli"> <Link to={'/profile/'+ response.id} className="searchlink" style={{ color: 'black' }} >{response.first_name } {response.last_name}</Link> </div>
+      </div>   
+      </div>
+      </div>
+    });
 
-  
-
-
-    render(){
-      let autoCompleteList = this.state.autoCompleteResults.map((response, index) => {
-        return <div key={index}>
-          <h4>{response.first_name } {response.last_name}</h4>
-          
-        </div>
-      });
-
-      return (
-        <div>
-          <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search..." autoComplete="off" />
-          { autoCompleteList }
-        </div>
-      )
-    }
+    return (
+      <div>
+        <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search..." autoComplete="off" />
+        { autoCompleteList }
+      </div>
+    )
   }
+  
+} 
+    
+  
 
   document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
@@ -61,4 +60,5 @@ class SearchBar extends Component {
     )
   });
 
+  
 export {SearchBar};

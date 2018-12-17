@@ -109,3 +109,30 @@ p {
   padding:5px;
 }
 
+.navsearch {
+  position: relative;
+  background-color: white;
+  display: block;
+  /* text-decoration: none; */
+  /* list-style-type: none; */
+  text-align: left;
+  box-shadow: 3px 6px 8px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 6px 8px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 3px 6px 8px 0px rgba(0,0,0,0.75);
+  padding-left: 3px;
+}
+
+.searchlink {
+  textDecoration: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.navul {
+  padding: 0;
+  list-style: none;
+}
+
+
+
+

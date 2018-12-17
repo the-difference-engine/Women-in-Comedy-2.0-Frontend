@@ -45,24 +45,35 @@ class ProfilePage extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const sender_id = sessionStorage.getItem('userId');
-    const receiver_id = this.props.match.params.id;
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
-    fetchUserInfo(this.props.match.params.id);
-    fetchUserFeeds(this.props.match.params.id);
-    fetchUserConnections(this.props.match.params.id);
-    fetchConnectionStatus({ sender_id, receiver_id });
-    fetchNotifications(sender_id);
     this.setState(() => {
       return {suspendedState: this.props.userInfo.suspended}
     });
     this.setState({editUserEnable: false});
+    this.loadUserData(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.currentUser === nextProps.match.params.id) {
+      return;
+    }
+    this.loadUserData(nextProps.match.params.id);
+  }
+
+  loadUserData(userId) {
+    this.setState({currentUser: userId})
+    const sender_id = sessionStorage.getItem('userId');
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+    fetchUserInfo(userId);
+    fetchUserFeeds(userId);
+    fetchUserConnections(userId);
+    fetchConnectionStatus({ sender_id, userId });
+    fetchNotifications(sender_id);
   }
 
   // @TODO onPress what? Be more specific naming functions
   onPress() {
     const sender_id = sessionStorage.getItem("userId");
-    const receiver_id = this.props.match.params.id;
+    const receiver_id = this.state.currentUser;
     const data = {
       sender_id,
       receiver_id
@@ -77,8 +88,7 @@ class ProfilePage extends Component {
 
   onPost() {
     const body = this.props.userWallPost;
-    const userId =
-      this.props.match.params.id || sessionStorage.getItem("userId");
+    const userId = this.state.currentUser || sessionStorage.getItem("userId");
     const authorId = sessionStorage.getItem("userId");
     this.props.createPostOnUserWall(
       {
@@ -152,7 +162,7 @@ class ProfilePage extends Component {
 
   // @TODO What are we deleting? Please be more specific naming functions
   onDelete() {
-    const id = this.props.match.params.id || sessionStorage.getItem("userId");
+    const id = this.state.currentUser || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
     this.props.history.push('/message');
 
