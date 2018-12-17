@@ -14,7 +14,6 @@ import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
 import DeletedUser from './ProfilesPage/DeletedUser';
-// import ChatWidget from './ChatWidget/ChatWidget';
 import Notification from "./NotificationsPage/NotificationsPage";
 import "./app.css";
 
@@ -54,7 +53,6 @@ class App extends Component {
               <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/notifications' component={Notification}></Route>
             </Switch>
-            {/* <ChatWidget /> */}
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

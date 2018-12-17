@@ -1,9 +1,8 @@
-/* * {
+* {
 	box-sizing: border-box;
 }
 
 body {
-  color: white;
   text-align: center;
   font-size: 20px;
   vertical-align: middle;
@@ -14,9 +13,14 @@ h1 {
   font-family: 'Quicksand', sans-serif;
 }
 
-input {
+.landingPageInput {
   width: 60%;
   color: black;
+}
+
+.landingPageLabel {
+  text-align: left;
+  width: 60%;
 }
 
 a {
@@ -33,18 +37,17 @@ a {
   margin: 20% 30%;
 }
 
-.col-lg-12 {
+.colBackground {
   background-color: rgba(0,0,0,.6);
   padding: 10px;
 }
 
-.modal {
-  background-color: black;
-  color: black;
-  z-index: 10;
+.styles_modal__gNwvD {
+  width: 50%;
 }
 
 #background {
+  color: white;
   background-image: url('../images/womengroupsedited.jpg');
   background-size: cover;
 }
@@ -67,9 +70,16 @@ a {
   width: 55%;
   border-radius: 20px;
   background-color: rgba(254, 8, 101, 1);
-
 }
 
 #registerButton {
   padding: 10px;
-} */
+}
+
+#registerButton:hover {
+  color: white;
+}
+
+#registrationModal  {
+  color: black;
+}

@@ -29,8 +29,6 @@ class AddEvent extends Component {
     return(
       <div className="add-event">
         <div className="add-event-content">
-          <div className="upcoming-events"><p>Upcoming Events</p></div>
-          <div className="past-events"><p>Past Events</p></div>
           <div className="new-event"><button className="btn btn-default" onClick={() => this.props.history.push('/newevent')}>+ NEW EVENT</button></div>
           <div className="upcoming-events"><p>Pending Event Invites ({this.props.invites.length})</p></div>
           {this.renderPendingInvites()}

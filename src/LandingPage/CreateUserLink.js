@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './LandingPage.css';
 import Modal from 'react-responsive-modal';
+import CreateUserModal from './CreateUserModal';
 
 
 
@@ -23,18 +24,14 @@ class CreateUserLink extends Component {
 
     render() {
         return (
-            <div id='registerButton'>
-                <a href='#' onClick={this.onOpenModal}><h2>Create New Account</h2></a>
-                <Modal open={this.state.open} onClose={this.onCloseModal} center>
-                    <h2>Simple centered modal</h2>
+            <div>
+                <a id='registerButton' href='#' onClick={this.onOpenModal}><h2>create new account</h2></a>
+                <Modal id='registrationModal' open={this.state.open} onClose={this.onCloseModal} center>
+                    <CreateUserModal/>
                 </Modal>
             </div>
         )
     };
 }
 
-
-//const mapStateToProps = state => state;
-
-//export default connect(mapStateToProps)(CreateUserLink);
 export default CreateUserLink;

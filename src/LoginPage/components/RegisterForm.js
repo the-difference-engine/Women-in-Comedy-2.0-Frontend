@@ -133,7 +133,7 @@ class RegisterForm extends Component {
     let user = this.state.user
     let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
-    if (this.state.imgURL.startsWith("data:image")) {
+    if (this.state.imgURL && this.state.imgURL.startsWith("data:image")) {
       this.storeProfilePicture()
         .then(() => {
           axios({

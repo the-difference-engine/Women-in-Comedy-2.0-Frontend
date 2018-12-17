@@ -15,7 +15,7 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
   const renderUpdateEvent = ({ event, userInfo, eventId }) => {
     if (event.hostInfo.id === userInfo.id || userInfo.admin === true){ 
       return(
-        <UpdateEventButton id="edit_btn" eventId={eventId}/>
+        <UpdateEventButton id="edit_btn" eventId={eventId} event={event}/>
       )
     }
   };
