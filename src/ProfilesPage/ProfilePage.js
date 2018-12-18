@@ -76,20 +76,7 @@ class ProfilePage extends Component {
     this.props.blockConnectionRequests(sender_id);
   }
 
-  onPost() {
-    const body = this.props.userWallPost;
-    const userId =
-      this.props.match.params.id || sessionStorage.getItem("userId");
-    const authorId = sessionStorage.getItem("userId");
-    this.props.createPostOnUserWall(
-      {
-        body,
-        userId,
-        authorId
-      },
-      this.props.fetchUserFeeds
-    );
-  }
+
 
   renderEditUserButton() {
     return (
@@ -249,37 +236,8 @@ class ProfilePage extends Component {
           userInfo={userInfo}
         />
       );
-    } else {
-
-      return (
-        <div>
-          <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input
-                  type="text"
-                  className="searchTerm"
-                  placeholder="What's New?"
-                  onChange={event =>
-                    this.props.userWallInputChange(event.target.value)
-                  }
-                  value={this.props.userWallPost}
-                />
-                <div className="post-button">
-                  <button
-                    className="btn btn-default"
-                    onClick={this.onPost.bind(this)}
-                  >
-                    POST
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <ProfileFeed feeds={this.props.userFeeds} />
-        </div>
-      );
     }
+    
   }
 
 

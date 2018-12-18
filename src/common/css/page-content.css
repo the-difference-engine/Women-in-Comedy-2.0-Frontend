@@ -1,7 +1,7 @@
 #page-content {
   overflow-y: scroll;
-  width: 61%;
-  position: fixed;
+  /* width: 61%; */
+  /* position: fixed; */
   left: 20%;
   padding-bottom: 50px;
   top: 65px;
