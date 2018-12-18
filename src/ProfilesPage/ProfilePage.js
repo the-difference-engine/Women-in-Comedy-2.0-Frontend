@@ -49,7 +49,8 @@ class ProfilePage extends Component {
     this.setState(() => {
       return { suspendedState: this.props.userInfo.suspended }
     });
-    this.setState({ editUserEnable: false });
+
+    this.setState({editUserEnable: false});
     this.loadUserData(this.props.match.params.id);
   }
 
@@ -69,7 +70,6 @@ class ProfilePage extends Component {
     fetchUserConnections(userId);
     fetchConnectionStatus({ sender_id, userId });
     fetchNotifications(sender_id);
-    this.setState({ editUserEnable: false });
   }
 
   // @TODO onPress what? Be more specific naming functions
@@ -86,20 +86,6 @@ class ProfilePage extends Component {
   onBlockConnection() {
     const sender_id = sessionStorage.getItem("userId");
     this.props.blockConnectionRequests(sender_id);
-  }
-
-  onPost() {
-    const body = this.props.userWallPost;
-    const userId = this.state.currentUser || sessionStorage.getItem("userId");
-    const authorId = sessionStorage.getItem("userId");
-    this.props.createPostOnUserWall(
-      {
-        body,
-        userId,
-        authorId
-      },
-      this.props.fetchUserFeeds
-    );
   }
 
   renderEditUserButton() {
