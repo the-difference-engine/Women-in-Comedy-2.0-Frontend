@@ -17,6 +17,7 @@ import { render } from "react-router-dom";
 import "./css/navbar.css";
 import NotificationButton from "../containers/notification_button";
 import "../images/Women_Logo_New.png";
+import {SearchBar} from "./SearchBar.js";
 
 const userId = sessionStorage.getItem("userId");
 
@@ -166,7 +167,7 @@ class Navbar extends Component {
     const { notifications } = this.props;
 
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-fixed-top" style={{height: 90}}>
         <div className="container-fluid">
           <div className="navbar-header">
             <Link id="nav-header" className="navbar-brand" to="/feed">
@@ -177,107 +178,15 @@ class Navbar extends Component {
             <li>
               <form className="navbar-form">
                 <div className="input-group" style={styles.container}>
-                  <div>
-                    <FlatButton
-                      style={styles.filter}
-                      onClick={this.handleTouchTap}
-                      label="Filter"
-                    />
-                    <Popover
-                      open={this.state.open}
-                      anchorEl={this.state.anchorEl}
-                      anchorOrigin={{
-                        horizontal: "left",
-                        vertical: "bottom"
-                      }}
-                      targetOrigin={{
-                        horizontal: "left",
-                        vertical: "top"
-                      }}
-                      onRequestClose={this.handleRequestClose}
-                    >
-                      <Menu onChange={this.onMenuClicked}>
-                        <MenuItem
-                          primaryText="Reset"
-                          onClick={event =>
-                            this.onMenuItemClicked(event, { props: "none" })
-                          }
-                        />
-                        <MenuItem
-                          primaryText="Location"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={locationMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
-                        />
-                        <MenuItem
-                          primaryText="Training"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={trainingMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
-                        />
-                        <MenuItem
-                          primaryText="Experience"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={experienceMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
-                        />
-                        <MenuItem
-                          primaryText="Gender"
-                          rightIcon={<ArrowDropRight />}
-                          menuItems={genderMenuItems.map(menuItem => (
-                            <MenuItem
-                              {...menuItem}
-                              onClick={event =>
-                                this.onMenuItemClicked(event, {
-                                  props: { ...menuItem }
-                                })
-                              }
-                            />
-                          ))}
-                        />
-                      </Menu>
-                    </Popover>
-                  </div>
+                  
                 </div>
                 <div className="input-group">
-                  <AutoComplete
-                    filter={AutoComplete.fuzzyFilter}
-                    dataSource={this.props.users}
-                    maxSearchResults={10}
-                    hintText="Search"
-                    underlineShow={false}
-                    hintStyle={styles.hint}
-                    inputStyle={styles.input}
-                    textareaStyle={styles.text}
-                    onNewRequest={item => this.onItemClicked(item)}
-                  />
+                 <SearchBar
+                 inputStyle={styles.input}
+                /> 
                   <i
                     className="glyphicon glyphicon-search"
-                    style={{ right: "50px" }}
+                    style={{ right: "20px" }}
                   />
                 </div>
               </form>
@@ -340,12 +249,12 @@ const styles = {
     height: "30px",
     width: "225px",
     backgroundColor: "white",
-    borderRadius: "20px"
+    borderRadius: "40px"
   },
   hint: {
     zIndex: 1,
     marginBottom: "7px",
-    marginLeft: "10px"
+    marginLeft: "20px"
   },
   text: {
     marginLeft: "10px"
