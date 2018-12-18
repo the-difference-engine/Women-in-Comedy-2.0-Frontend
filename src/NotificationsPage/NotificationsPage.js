@@ -49,7 +49,7 @@ class Notification extends Component {
       userInvites
     } = this.props;
     return (
-      <div className="container">
+      
         <div className="row">
           <div className='col-sm-12'>
             <div className="row">
@@ -81,7 +81,7 @@ class Notification extends Component {
             </div>
           </div> 
         </div>
-      </div>
+    
       
     );
   }
