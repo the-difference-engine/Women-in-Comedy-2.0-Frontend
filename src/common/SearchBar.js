@@ -39,7 +39,8 @@ class SearchBar extends Component {
       });
     }
   }
-  render(){
+  
+  render() {
     let autoCompleteList = this.state.autoCompleteResults.map((response, index) => {
       return <div className='searchbox'><div className="navsearch" key={index}>
       <div className="navul" >
