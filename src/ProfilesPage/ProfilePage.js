@@ -262,14 +262,7 @@ class ProfilePage extends Component {
                   }
                   value={this.props.userWallPost}
                 />
-                <div className="post-button">
-                  <button
-                    className="btn btn-default"
-                    onClick={this.onPost.bind(this)}
-                  >
-                    POST
-                  </button>
-                </div>
+                
               </div>
             </div>
           </div>
