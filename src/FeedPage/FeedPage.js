@@ -60,9 +60,9 @@ class Feed extends Component {
             </div>
             <div className="row notif-col-container">
               <div className="col-lg-3">
-                <RightGraySideBar>
-                  <Messages connections={receivedConnectionRequest} invites={userInvites} />
-                </RightGraySideBar>
+                <LeftGraySideBar>
+                  <UserInfo userInfo={userInfo} userConnections={userConnections} />
+                </LeftGraySideBar>
               </div>
               <div className="col-lg-6">
                 {/* <PageContent>
@@ -80,9 +80,9 @@ class Feed extends Component {
               </PageContent> */}
               </div>
               <div className="col-lg-3">
-                <LeftGraySideBar>
-                  <UserInfo userInfo={userInfo} userConnections={userConnections} />
-                </LeftGraySideBar>
+                <RightGraySideBar>
+                  <Messages connections={receivedConnectionRequest} invites={userInvites} />
+                </RightGraySideBar>
               </div>
             </div>
           </div>

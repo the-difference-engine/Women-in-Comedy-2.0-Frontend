@@ -38,6 +38,7 @@
 
 #unreadNot{
   padding: 2em;
+  text-align: left;
 }
 /* 
 #mark-read-link {
