@@ -12,7 +12,6 @@ import {
   UPDATE_EVENT_FAIL
 } from "./types";
 
-
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
   
   let {

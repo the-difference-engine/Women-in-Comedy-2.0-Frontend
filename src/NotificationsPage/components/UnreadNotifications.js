@@ -96,13 +96,14 @@ render() {
 	    </div>
 	  );
   };
+
+  BackgroundImage() {
+      return (<div className="img"></div>)
+  };
+
 };
 
-var BackgroundImage = React.createClass({
-  render:function(){
-    return (<div className="img"></div>)
-  }  
-});
+
 
 export default connect(null, {
   acceptConnection,

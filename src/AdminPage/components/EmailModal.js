@@ -24,11 +24,7 @@ class EmailModal extends Component {
   
   grabText = () => {
     const subject = document.getElementsByClassName("email-subject")[0].value;
-    const email = document.getElementsByClassName("email-modal")[0].value;
-    
-    console.log(subject);
-    console.log(email);
-    
+    const email = document.getElementsByClassName("email-modal")[0].value;    
     {
       this.props.mailUsers(email, subject);
     }
