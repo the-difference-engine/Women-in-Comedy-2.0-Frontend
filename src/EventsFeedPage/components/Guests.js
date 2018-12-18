@@ -8,7 +8,6 @@ const Guests = (props) => {
       <div>
         <h2 id="guest-title">Guests</h2>
         {renderGuests(props.event.guests)}
-
       </div>
     );
   }
