@@ -15,6 +15,14 @@ class SearchBar extends Component {
       showItemSelected: false
     } 
   }
+
+  componentWillReceiveProps() {
+    this.setState({
+      term: '',    
+      autoCompleteResults: []
+    });
+  }
+
     getAutoCompleteResults(e) {
       if (e.target.value === "") { 
       this.setState({
@@ -43,22 +51,13 @@ class SearchBar extends Component {
 
     return (
       <div>
-        <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search..." autoComplete="off" />
+        <input style={{ width: "89%" }} ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search..." autoComplete="off" />
         { autoCompleteList }
       </div>
     )
   }
   
 } 
-    
-  
-
-  document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-      <SearchBar />,
-      document.body.appendChild(document.createElement('div')),
-    )
-  });
 
   
 export {SearchBar};
