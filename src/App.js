@@ -19,18 +19,6 @@ import Notification from "./NotificationsPage/NotificationsPage";
 
 class App extends Component {
 
-  componentWillMount() {
-    var config = {
-      apiKey: "AIzaSyBErciM-iyLeO2x7c9Ly4G2JbQRbAadOnc",
-      authDomain: "womenincomedy-cd5b5.firebaseapp.com",
-      databaseURL: "https://womenincomedy-cd5b5.firebaseio.com",
-      projectId: "womenincomedy-cd5b5",
-      storageBucket: "gs://womenincomedy-cd5b5.appspot.com",
-      messagingSenderId: "1001680813005"
-    };
-    firebase.initializeApp(config);
-  }
-
   render() {
     return (
       <BrowserRouter>
