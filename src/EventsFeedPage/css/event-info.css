@@ -7,18 +7,21 @@
 #event-time {
   font-weight: 600;
   font-size: 20px;
+  color: #9b1522;
 }
 
 #event-details {
   margin-top: 10px;
   font-weight: 600;
   font-size: 18px;
+  color: #9b1522;
 }
 
 #event-date {
   margin-top: 10px;
   font-weight: 600;
   font-size: 20px;
+  color: #9b1522;
 }
 
 #event-location {
@@ -28,14 +31,16 @@
 
 #event-desc {
   margin-top: 10px;
+  color: #9b1522;
 }
 
 #event-pic {
   position: fixed;
+  justify-content: center;
 }
 
 #event-pic img {
-  width: 100%;
+  width: 50%;
 }
 
 #pic-wrap {
@@ -44,4 +49,5 @@
   align-items: center;
   position: relative;
   top: 100px;
+  right: 500px;
 }

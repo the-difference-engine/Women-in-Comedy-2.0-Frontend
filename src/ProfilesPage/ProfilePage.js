@@ -40,15 +40,16 @@ class ProfilePage extends Component {
     };
   }
 
+
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
-    if(valid === 'null' || !valid) {
+    if (valid === 'null' || !valid) {
       this.props.history.push('/');
     }
     this.setState(() => {
-      return {suspendedState: this.props.userInfo.suspended}
+      return { suspendedState: this.props.userInfo.suspended }
     });
-    this.setState({editUserEnable: false});
+    this.setState({ editUserEnable: false });
     this.loadUserData(this.props.match.params.id);
   }
 
@@ -60,7 +61,7 @@ class ProfilePage extends Component {
   }
 
   loadUserData(userId) {
-    this.setState({currentUser: userId})
+    this.setState({ currentUser: userId })
     const sender_id = sessionStorage.getItem('userId');
     const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
     fetchUserInfo(userId);
@@ -68,6 +69,7 @@ class ProfilePage extends Component {
     fetchUserConnections(userId);
     fetchConnectionStatus({ sender_id, userId });
     fetchNotifications(sender_id);
+    this.setState({ editUserEnable: false });
   }
 
   // @TODO onPress what? Be more specific naming functions
@@ -102,7 +104,7 @@ class ProfilePage extends Component {
 
   renderEditUserButton() {
     return (
-      <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
+      <button className="btn btn-info btn-block" onClick={this.handleEditButtonClick.bind(this)}>
         {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
@@ -110,7 +112,7 @@ class ProfilePage extends Component {
 
   renderPublicFigureStatus(userInfo = this.props.userInfo) {
     if (userInfo.public_figure) {
-      return(
+      return (
         <h6>Public Figure</h6>
       );
     }
@@ -118,7 +120,7 @@ class ProfilePage extends Component {
 
   renderIsMentorStatus(userInfo = this.props.userInfo) {
     if (userInfo.is_mentor) {
-      return(
+      return (
         <h6>Mentor</h6>
       );
     }
@@ -188,14 +190,13 @@ class ProfilePage extends Component {
   }
 
   //UNSUSPEND
-
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended;
     const admin = sessionStorage.getItem("isAdmin");
     if (this.state.suspendedState) {
       return (
         <button
-          className="btn btn-warning"
+          className="btn btn-warning btn-block"
           onClick={this.onUnsuspend.bind(this)}
         >
           {" "}
@@ -204,7 +205,7 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
+        <button className="btn btn-warning btn-block" onClick={this.onSuspend.bind(this)}>
           {" "}
           Suspend{" "}
         </button>
@@ -216,13 +217,12 @@ class ProfilePage extends Component {
     this.setState({ deleteModalVisible: false });
   };
 
-
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    if(!this.props.userInfo.superuser) {
+    if (!this.props.userInfo.superuser) {
       return (
-          <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
-            Delete User
+        <button className="btn btn-danger btn-block" onClick={this.openModal.bind(this)}>
+          Delete User
           </button>
       );
     }
@@ -241,7 +241,7 @@ class ProfilePage extends Component {
       );
     } else if (_.isEmpty(this.props.status)) {
       return (
-        <button className="btn btn-primary" type="button" onClick={this.onPress.bind(this)}>
+        <button className="btn btn-primary btn-block" type="button" onClick={this.onPress.bind(this)}>
           Connect
         </button>
       );
@@ -316,32 +316,32 @@ class ProfilePage extends Component {
             url={match.url}
             editButtonClicked={this.onUserEditButton}
           />{" "}
-          {this.renderBlockConnection()}
-          {this.renderConnection()}
           <div id="profile-buttons">
+            {this.renderBlockConnection()}
+            {this.renderConnection()}
             {this.renderEditUserButton()}
             {this.suspendUserButton()}
             {this.deleteUserButton()}
-            {deleteModalVisible && 
-            <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
-              <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
-              <h2 className='text-center'>Are you sure?</h2>
-              <hr/>
-              <div className='container'>
-              <div className='row'>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
-              </div>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.closeModal}>No</button>
-              </div>
-              </div>
-              </div>
-            </Modal>}
+            {deleteModalVisible &&
+              <Modal style={{ borderRadius: "50px" }} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
+                <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
+                <h2 className='text-center'>Are you sure?</h2>
+                <hr />
+                <div className='container'>
+                  <div className='row'>
+                    <div className='col-md-6'>
+                      <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
+                    </div>
+                    <div className='col-md-6'>
+                      <button className="btn btn-danger" onClick={this.closeModal}>No</button>
+                    </div>
+                  </div>
+                </div>
+              </Modal>}
           </div>
         </LeftGraySideBar>
         <RightGraySideBar>
-          <ProfileConnections connections={userConnections}/>
+          <ProfileConnections connections={userConnections} />
         </RightGraySideBar>
         <PageContent history={history}>
           {this.renderPageContent()}

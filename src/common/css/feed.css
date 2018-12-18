@@ -84,7 +84,7 @@
   height: 50px;
   border-radius: 50%;
   position: relative;
-  top: -20px;
-  left: -20px;
+  top: -1px;
+  right: 350px;
   cursor: pointer;
 }

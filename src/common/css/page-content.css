@@ -20,10 +20,10 @@
   margin-right: 60px;
   margin-bottom: 25px;
   height: 100%;
+  position: relative;
 }
 
 #page-content.event-feed {
-  position: relative;
   top: 300px;
   left: 300px;
   right: 850px;

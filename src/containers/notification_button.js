@@ -23,7 +23,7 @@ export default (props) => {
         <a href={'/notifications'} className="icon">
           <i className="fa fa-bell-o" id="alert-button">
             <span className="badge">{findConnectionActions(props)}</span>
-            <p>ALERTS </p>
+            <p>Alerts</p>
           </i>
         </a>
       </div>

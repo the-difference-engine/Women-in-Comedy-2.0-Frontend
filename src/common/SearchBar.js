@@ -43,7 +43,7 @@ class SearchBar extends Component {
 
     return (
       <div>
-        <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search..." autoComplete="off" />
+        <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search" autoComplete="off" />
         { autoCompleteList }
       </div>
     )

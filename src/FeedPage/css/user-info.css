@@ -54,5 +54,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-right: 100px;
+  /* padding-right: 100px; */
+  width: 100%
+}
+
+#profile-buttons > button {
+  margin-top: 5px;
 }

@@ -265,9 +265,9 @@ class Navbar extends Component {
                   </div>
                 </div>
                 <div className="input-group">
-                 {/* <SearchBar
-                />  */}
-                  <AutoComplete
+                  <SearchBar
+                  /> 
+                  {/* <AutoComplete
                     filter={AutoComplete.fuzzyFilter}
                     dataSource={this.props.users}
                     maxSearchResults={10}
@@ -281,21 +281,21 @@ class Navbar extends Component {
                   <i
                     className="glyphicon glyphicon-search"
                     style={{ right: "20px" }}
-                  />
+                  /> */}
                 </div>
               </form>
             </li>
             <li>
               <Link to="/feed">
                 <i className="fa fa-home">
-                  <p>HOME</p>
+                  <p>Home</p>
                 </i>
               </Link>
             </li>
             <li>
               <Link to="/events">
                 <i className="fa fa-calendar-o">
-                  <p>EVENTS</p>
+                  <p>Events</p>
                 </i>
               </Link>
             </li>
@@ -317,7 +317,7 @@ class Navbar extends Component {
             <li>
               <a href="#" className="icon" onClick={this.Logout.bind(this)}>
                 <i className="fa fa-sign-out">
-                  <p>LOG OUT</p>
+                  <p>Log Out</p>
                 </i>
               </a>
             </li>
@@ -335,6 +335,7 @@ const styles = {
   },
   filter: {
     height: "30px",
+    lineHeight: 1,
     textTransform: "none",
     backgroundColor: "white",
     borderRadius: "20px"
@@ -343,7 +344,8 @@ const styles = {
     height: "30px",
     width: "225px",
     backgroundColor: "white",
-    borderRadius: "0px"
+    borderRadius: "0px",
+    padding: "5px"
   },
   hint: {
     zIndex: 1,
