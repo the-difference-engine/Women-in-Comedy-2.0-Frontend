@@ -7,18 +7,26 @@ class SearchBar extends Component {
 
   constructor(props) {
     super(props);
-  
+
     this.state = {
       term: '',
       autoCompleteResults: [],
       itemSelected: {},
       showItemSelected: false
-    } 
+    }
   }
-    getAutoCompleteResults(e) {
-      if (e.target.value === "") { 
+
+  componentWillReceiveProps() {
+    this.setState({
+      term: '',
+      autoCompleteResults: []
+    });
+  }
+
+  getAutoCompleteResults(e) {
+    if (e.target.value === "") {
       this.setState({
-        term: '',    
+        term: '',
         autoCompleteResults: []
       });
       return;
@@ -31,34 +39,25 @@ class SearchBar extends Component {
       });
     }
   }
-  render(){
+  render() {
     let autoCompleteList = this.state.autoCompleteResults.map((response, index) => {
       return <div className='searchbox'><div className="navsearch" key={index}>
-      <div className="navul" >
-       <div className="navli"> <Link to={'/profile/'+ response.id} className="searchlink" style={{ color: 'black' }} >{response.first_name } {response.last_name}</Link> </div>
-      </div>   
+        <div className="navul" >
+          <div className="navli"> <Link to={'/profile/' + response.id} className="searchlink" style={{ color: 'black' }} >{response.first_name} {response.last_name}</Link> </div>
+        </div>
       </div>
       </div>
     });
 
     return (
       <div>
-        <input ref={ (input) => { this.searchBar = input } } value={ this.state.term } onChange={ this.getAutoCompleteResults.bind(this) } type="text" placeholder="Search" autoComplete="off" />
-        { autoCompleteList }
+        <input style={{ width: "89%" }} ref={(input) => { this.searchBar = input }} value={this.state.term} onChange={this.getAutoCompleteResults.bind(this)} type="text" placeholder="Search" autoComplete="off" />
+        {autoCompleteList}
       </div>
     )
   }
-  
-} 
-    
-  
 
-  document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-      <SearchBar />,
-      document.body.appendChild(document.createElement('div')),
-    )
-  });
+}
 
-  
-export {SearchBar};
+
+export { SearchBar };
