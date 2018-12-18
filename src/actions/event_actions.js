@@ -36,8 +36,9 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
       .storage()
       .ref(`/events/${photoName}${ext}`)
       .put(photo);
-
+    
     photo = imageData.metadata.downloadURLs[0];
+ 
     const request = await axios({
       method: "post",
       url: process.env.REACT_APP_API_ENDPOINT + "events",
@@ -74,7 +75,7 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
     id,
     is_private
   } = eventInfo;
-
+  
   let photoTitle = eventInfo.photo.toString();
 
   if (photoTitle.includes("firebase")) {
@@ -100,8 +101,10 @@ export const updateEvent = (eventInfo, userId, callback) => async dispatch => {
   // otherwise make the changes to the new photo uploaded.
   else if (validate(eventInfo)) {
     dispatch({ type: LOAD });
+
     // saving the photo name instead of the event name to fix updating error
     // might be able to remove the ext completely
+
     const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
     const ext = photo.name.slice(photo.name.lastIndexOf("."));
     const imageData = await firebase
