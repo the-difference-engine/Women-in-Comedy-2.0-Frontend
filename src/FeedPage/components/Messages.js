@@ -9,6 +9,7 @@ class Messages extends Component {
     const userId = sessionStorage.getItem('userId');
     const callback = this.props.fetchPendingUserConnections;
     const callback2 = this.props.fetchUserConnections;
+
     return this.props.connections.map(connection => {
       return (
         <div key={connection.requestId}>

@@ -4,12 +4,11 @@
   padding: 1em;
   padding-top: 10%;
   height: 100vh;
-
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
-} 
-#right-side-bar-content {
-  margin-top: 100px;
+}
+
+#right-side-bar-content{
   overflow: auto;
 }
 

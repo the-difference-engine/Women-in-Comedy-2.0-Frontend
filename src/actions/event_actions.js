@@ -1,7 +1,6 @@
 import firebase from "firebase";
 import axios from "axios";
 import {
-  CREATE_EVENT,
   EVENT_INPUT_CHANGE,
   CLEAR,
   LOAD,
