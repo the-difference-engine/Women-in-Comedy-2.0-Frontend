@@ -36,7 +36,7 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
       .ref(`/events/${photoName}${ext}`)
       .put(photo);
 
-    photo = imageData.metadata.downloadURLs[0];
+    photo = "testurl.com";
     const request = await axios({
       method: "post",
       url: process.env.REACT_APP_API_ENDPOINT + "events",

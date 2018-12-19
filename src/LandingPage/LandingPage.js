@@ -15,10 +15,15 @@ class LandingPage extends Component {
         };
     };
 
+    componentDidMount() {
+        if (sessionStorage.getItem("userId")) {
+            this.goToFeedPage();
+        }
+    }
+
     goToFeedPage() {
         this.props.history.push("/feed");
     };
-
 
     login(e) {
         //Stops page from refreshing when the form is submitted.

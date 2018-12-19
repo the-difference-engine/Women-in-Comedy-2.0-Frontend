@@ -37,7 +37,7 @@ export default (props) => {
 const renderEventList = (events) => {
 	let today = new Date();
 	today = today.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'})
-	return events.map(event => { 
+	return events.data.map(event => { 
 		if (event.date < today) {
 			return (
 				<div key={event.id} className="col-xs-offset-1 col-xs-3">
