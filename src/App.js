@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
@@ -50,7 +50,6 @@ class App extends Component {
               <Route exact path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/profile/:id/edit' component={EditPage}></Route>
               <Route path='/message' component={DeletedUser}></Route>
-              <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/notifications' component={Notification}></Route>
             </Switch>
           </div>
