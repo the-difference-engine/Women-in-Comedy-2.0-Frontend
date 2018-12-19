@@ -30,6 +30,7 @@ body {
   color: white;
   background-image: url('../images/womengroupsedited.jpg');
   background-size: cover;
+  height: 100vh;
 }
 
 #landingPageTitle {
@@ -50,10 +51,10 @@ body {
   padding: 10px;
 }
 
-#landingPageRow {
+/* #landingPageRow {
   width: 45%;
   margin: 20% 30%;
-}
+} */
 
 #enterBtn {
   font-size: 20px;

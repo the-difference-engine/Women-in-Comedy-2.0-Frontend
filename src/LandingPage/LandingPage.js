@@ -34,10 +34,10 @@ class LandingPage extends Component {
 
                 this.props.setUserLoggedIn(true, response.data.id);
 
-                if(response.data.confirmed_at) {
+                if (response.data.confirmed_at) {
                     this.goToFeedPage();
-                } else{
-                    this.setState({notVerified: true});
+                } else {
+                    this.setState({ notVerified: true });
                 }
 
             })
@@ -47,28 +47,25 @@ class LandingPage extends Component {
     };
 
     render() {
-        return(
-                
-            <div className = 'container' id='background'>
-                <div id='landingPageRow' className='row'>
-                    <div className='col-lg-12 colBackground'>
-
-                        <h1 id='landingPageTitle'>Women in <span style={{ color: 'rgba(254, 8, 101, 1)' }}>Com</span><span style={{ color: 'rgba(209, 13, 13, 1)' }}>edy</span></h1>
-
-                        <form onSubmit={this.login.bind(this)}>
-                            <label className='landingPageLabel'>Username:</label><br />
-                            <input className='landingPageInput' type='email' name="username" id='email' placeholder='Username' /><br /><br />
-                            <label className='landingPageLabel'>Password:</label><br />
-                            <input className='landingPageInput' type="password" id='password' name="password" placeholder='Password' /><br /><br />
-                            <button className='btn' id='enterBtn'>Enter</button>
-                        </form>
-
-                        <CreateUserLink/>
-
+        return (
+            <div id='background' className="row">
+                <div className="col-12">
+                    <div id='landingPageRow' className='row'>
+                        <div className='col-4 offset-4 colBackground'>
+                            <h1 id='landingPageTitle'>Women in <span style={{ color: 'rgba(254, 8, 101, 1)' }}>Com</span><span style={{ color: 'rgba(209, 13, 13, 1)' }}>edy</span></h1>
+                            <form onSubmit={this.login.bind(this)}>
+                                <label className='landingPageLabel'>Username:</label><br />
+                                <input className='landingPageInput' type='email' name="username" id='email' placeholder='Username' /><br /><br />
+                                <label className='landingPageLabel'>Password:</label><br />
+                                <input className='landingPageInput' type="password" id='password' name="password" placeholder='Password' /><br /><br />
+                                <button className='btn' id='enterBtn'>Enter</button>
+                            </form>
+                            <CreateUserLink />
+                        </div>
                     </div>
                 </div>
             </div>
-        )       
+        )
     };
 }
 

@@ -57,6 +57,6 @@ class SearchBar extends Component {
       </div>
     )
   }
-
+}
   
 export {SearchBar};
