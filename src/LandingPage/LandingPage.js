@@ -50,7 +50,7 @@ class LandingPage extends Component {
         return(
                 
             <div className = 'container' id='background'>
-                <div idclassName='row'>
+                <div className='row'>
                     <div id='landingPageRow' className='col-lg-12 colBackground'>
 
                         <h1 id='landingPageTitle'>Women in <span style={{ color: 'rgba(254, 8, 101, 1)' }}>Com</span><span style={{ color: 'rgba(209, 13, 13, 1)' }}>edy</span></h1>

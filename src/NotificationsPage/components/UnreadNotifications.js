@@ -76,17 +76,6 @@ class UnreadNotification extends Component {
                     </button>
                   </div>
                 </div>
-
-
-
-
-
-
-
-
-
-                
-  
               </div>
             </div>
           );
@@ -123,8 +112,6 @@ render() {
   };
 
 };
-
-
 
 export default connect(null, {
   acceptConnection,
