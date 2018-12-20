@@ -1,17 +1,15 @@
 #left-side-bar{
-  width: 20%;
-  float: left;
-  padding: 1em;
-  padding-top: 10%;
-  height: 100vh; 
-
+  width: 100%;
+  padding: 2em;
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
-  overflow: auto;  
+  /* overflow: auto;   */
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 } 
 
-@media screen and (max-width: 1008px) {
-  #left-side-bar-content {
-    margin-top: 75px;
-  }
+#left-side-bar-content{
+  overflow: auto;  
 }

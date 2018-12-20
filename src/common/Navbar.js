@@ -177,9 +177,6 @@ class Navbar extends Component {
           <ul className="nav navbar-nav navbar-right">
             <li>
               <form className="navbar-form">
-                <div className="input-group" style={styles.container}>
-                  
-                </div>
                 <div className="input-group">
                  <SearchBar
                  inputStyle={styles.input}

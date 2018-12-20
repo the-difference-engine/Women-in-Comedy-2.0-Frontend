@@ -4,7 +4,7 @@ import { reduxForm, Field } from "redux-form";
 import UserList from "./UserList";
 import SuperAdminForm from "./SuperAdminForm.js";
 import { bindActionCreators } from "redux";
-import "../css/navbar.css";
+import "../css/adminPage.css";
 import "../css/modal.css";
 import { fetchUserInfo, fetchAllUsers, updateToSuperAdmin, removeSuperAdminStatus} from "../../actions";
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import './css/right-side-bar.css';
-const RightGraySideBar = (props) => {
+const RightGraySideBar = ({children, ...props}) => {
   return (
-    <div id="right-side">
+    <div id="right-side" {...props}>
       <div id="right-side-bar-content">
-        {props.children}
+          {children}
       </div>
     </div>
+      
   )
 }
 export { RightGraySideBar };

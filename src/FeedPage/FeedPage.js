@@ -50,16 +50,48 @@ class Feed extends Component {
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
     return (
-      <div>
-        <Navbar history={this.props.history} notifications={notifications}/>
-        <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} invites={userInvites} />
-        </RightGraySideBar>
-        <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections} />
-        </LeftGraySideBar>
-        <PageContent>
-        </PageContent>
+      <div className="container">
+        <div className="row">
+          <div className='col-sm-12'>
+            <div className="row">
+              <div className="col-lg-12">
+                <Navbar history={this.props.history} notifications={notifications}/>
+              </div>
+            </div>
+            <div className="row notif-col-container">
+              <div className="col-lg-3">
+                <LeftGraySideBar>
+                  <UserInfo userInfo={userInfo} userConnections={userConnections} />
+                </LeftGraySideBar>
+              </div>
+              <div className="col-lg-6">
+                {/* <PageContent>
+                <div className="feed-post-bar">
+                  <div className="wrap">
+                    <div className="search">
+                      <input type="text" className="searchTerm" placeholder="What's New?"
+                        onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                        value={this.props.userWallPost}/>
+                      <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
+                    </div>
+                  </div>
+                </div>
+                <NewFeeds userFeeds={userFeeds} />
+              </PageContent> */}
+              </div>
+              <div className="col-lg-3">
+                <RightGraySideBar>
+                  <Messages connections={receivedConnectionRequest} invites={userInvites} />
+                </RightGraySideBar>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+        
+        
       </div>
     );
   }

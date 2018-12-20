@@ -1,0 +1,25 @@
+/* font for 'admin status text' */
+#admin-status-display {
+  color: red;
+  font-size: 18px;
+}
+
+/* switch status area */
+.admin-status input {
+  margin: 15px;
+  padding: 5px;
+}
+
+/* possibly for true admin */
+.admin-show {
+  color: red;
+  margin: 5px;
+}
+
+/* email modal styling */
+.email-modal {
+  width: 500px;
+  height: 250px;
+  resize: none;
+}
+
