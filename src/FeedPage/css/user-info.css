@@ -52,7 +52,16 @@
 
 #profile-buttons {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-right: 100px;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 1em;
+}
+
+.profileBtn{
+  margin: 0.5em;
+  width: 60%;
+}
+#blockCheckbox{
+  margin-right: 0.5em;
 }
