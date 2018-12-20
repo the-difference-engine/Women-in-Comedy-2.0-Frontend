@@ -125,7 +125,6 @@ class AdminForm extends Component {
           : (<p />)}
           <div>{this.SuperAdminRender()}</div>
         </form>
-        <br/>
         <p>
           Public Figure Status: {this.renderPublicFigure()}
           <br/>
@@ -136,9 +135,8 @@ class AdminForm extends Component {
           <br/>
           {this.changeIsMentorButton()}
         </p>
-        
         <br/>
-        <br/>
+        <hr/>
       </div>
     );
   }
