@@ -17,7 +17,7 @@
 #page-content-margin {
   margin-top: 50px;
   margin-left: 40px;
-  margin-right: 60px;
+  margin-right: 200px;
   margin-bottom: 25px;
   height: 100%;
   position: relative;
@@ -25,8 +25,8 @@
 
 #page-content.event-feed {
   top: 300px;
-  left: 300px;
-  right: 850px;
+  left: 400px;
+  right: 500px;
   overflow-y: scroll;
   max-height: 450px;
 }
