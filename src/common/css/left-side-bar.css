@@ -3,6 +3,7 @@
   padding: 2em;
   background-color: #e6e6e6;
   font-family: "Quicksand", sans-serif;
+  height: 100%;
   /* overflow: auto;   */
 
   display: flex;
