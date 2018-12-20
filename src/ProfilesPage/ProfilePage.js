@@ -244,6 +244,29 @@ class ProfilePage extends Component {
           userInfo={userInfo}
         />
       );
+    } else {
+
+      return (
+        <div>
+          <div className="feed-post-bar">
+            <div className="wrap">
+              <div className="search">
+                <input
+                  type="text"
+                  className="searchTerm"
+                  placeholder="What's New?"
+                  onChange={event =>
+                    this.props.userWallInputChange(event.target.value)
+                  }
+                  value={this.props.userWallPost}
+                />
+                
+              </div>
+            </div>
+          </div>
+          <ProfileFeed feeds={this.props.userFeeds} />
+        </div>
+      );
     }
   }
 

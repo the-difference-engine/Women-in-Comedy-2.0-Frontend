@@ -9,7 +9,7 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         return <button onClick={() => unattendEvent(event.guests[i].id, event.info.id, fetchEventInfo)}> Unattend</button>
       }
     }
-    return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
+    return <button className="btn btn-default" onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> ATTEND </button>;
   };
 
   const renderUpdateEvent = ({ event, userInfo, eventId }) => {
