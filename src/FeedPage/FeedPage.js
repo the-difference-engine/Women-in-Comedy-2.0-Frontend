@@ -49,6 +49,7 @@ class Feed extends Component {
 
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
+
     return (
       <div className="container">
         <div className="row">

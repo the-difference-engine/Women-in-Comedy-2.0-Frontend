@@ -177,7 +177,8 @@ class EventsFeed extends Component {
   );
   }
 }
-function mapStateToProps({ selectedEvent, userInfo, eventWallPost, userConnections, notifications }) {
+function mapStateToProps(state) {
+  const { selectedEvent, userInfo, eventWallPost, userConnections, notifications } = state;
   /*
   const {filterUserList} = allUsers;
   const users = filterUserList.map(user => {

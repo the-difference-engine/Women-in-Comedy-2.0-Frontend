@@ -5,7 +5,7 @@ const INITIAL_STATE = [];
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case FETCH_UPCOMING_EVENTS:
-      return action.payload.data;
+      return { ...state, ...action.payload.data }
     default:
       return state;
   }
