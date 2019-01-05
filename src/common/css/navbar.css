@@ -5,6 +5,7 @@
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
+  clear: both;
 }
 
 #nav-header {
