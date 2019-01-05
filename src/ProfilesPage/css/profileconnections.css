@@ -1,22 +1,3 @@
-#right-side-bar {
-  position: fixed;
-  right: 0;
-  top: 65px;
-  width: 20%;
-  height: 100%;
-  background-color: #e6e6e6;
-  z-index: -1;
-}
-
-#right-side-bar-content {
-  position: fixed;
-  top: 51px;
-  margin-left: 10px;
-  margin-right: 25px;
-  height: 100%;
-}
-
-
 #activity-users .container span {
   color: #b33d40;
   font-family: sans-serif;

@@ -1,8 +1,3 @@
-html,
-body {
-  height: 100%;
-  overflow-x: hidden;
-}
 .event-title {
   padding: 10px 5px 0px 10px;
 }
@@ -19,8 +14,7 @@ body {
 }
 
 .event-page-content {
-  margin-left: 20%;
-  margin-top: 130px;
+  padding: 2em;
 }
 
 @media (max-width: 1008px) and (min-width: 768px) {
@@ -60,10 +54,6 @@ body {
   padding-bottom: 15px;
 }
 
-#events-page {
-  padding-bottom: 100px;
-}
-
 #events-search-bar div.col-xs-3 {
   margin-bottom: 0;
 }
@@ -97,4 +87,8 @@ body {
 #all-events div.col-xs-3 {
   margin-bottom: 15px;
   margin-right: 50px;
+}
+
+#newEventCol{
+  height:100vh;
 }

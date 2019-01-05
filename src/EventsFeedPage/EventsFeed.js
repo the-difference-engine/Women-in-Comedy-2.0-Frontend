@@ -110,71 +110,71 @@ class EventsFeed extends Component {
       }
     }
   
-
-
-    return (
-      <div id="events-feed-container">
-        <div>
-          <Navbar history={this.props.history} notifications={notifications}/>
-        </div>
-        <div id="pic-wrap">
-          <EventImg event={this.props.selectedEvent}/>
-        </div>
-
-        <LeftGraySideBar className="event-info-bar">
-          <EventInfo
-            event={this.props.selectedEvent}
-            attendEvent={this.props.attendEvent}
-            userInfo={this.props.userInfo}
-            eventId={this.props.match.params.id}
-            fetchEventInfo={this.props.fetchEventInfo}
-            unattendEvent={this.props.unattendEvent}>
-          </EventInfo>
-        </LeftGraySideBar>
-
-        <PageContent className="event-feed">
-          <Dialog
-            title="Invite Users to This Event"
-            actions={actions}
-            modal={false}
-            open={this.state.open}
-            onRequestClose={this.handleClose}
-            autoScrollBodyContent={true}
-          >
-            <div>
-              {inviteButtons}
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="row">
+            <div className="col-lg-12">
+              <Navbar history={this.props.history} notifications={notifications}/>
             </div>
-          </Dialog>
-          <h4>Event Feed</h4>
-          <div className="feed-post-bar">
-             <div className="wrap">
-               <div className="search">
-                 <input
-                   type="text"
-                   className="searchTerm"
-                   placeholder="What's New?"
-                   onChange={event => this.props.eventWallInputChange(event.target.value)}
-                   value={this.props.eventWallPost}
-                 />
-                 <div className="post-button"><button className="btn btn-default" onClick={this.onCreatePost.bind(this)}>POST</button></div>
-               </div>
-             </div>
-           </div>
-
-          <NewFeeds event={this.props.selectedEvent} className="event-comment"/>
-        </PageContent>
-
-        
-          <div id="container">
-            <RightGraySideBar>
-            {invite}
-              <Guests
-                event={this.props.selectedEvent}
-              />
-            </RightGraySideBar>
           </div>
+          <div className="row event-info-container">
+            <div className="col-lg-3">
+            <LeftGraySideBar className="event-info-bar">
+              <EventInfo
+                event={this.props.selectedEvent}
+                attendEvent={this.props.attendEvent}
+                userInfo={this.props.userInfo}
+                eventId={this.props.match.params.id}
+                fetchEventInfo={this.props.fetchEventInfo}
+                unattendEvent={this.props.unattendEvent}>
+              </EventInfo>
+            </LeftGraySideBar>
+            </div>
+            <div className="col-lg-6">
+              <PageContent className="event-feed">
+                <Dialog
+                  title="Invite Users to This Event"
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose}
+                  autoScrollBodyContent={true}>
+                  <div>
+                    {inviteButtons}
+                  </div>
+                </Dialog>
+                <h4>Event Feed</h4>
+                <div className="feed-post-bar">
+                  <div className="wrap">
+                    <div className="search">
+                      <input
+                      type="text"
+                      className="searchTerm"
+                      placeholder="What's New?"
+                      onChange={event => this.props.eventWallInputChange(event.target.value)}
+                      value={this.props.eventWallPost}
+                      />
+                    <div className="post-button"><button className="btn btn-default" onClick={this.onCreatePost.bind(this)}>POST</button></div>
+                    </div>
+                  </div>
+                </div>
+                <NewFeeds event={this.props.selectedEvent} className="event-comment"/>
+              </PageContent>
+            </div>
+            <div className="col-lg-3">
+              <RightGraySideBar>
+                {invite}
+                  <Guests
+                    event={this.props.selectedEvent}/>
+              </RightGraySideBar>
+            </div>
+          </div>
+        </div>
       </div>
-    );
+    </div>
+  );
   }
 }
 function mapStateToProps(state) {

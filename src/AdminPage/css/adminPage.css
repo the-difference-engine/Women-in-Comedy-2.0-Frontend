@@ -1,0 +1,53 @@
+/* font for 'admin status text' */
+#admin-status-display {
+  color: red;
+  font-size: 18px;
+  margin:0;
+}
+.admin-status{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* switch status area */
+.admin-status input {
+
+  padding: 5px;
+}
+#adminUserListName{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#adminUserListId{
+  display: flex;
+  align-self: flex-start;
+  margin:0;
+}
+
+/* possibly for true admin */
+.admin-show {
+  color: red;
+  margin: 5px;
+}
+
+/* email modal styling */
+.email-modal {
+  width: 500px;
+  height: 250px;
+  resize: none;
+}
+
+
+.admin-col-container{
+  height: 100%;
+  display: flex;
+} 
+
+#adminUserList{
+  display: flex;
+  flex-direction: column;
+}
+
+

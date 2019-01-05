@@ -15,6 +15,7 @@ import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
 import DeletedUser from './ProfilesPage/DeletedUser';
 import Notification from "./NotificationsPage/NotificationsPage";
+import "./app.css";
 
 
 class App extends Component {

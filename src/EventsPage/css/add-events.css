@@ -5,17 +5,10 @@
   padding: 1em;
   background-color: #e6e6e6;
   overflow: auto;
-} 
- 
-
-/* 
-.add-event {
-  position: fixed;
-  left: 0;
-  width: 20%;
   height: 100%;
-  background-color: #e6e6e6;
-}
+  width: 100%;
+  padding: 2em;
+} 
 
 .upcoming-events p {
   margin-top: 50px;
@@ -50,11 +43,6 @@
   background-color: #9b1522;
 }
 
-.add-event-content {
-  top: 100px;
-  left: 2%;
-}
-
 @media (max-width: 1008px) and (min-width: 768px) {
   .add-event {
     width: 22%;
@@ -71,4 +59,4 @@
 .new-event button:hover {
   background-color: #9b1522;
   color: white;
-} */
+}

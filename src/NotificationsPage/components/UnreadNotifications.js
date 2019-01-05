@@ -37,14 +37,18 @@ class UnreadNotification extends Component {
         if (notification.action === "connection_accepted") {
           return (
             <div key={notification.id}>
-              <div id="user-info">
-                  <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+              <div id="user-info" className="container">
+                <div className="row">
+                  <div className="col-xs-12">
+                    <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
 
-                  <Link to={`/profile/${notification.sent_from}`}
-                        onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
-                        method="POST"><p
-                      	className="connection-name">{notification.sent_from_name} </p></Link>
-                  <span>has accepted your connection request</span>
+                    <Link to={`/profile/${notification.sent_from}`}
+                          onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
+                          method="POST"><p
+                          className="connection-name">{notification.sent_from_name} </p></Link>
+                    <span>has accepted your connection request</span>
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -52,20 +56,26 @@ class UnreadNotification extends Component {
         if (notification.action === "connection_request" && notification.seen == null) {
           return (
             <div key={notification.id}>
-              <div id="user-info">
-                <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+              <div id="user-info" classname="container" >
+                <div className="row">
+                  <div className="col-xs-9">
+                    <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
 
-                <Link to={`/profile/${notification.sent_from}`}
-                      onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
-                      method="POST"><p
-                    	className="connection-name">{notification.sent_from_name}</p></Link>
-                <span>has sent you a connection request</span>
-                <button type="button" className="btn-accept-decline"
-                        onClick={() => this.acceptTheConnection(userId, notification.sent_from, callback, callback2, notification.sent_to, notification.id)}>accept
-                </button>
-                <button type="button" className="btn-accept-decline"
-                        onClick={() => this.declineTheConnection(userId, notification.sent_from, callback, notification.sent_to, notification.id)}>decline
-                </button>
+                    <Link to={`/profile/${notification.sent_from}`}
+                          onClick={() => this.props.markOneAsRead(notification.sent_to, notification.id)}
+                          method="POST"><p
+                          className="connection-name">{notification.sent_from_name}</p></Link>
+                    <span>has sent you a connection request</span>
+                  </div>
+                  <div className="col-xs-3 btn-container">
+                    <button type="button" className="btn-accept-decline"
+                            onClick={() => this.acceptTheConnection(userId, notification.sent_from, callback, callback2, notification.sent_to, notification.id)}>accept
+                    </button>
+                    <button type="button" className="btn-accept-decline"
+                            onClick={() => this.declineTheConnection(userId, notification.sent_from, callback, notification.sent_to, notification.id)}>decline
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -76,11 +86,11 @@ class UnreadNotification extends Component {
 
 render() {
     return (
-	    <div className="event-page-content">
-        <div className="container">
-          <div className="row events-grid" id="my-events">
-            <div className="col-xs-offset-1 col-xs-3">
-              <h1 className="events-header" id="next-event">Notifications</h1>
+	    <div className="notifications-content">
+        <div className="container notif-grid">
+          <div className="row" >
+            <div className="col-xs-1" id="my-notif">
+              <h1 className="notif-header" id="next-notif">Notifications</h1>
               <button type="button" className="btn btn-danger"
                       onClick={() => this.props.markNotificationsAsRead(sessionStorage.getItem('userId'))}>Mark
               	All As Read
@@ -102,8 +112,6 @@ render() {
   };
 
 };
-
-
 
 export default connect(null, {
   acceptConnection,
