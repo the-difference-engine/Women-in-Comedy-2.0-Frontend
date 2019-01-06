@@ -248,7 +248,7 @@ class ProfilePage extends Component {
 
       return (
         <div>
-          <div className="feed-post-bar">
+          {/* <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
                 <input
@@ -264,7 +264,7 @@ class ProfilePage extends Component {
               </div>
             </div>
           </div>
-          <ProfileFeed feeds={this.props.userFeeds} />
+          <ProfileFeed feeds={this.props.userFeeds} /> */}
         </div>
       );
     }
