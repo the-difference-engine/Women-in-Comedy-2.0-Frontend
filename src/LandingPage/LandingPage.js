@@ -15,10 +15,15 @@ class LandingPage extends Component {
         };
     };
 
+    componentDidMount() {
+        if (sessionStorage.getItem("userId")) {
+            this.goToFeedPage();
+        }
+    }
+
     goToFeedPage() {
         this.props.history.push("/feed");
     };
-
 
     login(e) {
         //Stops page from refreshing when the form is submitted.
@@ -31,15 +36,12 @@ class LandingPage extends Component {
                 sessionStorage.setItem("confirmed", response.data.confirmed_at);
                 sessionStorage.setItem("userId", response.data.id);
                 sessionStorage.setItem("adminUser", response.data.admin);
-
                 this.props.setUserLoggedIn(true, response.data.id);
-
-                if(response.data.confirmed_at) {
+                if (response.data.confirmed_at) {
                     this.goToFeedPage();
-                } else{
-                    this.setState({notVerified: true});
+                } else {
+                    this.setState({ notVerified: true });
                 }
-
             })
             .catch(err => {
                 alert(err);
@@ -47,14 +49,11 @@ class LandingPage extends Component {
     };
 
     render() {
-        return(
-                
-            <div className = 'container' id='background'>
+        return (
+            <div className='container' id='background'>
                 <div id='landingPageRow' className='row'>
                     <div className='col-lg-12 colBackground'>
-
                         <h1 id='landingPageTitle'>Women in <span style={{ color: 'rgba(254, 8, 101, 1)' }}>Com</span><span style={{ color: 'rgba(209, 13, 13, 1)' }}>edy</span></h1>
-
                         <form onSubmit={this.login.bind(this)}>
                             <label className='landingPageLabel'>Username:</label><br />
                             <input className='landingPageInput' type='email' name="username" id='email' placeholder='Username' /><br /><br />
@@ -62,13 +61,11 @@ class LandingPage extends Component {
                             <input className='landingPageInput' type="password" id='password' name="password" placeholder='Password' /><br /><br />
                             <button className='btn' id='enterBtn'>Enter</button>
                         </form>
-
-                        <CreateUserLink/>
-
+                        <CreateUserLink />
                     </div>
                 </div>
             </div>
-        )       
+        )
     };
 }
 
