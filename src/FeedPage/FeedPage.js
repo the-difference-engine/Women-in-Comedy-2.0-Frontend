@@ -4,6 +4,7 @@ import {
   fetchUserInfo,
   fetchUserFeeds,
   fetchNotifications,
+  fetchMyUpcomingEvents,
   fetchUserConnections,
   fetchPendingUserConnections,
   fetchPendingUserInvites,
@@ -30,13 +31,14 @@ class Feed extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications } = this.props;
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications, fetchMyUpcomingEvents } = this.props;
     fetchUserInfo(sessionStorage.getItem('userId'));
     fetchUserFeeds(sessionStorage.getItem('userId'));
     fetchUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserInvites(sessionStorage.getItem('userId'));
     fetchNotifications(sessionStorage.getItem('userId'));
+    this.props.fetchMyUpcomingEvents(sessionStorage.getItem('userId'));
   }
 
   onPost() {
@@ -49,6 +51,7 @@ class Feed extends Component {
 
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
+    console.log(this.props.myUpcomingEvents)
 
     return (
       <div className="container">
@@ -66,6 +69,9 @@ class Feed extends Component {
                 </LeftGraySideBar>
               </div>
               <div className="col-lg-6">
+                <div className="row">
+                  {/* {renderEventList(this.props.myUpcomingEvents)} */}
+                </div>
                 {/* <PageContent>
                 <div className="feed-post-bar">
                   <div className="wrap">
@@ -98,6 +104,14 @@ class Feed extends Component {
   }
 }
 
+const renderEventList = (events) => {
+  return events.data.map(event => {
+    return (
+      <li> {event.title} </li>
+    )
+  })
+}
+
 const mapStateToProps = (state) => {
   const { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications } = state;
   return { userInfo, userFeeds, userConnections, userInvites, receivedConnectionRequest, userWallPost, notifications };
@@ -107,6 +121,7 @@ export default connect(mapStateToProps,
     fetchUserInfo,
     fetchUserFeeds,
     fetchUserConnections,
+    fetchMyUpcomingEvents,
     fetchNotifications,
     fetchPendingUserConnections,
     fetchPendingUserInvites,
