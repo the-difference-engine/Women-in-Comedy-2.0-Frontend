@@ -57,6 +57,7 @@ class EventsFeed extends Component {
     const authorId = sessionStorage.getItem('userId');
     this.props.createPostOnEventWall({body, eventId, authorId}, this.props.fetchEventInfo);
   }
+  
   onCreateInvite(receiverId){
    const senderId = sessionStorage.getItem('userId');
    const eventId = this.props.match.params.id;
@@ -67,6 +68,7 @@ class EventsFeed extends Component {
   handleOpen(){
     this.setState({open: true});
   }
+
   handleClose(){
     this.setState({open: false});
   }
