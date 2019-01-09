@@ -7,7 +7,7 @@ const ProfilePhoto = (props) => {
 	const new_query = query.slice(9);
 
 
-    const { firstName, lastName, bio, block_connection_requests } = props.userInfo;
+    const { firstName, lastName, bio, block_connection_requests, photo} = props.userInfo;
 
     const { userConnections } = props;
 
@@ -17,11 +17,12 @@ const ProfilePhoto = (props) => {
   return (
     <div id="left-side-bar">
       <div id="left-side-bar-content">
-        <div id="bio-pic" className="profile-photo"><img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/></div>
-          <p className="bio-name">{firstName} {lastName}</p>
-     	    <p className="bio-title">Bio</p>
-     	    <p className="bio-desc">{bio}</p>
-
+        <div id="bio-pic" className="profile-photo">
+          <img src="https://u.o0bc.com/avatars/no-user-image.gif" alt=""/>
+        </div>
+        <p className="bio-name">{firstName} {lastName}</p>
+        <p className="bio-title">Bio</p>
+        <p className="bio-desc">{bio}</p>
       </div>
     </div>
   	);

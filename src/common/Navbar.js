@@ -164,7 +164,7 @@ class Navbar extends Component {
       }
     ];
 
-    const { notifications } = this.props;
+    const { userInfo, notifications } = this.props;
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top" style={{height: 90}}>
@@ -210,11 +210,21 @@ class Navbar extends Component {
             </li>
             <li>
               <Link to={`/profile/${userId}`}>
-                <img
+                {userInfo.photo !== false && 
+                  <img id="img-responsive"
+                  src={userInfo.photo}
+                  alt="" />
+                }
+                {userInfo.photo === false && 
+                  <img id="img-responsive"
+                  src="https://u.o0bc.com/avatars/no-user-image.gif"
+                  alt="" />
+                }
+                {/* <img
                   className="img-responsive"
                   src="https://u.o0bc.com/avatars/no-user-image.gif"
                   alt=""
-                />
+                /> */}
               </Link>
             </li>
             <li>
