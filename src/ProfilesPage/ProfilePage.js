@@ -32,40 +32,50 @@ const admin = sessionStorage.getItem("isAdmin");
 
 
 class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
 
-  componentWillMount() {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        deleteModalVisible: false
-      };
-    }
+    this.state = {
+      deleteModalVisible: false
+    };
   }
+
 
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
-    if(valid === 'null' || !valid) {
+    if (valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const sender_id = sessionStorage.getItem('userId');
-    const receiver_id = this.props.match.params.id;
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
-    fetchUserInfo(this.props.match.params.id);
-    fetchUserFeeds(this.props.match.params.id);
-    fetchUserConnections(this.props.match.params.id);
-    fetchConnectionStatus({ sender_id, receiver_id });
-    fetchNotifications(sender_id);
     this.setState(() => {
-      return {suspendedState: this.props.userInfo.suspended}
+      return { suspendedState: this.props.userInfo.suspended }
     });
+
     this.setState({editUserEnable: false});
+    this.loadUserData(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.currentUser === nextProps.match.params.id) {
+      return;
+    }
+    this.loadUserData(nextProps.match.params.id);
+  }
+
+  loadUserData(userId) {
+    this.setState({currentUser: userId})
+    const sender_id = sessionStorage.getItem('userId');
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchConnectionStatus, fetchNotifications } = this.props;
+    fetchUserInfo(userId);
+    fetchUserFeeds(userId);
+    fetchUserConnections(userId);
+    fetchConnectionStatus({ sender_id, userId });
+    fetchNotifications(sender_id);
   }
 
   // @TODO onPress what? Be more specific naming functions
   onPress() {
     const sender_id = sessionStorage.getItem("userId");
-    const receiver_id = this.props.match.params.id;
+    const receiver_id = this.state.currentUser;
     const data = {
       sender_id,
       receiver_id
@@ -78,24 +88,9 @@ class ProfilePage extends Component {
     this.props.blockConnectionRequests(sender_id);
   }
 
-  onPost() {
-    const body = this.props.userWallPost;
-    const userId =
-      this.props.match.params.id || sessionStorage.getItem("userId");
-    const authorId = sessionStorage.getItem("userId");
-    this.props.createPostOnUserWall(
-      {
-        body,
-        userId,
-        authorId
-      },
-      this.props.fetchUserFeeds
-    );
-  }
-
   renderEditUserButton() {
     return (
-      <button className="btn btn-info" onClick={this.handleEditButtonClick.bind(this)}>
+      <button className="btn btn-info profileBtn" onClick={this.handleEditButtonClick.bind(this)}>
         {this.state.editUserEnable ? "Back" : "Edit"}
       </button>
     );
@@ -103,7 +98,7 @@ class ProfilePage extends Component {
 
   renderPublicFigureStatus(userInfo = this.props.userInfo) {
     if (userInfo.public_figure) {
-      return(
+      return (
         <h6>Public Figure</h6>
       );
     }
@@ -111,7 +106,7 @@ class ProfilePage extends Component {
 
   renderIsMentorStatus(userInfo = this.props.userInfo) {
     if (userInfo.is_mentor) {
-      return(
+      return (
         <h6>Mentor</h6>
       );
     }
@@ -154,14 +149,13 @@ class ProfilePage extends Component {
   }
 
   // @TODO What are we deleting? Please be more specific naming functions
-  onDelete() => {
-    const id = this.props.match.params.id || sessionStorage.getItem("userId");
+  onDelete() {
+    const id = this.state.currentUser || sessionStorage.getItem("userId");
     this.props.deleteUser(id);
     this.props.history.push('/message');
-
   }
 
-  openModal () {
+  openModal() {
     this.setState({ deleteModalVisible: true })
   }
 
@@ -170,6 +164,7 @@ class ProfilePage extends Component {
       return (
         <label>
           <input
+            id="blockCheckbox"
             type="checkbox"
             defaultChecked={this.props.userInfo.block_connection_requests}
             onClick={this.onBlockConnection.bind(this)}
@@ -181,14 +176,13 @@ class ProfilePage extends Component {
   }
 
   //UNSUSPEND
-
   suspendUserButton() {
     const suspended = this.props.userInfo.suspended;
     const admin = sessionStorage.getItem("isAdmin");
     if (this.state.suspendedState) {
       return (
         <button
-          className="btn btn-warning"
+          className="btn btn-warning profileBtn"
           onClick={this.onUnsuspend.bind(this)}
         >
           {" "}
@@ -197,7 +191,7 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <button className="btn btn-warning" onClick={this.onSuspend.bind(this)}>
+        <button className="btn btn-warning profileBtn" onClick={this.onSuspend.bind(this)}>
           {" "}
           Suspend{" "}
         </button>
@@ -209,13 +203,12 @@ class ProfilePage extends Component {
     this.setState({ deleteModalVisible: false });
   };
 
-
   deleteUserButton() {
     const admin = sessionStorage.getItem("isAdmin");
-    if(!this.props.userInfo.superuser) {
+    if (!this.props.userInfo.superuser) {
       return (
-          <button className="btn btn-danger" onClick={this.openModal.bind(this)}>
-            Delete User
+        <button className="btn btn-danger profileBtn" onClick={this.openModal.bind(this)}>
+          Delete User
           </button>
       );
     }
@@ -255,7 +248,7 @@ class ProfilePage extends Component {
 
       return (
         <div>
-          <div className="feed-post-bar">
+          {/* <div className="feed-post-bar">
             <div className="wrap">
               <div className="search">
                 <input
@@ -267,24 +260,15 @@ class ProfilePage extends Component {
                   }
                   value={this.props.userWallPost}
                 />
-                <div className="post-button">
-                  <button
-                    className="btn btn-default"
-                    onClick={this.onPost.bind(this)}
-                  >
-                    POST
-                  </button>
-                </div>
+                
               </div>
             </div>
           </div>
-          <ProfileFeed feeds={this.props.userFeeds} />
+          <ProfileFeed feeds={this.props.userFeeds} /> */}
         </div>
       );
     }
   }
-
-
 
   render() {
     const {
@@ -298,47 +282,59 @@ class ProfilePage extends Component {
     } = this.props;
     const { deleteModalVisible } = this.state
     return (
-      <div>
-        <Navbar history={history} notifications={notifications} />
-        <LeftGraySideBar>
-          {this.renderPublicFigureStatus()}
-          {this.renderIsMentorStatus()}
-          <UserInfo
-            userInfo={userInfo}
-            adminUser={adminUser}
-            url={match.url}
-            editButtonClicked={this.onUserEditButton}
-          />{" "}
-          {this.renderBlockConnection()}
-          {this.renderConnection()}
-          <div id="profile-buttons">
-            {this.renderEditUserButton()}
-            {this.suspendUserButton()}
-            {this.deleteUserButton()}
-            {deleteModalVisible && 
-            <Modal style={{borderRadius:"50px"}} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
-              <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
-              <h2 className='text-center'>Are you sure?</h2>
-              <hr/>
-              <div className='container'>
-              <div className='row'>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
-              </div>
-              <div className='col-md-6'>
-              <button className="btn btn-danger" onClick={this.closeModal}>No</button>
-              </div>
-              </div>
-              </div>
-            </Modal>}
+      <div className="row">
+        <div className="col">
+          <div className="row">
+            <Navbar history={history} notifications={notifications} />
           </div>
-        </LeftGraySideBar>
-        <RightGraySideBar>
-          <ProfileConnections connections={userConnections}/>
-        </RightGraySideBar>
-        <PageContent history={history}>
-          {this.renderPageContent()}
-        </PageContent>
+          <div className="row">
+            <div className="col-sm-2 col-lg-3">
+              <LeftGraySideBar>
+                {this.renderPublicFigureStatus()}
+                {this.renderIsMentorStatus()}
+                <UserInfo
+                  userInfo={userInfo}
+                  adminUser={adminUser}
+                  url={match.url}
+                  editButtonClicked={this.onUserEditButton}
+                />{" "}
+                {this.renderBlockConnection()}
+                {this.renderConnection()}
+                <div id="profile-buttons">
+                  {this.renderEditUserButton()}
+                  {this.suspendUserButton()}
+                  {this.deleteUserButton()}
+                  {deleteModalVisible &&
+                    <Modal style={{ borderRadius: "50px" }} open={this.state.deleteModalVisible} onClose={this.closeModal} center>
+                      <h1 className='text-center font-weight-bold'>This user will be deleted.</h1>
+                      <h2 className='text-center'>Are you sure?</h2>
+                      <hr />
+                      <div className='container'>
+                        <div className='row'>
+                          <div className='col-md-6'>
+                            <button className="btn btn-danger" onClick={this.onDelete}>Yes</button>
+                          </div>
+                          <div className='col-md-6'>
+                            <button className="btn btn-danger" onClick={this.closeModal}>No</button>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal>}
+                </div>
+              </LeftGraySideBar>
+            </div>
+            <div className="col-sm-8 col-lg-6">
+              <PageContent history={history}>
+                {this.renderPageContent()}
+              </PageContent>
+            </div>
+            <div className="col-sm-2 col-lg-3">
+              <RightGraySideBar>
+                <ProfileConnections connections={userConnections} />
+              </RightGraySideBar>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

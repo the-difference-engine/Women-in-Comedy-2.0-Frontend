@@ -4,6 +4,7 @@ import {
   fetchUserInfo,
   fetchUserFeeds,
   fetchNotifications,
+  fetchMyUpcomingEvents,
   fetchUserConnections,
   fetchPendingUserConnections,
   fetchPendingUserInvites,
@@ -30,13 +31,14 @@ class Feed extends Component {
     if(valid === 'null' || !valid) {
       this.props.history.push('/');
     }
-    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications } = this.props;
+    const { fetchUserInfo, fetchUserFeeds, fetchUserConnections, fetchPendingUserConnections, fetchPendingUserInvites, fetchNotifications, fetchMyUpcomingEvents } = this.props;
     fetchUserInfo(sessionStorage.getItem('userId'));
     fetchUserFeeds(sessionStorage.getItem('userId'));
     fetchUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserConnections(sessionStorage.getItem('userId'));
     fetchPendingUserInvites(sessionStorage.getItem('userId'));
     fetchNotifications(sessionStorage.getItem('userId'));
+    this.props.fetchMyUpcomingEvents(sessionStorage.getItem('userId'));
   }
 
   onPost() {
@@ -49,31 +51,65 @@ class Feed extends Component {
 
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
+    console.log(this.props.myUpcomingEvents)
+
     return (
-      <div>
-        <Navbar history={this.props.history} notifications={notifications}/>
-        <RightGraySideBar>
-          <Messages connections={receivedConnectionRequest} invites={userInvites} />
-        </RightGraySideBar>
-        <LeftGraySideBar>
-          <UserInfo userInfo={userInfo} userConnections={userConnections} />
-        </LeftGraySideBar>
-        <PageContent>
-          <div className="feed-post-bar">
-            <div className="wrap">
-              <div className="search">
-                <input type="text" className="searchTerm" placeholder="What's New?"
-                  onChange={(event) => this.props.userWallInputChange(event.target.value)}
-                  value={this.props.userWallPost}/>
-                <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
+      <div className="container">
+        <div className="row">
+          <div className='col-sm-12'>
+            <div className="row">
+              <div className="col-lg-12">
+                <Navbar history={this.props.history} notifications={notifications}/>
+              </div>
+            </div>
+            <div className="row notif-col-container">
+              <div className="col-lg-3">
+                <LeftGraySideBar>
+                  <UserInfo userInfo={userInfo} userConnections={userConnections} />
+                </LeftGraySideBar>
+              </div>
+              <div className="col-lg-6">
+                <div className="row">
+                  {/* {renderEventList(this.props.myUpcomingEvents)} */}
+                </div>
+                {/* <PageContent>
+                <div className="feed-post-bar">
+                  <div className="wrap">
+                    <div className="search">
+                      <input type="text" className="searchTerm" placeholder="What's New?"
+                        onChange={(event) => this.props.userWallInputChange(event.target.value)}
+                        value={this.props.userWallPost}/>
+                      <div className="post-button"><button className="btn btn-default" onClick={this.onPost.bind(this)}>POST</button></div>
+                    </div>
+                  </div>
+                </div>
+                <NewFeeds userFeeds={userFeeds} />
+              </PageContent> */}
+              </div>
+              <div className="col-lg-3">
+                <RightGraySideBar>
+                  <Messages connections={receivedConnectionRequest} invites={userInvites} />
+                </RightGraySideBar>
               </div>
             </div>
           </div>
-          <NewFeeds userFeeds={userFeeds} />
-        </PageContent>
+        </div>
+
+
+        
+        
+        
       </div>
     );
   }
+}
+
+const renderEventList = (events) => {
+  return events.data.map(event => {
+    return (
+      <li> {event.title} </li>
+    )
+  })
 }
 
 const mapStateToProps = (state) => {
@@ -85,6 +121,7 @@ export default connect(mapStateToProps,
     fetchUserInfo,
     fetchUserFeeds,
     fetchUserConnections,
+    fetchMyUpcomingEvents,
     fetchNotifications,
     fetchPendingUserConnections,
     fetchPendingUserInvites,

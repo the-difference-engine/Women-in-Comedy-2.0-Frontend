@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
@@ -14,8 +14,8 @@ import CreateAdmin from './AdminPage/CreateAdmin';
 import UpdateEvent from './UpdateEventPage/UpdateEvent';
 import EditPage from './EditPage/EditPage';
 import DeletedUser from './ProfilesPage/DeletedUser';
-import ChatWidget from './ChatWidget/ChatWidget';
 import Notification from "./NotificationsPage/NotificationsPage";
+import "./app.css";
 
 
 class App extends Component {
@@ -50,10 +50,8 @@ class App extends Component {
               <Route exact path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/profile/:id/edit' component={EditPage}></Route>
               <Route path='/message' component={DeletedUser}></Route>
-              <Route path='/profile/:id' component={ProfilePage}></Route>
               <Route path='/notifications' component={Notification}></Route>
             </Switch>
-            <ChatWidget />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

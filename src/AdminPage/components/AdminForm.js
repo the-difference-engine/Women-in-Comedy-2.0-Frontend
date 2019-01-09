@@ -4,7 +4,7 @@ import { reduxForm, Field } from "redux-form";
 import UserList from "./UserList";
 import SuperAdminForm from "./SuperAdminForm.js";
 import { bindActionCreators } from "redux";
-import "../css/navbar.css";
+import "../css/adminPage.css";
 import "../css/modal.css";
 import { fetchUserInfo, fetchAllUsers, updateToSuperAdmin, removeSuperAdminStatus} from "../../actions";
 
@@ -125,7 +125,6 @@ class AdminForm extends Component {
           : (<p />)}
           <div>{this.SuperAdminRender()}</div>
         </form>
-        <br/>
         <p>
           Public Figure Status: {this.renderPublicFigure()}
           <br/>
@@ -136,9 +135,8 @@ class AdminForm extends Component {
           <br/>
           {this.changeIsMentorButton()}
         </p>
-        
         <br/>
-        <br/>
+        <hr/>
       </div>
     );
   }

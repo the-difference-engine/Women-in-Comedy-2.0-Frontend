@@ -9,16 +9,15 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
         return <button onClick={() => unattendEvent(event.guests[i].id, event.info.id, fetchEventInfo)}> Unattend</button>
       }
     }
-    return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
+    return <button className="btn btn-default" onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> ATTEND </button>;
   };
 
   const renderUpdateEvent = ({ event, userInfo, eventId }) => {
-    if (event.hostInfo.id === userInfo.id || userInfo.admin === true){
+    if (event.hostInfo.id === userInfo.id || userInfo.admin === true){ 
       return(
-        <UpdateEventButton id="edit_btn" eventId={eventId}/>
+        <UpdateEventButton id="edit_btn" eventId={eventId} event={event}/>
       )
     }
-    //return <button onClick={() => attendEvent(userInfo, eventId, fetchEventInfo)}> Attend </button>;
   };
 
   if(event && event.hostInfo) {

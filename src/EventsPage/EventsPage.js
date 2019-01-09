@@ -23,12 +23,24 @@ class EventsPage extends Component {
 	render () {
 		const {notifications} = this.props;
     return (
-			<div id="events-page">
-        <Navbar history={this.props.history} notifications={notifications}/>
-				<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
-				<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
-				<AddEvent history={this.props.history} invites={this.props.userInvites}/>
-			</div>
+			<div className="container" id="events-page">
+				<div className="row">
+					<div className="col">
+						<div className="row">
+							<Navbar history={this.props.history} notifications={notifications}/>
+						</div>
+						<div className="row">
+							<div className="col-sm-2 col-lg-3" id="newEventCol">
+								<AddEvent history={this.props.history} invites={this.props.userInvites}/>
+							</div>
+							<div className="col-sm-10 col-lg-9">
+								<MyUpcomingEvents myUpcomingEvents={this.props.myUpcomingEvents} />
+								<AllUpcomingEvents upcomingEvents={this.props.upcomingEvents} />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
 		);
 	}
 }

@@ -63,9 +63,7 @@
 
 #feed-icons a span {
     font-size: 18px;
-
 }
-
 
 .glyphicon {
     position: relative;
@@ -78,8 +76,6 @@
     -webkit-font-smoothing: antialiased;
     /*-moz-osx-font-smoothing: grayscale;*/
 }
-
-
 
 #profile-pic img {
   margin-top: 10px; 

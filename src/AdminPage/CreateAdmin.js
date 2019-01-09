@@ -6,7 +6,7 @@ import Navbar from '../common/Navbar';
 import {LeftGraySideBar, RightGraySideBar, PageContent} from '../common';
 import { bindActionCreators } from 'redux';
 import { fetchAllUsers, fetchUserInfo, updateSettings, updateEvent, updatePublicFigure, updateIsMentor, fetchNotifications } from '../actions';
-import './css/navbar.css';
+import './css/adminPage.css';
 import EmailModal from './components/EmailModal';
 
 
@@ -28,11 +28,24 @@ class CreateAdmin extends Component {
     const {notifications} = this.props
 
     return(
-      <div>
+      <div className="container">
+        <div className="row">
+          <div className='col-sm-12'>
+          <div className="row">
         <Navbar history={this.props.history} notifications={notifications}/>
+          
+          </div>
+
+       <div className="row admin-col-container">
+        <div className='col-sm-2 col-lg-3'>
         <LeftGraySideBar>
+
           <EmailModal />
         </LeftGraySideBar>
+       
+        </div>
+
+        <div className='col-sm-8 col-lg-6'>
         <PageContent>
          <UserList 
           userInfo={this.props.userInfo} 
@@ -43,8 +56,17 @@ class CreateAdmin extends Component {
           users={this.props.allUsersList} 
           fetchUser={this.props.fetchUser}/>
         </PageContent>
+       
+        </div>
+        <div className='col-sm-2 col-lg-3'>
         <RightGraySideBar>
         </RightGraySideBar>
+      
+
+            </div>
+          </div>
+        </div>
+       </div>
       </div>
     );
   }

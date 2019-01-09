@@ -33,7 +33,7 @@ class Profile extends Component {
       return (
         <div id="personal-feed">
           <div className="no-feed">
-              <p>No Feeds Avaliable</p>
+              <p>No Feeds Available</p>
           </div>
         </div>
       );

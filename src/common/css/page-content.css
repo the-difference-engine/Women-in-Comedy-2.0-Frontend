@@ -1,7 +1,7 @@
 #page-content {
   overflow-y: scroll;
-  width: 61%;
-  position: fixed;
+  /* width: 61%; */
+  /* position: fixed; */
   left: 20%;
   padding-bottom: 50px;
   top: 65px;
@@ -15,18 +15,18 @@
 }
 
 #page-content-margin {
-  margin-top: 50px;
-  margin-left: 40px;
-  margin-right: 60px;
-  margin-bottom: 25px;
+ 
+  width: 80%;
   height: 100%;
+  position: relative;
+  margin: auto;
+  margin-top: 2em;
 }
 
 #page-content.event-feed {
-  position: relative;
   top: 300px;
-  left: 300px;
-  right: 850px;
+  left: 400px;
+  right: 500px;
   overflow-y: scroll;
   max-height: 450px;
 }

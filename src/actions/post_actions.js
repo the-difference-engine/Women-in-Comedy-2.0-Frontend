@@ -17,7 +17,7 @@ export const userWallInputChange = value => dispatch => {
 };
 
 export const eventWallInputChange = value => dispatch => {
-  dispatch({ type: EVENT_WALL_INPUT_CHANGE, payload: value })
+  dispatch({ type: EVENT_WALL_INPUT_CHANGE, payload: value });
 }
 
 export const createPostOnEventWall = ({ body, eventId, authorId }, callback) => async dispatch => {

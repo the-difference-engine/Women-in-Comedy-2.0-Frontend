@@ -14,16 +14,16 @@
   text-decoration: none;
   text-align: center;
   border: 2px solid indianred;
-  margin: 15px;
+  margin-bottom: 15px;
   padding: 5px;
-  width: 100%;
+  width: 50%;
 }
 
 .adminButtonStyle {
   color: white;
   background-color: rgb(155, 21, 34);
   border: rgb(155, 21, 34);
-  width: 100%;
+  width: 50%;
 }
 
 .emailButtonStyle {
@@ -33,7 +33,8 @@
 }
 
 .buttonStyle {
-  display: block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   width: 100px;
   height: 25px;

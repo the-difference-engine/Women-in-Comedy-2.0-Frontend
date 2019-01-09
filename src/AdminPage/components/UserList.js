@@ -9,8 +9,13 @@ class UserList extends Component {
 
     return users.map(user => {
       return (
-        <li key={user.id}>
-          {user.firstName} {user.lastName}
+        <li key={user.id} id="adminUserList">
+          <div>
+            <p id="adminUserListId">
+              {user.id}
+            </p>
+            <h3 id="adminUserListFullName">{user.firstName} {user.lastName}</h3>
+          </div>
           <p>{user.email}</p>
           <AdminForm
             isLoggedInUserSuper = {this.props.userInfo.superadmin}
@@ -38,7 +43,7 @@ class UserList extends Component {
     }
 
     return (
-      <ol className="list-group col-sm-4">
+      <ol className="list-group col-sm-12">
         <p>
           {this.renderSuperAdminList()}
         </p>

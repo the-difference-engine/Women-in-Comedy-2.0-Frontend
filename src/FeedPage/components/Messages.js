@@ -9,6 +9,7 @@ class Messages extends Component {
     const userId = sessionStorage.getItem('userId');
     const callback = this.props.fetchPendingUserConnections;
     const callback2 = this.props.fetchUserConnections;
+
     return this.props.connections.map(connection => {
       return (
         <div key={connection.requestId}>
@@ -41,11 +42,11 @@ class Messages extends Component {
   render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <p id="next-event">Next Event</p>
           <Link to="/events" className="events-link">View Upcoming Events</Link>
         </div>
-        <br/>
+        <br/> */}
         <div>
           <p id="connection"> Pending Connections <span id="connection-count">({this.props.connections.length})</span></p>
         </div>
