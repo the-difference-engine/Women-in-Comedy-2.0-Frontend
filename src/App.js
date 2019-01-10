@@ -59,11 +59,11 @@ class App extends Component {
               <Route path='/profile/:id/edit' component={EditPage}></Route>
               <Route path='/message' component={DeletedUser}></Route>
               <Route path='/notifications' component={Notification}></Route>
-              <Redirect
-                from='/users/confirmation'
-                to={{
-                  pathname: this.buildConfirmationPath(),
-                  search: this.buildConfirmationQuerystring(),
+              <Route 
+                path='/users/confirmation'
+                component={() => {
+                  window.location = this.buildConfirmationPath() + this.buildConfirmationQuerystring()
+                  return null;
                 }} />
             </Switch>
           </div>
