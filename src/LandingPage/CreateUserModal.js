@@ -8,7 +8,6 @@ import { fetchMeetingOptions } from "../actions";
 
 
 class CreateUserModal extends Component {
-
     constructor(props) {
         super(props);
         this.state = {

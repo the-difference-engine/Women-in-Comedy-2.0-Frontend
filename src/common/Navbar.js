@@ -210,12 +210,12 @@ class Navbar extends Component {
             </li>
             <li>
               <Link to={`/profile/${userId}`}>
-                {userInfo.photo !== false && 
+                {userInfo.photo != undefined && 
                   <img id="img-responsive"
                   src={userInfo.photo}
                   alt="" />
                 }
-                {userInfo.photo === false && 
+                {userInfo.photo == undefined && 
                   <img id="img-responsive"
                   src="https://u.o0bc.com/avatars/no-user-image.gif"
                   alt="" />

@@ -6,12 +6,12 @@ const UserInfo = (props) => {
   const { firstName, lastName, bio, block_connection_requests, photo} = props.userInfo;
   const { userConnections } = props;
   const userId = sessionStorage.getItem('userId');
-  
+
   return (
     <div>
       <div id="user-info">
-        {photo !== false && <img id="profile-img" src={photo}  />}
-        {photo === false && <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />}
+        {photo != undefined && <img id="profile-img" src={photo}  />}
+        {photo == undefined && <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif"  />}
         <p id="user-name">{firstName} {lastName}</p>
         <p id="bio">Bio</p>
         <p id="bio-content">{bio}</p>

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import firebase from "firebase";
+import axios from "axios";
 import Navbar from "../common/Navbar";
 import {
   createEvent,
@@ -27,6 +29,7 @@ class CreateEvents extends Component {
       imgURL: null
     };
   }
+  
   componentDidMount() {
     const valid = sessionStorage.getItem('confirmed');
     if(valid === 'null' || !valid) {
@@ -65,6 +68,7 @@ class CreateEvents extends Component {
       return <CircularProgress />;
     }
   }
+
   privateRender(props) {
     if (sessionStorage.adminUser === "true") {
       return (
@@ -80,9 +84,16 @@ class CreateEvents extends Component {
     }
   }
 
-  async onCreateEvent() {
-   
-    let newUserId = sessionStorage.getItem("userId");
+  storeEventPicture(photo) {
+    const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
+    const ext = photo.name.slice(photo.name.lastIndexOf("."));
+    const ref = `/events/${photoName}${ext}`
+    return firebase.storage()
+      .ref(ref)
+      .put(photo);
+  };
+
+  postEvent() {
     const {
       address,
       date,
@@ -95,8 +106,11 @@ class CreateEvents extends Component {
       is_private
     } = this.props.createEventForm;
 
-    await this.props.createEvent(
-      {
+    axios({
+      method: "post",
+      url: process.env.REACT_APP_API_ENDPOINT + "events",
+      data: {
+        userId,
         address,
         date,
         about,
@@ -106,10 +120,25 @@ class CreateEvents extends Component {
         time,
         title,
         is_private
-      },
-      newUserId
-    );
-    this.props.history.push(`/eventsfeed/${this.props.createEventForm.id}`);
+      }
+    }).then((response) => {
+      this.props.history.push(`/eventsfeed/${response.data}`);
+    });
+  }
+
+  onCreateEvent() {
+    const { photo } = this.props.createEventForm;
+
+    if (photo) {
+      this.storeEventPicture(photo).then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((photo) => {
+          this.props.createEventForm.photo = photo
+          this.postEvent();
+        });
+      });
+    } else {
+      this.postEvent() 
+    }
 }
 
   render() {

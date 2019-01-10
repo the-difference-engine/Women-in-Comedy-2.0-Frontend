@@ -21,12 +21,12 @@ const EventInfo = ({ event, userInfo, unattendEvent, attendEvent, eventId, fetch
   };
 
   if(event && event.hostInfo) {
-    const { title, date, time, location, about, ticket_link, user_id } = event.info;
-    const { photo, firstName, lastName } = event.hostInfo;
+    const { title, date, time, location, about, ticket_link, user_id, photo } = event.info;
+    const { firstName, lastName } = event.hostInfo;
     return (
       <div>
         <h2 id="event-title">{title}</h2>
-        <img src={photo} width="100" height="100" alt=""/>
+        {photo != undefined && <img width="100" height="100" src={photo} />}
         <h2 id="event-details"> Host: {firstName} {lastName}</h2>
         <h2 id="event-date">{date} at {time}</h2>
         <h3 id="event-location">{location}</h3>

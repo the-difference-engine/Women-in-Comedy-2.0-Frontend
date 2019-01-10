@@ -51,7 +51,6 @@ class Feed extends Component {
 
   render() {
     const { userInfo, userConnections, userFeeds, userInvites, receivedConnectionRequest, notifications } = this.props;
-    console.log(this.props.myUpcomingEvents)
 
     return (
       <div className="container">

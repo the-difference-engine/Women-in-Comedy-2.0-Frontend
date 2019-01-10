@@ -27,8 +27,8 @@ const UserInfo = (props) => {
     return (
 
       <div>
-        {photo !== false && <img id="profile-img" src={photo} />}
-        {photo === false && <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" />}
+        {photo != undefined && <img id="profile-img" src={photo} />}
+        {photo == undefined && <img id="profile-img" src="https://u.o0bc.com/avatars/no-user-image.gif" />}
         <p id="profile-name">{firstName} {lastName}</p>
         <p id="profile-bio-title">Bio  </p>
         <p id="profile-bio-content">{bio}</p>
