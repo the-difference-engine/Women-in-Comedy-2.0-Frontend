@@ -30,8 +30,8 @@ const renderConnections = (connections) => {
   return connections.map(connection => {
     return (
       <div key={connection.id}>
-        {connection.photo !== false && <img id="connection-img" src={connection.photo} />}
-        {connection.photo === false && <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif"/>}
+        {connection.photo != undefined && <img id="connection-img" src={connection.photo} />}
+        {connection.photo == undefined && <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif"/>}
         {/* <img id="connection-img" src="https://u.o0bc.com/avatars/no-user-image.gif" alt="" /> */}
         <Link to={`/profile/${connection.id}`}><p id="connection-name">{connection.firstName} {connection.lastName}</p></Link>
       </div>
