@@ -17,18 +17,18 @@ class EditForm extends Component {
     return <form onSubmit={handleSubmit}>
       <h3>{isAdminEdit ? (<p>Admin Edit</p>): (<p>User Edit</p>)}</h3>
       {/* First Name */}
-      <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
-      <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
+      <Field label="First Name" name="first_name" component={this.renderTitleField}/> {/* Last Name */}
+      <Field label="Last Name" name="last_name" component={this.renderTitleField}/> {/* Bio/ About */}
       <div className="form-group row">
         <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
         <div className="col-sm-5">
-          <Field name="bio" className="form-control" component="textarea" type="text"/>
+          <Field name="about" className="form-control" component="textarea" type="text"/>
         </div>
       </div>
       {/* City */}
       <Field label="City" name="city" component={this.renderTitleField}/>
       {/* Video/ Website Links */}
-      <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
+      <Field label="Video link to Youtube/Vimeo" name="video_link" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
       {/* ADMIN ONLY */}
       {isAdminEdit ? <div>

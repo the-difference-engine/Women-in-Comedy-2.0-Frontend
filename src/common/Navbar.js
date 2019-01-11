@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { AutoComplete, FlatButton, Menu, MenuItem, Popover } from "material-ui";
-import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -13,7 +11,6 @@ import {
   filterUsers
 } from "../actions";
 import axios from "axios";
-import { render } from "react-router-dom";
 import "./css/navbar.css";
 import NotificationButton from "../containers/notification_button";
 import "../images/Women_Logo_New.png";
@@ -32,15 +29,15 @@ class Navbar extends Component {
     this.handleTouchTap = this.handleTouchTap.bind(this);
   }
 
-  Logout() {
-    axios.get(process.env.REACT_APP_API_ENDPOINT + 'sessions/sign_out').then(response => {
+  logout() {
+    axios.get(process.env.REACT_APP_API_ENDPOINT + 'sessions/sign_out').then(() => {
       sessionStorage.clear();
       this.props.history.push('/')
     });
   };
 
   componentDidMount() {
-    const { fetchAllUsers, fetchUserInfo, fetchNotifications } = this.props;
+    const { fetchAllUsers, fetchUserInfo } = this.props;
     fetchAllUsers();
     fetchUserInfo(userId);
   }
@@ -51,12 +48,12 @@ class Navbar extends Component {
     this.setState({ open: true, anchorEl: event.currentTarget });
   }
 
-  onMenuItemClicked(event, menuItem) {
+  onMenuItemClicked(menuItem) {
     let { name, primaryText } = menuItem.props;
     this.props.filterUsers(name, primaryText);
   }
 
-  onMenuClicked(event, value) {}
+  onMenuClicked() {}
 
   handleRequestClose() {
     this.setState({ open: false });
@@ -88,83 +85,8 @@ class Navbar extends Component {
   }
 
   render() {
-    const locationMenuItems = [
-      {
-        primaryText: "San Francisco",
-        name: "city"
-      },
-      {
-        primaryText: "Chicago",
-        name: "city"
-      },
-      {
-        primaryText: "Oakland",
-        name: "city"
-      },
-      {
-        primaryText: "Bay Area",
-        name: "city"
-      }
-    ];
-
-    const trainingMenuItems = [
-      {
-        primaryText: "less than 1 year",
-        name: "training"
-      },
-      {
-        primaryText: "1-3 years",
-        name: "training"
-      },
-      {
-        primaryText: "4-7 years",
-        name: "training"
-      },
-      {
-        primaryText: "7-10 years",
-        name: "training"
-      },
-      {
-        primaryText: "11+ years",
-        name: "training"
-      }
-    ];
-
-    const experienceMenuItems = [
-      {
-        primaryText: "less than 1 year",
-        name: "experience"
-      },
-      {
-        primaryText: "1-3 years",
-        name: "experience"
-      },
-      {
-        primaryText: "4-7 years",
-        name: "experience"
-      },
-      {
-        primaryText: "7-10 years",
-        name: "experience"
-      },
-      {
-        primaryText: "11+ years",
-        name: "experience"
-      }
-    ];
-
-    const genderMenuItems = [
-      {
-        primaryText: "Male",
-        name: "gender"
-      },
-      {
-        primaryText: "Female",
-        name: "gender"
-      }
-    ];
-
     const { userInfo, notifications } = this.props;
+    console.log(userInfo)
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top" style={{height: 90}}>
@@ -210,7 +132,10 @@ class Navbar extends Component {
             </li>
             <li>
               <Link to={`/profile/${userId}`}>
-                {userInfo.photo != undefined && 
+                <i className="fa fa-user">
+                  <p>PROFILE</p>
+                </i>
+                {/* {userInfo.photo != undefined && 
                   <img id="img-responsive"
                   src={userInfo.photo}
                   alt="" />
@@ -219,7 +144,7 @@ class Navbar extends Component {
                   <img id="img-responsive"
                   src="https://u.o0bc.com/avatars/no-user-image.gif"
                   alt="" />
-                }
+                } */}
                 {/* <img
                   className="img-responsive"
                   src="https://u.o0bc.com/avatars/no-user-image.gif"
@@ -228,7 +153,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li>
-              <a href="#" className="icon" onClick={this.Logout.bind(this)}>
+              <a href="#" className="icon" onClick={this.logout.bind(this)}>
                 <i className="fa fa-sign-out">
                   <p>LOG OUT</p>
                 </i>
