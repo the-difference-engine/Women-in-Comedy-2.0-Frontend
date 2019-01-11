@@ -15,11 +15,11 @@ class EditPage extends Component {
         console.log(values)
 
         axios({
-          method: 'patch',
+          method: 'put',
           url: process.env.REACT_APP_API_ENDPOINT + `users/${id}`,
           data: values
         }).then(function(response) {});
-        window.location.reload();
+        // window.location.reload();
         //After confirmation, set editable boolean value to false
         //to go back to Feed event page
         this.props.editable(false);
