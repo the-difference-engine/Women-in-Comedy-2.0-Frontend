@@ -86,7 +86,6 @@ class Navbar extends Component {
 
   render() {
     const { userInfo, notifications } = this.props;
-    console.log(userInfo)
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top" style={{height: 90}}>

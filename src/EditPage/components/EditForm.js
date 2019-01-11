@@ -142,8 +142,6 @@ class EditForm extends Component {
   }
 
   renderCheckbox(field) {
-
-  
     return (<div>
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
@@ -159,32 +157,12 @@ function validate(values) {
   if (!values.lastName) {
     errors.lastName = "Enter a last name";
   }
-
   if (!values.email) {
     errors.email = "Enter an email";
   }
   if (!values.password) {
     errors.password = "Enter an password";
   }
-  if (!values.gender) {
-    errors.gender = "Enter a gender";
-  }
-  if (!values.video) {
-    errors.video = "Enter a video link";
-  }
-  if (!values.city) {
-    errors.city = "Enter a city";
-  }
-  if (!values.training) {
-    errors.training = "Enter training";
-  }
-  if (!values.experience) {
-    errors.experience = "Enter experience";
-  }
-  if (!values.website) {
-    errors.website = "Enter website";
-  }
-
   return errors;
 }
 
