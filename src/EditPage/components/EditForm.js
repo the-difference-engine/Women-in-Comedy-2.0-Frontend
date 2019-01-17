@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import { RaisedButton } from "material-ui";
 
 class EditForm extends Component {
   constructor(props) {
     super(props);
+  }
+
+  onClick() {
+    const input = document.getElementById("input");
+    input.click();
   }
 
   render() {
@@ -30,6 +35,12 @@ class EditForm extends Component {
       {/* Video/ Website Links */}
       <Field label="Video link to Youtube/Vimeo" name="video_link" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
+      {/* <RaisedButton
+        secondary
+        label="upload image"
+        onClick={this.onClick.bind(this)}
+      />
+      <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br /> */}
       {/* ADMIN ONLY */}
       {isAdminEdit ? <div>
           <Field label="Assign Public Figure/ Mentor Status" name="superadmin" component={this.renderCheckbox}/>
