@@ -1,26 +1,15 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import firebase from "firebase";
 import axios from "axios";
-import { bindActionCreators } from "redux";
 import {
-  TextField,
   RaisedButton,
-  CircularProgress,
   SelectField,
-  MenuItem,
-  Label
-} from "material-ui";
-import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+  MenuItem} from "material-ui";
 import {
   TextValidator,
-  ValidatorForm,
-  SelectValidator
-} from "react-material-ui-form-validator";
+  ValidatorForm} from "react-material-ui-form-validator";
 import "../css/register.css";
-import createFragment from "react-addons-create-fragment";
-import { ValidatorComponent } from 'react-material-ui-form-validator';
 import holder from "../images/holder.jpg";
 import { fetchMeetingOptions } from "../../actions";
 
@@ -129,7 +118,7 @@ class RegisterForm extends Component {
       });
   };
 
-  onSubmit(e) {
+  onSubmit() {
     let user = this.state.user
     let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
@@ -141,7 +130,7 @@ class RegisterForm extends Component {
             url: process.env.REACT_APP_API_ENDPOINT + 'users',
             data: { first_name, last_name, email, password, city, experience, training, video_link, website }
           })
-        }).then(payload => {
+        }).then(() => {
           this.setState({ userMade: true });
         }).catch(err => {
           alert(err)
@@ -152,7 +141,7 @@ class RegisterForm extends Component {
         method: 'post',
         url: process.env.REACT_APP_API_ENDPOINT + 'users',
         data: { first_name, last_name, email, password, city, experience, training, video_link, website }
-      }).then(payload => {
+      }).then(() => {
         this.setState({ userMade: true });
       }).catch(err => {
         alert(err)
@@ -161,7 +150,6 @@ class RegisterForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
     if (this.state.userMade) {
       return (
         <div>

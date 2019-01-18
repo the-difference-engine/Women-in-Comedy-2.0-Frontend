@@ -11,10 +11,11 @@ class NewFeeds extends Component {
     return <div></div>
   }
   render() {
-    return ( <div className="event-comment">
-      <div id="new-feeds-container">
-        {this.renderPosts()}
-      </div>
+    return ( 
+      <div className="event-comment">
+        <div id="new-feeds-container">
+          {this.renderPosts()}
+        </div>
       </div>
     );
   }

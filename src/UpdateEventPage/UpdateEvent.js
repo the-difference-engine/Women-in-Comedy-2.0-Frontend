@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../common/Navbar";
+import firebase from "firebase";
+import axios from "axios";
 import { LeftGraySideBar, RightGraySideBar } from "../common";
 import {
   createEvent,
@@ -80,7 +82,17 @@ class UpdateEvent extends Component {
       return <CircularProgress />;
     }
   }
-  async onUpdateEvent() {
+
+  storeEventPicture(photo) {
+    const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
+    const ext = photo.name.slice(photo.name.lastIndexOf("."));
+    const ref = `/events/${photoName}${ext}`
+    return firebase.storage()
+      .ref(ref)
+      .put(photo);
+  };
+
+  putEvent() {
     const {
       address,
       date,
@@ -90,16 +102,44 @@ class UpdateEvent extends Component {
       ticket_link,
       time,
       title,
+      is_private,
       id
     } = this.props.updateEventForm;
 
-    await this.props.updateEvent(
-      { address, date, about, photo, location, ticket_link, time, title, id },
-      userId
-    );
-
-    this.props.history.push(`/eventsfeed/${id}`);
+    axios({
+      method: "put",
+      url: `${process.env.REACT_APP_API_ENDPOINT}events/${id}`,
+      data: {
+        userId,
+        address,
+        date,
+        about,
+        photo,
+        location,
+        ticket_link,
+        time,
+        title,
+        is_private
+      }
+    }).then((response) => {
+      this.props.history.push(`/eventsfeed/${response.data}`);
+    });
   }
+
+  onUpdateEvent() {
+    const { photo } = this.props.updateEventForm;
+    if (photo && photo.constructor === File) {
+      this.storeEventPicture(photo).then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((photo) => {
+          this.props.updateEventForm.photo = photo
+          this.putEvent();
+        });
+      });
+    } else {
+      this.putEvent()
+    }
+  }
+
   render() {
     const { loading } = this.props.updateEventForm;
     const event = this.props.updateEventForm;

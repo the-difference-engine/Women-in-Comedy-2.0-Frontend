@@ -8,7 +8,6 @@ import { fetchMeetingOptions } from "../actions";
 
 
 class CreateUserModal extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -109,29 +108,28 @@ class CreateUserModal extends Component {
         return firebase.storage()
             .ref(`/users/${this.state.user.first_name}${this.state.user.last_name}${ext}`)
             .put(this.state.img)
-            .then(snapshot => {
-                this.state.user.photo = snapshot.downloadURL;
-            });
     };
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(this.state.user.email);
         let user = this.state.user
         let { first_name, last_name, email, password, city, experience, training, video_link, website } = user
 
         if (this.state.imgURL && this.state.imgURL.startsWith("data:image")) {
             this.storeProfilePicture()
-            .then(() => {
-                axios({
-                    method: 'post',
-                    url: process.env.REACT_APP_API_ENDPOINT + 'users',
-                    data: { first_name, last_name, email, password, city, experience, training, video_link, website }
+            .then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((url) => {
+                    let photo = url
+                    axios({
+                        method: 'post',
+                        url: process.env.REACT_APP_API_ENDPOINT + 'users',
+                        data: { first_name, last_name, email, password, photo, city, experience, training, video_link, website }
+                    }).then(() => {
+                        this.setState({ userMade: true });
+                    }).catch((err) => {
+                        alert(err)
+                    });
                 })
-            }).then(payload => {
-                this.setState({ userMade: true });
-            }).catch(err => {
-                alert(err)
             });
         } else {
             axios({

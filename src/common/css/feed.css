@@ -10,7 +10,7 @@
 #feed-content {
   padding: 0 30px 10px 30px;
   position: absolute;
-  top: -20px;
+  /* top: -20px; */
 }
 
 #feed-content.event-comment {

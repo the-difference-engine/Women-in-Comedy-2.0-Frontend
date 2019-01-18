@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import { RaisedButton } from "material-ui";
 
 class EditForm extends Component {
   constructor(props) {
     super(props);
+  }
+
+  onClick() {
+    const input = document.getElementById("input");
+    input.click();
   }
 
   render() {
@@ -17,19 +22,25 @@ class EditForm extends Component {
     return <form onSubmit={handleSubmit}>
       <h3>{isAdminEdit ? (<p>Admin Edit</p>): (<p>User Edit</p>)}</h3>
       {/* First Name */}
-      <Field label="First Name" name="firstName" component={this.renderTitleField}/> {/* Last Name */}
-      <Field label="Last Name" name="lastName" component={this.renderTitleField}/> {/* Bio/ About */}
+      <Field label="First Name" name="first_name" component={this.renderTitleField}/> {/* Last Name */}
+      <Field label="Last Name" name="last_name" component={this.renderTitleField}/> {/* Bio/ About */}
       <div className="form-group row">
         <label htmlFor="about" className="col-sm-2 col-form-label">Bio</label>
         <div className="col-sm-5">
-          <Field name="bio" className="form-control" component="textarea" type="text"/>
+          <Field name="about" className="form-control" component="textarea" type="text"/>
         </div>
       </div>
       {/* City */}
       <Field label="City" name="city" component={this.renderTitleField}/>
       {/* Video/ Website Links */}
-      <Field label="Video link to Youtube/Vimeo" name="video" component={this.renderTitleField}/>
+      <Field label="Video link to Youtube/Vimeo" name="video_link" component={this.renderTitleField}/>
       <Field label="Link to website" name="website" component={this.renderTitleField}/>
+      {/* <RaisedButton
+        secondary
+        label="upload image"
+        onClick={this.onClick.bind(this)}
+      />
+      <input type="file" id="input" style={{ display: 'none' }} onChange={this.onUpload.bind(this)} /><br /> */}
       {/* ADMIN ONLY */}
       {isAdminEdit ? <div>
           <Field label="Assign Public Figure/ Mentor Status" name="superadmin" component={this.renderCheckbox}/>
@@ -142,8 +153,6 @@ class EditForm extends Component {
   }
 
   renderCheckbox(field) {
-
-  
     return (<div>
       <label className="checkbox-inline"><input type="checkbox" {...field.input}/>{field.label}</label>
     </div>)
@@ -159,32 +168,12 @@ function validate(values) {
   if (!values.lastName) {
     errors.lastName = "Enter a last name";
   }
-
   if (!values.email) {
     errors.email = "Enter an email";
   }
   if (!values.password) {
     errors.password = "Enter an password";
   }
-  if (!values.gender) {
-    errors.gender = "Enter a gender";
-  }
-  if (!values.video) {
-    errors.video = "Enter a video link";
-  }
-  if (!values.city) {
-    errors.city = "Enter a city";
-  }
-  if (!values.training) {
-    errors.training = "Enter training";
-  }
-  if (!values.experience) {
-    errors.experience = "Enter experience";
-  }
-  if (!values.website) {
-    errors.website = "Enter website";
-  }
-
   return errors;
 }
 

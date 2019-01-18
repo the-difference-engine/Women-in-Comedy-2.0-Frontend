@@ -169,7 +169,7 @@ class ProfilePage extends Component {
             defaultChecked={this.props.userInfo.block_connection_requests}
             onClick={this.onBlockConnection.bind(this)}
           />
-          Block Incomming Connection Requests
+          Block Incoming Connection Requests
         </label>
       );
     }

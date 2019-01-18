@@ -11,6 +11,7 @@ import {
   UPDATE_EVENT_FAIL
 } from "./types";
 
+
 export const createEvent = (eventInfo, userId, callback) => async dispatch => {
   
   let {
@@ -29,15 +30,6 @@ export const createEvent = (eventInfo, userId, callback) => async dispatch => {
     dispatch({ type: LOAD });
     // set events to the photo name.
     // this is an update to fix the update action
-    const photoName = photo.name.slice(0, photo.name.lastIndexOf("."));
-    const ext = photo.name.slice(photo.name.lastIndexOf("."));
-    const imageData = await firebase
-      .storage()
-      .ref(`/events/${photoName}${ext}`)
-      .put(photo);
-
-    
-    photo = ''
     const request = await axios({
       method: "post",
       url: process.env.REACT_APP_API_ENDPOINT + "events",

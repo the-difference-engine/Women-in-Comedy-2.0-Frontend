@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './HomePage/HomePage';
 import EventsPage from './EventsPage/EventsPage';
@@ -32,6 +32,14 @@ class App extends Component {
     firebase.initializeApp(config);
   }
 
+  buildConfirmationPath() {
+    return window.location.origin.replace('.herokuapp', '-api.herokuapp') + window.location.pathname
+  }
+
+  buildConfirmationQuerystring() {
+    return window.location.search
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -51,6 +59,12 @@ class App extends Component {
               <Route path='/profile/:id/edit' component={EditPage}></Route>
               <Route path='/message' component={DeletedUser}></Route>
               <Route path='/notifications' component={Notification}></Route>
+              <Route 
+                path='/users/confirmation'
+                component={() => {
+                  window.location = this.buildConfirmationPath() + this.buildConfirmationQuerystring()
+                  return null;
+                }} />
             </Switch>
           </div>
         </MuiThemeProvider>
